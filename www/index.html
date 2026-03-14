@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data:;">
+    <meta name="theme-color" content="#00838f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="个人财务规划">
+    <link rel="manifest" href="manifest.json">
+    <title>个人财务规划</title>
+    
+    <!-- 启动屏样式 - 立即显示，减少白屏时间 -->
+    <style>
+        /* 启动屏 - 立即应用 */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #00838f 0%, #00bcd4 50%, #4dd0e1 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .splash-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: splashPulse 1.5s ease-in-out infinite;
+        }
+        @keyframes splashPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .splash-title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .splash-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        .splash-loader {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: splashSpin 0.8s linear infinite;
+            margin-top: 30px;
+        }
+        @keyframes splashSpin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <!-- 异步加载主样式 -->
+    <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/style.css"></noscript>
+    
+    <!-- 关键CSS内联 -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; color: #006064; margin-bottom: 30px; font-size: 2.5rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        .card { background: white; border-radius: 16px; padding: 24px; margin-bottom: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .card-title { font-size: 1.3rem; color: #006064; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #00bcd4; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 0.9rem; color: #555; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group select { 
+            padding: 12px 16px; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 10px; 
+            font-size: 1rem; 
+            /* 优化：只过渡需要的属性，避免 all 带来的性能开销 */
+            transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; 
+            background: #fafafa; 
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #00bcd4; background: white; box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1); }
+        .form-group input:hover, .form-group select:hover { border-color: #b0b0b0; }
+        .form-section { grid-column: 1 / -1; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); padding: 20px; border-radius: 12px; margin-top: 10px; }
+        .form-section-title { font-size: 1rem; color: #006064; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .form-actions { grid-column: 1 / -1; display: flex; justify-content: center; margin-top: 10px; }
+        .btn-submit { padding: 14px 48px; font-size: 1.1rem; border-radius: 25px; box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3); }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0, 188, 212, 0.4); }
+        .btn { 
+            padding: 12px 24px; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            /* 优化：只过渡 transform 和 box-shadow */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+            font-weight: 600; 
+            /* 提升按钮到独立渲染层 */
+            will-change: transform;
+        }
+        .btn-primary { background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0, 188, 212, 0.4); }
+        .btn-success { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; }
+        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(17, 153, 142, 0.4); }
+        .btn-danger { background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); color: white; padding: 8px 16px; font-size: 0.85rem; }
+        .btn-danger:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(235, 51, 73, 0.4); }
+        .btn-info { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 8px 16px; font-size: 0.85rem; }
+        .btn-info:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4); }
+        .btn-secondary { background: linear-gradient(135deg, #78909c 0%, #546e7a 100%); color: white; padding: 8px 16px; font-size: 0.85rem; }
+        .btn-secondary:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(120, 144, 156, 0.4); }
+        .loans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .loan-card { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
+            border-radius: 12px; 
+            padding: 20px; 
+            position: relative; 
+            /* 优化：只过渡 transform，使用更短的时长 */
+            transition: transform 0.2s ease; 
+            /* 隔离渲染层 */
+            contain: layout style;
+        }
+        .loan-card:hover { transform: translateY(-5px); }
+        .loan-card.paid-off { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
+        .loan-card.due-today { border: 3px solid #ff9800; box-shadow: 0 0 20px rgba(255, 152, 0, 0.4); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(255, 152, 0, 0.4); } 50% { box-shadow: 0 0 30px rgba(255, 152, 0, 0.7); } }
+        .loan-name { font-size: 1.2rem; font-weight: 700; color: #333; margin-bottom: 12px; }
+        .loan-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .info-item { background: rgba(255,255,255,0.7); padding: 10px; border-radius: 8px; }
+        .info-label { font-size: 0.75rem; color: #666; margin-bottom: 4px; }
+        .info-value { font-size: 1rem; font-weight: 600; color: #333; }
+        .info-value.highlight { color: #00838f; font-size: 1.1rem; }
+        .loan-actions { display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; border-radius: 16px; padding: 30px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; }
+        .modal-close:hover { color: #333; }
+        .schedule-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .schedule-table th, .schedule-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        .schedule-table th { background: #f5f5f5; font-weight: 600; color: #333; }
+        .schedule-table tr:hover { background: #f9f9f9; }
+        .empty-state { text-align: center; padding: 40px; color: #999; }
+        .empty-state svg { width: 80px; height: 80px; margin-bottom: 16px; opacity: 0.5; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .stat-card { 
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); 
+            color: white; 
+            padding: 20px; 
+            border-radius: 12px; 
+            text-align: center; 
+            cursor: pointer; 
+            /* 优化：只过渡需要的属性 */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+            position: relative; 
+            overflow: hidden; 
+            contain: layout style;
+        }
+        .stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4); }
+        .stat-card:active { transform: translateY(-1px); }
+        .stat-card::after { content: '👆 点击查看详情'; position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; opacity: 0; transition: opacity 0.3s; }
+        .stat-card:hover::after { opacity: 0.8; }
+        .stat-value { font-size: 1.8rem; font-weight: 700; margin-bottom: 5px; }
+        .stat-label { font-size: 0.85rem; opacity: 0.9; }
+        
+        /* 可折叠面板样式 */
+        .collapsible-card { 
+            cursor: pointer; 
+            /* 优化：只过渡 box-shadow */
+            transition: box-shadow 0.2s ease; 
+            contain: layout style;
+        }
+        .collapsible-card:hover { box-shadow: 0 15px 50px rgba(0,0,0,0.15); }
+        .collapsible-header { display: flex; justify-content: space-between; align-items: center; }
+        .collapse-icon { font-size: 1.5rem; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .collapse-icon.expanded { transform: rotate(180deg); }
+        .collapsible-content { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, padding 0.4s ease; opacity: 0; }
+        .collapsible-content.expanded { max-height: 5000px; opacity: 1; padding-top: 20px; }
+        
+        /* 三级菜单样式 - 贷款列表 */
+        .loan-list-item { 
+            display: flex; 
+            align-items: center; 
+            padding: 16px 20px; 
+            margin: 10px 0; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); 
+            border-radius: 12px; 
+            cursor: pointer; 
+            /* 优化：只过渡 transform 和 box-shadow */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* 保留入场动画 */
+            animation: slideInRight 0.4s ease forwards;
+            opacity: 0;
+            transform: translateX(-20px);
+            contain: layout style;
+        }
+        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+        .loan-list-item:hover { 
+            transform: translateX(8px) scale(1.02); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        }
+        .loan-list-item:active { transform: translateX(4px) scale(0.98); }
+        .loan-list-icon { font-size: 1.5rem; margin-right: 15px; }
+        .loan-list-info { flex: 1; }
+        .loan-list-name { font-size: 1.1rem; font-weight: 600; color: #333; }
+        .loan-list-brief { font-size: 0.85rem; color: #666; margin-top: 4px; }
+        .loan-list-arrow { font-size: 1.2rem; color: #999; transition: transform 0.2s ease, color 0.2s ease; }
+        .loan-list-item:hover .loan-list-arrow { color: #00bcd4; transform: translateX(5px); }
+        
+        /* 贷款详情样式 */
+        .detail-header { 
+            background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); 
+            color: white; 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-bottom: 20px;
+            animation: fadeInDown 0.5s ease;
+        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .detail-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; }
+        .detail-subtitle { font-size: 0.9rem; opacity: 0.9; }
+        .detail-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 12px; 
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease 0.1s both;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .detail-item { 
+            background: #f5f5f5; 
+            padding: 15px; 
+            border-radius: 10px; 
+            /* 优化：只过渡需要的属性 */
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .detail-item:hover { background: #e8f4f8; transform: translateY(-2px); }
+        .detail-label { font-size: 0.8rem; color: #666; margin-bottom: 6px; }
+        .detail-value { font-size: 1.1rem; font-weight: 600; color: #333; }
+        .detail-value.highlight { color: #00838f; }
+        .detail-actions { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 20px;
+            animation: fadeInUp 0.5s ease 0.2s both;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        /* 贷款列表动画 */
+        .loans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .loan-card { 
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
+            border-radius: 12px; 
+            padding: 20px; 
+            position: relative; 
+            /* 优化：只过渡 transform 和 box-shadow */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; 
+            /* 保留入场动画 */
+            animation: slideInUp 0.5s ease forwards; 
+            opacity: 0; 
+            transform: translateY(20px);
+            contain: layout style;
+        }
+        @keyframes slideInUp { to { opacity: 1; transform: translateY(0); } }
+        .loan-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .loan-card.paid-off { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
+        .loan-card.due-today { border: 3px solid #ff9800; box-shadow: 0 0 20px rgba(255, 152, 0, 0.4); animation: pulse 2s infinite, slideInUp 0.5s ease forwards; }
+        .payment-form { display: flex; gap: 10px; align-items: flex-end; margin-top: 15px; }
+        .payment-form .form-group { flex: 1; }
+        .chart-container { margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 12px; }
+        .chart-title { font-size: 1rem; color: #006064; margin-bottom: 15px; font-weight: 600; }
+        .bar-chart { display: flex; flex-direction: column; gap: 12px; }
+        .bar-item { display: flex; align-items: center; gap: 10px; }
+        .bar-label { min-width: 100px; font-size: 0.85rem; color: #555; text-align: right; }
+        .bar-wrapper { flex: 1; height: 28px; background: #e0e0e0; border-radius: 14px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; border-radius: 14px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; color: white; font-size: 0.75rem; font-weight: 600; }
+        .bar-fill.principal { background: linear-gradient(90deg, #00bcd4 0%, #00838f 100%); }
+        .bar-fill.remaining { background: linear-gradient(90deg, #ff9800 0%, #f57c00 100%); }
+        .bar-fill.paid { background: linear-gradient(90deg, #4caf50 0%, #388e3c 100%); }
+        .bar-value { min-width: 80px; font-size: 0.85rem; color: #333; font-weight: 600; }
+        .data-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
+        .file-input { display: none; }
+        @media (max-width: 768px) { .loans-grid { grid-template-columns: 1fr; } .loan-info { grid-template-columns: 1fr; } .payment-form { flex-direction: column; } .payment-form .form-group { width: 100%; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <!-- 启动屏 -->
+    <div id="splash-screen">
+        <div class="splash-icon">💰</div>
+        <div class="splash-title">个人财务规划</div>
+        <div class="splash-subtitle">智能贷款管理工具</div>
+        <div class="splash-loader"></div>
+    </div>
+    
+    <div class="container">
+        <h1>💰 个人财务管理</h1>
+        
+        <!-- 本月应还金额卡片 -->
+        <div class="card" id="currentMonthCard" style="display: none; background: linear-gradient(135deg, #00bcd4 0%, #00838f 100%); color: white;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+                <div>
+                    <div style="font-size: 1rem; opacity: 0.9; margin-bottom: 5px;">📅 <span id="currentDate"></span> 本月应还金额</div>
+                    <div style="font-size: 2.5rem; font-weight: 700;" id="currentMonthTotal">¥0.00</div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.9rem; opacity: 0.9;">涉及贷款</div>
+                    <div style="font-size: 1.5rem; font-weight: 600;" id="activeLoanCount">0 笔</div>
+                </div>
+            </div>
+            <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.15); border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <div style="font-size: 0.85rem; opacity: 0.9;">💰 每日应还金额（按30天计）</div>
+                        <div style="font-size: 1.8rem; font-weight: 700;" id="dailyPayment">¥0.00</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 0.85rem; opacity: 0.9;">剩余天数</div>
+                        <div style="font-size: 1.3rem; font-weight: 600;" id="remainingDays">0 天</div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.3); font-size: 0.9rem; opacity: 0.9;" id="currentMonthDetails"></div>
+        </div>
+        
+        <!-- 统计概览 - 可点击入口 -->
+        <div class="card" id="statsCard" style="display: none; cursor: pointer;" onclick="showLoanListModal()">
+            <div class="card-title">📊 贷款概览 <span style="font-size: 0.8rem; color: #666; font-weight: normal;">（点击进入贷款管理）</span></div>
+            <div class="stats-grid" id="statsGrid"></div>
+            <div style="margin-top: 20px; text-align: center;">
+                <button class="btn btn-primary" onclick="event.stopPropagation(); viewMonthlyTotal();">📅 查看每月总还款金额</button>
+            </div>
+        </div>
+        
+        <!-- 添加贷款表单 -->
+        <div class="card">
+            <div class="card-title">➕ 添加新贷款</div>
+            <form id="loanForm" class="form-grid">
+                <div class="form-group">
+                    <label>🏷️ 贷款类型</label>
+                    <select id="loanType" onchange="toggleLoanType()">
+                        <option value="normal">普通贷款</option>
+                        <option value="credit_card">信用卡</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>📝 名称</label>
+                    <input type="text" id="loanName" placeholder="例如：房贷、车贷、招行信用卡" required>
+                </div>
+                <div class="form-group">
+                    <label>💳 还款方式</label>
+                    <select id="repaymentMethod">
+                        <option value="equal_interest">等额本息</option>
+                        <option value="equal_principal">等额本金</option>
+                        <option value="interest_first">先息后本</option>
+                        <option value="lump_sum">利随本清</option>
+                    </select>
+                </div>
+                
+                <div id="normalFields" class="form-section">
+                    <div class="form-section-title">📋 普通贷款信息</div>
+                    <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                        <div class="form-group">
+                            <label>贷款本金（元）</label>
+                            <input type="number" id="loanPrincipal" placeholder="100000" min="1" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>年利率（%）</label>
+                            <input type="number" id="loanRate" placeholder="4.5" min="0" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>贷款期限（月）</label>
+                            <input type="number" id="loanMonths" placeholder="360" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>开始日期</label>
+                            <input type="date" id="loanDate" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="creditCardFields" class="form-section" style="display: none;">
+                    <div class="form-section-title">💳 信用卡信息</div>
+                    <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                        <div class="form-group">
+                            <label>分期总额（元）</label>
+                            <input type="number" id="creditLimit" placeholder="10000" min="1" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>分期期数（月）</label>
+                            <input type="number" id="creditCardMonths" placeholder="12" min="1" max="36" value="12">
+                        </div>
+                        <div class="form-group">
+                            <label>开始日期</label>
+                            <input type="date" id="creditCardDate">
+                        </div>
+                        <div class="form-group">
+                            <label>还款日（每月几号）</label>
+                            <input type="number" id="dueDate" placeholder="10" min="1" max="31">
+                        </div>
+                        <div class="form-group">
+                            <label>年利率（%）</label>
+                            <input type="number" id="creditCardRate" placeholder="18" min="0" step="0.01" value="18">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-submit">➕ 添加贷款</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- 贷款管理入口 - 简洁的按钮入口 -->
+        <div class="card" id="loanManageCard" style="display: none;">
+            <div class="card-title">📋 贷款管理</div>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-primary" onclick="showLoanListModal()" style="padding: 14px 32px; font-size: 1.1rem;">
+                    📋 查看我的贷款 <span id="loansCountBadge" style="background: rgba(255,255,255,0.3); padding: 2px 10px; border-radius: 12px; font-size: 0.85rem; margin-left: 8px;">0</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 数据管理 -->
+        <div class="card">
+            <div class="card-title">💾 数据管理</div>
+            <div class="data-actions">
+                <button class="btn btn-secondary" onclick="exportData()">📤 导出数据</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📥 导入数据</button>
+                <button class="btn btn-danger" onclick="clearAllData()">🗑️ 清空数据</button>
+            </div>
+            <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(this)">
+        </div>
+    </div>
+    
+    <!-- 弹窗 -->
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="card-title">📅 还款计划表</div>
+            <div id="scheduleContent"></div>
+        </div>
+    </div>
+    
+    <div class="modal" id="monthlyTotalModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="modal-close" onclick="closeMonthlyTotalModal()">&times;</span>
+            <div class="card-title">📅 每月总还款金额汇总</div>
+            <div id="monthlyTotalContent"></div>
+        </div>
+    </div>
+    
+    <div class="modal" id="reminderModal">
+        <div class="modal-content" style="max-width: 500px; text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: 15px;">🔔</div>
+            <div class="card-title" style="color: #f57c00; border-bottom-color: #ff9800;">⏰ 今日还款提醒</div>
+            <div id="reminderContent" style="font-size: 1.1rem; line-height: 1.8; color: #333;"></div>
+            <div style="margin-top: 25px;">
+                <button class="btn btn-primary" onclick="closeReminderModal()" style="padding: 12px 40px;">我知道了</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 添加贷款确认弹窗 -->
+    <div class="modal" id="confirmAddModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="card-title" style="text-align: center; color: #00838f;">⚠️ 确认添加贷款</div>
+            <div id="confirmAddContent" style="font-size: 1rem; line-height: 1.8; color: #333; margin: 20px 0;"></div>
+            <div style="display: flex; gap: 15px; justify-content: center; margin-top: 25px;">
+                <button class="btn" onclick="closeConfirmAddModal()" style="background: #e0e0e0; color: #666; padding: 12px 30px;">取消</button>
+                <button class="btn btn-primary" onclick="confirmAddLoan()" style="padding: 12px 30px;">确认添加</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 贷款名字列表弹窗（二级菜单） -->
+    <div class="modal" id="loanListModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="modal-close" onclick="closeLoanListModal()">&times;</span>
+            <div class="card-title">📋 选择贷款查看详情</div>
+            <div id="loanListContent" style="margin-top: 15px;"></div>
+        </div>
+    </div>
+    
+    <!-- 贷款详情弹窗（三级菜单） -->
+    <div class="modal" id="loanDetailModal">
+        <div class="modal-content" style="max-width: 600px; max-height: 85vh;">
+            <span class="modal-close" onclick="closeLoanDetailModal()">&times;</span>
+            <div id="loanDetailContent"></div>
+        </div>
+    </div>
+
+    <!-- 异步加载 loanManager.js -->
+    <script src="js/loanManager.js" defer></script>
+    <script>
+        document.getElementById('loanDate').valueAsDate = new Date();
+        
+        function toggleLoanType() {
+            const type = document.getElementById('loanType').value;
+            const normalFields = document.getElementById('normalFields');
+            const creditCardFields = document.getElementById('creditCardFields');
+            
+            normalFields.style.display = type === 'normal' ? 'block' : 'none';
+            creditCardFields.style.display = type === 'credit_card' ? 'block' : 'none';
+            
+            document.getElementById('loanPrincipal').required = type === 'normal';
+            document.getElementById('loanRate').required = type === 'normal';
+            document.getElementById('loanMonths').required = type === 'normal';
+            document.getElementById('loanDate').required = type === 'normal';
+            
+            document.getElementById('creditLimit').required = type === 'credit_card';
+            document.getElementById('creditCardMonths').required = type === 'credit_card';
+            document.getElementById('creditCardDate').required = type === 'credit_card';
+            document.getElementById('dueDate').required = type === 'credit_card';
+            
+            if (!document.getElementById('creditCardDate').value) {
+                document.getElementById('creditCardDate').valueAsDate = new Date();
+            }
+            
+            const method = document.getElementById('repaymentMethod');
+            if (type === 'credit_card') {
+                method.value = 'lump_sum';
+                method.disabled = false;
+            } else {
+                method.value = 'equal_interest';
+                method.disabled = false;
+            }
+        }
+        
+        function loadLoans() {
+            try {
+                const loans = LoanManager.getLoans();
+                displayStats(loans);
+                checkDueDateReminders(loans);
+            } catch (error) {
+                console.error('加载失败:', error);
+            }
+        }
+        
+        function displayStats(loans) {
+            const statsCard = document.getElementById('statsCard');
+            const currentMonthCard = document.getElementById('currentMonthCard');
+            const loanManageCard = document.getElementById('loanManageCard');
+            if (loans.length === 0) {
+                statsCard.style.display = 'none';
+                currentMonthCard.style.display = 'none';
+                loanManageCard.style.display = 'none';
+                return;
+            }
+            statsCard.style.display = 'block';
+            currentMonthCard.style.display = 'block';
+            loanManageCard.style.display = 'block';
+            
+            const totalPrincipal = loans.reduce((sum, l) => sum + l.principal, 0);
+            const totalRemaining = loans.reduce((sum, l) => sum + l.status.remaining_principal, 0);
+            const totalPaid = loans.reduce((sum, l) => sum + l.status.total_paid, 0);
+            const paidOffCount = loans.filter(l => l.status.is_paid_off).length;
+            
+            // 更新贷款数量徽章
+            document.getElementById('loansCountBadge').textContent = loans.length;
+            
+            document.getElementById('statsGrid').innerHTML = `
+                <div class="stat-card" title="贷款总数"><div class="stat-value">${loans.length}</div><div class="stat-label">贷款总数</div></div>
+                <div class="stat-card" title="贷款总额"><div class="stat-value">¥${formatNumber(totalPrincipal)}</div><div class="stat-label">贷款总额</div></div>
+                <div class="stat-card" title="剩余本金"><div class="stat-value">¥${formatNumber(totalRemaining)}</div><div class="stat-label">剩余本金</div></div>
+                <div class="stat-card" title="已还金额"><div class="stat-value">¥${formatNumber(totalPaid)}</div><div class="stat-label">已还金额</div></div>
+                <div class="stat-card" title="已还清"><div class="stat-value">${paidOffCount}</div><div class="stat-label">已还清</div></div>`;
+            
+            updateCurrentMonthPayment(loans);
+        }
+        
+        // 三级菜单 - 显示贷款名字列表（二级菜单入口）
+        function showLoanListModal() {
+            const loans = LoanManager.getLoans();
+            const modal = document.getElementById('loanListModal');
+            const content = document.getElementById('loanListContent');
+            
+            if (loans.length === 0) {
+                content.innerHTML = '<div class="empty-state"><p>暂无贷款记录</p></div>';
+            } else {
+                let html = '';
+                loans.forEach((loan, index) => {
+                    const isCC = loan.loan_type === 'credit_card';
+                    const isPaidOff = loan.status.is_paid_off;
+                    html += '<div class="loan-list-item" onclick="showLoanDetail(' + loan.id + ')" style="animation-delay: ' + (index * 0.08) + 's">';
+                    html += '<div class="loan-list-icon">' + (isCC ? '💳' : '🏦') + '</div>';
+                    html += '<div class="loan-list-info">';
+                    html += '<div class="loan-list-name">' + loan.name + (isPaidOff ? ' <span style="color:#4caf50;">✓</span>' : '') + '</div>';
+                    html += '<div class="loan-list-brief">剩余: ¥' + formatNumber(loan.status.remaining_principal) + ' | 月供: ¥' + formatNumber(loan.status.new_monthly_payment) + '</div>';
+                    html += '</div>';
+                    html += '<div class="loan-list-arrow">→</div>';
+                    html += '</div>';
+                });
+                content.innerHTML = html;
+            }
+            
+            modal.classList.add('active');
+        }
+        
+        function closeLoanListModal() {
+            document.getElementById('loanListModal').classList.remove('active');
+        }
+        
+        // 三级菜单 - 显示贷款详情
+        function showLoanDetail(loanId) {
+            const loans = LoanManager.getLoans();
+            const loan = loans.find(l => l.id === loanId);
+            if (!loan) return;
+            
+            const modal = document.getElementById('loanDetailModal');
+            const content = document.getElementById('loanDetailContent');
+            const isCC = loan.loan_type === 'credit_card';
+            const isPaidOff = loan.status.is_paid_off;
+            const methodText = {
+                'equal_interest': '等额本息',
+                'equal_principal': '等额本金',
+                'interest_first': '先息后本',
+                'lump_sum': '利随本清'
+            };
+            
+            let html = '';
+            
+            // 头部信息
+            html += '<div class="detail-header">';
+            html += '<div class="detail-title">' + (isCC ? '💳' : '🏦') + ' ' + loan.name + '</div>';
+            html += '<div class="detail-subtitle">' + methodText[loan.repayment_method] + (isPaidOff ? ' | <span style="color:#d4fc79;">已还清</span>' : '') + '</div>';
+            html += '</div>';
+            
+            // 详细信息网格
+            html += '<div class="detail-grid">';
+            html += '<div class="detail-item"><div class="detail-label">贷款本金</div><div class="detail-value">¥' + formatNumber(loan.principal) + '</div></div>';
+            html += '<div class="detail-item"><div class="detail-label">年利率</div><div class="detail-value">' + loan.annual_rate + '%</div></div>';
+            html += '<div class="detail-item"><div class="detail-label">贷款期限</div><div class="detail-value">' + loan.months + '个月</div></div>';
+            html += '<div class="detail-item"><div class="detail-label">开始日期</div><div class="detail-value">' + loan.start_date + '</div></div>';
+            html += '<div class="detail-item"><div class="detail-label">已还金额</div><div class="detail-value">¥' + formatNumber(loan.status.total_paid) + '</div></div>';
+            html += '<div class="detail-item"><div class="detail-label">剩余本金</div><div class="detail-value highlight">¥' + formatNumber(loan.status.remaining_principal) + '</div></div>';
+            html += '<div class="detail-item"><div class="detail-label">当前月供</div><div class="detail-value highlight">¥' + formatNumber(loan.status.new_monthly_payment) + '</div></div>';
+            html += '<div class="detail-item"><div class="detail-label">还款进度</div><div class="detail-value">' + (loan.status.total_paid / loan.principal * 100).toFixed(1) + '%</div></div>';
+            html += '</div>';
+            
+            // 还款进度条
+            const paidPct = (loan.status.total_paid / loan.principal * 100).toFixed(1);
+            const remainPct = (loan.status.remaining_principal / loan.principal * 100).toFixed(1);
+            html += '<div style="margin-bottom: 20px; animation: fadeInUp 0.5s ease 0.15s both;">';
+            html += '<div style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">📊 还款进度</div>';
+            html += '<div class="bar-chart">';
+            html += '<div class="bar-item"><div class="bar-label">已还</div><div class="bar-wrapper"><div class="bar-fill paid" style="width:' + paidPct + '%">' + (paidPct > 15 ? paidPct + '%' : '') + '</div></div><div class="bar-value">' + paidPct + '%</div></div>';
+            html += '<div class="bar-item"><div class="bar-label">剩余</div><div class="bar-wrapper"><div class="bar-fill remaining" style="width:' + remainPct + '%">' + (remainPct > 15 ? remainPct + '%' : '') + '</div></div><div class="bar-value">' + remainPct + '%</div></div>';
+            html += '</div></div>';
+            
+            // 操作按钮
+            html += '<div class="detail-actions">';
+            html += '<button class="btn btn-info" onclick="viewSchedule(' + loan.id + '); closeLoanDetailModal();">📅 还款计划</button>';
+            if (!isPaidOff) {
+                html += '<button class="btn btn-success" onclick="showPaymentInput(' + loan.id + ')">💰 还款</button>';
+            }
+            html += '<button class="btn btn-danger" onclick="deleteLoan(' + loan.id + '); closeLoanDetailModal();">🗑️ 删除</button>';
+            html += '</div>';
+            
+            // 还款输入框（默认隐藏）
+            if (!isPaidOff) {
+                html += '<div id="paymentInput_' + loan.id + '" style="display:none; margin-top:15px; padding:15px; background:#f5f5f5; border-radius:10px; animation: fadeInUp 0.3s ease;">';
+                html += '<div style="display:flex; gap:10px; align-items:flex-end;">';
+                html += '<div class="form-group" style="flex:1; margin:0;"><label>还款金额</label><input type="number" id="detailPayment_' + loan.id + '" placeholder="输入金额" min="1" step="0.01" style="width:100%;"></div>';
+                html += '<button class="btn btn-success" onclick="makePaymentFromDetail(' + loan.id + ')">确认还款</button>';
+                html += '</div></div>';
+            }
+            
+            content.innerHTML = html;
+            modal.classList.add('active');
+        }
+        
+        function closeLoanDetailModal() {
+            document.getElementById('loanDetailModal').classList.remove('active');
+        }
+        
+        function showPaymentInput(loanId) {
+            const inputDiv = document.getElementById('paymentInput_' + loanId);
+            if (inputDiv) {
+                inputDiv.style.display = inputDiv.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+        
+        function makePaymentFromDetail(loanId) {
+            const amount = parseFloat(document.getElementById('detailPayment_' + loanId).value);
+            if (!amount || amount <= 0) { alert('请输入有效金额'); return; }
+            try {
+                LoanManager.makePayment({ loan_id: loanId, amount: amount });
+                alert('还款成功！');
+                closeLoanDetailModal();
+                closeLoanListModal();
+                loadLoans();
+            } catch (error) {
+                alert(error.message || '还款失败');
+            }
+        }
+        
+        // 点击弹窗外部关闭
+        document.getElementById('loanListModal').addEventListener('click', (e) => { if (e.target.id === 'loanListModal') closeLoanListModal(); });
+        document.getElementById('loanDetailModal').addEventListener('click', (e) => { if (e.target.id === 'loanDetailModal') closeLoanDetailModal(); });
+        
+        function updateCurrentMonthPayment(loans) {
+            const now = new Date();
+            const monthStr = now.getFullYear() + '年' + (now.getMonth() + 1) + '月';
+            document.getElementById('currentDate').textContent = monthStr;
+            
+            const activeLoans = loans.filter(loan => !loan.status.is_paid_off);
+            const total = activeLoans.reduce((sum, loan) => sum + loan.status.new_monthly_payment, 0);
+            
+            document.getElementById('currentMonthTotal').textContent = '¥' + formatNumber(total);
+            document.getElementById('activeLoanCount').textContent = activeLoans.length + ' 笔';
+            document.getElementById('dailyPayment').textContent = '¥' + formatNumber(total / 30);
+            document.getElementById('remainingDays').textContent = (new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate() - now.getDate() + 1) + ' 天';
+            document.getElementById('currentMonthDetails').textContent = activeLoans.length > 0 ? activeLoans.map(l => l.name + ': ¥' + formatNumber(l.status.new_monthly_payment)).join(' | ') : '本月无待还款项';
+        }
+        
+        function formatNumber(num) {
+            return num.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        
+        let pendingLoanData = null;
+        
+        document.getElementById('loanForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const type = document.getElementById('loanType').value;
+            const method = document.getElementById('repaymentMethod').value;
+            
+            if (type === 'credit_card') {
+                const ccMethod = document.getElementById('repaymentMethod').value;
+                const ccMonths = parseInt(document.getElementById('creditCardMonths').value) || 12;
+                const ccDate = document.getElementById('creditCardDate').value;
+                pendingLoanData = {
+                    name: document.getElementById('loanName').value,
+                    loan_type: 'credit_card',
+                    repayment_method: ccMethod,
+                    principal: parseFloat(document.getElementById('creditLimit').value) || 0,
+                    credit_limit: parseFloat(document.getElementById('creditLimit').value) || 0,
+                    due_date: parseInt(document.getElementById('dueDate').value) || 1,
+                    annual_rate: parseFloat(document.getElementById('creditCardRate').value) || 18,
+                    months: ccMonths,
+                    start_date: ccDate || new Date().toISOString().split('T')[0]
+                };
+            } else {
+                pendingLoanData = {
+                    name: document.getElementById('loanName').value,
+                    loan_type: 'normal',
+                    repayment_method: method,
+                    principal: parseFloat(document.getElementById('loanPrincipal').value),
+                    annual_rate: parseFloat(document.getElementById('loanRate').value),
+                    months: parseInt(document.getElementById('loanMonths').value),
+                    start_date: document.getElementById('loanDate').value
+                };
+            }
+            
+            showConfirmAddModal(pendingLoanData);
+        });
+        
+        function showConfirmAddModal(loanData) {
+            const modal = document.getElementById('confirmAddModal');
+            const content = document.getElementById('confirmAddContent');
+            const methodText = {
+                'equal_interest': '等额本息',
+                'equal_principal': '等额本金',
+                'interest_first': '先息后本',
+                'lump_sum': '利随本清'
+            };
+            
+            let html = '<div style="background: #f5f5f5; padding: 15px; border-radius: 8px;">';
+            html += '<p><strong>🏷️ 贷款类型：</strong>' + (loanData.loan_type === 'credit_card' ? '信用卡' : '普通贷款') + '</p>';
+            html += '<p><strong>📝 名称：</strong>' + loanData.name + '</p>';
+            html += '<p><strong>💳 还款方式：</strong>' + methodText[loanData.repayment_method] + '</p>';
+            html += '<p><strong>💰 本金/额度：</strong>¥' + formatNumber(loanData.principal) + '</p>';
+            html += '<p><strong>📊 年利率：</strong>' + loanData.annual_rate + '%</p>';
+            html += '<p><strong>📅 期限：</strong>' + loanData.months + '个月</p>';
+            html += '<p><strong>📆 开始日期：</strong>' + loanData.start_date + '</p>';
+            if (loanData.loan_type === 'credit_card') {
+                html += '<p><strong>📍 还款日：</strong>每月' + loanData.due_date + '号</p>';
+            }
+            html += '</div>';
+            html += '<p style="margin-top: 15px; color: #666; text-align: center;">请确认以上信息是否正确？</p>';
+            
+            content.innerHTML = html;
+            modal.classList.add('active');
+        }
+        
+        function closeConfirmAddModal() {
+            document.getElementById('confirmAddModal').classList.remove('active');
+            pendingLoanData = null;
+        }
+        
+        function confirmAddLoan() {
+            if (!pendingLoanData) return;
+            
+            try {
+                LoanManager.createLoan(pendingLoanData);
+                closeConfirmAddModal();
+                document.getElementById('loanForm').reset();
+                document.getElementById('loanDate').valueAsDate = new Date();
+                toggleLoanType();
+                loadLoans();
+            } catch (error) {
+                alert('添加失败: ' + error.message);
+            }
+        }
+        
+        document.getElementById('confirmAddModal').addEventListener('click', (e) => { 
+            if (e.target.id === 'confirmAddModal') closeConfirmAddModal(); 
+        });
+        
+        function makePayment(loanId) {
+            const amount = parseFloat(document.getElementById('payment-' + loanId).value);
+            if (!amount || amount <= 0) { alert('请输入有效金额'); return; }
+            try {
+                LoanManager.makePayment({ loan_id: loanId, amount: amount });
+                document.getElementById('payment-' + loanId).value = '';
+                alert('还款成功！');
+                loadLoans();
+            } catch (error) {
+                alert(error.message || '还款失败');
+            }
+        }
+        
+        function deleteLoan(loanId) {
+            if (!confirm('确定删除？')) return;
+            try {
+                LoanManager.deleteLoan(loanId);
+                loadLoans();
+            } catch (error) {
+                alert('删除失败');
+            }
+        }
+        
+        function viewSchedule(loanId) {
+            try {
+                const data = LoanManager.getPaymentSchedule(loanId);
+                displaySchedule(data);
+            } catch (error) {
+                alert('获取失败: ' + error.message);
+            }
+        }
+        
+        function displaySchedule(data) {
+            const modal = document.getElementById('scheduleModal');
+            const content = document.getElementById('scheduleContent');
+            const isCreditCard = data.loan.loan_type === 'credit_card';
+            const methodText = {
+                'equal_interest': '等额本息',
+                'equal_principal': '等额本金',
+                'interest_first': '先息后本',
+                'lump_sum': '利随本清'
+            };
+            
+            if (data.schedule.length === 0) {
+                content.innerHTML = '<p style="text-align:center;color:#999;">无还款计划</p>';
+            } else {
+                let html = '<div style="margin-bottom:15px;padding:15px;background:linear-gradient(135deg, #00bcd4 0%, #00838f 100%);border-radius:8px;color:white;">';
+                html += '<p style="font-size:1.1rem;margin-bottom:8px;"><strong>' + (isCreditCard ? '💳 ' : '🏦 ') + data.loan.name + '</strong></p>';
+                html += '<p style="font-size:0.9rem;opacity:0.9;">还款方式：' + methodText[data.loan.repayment_method] + '</p>';
+                html += '</div>';
+                
+                html += '<div style="margin-bottom:15px;padding:15px;background:#f5f5f5;border-radius:8px;display:grid;grid-template-columns:repeat(3, 1fr);gap:10px;text-align:center;">';
+                html += '<div><div style="font-size:0.8rem;color:#666;">剩余本金</div><div style="font-size:1.2rem;font-weight:600;color:#00838f;">¥' + formatNumber(data.remaining_principal) + '</div></div>';
+                html += '<div><div style="font-size:0.8rem;color:#666;">已还金额</div><div style="font-size:1.2rem;font-weight:600;color:#11998e;">¥' + formatNumber(data.total_paid_so_far) + '</div></div>';
+                html += '<div><div style="font-size:0.8rem;color:#666;">剩余期数</div><div style="font-size:1.2rem;font-weight:600;color:#f57c00;">' + data.schedule.length + '期</div></div>';
+                html += '</div>';
+                
+                html += '<table class="schedule-table"><thead><tr><th>期数</th><th>还款日期</th><th>月供</th><th>本金</th><th>利息</th><th>剩余本金</th></tr></thead><tbody>';
+                data.schedule.forEach(item => {
+                    const isLastMonth = item.month === data.schedule.length;
+                    const highlightStyle = isCreditCard && isLastMonth ? 'style="background:#fff3e0;font-weight:600;"' : '';
+                    html += '<tr ' + highlightStyle + '><td>' + item.month + '</td><td>' + item.date + '</td><td>¥' + formatNumber(item.payment) + '</td><td>¥' + formatNumber(item.principal) + '</td><td>¥' + formatNumber(item.interest) + '</td><td>¥' + formatNumber(item.remaining_balance) + '</td></tr>';
+                });
+                html += '</tbody></table>';
+                
+                if (isCreditCard && data.loan.repayment_method === 'lump_sum') {
+                    html += '<div style="margin-top:15px;padding:12px;background:#e3f2fd;border-radius:8px;font-size:0.9rem;color:#1565c0;">💡 提示：利随本清方式下，每月需还利息，到期一次性归还本金。</div>';
+                }
+                
+                content.innerHTML = html;
+            }
+            modal.classList.add('active');
+        }
+        
+        function closeModal() { document.getElementById('scheduleModal').classList.remove('active'); }
+        document.getElementById('scheduleModal').addEventListener('click', (e) => { if (e.target.id === 'scheduleModal') closeModal(); });
+        
+        function viewMonthlyTotal() {
+            try {
+                const loans = LoanManager.getLoans();
+                const activeLoans = loans.filter(l => !l.status.is_paid_off);
+                if (activeLoans.length === 0) { alert('无待还贷款'); return; }
+                const schedules = activeLoans.map(l => LoanManager.getPaymentSchedule(l.id));
+                displayMonthlyTotal(schedules);
+            } catch (error) {
+                alert('获取失败: ' + error.message);
+            }
+        }
+        
+        function displayMonthlyTotal(schedules) {
+            const modal = document.getElementById('monthlyTotalModal');
+            const content = document.getElementById('monthlyTotalContent');
+            const monthlyData = {};
+            let grandTotal = 0;
+            
+            schedules.forEach(data => {
+                data.schedule.forEach(item => {
+                    const key = item.date.substring(0, 7);
+                    if (!monthlyData[key]) monthlyData[key] = { total: 0, loans: [] };
+                    monthlyData[key].total += item.payment;
+                    monthlyData[key].loans.push({ name: data.loan.name, payment: item.payment });
+                    grandTotal += item.payment;
+                });
+            });
+            
+            const sorted = Object.keys(monthlyData).sort();
+            let html = '<div style="margin-bottom:20px;padding:20px;background:linear-gradient(135deg,#00bcd4 0%,#00838f 100%);border-radius:12px;color:white;"><div style="font-size:1.1rem;margin-bottom:10px;">💡 每月还款总额</div><div style="font-size:2rem;font-weight:700;">¥' + formatNumber(monthlyData[sorted[0]].total) + '</div><div style="font-size:0.9rem;opacity:0.9;margin-top:5px;">当前月（' + sorted[0] + '）</div></div>';
+            html += '<table class="schedule-table"><thead><tr><th>月份</th><th>总还款额</th><th>包含贷款</th></tr></thead><tbody>';
+            sorted.forEach(month => {
+                const d = monthlyData[month];
+                html += '<tr><td><strong>' + month + '</strong></td><td style="color:#00838f;font-weight:600;">¥' + formatNumber(d.total) + '</td><td style="font-size:0.85rem;">' + d.loans.map(l => l.name + ': ¥' + formatNumber(l.payment)).join('<br>') + '</td></tr>';
+            });
+            html += '</tbody><tfoot><tr style="background:#f5f5f5;font-weight:700;"><td>合计</td><td style="color:#00838f;">¥' + formatNumber(grandTotal) + '</td><td>-</td></tr></tfoot></table>';
+            content.innerHTML = html;
+            modal.classList.add('active');
+        }
+        
+        function closeMonthlyTotalModal() { document.getElementById('monthlyTotalModal').classList.remove('active'); }
+        document.getElementById('monthlyTotalModal').addEventListener('click', (e) => { if (e.target.id === 'monthlyTotalModal') closeMonthlyTotalModal(); });
+        
+        function checkDueDateReminders(loans) {
+            const today = new Date().getDate();
+            const dueToday = loans.filter(loan => 
+                loan.loan_type === 'credit_card' && 
+                loan.due_date === today && 
+                !loan.status.is_paid_off
+            );
+            if (dueToday.length > 0) showReminderModal(dueToday);
+        }
+        
+        function showReminderModal(dueLoans) {
+            const modal = document.getElementById('reminderModal');
+            const content = document.getElementById('reminderContent');
+            const today = new Date();
+            let html = '<p style="margin-bottom:15px;">今天是 <strong>' + today.getFullYear() + '年' + (today.getMonth() + 1) + '月' + today.getDate() + '日</strong></p>';
+            html += '<p>您有 <strong style="color:#f57c00;font-size:1.3rem;">' + dueLoans.length + '</strong> 笔信用卡账单今日到期：</p>';
+            dueLoans.forEach(loan => {
+                html += '<div style="margin:15px 0;padding:15px;background:#fff3e0;border-radius:8px;border-left:4px solid #ff9800;">';
+                html += '<div style="font-weight:700;color:#e65100;font-size:1.2rem;">💳 ' + loan.name + '</div>';
+                html += '<div style="margin-top:8px;color:#666;">本期应还：<span style="color:#f57c00;font-weight:600;font-size:1.3rem;">¥' + formatNumber(loan.status.new_monthly_payment) + '</span></div>';
+                html += '</div>';
+            });
+            html += '<p style="margin-top:15px;color:#666;font-size:0.95rem;">请及时还款，避免产生逾期费用！</p>';
+            content.innerHTML = html;
+            modal.classList.add('active');
+        }
+        
+        function closeReminderModal() { document.getElementById('reminderModal').classList.remove('active'); }
+        document.getElementById('reminderModal').addEventListener('click', (e) => { if (e.target.id === 'reminderModal') closeReminderModal(); });
+        
+        // 数据管理功能
+        function exportData() {
+            try {
+                const data = LoanManager.exportData();
+                const blob = new Blob([data], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'loan_data_' + new Date().toISOString().split('T')[0] + '.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                alert('数据导出成功！');
+            } catch (error) {
+                alert('导出失败: ' + error.message);
+            }
+        }
+        
+        function importData(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    if (confirm('导入数据将覆盖现有数据，是否继续？')) {
+                        const result = LoanManager.importData(e.target.result);
+                        alert(result.message);
+                        loadLoans();
+                    }
+                } catch (error) {
+                    alert('导入失败: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+            input.value = '';
+        }
+        
+        function clearAllData() {
+            if (confirm('确定要清空所有数据吗？此操作不可恢复！')) {
+                if (confirm('再次确认：是否清空所有贷款和还款记录？')) {
+                    LoanManager.clearAllData();
+                    loadLoans();
+                    alert('数据已清空！');
+                }
+            }
+        }
+        
+        // 页面加载完成后隐藏启动屏
+        function hideSplashScreen() {
+            const splash = document.getElementById('splash-screen');
+            if (splash) {
+                splash.classList.add('hidden');
+                setTimeout(() => splash.remove(), 400);
+            }
+        }
+        
+        // 使用 requestIdleCallback 延迟非关键初始化
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                loadLoans();
+                hideSplashScreen();
+            }, { timeout: 2000 });
+        } else {
+            // 降级方案
+            setTimeout(() => {
+                loadLoans();
+                hideSplashScreen();
+            }, 100);
+        }
+    </script>
+</body>
+</html>
