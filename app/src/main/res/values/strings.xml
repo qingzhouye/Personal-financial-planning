@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">个人财务规划</string>
+    
+    <!-- Main Activity -->
+    <string name="app_title">个人财务管理</string>
+    <string name="current_month_payment">本月应还金额</string>
+    <string name="daily_payment">每日应还金额（按30天计）</string>
+    <string name="remaining_days">剩余天数</string>
+    <string name="active_loans">涉及贷款</string>
+    <string name="loan_overview">贷款概览</string>
+    <string name="click_to_manage">（点击进入贷款管理）</string>
+    <string name="view_monthly_total">查看每月总还款金额</string>
+    <string name="add_new_loan">添加新贷款</string>
+    <string name="loan_management">贷款管理</string>
+    <string name="view_my_loans">查看我的贷款</string>
+    <string name="data_management">数据管理</string>
+    <string name="export_data">导出数据</string>
+    <string name="import_data">导入数据</string>
+    <string name="clear_data">清空数据</string>
+    
+    <!-- Statistics -->
+    <string name="total_loans">贷款总数</string>
+    <string name="total_amount">贷款总额</string>
+    <string name="remaining_principal">剩余本金</string>
+    <string name="total_paid">已还金额</string>
+    <string name="paid_off">已还清</string>
+    
+    <!-- Add Loan -->
+    <string name="add_loan">添加贷款</string>
+    <string name="loan_type">贷款类型</string>
+    <string name="normal_loan">普通贷款</string>
+    <string name="credit_card">信用卡</string>
+    <string name="loan_name">名称</string>
+    <string name="loan_name_hint">例如：房贷、车贷、招行信用卡</string>
+    <string name="repayment_method">还款方式</string>
+    <string name="equal_interest">等额本息</string>
+    <string name="equal_principal">等额本金</string>
+    <string name="interest_first">先息后本</string>
+    <string name="lump_sum">利随本清</string>
+    <string name="loan_info">普通贷款信息</string>
+    <string name="principal">贷款本金（元）</string>
+    <string name="annual_rate">年利率（%）</string>
+    <string name="loan_months">贷款期限（月）</string>
+    <string name="start_date">开始日期</string>
+    <string name="credit_card_info">信用卡信息</string>
+    <string name="credit_limit">分期总额（元）</string>
+    <string name="installment_months">分期期数（月）</string>
+    <string name="due_date">还款日（每月几号）</string>
+    <string name="add_loan_button">添加贷款</string>
+    <string name="confirm_add">确认添加贷款</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+    
+    <!-- Loan List -->
+    <string name="loan_list">选择贷款查看详情</string>
+    <string name="no_loans">暂无贷款记录</string>
+    <string name="remaining">剩余</string>
+    <string name="monthly_payment">月供</string>
+    
+    <!-- Loan Detail -->
+    <string name="loan_detail">贷款详情</string>
+    <string name="paid">已还</string>
+    <string name="progress">还款进度</string>
+    <string name="view_schedule">还款计划</string>
+    <string name="make_payment">还款</string>
+    <string name="delete_loan">删除</string>
+    <string name="payment_amount">还款金额</string>
+    <string name="confirm_payment">确认还款</string>
+    <string name="delete_confirm">确定要删除此贷款吗？</string>
+    <string name="payment_success">还款成功！</string>
+    
+    <!-- Payment Schedule -->
+    <string name="payment_schedule">还款计划表</string>
+    <string name="month">期数</string>
+    <string name="payment_date">还款日期</string>
+    <string name="monthly_payment_amount">月供</string>
+    <string name="principal_amount">本金</string>
+    <string name="interest_amount">利息</string>
+    <string name="remaining_balance">剩余本金</string>
+    <string name="no_schedule">无还款计划</string>
+    <string name="remaining_periods">剩余期数</string>
+    <string name="paid_so_far">已还金额</string>
+    
+    <!-- Monthly Total -->
+    <string name="monthly_total">每月总还款金额汇总</string>
+    <string name="current_month_total">当前月</string>
+    <string name="month_col">月份</string>
+    <string name="total_payment_col">总还款额</string>
+    <string name="included_loans">包含贷款</string>
+    <string name="grand_total">合计</string>
+    <string name="no_active_loans">无待还贷款</string>
+    
+    <!-- Reminder -->
+    <string name="reminder_title">今日还款提醒</string>
+    <string name="reminder_message">您有 %d 笔信用卡账单今日到期</string>
+    <string name="reminder_subtitle">请及时还款，避免产生逾期费用！</string>
+    <string name="i_know">我知道了</string>
+    
+    <!-- Data Management -->
+    <string name="export_success">数据导出成功！</string>
+    <string name="export_failed">导出失败</string>
+    <string name="import_confirm">导入数据将覆盖现有数据，是否继续？</string>
+    <string name="import_success">数据导入成功</string>
+    <string name="import_failed">导入失败</string>
+    <string name="clear_confirm">确定要清空所有数据吗？此操作不可恢复！</string>
+    <string name="clear_confirm_again">再次确认：是否清空所有贷款和还款记录？</string>
+    <string name="clear_success">数据已清空！</string>
+    
+    <!-- Errors -->
+    <string name="error_invalid_amount">请输入有效金额</string>
+    <string name="error_loan_not_found">贷款不存在</string>
+    <string name="error_payment_exceeds">还款金额不能超过剩余本金 %.2f 元</string>
+    <string name="error_add_failed">添加失败</string>
+    <string name="error_delete_failed">删除失败</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#00838f</color>
+    <color name="primary_dark">#006064</color>
+    <color name="primary_light">#4dd0e1</color>
+    <color name="accent">#00bcd4</color>
+    
+    <!-- Background Colors -->
+    <color name="background_start">#e0f7fa</color>
+    <color name="background_mid">#b2ebf2</color>
+    <color name="background_end">#80deea</color>
+    <color name="card_background">#ffffff</color>
+    <color name="card_background_alt">#f5f7fa</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_hint">#999999</color>
+    <color name="text_white">#ffffff</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#4caf50</color>
+    <color name="success_light">#d4fc79</color>
+    <color name="warning">#ff9800</color>
+    <color name="warning_light">#fff3e0</color>
+    <color name="danger">#eb3349</color>
+    <color name="info">#4facfe</color>
+    
+    <!-- Loan Card Colors -->
+    <color name="loan_card_start">#f5f7fa</color>
+    <color name="loan_card_end">#c3cfe2</color>
+    <color name="loan_paid_off_start">#d4fc79</color>
+    <color name="loan_paid_off_end">#96e6a1</color>
+    <color name="loan_due_today_border">#ff9800</color>
+    
+    <!-- Input Colors -->
+    <color name="input_background">#fafafa</color>
+    <color name="input_border">#e0e0e0</color>
+    <color name="input_border_focused">#00bcd4</color>
+    
+    <!-- Divider -->
+    <color name="divider">#e0e0e0</color>
+    
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent_white">#80ffffff</color>
+</resources>
