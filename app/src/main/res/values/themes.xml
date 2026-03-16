@@ -9,6 +9,7 @@
         
         <!-- Status bar color -->
         <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/primary_dark</item>
         
         <!-- Window background -->
         <item name="android:windowBackground">@drawable/gradient_background</item>

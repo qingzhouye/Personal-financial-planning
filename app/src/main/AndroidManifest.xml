@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LoanManager"
-        android:name=".LoanManagerApplication">
+        android:name=".LoanManagerApplication"
+        android:enableOnBackInvokedCallback="true">
         
         <activity
             android:name=".ui.main.MainActivity"
