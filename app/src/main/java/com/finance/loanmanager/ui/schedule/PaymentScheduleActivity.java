@@ -16,11 +16,14 @@ import com.finance.loanmanager.util.NumberFormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PaymentScheduleActivity extends AppCompatActivity {
 
     private int loanId;
     private LoanRepository repository;
+    private ExecutorService executorService;
     private RecyclerView recyclerView;
     private TextView tvLoanInfo;
     private TextView tvRemaining;
@@ -44,6 +47,7 @@ public class PaymentScheduleActivity extends AppCompatActivity {
         }
         
         repository = new LoanRepository(getApplication());
+        executorService = Executors.newSingleThreadExecutor();
         
         recyclerView = findViewById(R.id.recyclerView);
         tvLoanInfo = findViewById(R.id.tvLoanInfo);
@@ -67,24 +71,38 @@ public class PaymentScheduleActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     
-    private void loadData() {
-        Loan loan = repository.getLoanById(loanId);
-        if (loan == null) {
-            finish();
-            return;
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
         }
-        
-        schedule = repository.getPaymentSchedule(loanId);
-        adapter.updateData(schedule);
-        
-        tvLoanInfo.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName() 
-                + "\n还款方式：" + loan.getRepaymentMethodName());
-        
-        double totalPaid = repository.getTotalPaidByLoanId(loanId);
-        double remaining = loan.getPrincipal() - totalPaid;
-        
-        tvRemaining.setText(NumberFormatUtil.formatCurrency(remaining));
-        tvPaid.setText(NumberFormatUtil.formatCurrency(totalPaid));
-        tvPeriods.setText(schedule.size() + "期");
+    }
+    
+    private void loadData() {
+        // 在后台线程执行数据库查询
+        executorService.execute(() -> {
+            final Loan loan = repository.getLoanById(loanId);
+            if (loan == null) {
+                runOnUiThread(this::finish);
+                return;
+            }
+            
+            final List<LoanCalculator.PaymentScheduleItem> newSchedule = repository.getPaymentSchedule(loanId);
+            final double totalPaid = repository.getTotalPaidByLoanId(loanId);
+            final double remaining = loan.getPrincipal() - totalPaid;
+            
+            runOnUiThread(() -> {
+                schedule = newSchedule;
+                adapter.updateData(schedule);
+                
+                tvLoanInfo.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName() 
+                        + "\n还款方式：" + loan.getRepaymentMethodName());
+                
+                tvRemaining.setText(NumberFormatUtil.formatCurrency(remaining));
+                tvPaid.setText(NumberFormatUtil.formatCurrency(totalPaid));
+                tvPeriods.setText(schedule.size() + "期");
+            });
+        });
     }
 }

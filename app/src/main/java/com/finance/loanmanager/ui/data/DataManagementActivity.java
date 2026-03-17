@@ -26,10 +26,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class DataManagementActivity extends AppCompatActivity {
     
     private LoanRepository repository;
+    private ExecutorService executorService;
     private Gson gson;
     
     // 使用新的 Activity Result API
@@ -41,6 +44,7 @@ public class DataManagementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         
         repository = new LoanRepository(getApplication());
+        executorService = Executors.newSingleThreadExecutor();
         gson = new GsonBuilder().setPrettyPrinting().create();
         
         // 注册 Activity Result Launchers
@@ -95,6 +99,14 @@ public class DataManagementActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+        }
+    }
+    
     private void startExport() {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -111,23 +123,26 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     private void exportData(Uri uri) {
-        try {
-            List<Loan> loans = repository.getAllLoansSync();
-            List<Payment> payments = repository.getAllPayments().getValue();
-            
-            ExportData exportData = new ExportData(loans, payments);
-            String json = gson.toJson(exportData);
-            
-            OutputStream outputStream = getContentResolver().openOutputStream(uri);
-            if (outputStream != null) {
-                outputStream.write(json.getBytes());
-                outputStream.close();
-                Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show();
+        // 在后台线程执行导出操作
+        executorService.execute(() -> {
+            try {
+                List<Loan> loans = repository.getAllLoansSync();
+                List<Payment> payments = repository.getAllPayments().getValue();
+                
+                ExportData exportData = new ExportData(loans, payments);
+                String json = gson.toJson(exportData);
+                
+                OutputStream outputStream = getContentResolver().openOutputStream(uri);
+                if (outputStream != null) {
+                    outputStream.write(json.getBytes());
+                    outputStream.close();
+                    runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
+                }
+            } catch (Exception e) {
+                runOnUiThread(() -> Toast.makeText(this, R.string.export_failed + ": " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
-        } catch (Exception e) {
-            Toast.makeText(this, R.string.export_failed + ": " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        finish();
+            runOnUiThread(this::finish);
+        });
     }
     
     private void confirmImport(Uri uri) {
@@ -140,48 +155,51 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     private void importData(Uri uri) {
-        try {
-            InputStream inputStream = getContentResolver().openInputStream(uri);
-            if (inputStream != null) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder jsonBuilder = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    jsonBuilder.append(line);
-                }
-                reader.close();
-                inputStream.close();
-                
-                String json = jsonBuilder.toString();
-                ExportData exportData = gson.fromJson(json, new TypeToken<ExportData>(){}.getType());
-                
-                if (exportData != null) {
-                    // 清空现有数据
-                    repository.deleteAllPayments();
-                    repository.deleteAllLoans();
-                    
-                    // 导入新数据
-                    if (exportData.loans != null) {
-                        for (Loan loan : exportData.loans) {
-                            loan.setId(0); // 重置ID
-                            repository.insertLoan(loan);
-                        }
+        // 在后台线程执行导入操作
+        executorService.execute(() -> {
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                if (inputStream != null) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    StringBuilder jsonBuilder = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        jsonBuilder.append(line);
                     }
+                    reader.close();
+                    inputStream.close();
                     
-                    if (exportData.payments != null) {
-                        for (Payment payment : exportData.payments) {
-                            payment.setId(0); // 重置ID
-                            repository.insertPayment(payment);
+                    String json = jsonBuilder.toString();
+                    ExportData exportData = gson.fromJson(json, new TypeToken<ExportData>(){}.getType());
+                    
+                    if (exportData != null) {
+                        // 清空现有数据
+                        repository.deleteAllPayments();
+                        repository.deleteAllLoans();
+                        
+                        // 导入新数据
+                        if (exportData.loans != null) {
+                            for (Loan loan : exportData.loans) {
+                                loan.setId(0); // 重置ID
+                                repository.insertLoan(loan);
+                            }
                         }
+                        
+                        if (exportData.payments != null) {
+                            for (Payment payment : exportData.payments) {
+                                payment.setId(0); // 重置ID
+                                repository.insertPayment(payment);
+                            }
+                        }
+                        
+                        runOnUiThread(() -> Toast.makeText(this, R.string.import_success, Toast.LENGTH_SHORT).show());
                     }
-                    
-                    Toast.makeText(this, R.string.import_success, Toast.LENGTH_SHORT).show();
                 }
+            } catch (Exception e) {
+                runOnUiThread(() -> Toast.makeText(this, R.string.import_failed + ": " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
-        } catch (Exception e) {
-            Toast.makeText(this, R.string.import_failed + ": " + e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        finish();
+            runOnUiThread(this::finish);
+        });
     }
     
     private static class ExportData {

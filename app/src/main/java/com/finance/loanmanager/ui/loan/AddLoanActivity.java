@@ -19,10 +19,13 @@ import com.finance.loanmanager.util.NumberFormatUtil;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AddLoanActivity extends AppCompatActivity {
 
     private LoanRepository repository;
+    private ExecutorService executorService;
     
     private TextInputEditText spinnerLoanType;
     private TextInputEditText etLoanName;
@@ -56,6 +59,7 @@ public class AddLoanActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.add_loan);
         
         repository = new LoanRepository(getApplication());
+        executorService = Executors.newSingleThreadExecutor();
         
         initViews();
         setupListeners();
@@ -72,6 +76,14 @@ public class AddLoanActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+        }
     }
     
     private void initViews() {
@@ -225,9 +237,14 @@ public class AddLoanActivity extends AppCompatActivity {
                 .setTitle(R.string.confirm_add)
                 .setMessage(message.toString())
                 .setPositiveButton(R.string.confirm, (dialog, which) -> {
-                    repository.insertLoan(loan);
-                    Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
-                    finish();
+                    // 在后台线程执行数据库插入
+                    executorService.execute(() -> {
+                        repository.insertLoan(loan);
+                        runOnUiThread(() -> {
+                            Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+                            finish();
+                        });
+                    });
                 })
                 .setNegativeButton(R.string.cancel, null)
                 .show();

@@ -15,16 +15,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.finance.loanmanager.R;
 import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.data.entity.LoanStatus;
+import com.finance.loanmanager.data.entity.Payment;
 import com.finance.loanmanager.repository.LoanRepository;
 import com.finance.loanmanager.ui.schedule.PaymentScheduleActivity;
 import com.finance.loanmanager.util.DateUtil;
 import com.finance.loanmanager.util.NumberFormatUtil;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class LoanDetailActivity extends AppCompatActivity {
 
     private int loanId;
     private LoanRepository repository;
+    private ExecutorService executorService;
     private Loan loan;
     private LoanStatus status;
     
@@ -62,8 +67,17 @@ public class LoanDetailActivity extends AppCompatActivity {
         }
         
         repository = new LoanRepository(getApplication());
+        executorService = Executors.newSingleThreadExecutor();
         initViews();
         setupListeners();
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+        }
     }
     
     @Override
@@ -130,33 +144,41 @@ public class LoanDetailActivity extends AppCompatActivity {
     }
     
     private void loadData() {
-        loan = repository.getLoanById(loanId);
-        status = repository.getLoanStatus(loanId);
-        
-        if (loan == null || status == null) {
-            finish();
-            return;
-        }
-        
-        tvTitle.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName());
-        tvSubtitle.setText(loan.getRepaymentMethodName() + (status.isPaidOff() ? " | 已还清" : ""));
-        tvPrincipal.setText(NumberFormatUtil.formatCurrency(loan.getPrincipal()));
-        tvRate.setText(loan.getAnnualRate() + "%");
-        tvMonths.setText(loan.getMonths() + "个月");
-        tvStartDate.setText(loan.getStartDate());
-        tvTotalPaid.setText(NumberFormatUtil.formatCurrency(status.getTotalPaid()));
-        tvRemaining.setText(NumberFormatUtil.formatCurrency(status.getRemainingPrincipal()));
-        tvMonthlyPayment.setText(NumberFormatUtil.formatCurrency(status.getNewMonthlyPayment()));
-        tvProgress.setText(NumberFormatUtil.formatPercent(status.getProgressPercentage(loan.getPrincipal())));
-        
-        double paidPct = status.getProgressPercentage(loan.getPrincipal());
-        double remainPct = status.getRemainingPercentage(loan.getPrincipal());
-        tvProgressPercent.setText(String.format("%.1f%%", paidPct));
-        tvRemainingPercent.setText(String.format("%.1f%%", remainPct));
-        
-        if (status.isPaidOff()) {
-            btnMakePayment.setVisibility(View.GONE);
-        }
+        // 在后台线程执行数据库查询
+        executorService.execute(() -> {
+            final Loan loanData = repository.getLoanById(loanId);
+            final LoanStatus statusData = repository.getLoanStatus(loanId);
+            
+            runOnUiThread(() -> {
+                if (loanData == null || statusData == null) {
+                    finish();
+                    return;
+                }
+                
+                loan = loanData;
+                status = statusData;
+                
+                tvTitle.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName());
+                tvSubtitle.setText(loan.getRepaymentMethodName() + (status.isPaidOff() ? " | 已还清" : ""));
+                tvPrincipal.setText(NumberFormatUtil.formatCurrency(loan.getPrincipal()));
+                tvRate.setText(loan.getAnnualRate() + "%");
+                tvMonths.setText(loan.getMonths() + "个月");
+                tvStartDate.setText(loan.getStartDate());
+                tvTotalPaid.setText(NumberFormatUtil.formatCurrency(status.getTotalPaid()));
+                tvRemaining.setText(NumberFormatUtil.formatCurrency(status.getRemainingPrincipal()));
+                tvMonthlyPayment.setText(NumberFormatUtil.formatCurrency(status.getNewMonthlyPayment()));
+                tvProgress.setText(NumberFormatUtil.formatPercent(status.getProgressPercentage(loan.getPrincipal())));
+                
+                double paidPct = status.getProgressPercentage(loan.getPrincipal());
+                double remainPct = status.getRemainingPercentage(loan.getPrincipal());
+                tvProgressPercent.setText(String.format("%.1f%%", paidPct));
+                tvRemainingPercent.setText(String.format("%.1f%%", remainPct));
+                
+                if (status.isPaidOff()) {
+                    btnMakePayment.setVisibility(View.GONE);
+                }
+            });
+        });
     }
     
     private void makePayment() {
@@ -168,20 +190,25 @@ public class LoanDetailActivity extends AppCompatActivity {
             return;
         }
         
-        if (amount > status.getRemainingPrincipal()) {
+        if (status == null || amount > status.getRemainingPrincipal()) {
             Toast.makeText(this, 
-                    String.format(getString(R.string.error_payment_exceeds), status.getRemainingPrincipal()),
+                    String.format(getString(R.string.error_payment_exceeds), 
+                            status != null ? status.getRemainingPrincipal() : 0),
                     Toast.LENGTH_SHORT).show();
             return;
         }
         
-        com.finance.loanmanager.data.entity.Payment payment = 
-                new com.finance.loanmanager.data.entity.Payment(loanId, amount, DateUtil.getCurrentDate());
-        repository.insertPayment(payment);
-        
-        Toast.makeText(this, R.string.payment_success, Toast.LENGTH_SHORT).show();
-        etPaymentAmount.setText("");
-        layoutPayment.setVisibility(View.GONE);
-        loadData();
+        // 在后台线程执行数据库插入
+        executorService.execute(() -> {
+            Payment payment = new Payment(loanId, amount, DateUtil.getCurrentDate());
+            repository.insertPayment(payment);
+            
+            runOnUiThread(() -> {
+                Toast.makeText(this, R.string.payment_success, Toast.LENGTH_SHORT).show();
+                etPaymentAmount.setText("");
+                layoutPayment.setVisibility(View.GONE);
+                loadData();
+            });
+        });
     }
 }

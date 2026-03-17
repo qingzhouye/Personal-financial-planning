@@ -20,10 +20,13 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MonthlyTotalActivity extends AppCompatActivity {
 
     private LoanRepository repository;
+    private ExecutorService executorService;
     private RecyclerView recyclerView;
     private TextView tvCurrentMonth;
     private TextView tvCurrentTotal;
@@ -39,6 +42,7 @@ public class MonthlyTotalActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.monthly_total);
         
         repository = new LoanRepository(getApplication());
+        executorService = Executors.newSingleThreadExecutor();
         
         recyclerView = findViewById(R.id.recyclerView);
         tvCurrentMonth = findViewById(R.id.tvCurrentMonth);
@@ -60,60 +64,74 @@ public class MonthlyTotalActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
+        }
+    }
+    
     private void loadData() {
-        List<LoanRepository.LoanWithStatus> loans = repository.getLoansWithStatus();
-        List<LoanRepository.LoanWithStatus> activeLoans = new ArrayList<>();
-        
-        for (LoanRepository.LoanWithStatus lws : loans) {
-            if (!lws.status.isPaidOff()) {
-                activeLoans.add(lws);
-            }
-        }
-        
-        if (activeLoans.isEmpty()) {
-            Toast.makeText(this, R.string.no_active_loans, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        
-        Map<String, MonthlyData> monthlyData = new HashMap<>();
-        double grandTotal = 0;
-        
-        for (LoanRepository.LoanWithStatus lws : activeLoans) {
-            List<LoanCalculator.PaymentScheduleItem> schedule = 
-                    repository.getPaymentSchedule(lws.loan.getId());
+        // 在后台线程执行数据库查询
+        executorService.execute(() -> {
+            List<LoanRepository.LoanWithStatus> loans = repository.getLoansWithStatus();
+            List<LoanRepository.LoanWithStatus> activeLoans = new ArrayList<>();
             
-            for (LoanCalculator.PaymentScheduleItem item : schedule) {
-                String month = item.date.substring(0, 7);
-                
-                MonthlyData data = monthlyData.get(month);
-                if (data == null) {
-                    data = new MonthlyData();
-                    monthlyData.put(month, data);
+            for (LoanRepository.LoanWithStatus lws : loans) {
+                if (!lws.status.isPaidOff()) {
+                    activeLoans.add(lws);
                 }
-                
-                data.total += item.payment;
-                data.loans.add(lws.loan.getName() + ": " + NumberFormatUtil.formatCurrency(item.payment));
-                grandTotal += item.payment;
             }
-        }
-        
-        List<String> sortedMonths = new ArrayList<>(monthlyData.keySet());
-        Collections.sort(sortedMonths);
-        
-        monthlyItems.clear();
-        for (String month : sortedMonths) {
-            MonthlyData data = monthlyData.get(month);
-            monthlyItems.add(new MonthlyItem(month, data.total, data.loans));
-        }
-        
-        adapter.updateData(monthlyItems);
-        
-        if (!sortedMonths.isEmpty()) {
-            String firstMonth = sortedMonths.get(0);
-            MonthlyData firstData = monthlyData.get(firstMonth);
-            tvCurrentMonth.setText(firstMonth);
-            tvCurrentTotal.setText(NumberFormatUtil.formatCurrency(firstData.total));
-        }
+            
+            if (activeLoans.isEmpty()) {
+                runOnUiThread(() -> Toast.makeText(this, R.string.no_active_loans, Toast.LENGTH_SHORT).show());
+                return;
+            }
+            
+            Map<String, MonthlyData> monthlyData = new HashMap<>();
+            
+            for (LoanRepository.LoanWithStatus lws : activeLoans) {
+                List<LoanCalculator.PaymentScheduleItem> schedule = 
+                        repository.getPaymentSchedule(lws.loan.getId());
+                
+                for (LoanCalculator.PaymentScheduleItem item : schedule) {
+                    String month = item.date.substring(0, 7);
+                    
+                    MonthlyData data = monthlyData.get(month);
+                    if (data == null) {
+                        data = new MonthlyData();
+                        monthlyData.put(month, data);
+                    }
+                    
+                    data.total += item.payment;
+                    data.loans.add(lws.loan.getName() + ": " + NumberFormatUtil.formatCurrency(item.payment));
+                }
+            }
+            
+            List<String> sortedMonths = new ArrayList<>(monthlyData.keySet());
+            Collections.sort(sortedMonths);
+            
+            final List<MonthlyItem> newMonthlyItems = new ArrayList<>();
+            for (String month : sortedMonths) {
+                MonthlyData data = monthlyData.get(month);
+                newMonthlyItems.add(new MonthlyItem(month, data.total, data.loans));
+            }
+            
+            final String firstMonth = sortedMonths.isEmpty() ? null : sortedMonths.get(0);
+            final MonthlyData firstData = firstMonth != null ? monthlyData.get(firstMonth) : null;
+            
+            runOnUiThread(() -> {
+                monthlyItems.clear();
+                monthlyItems.addAll(newMonthlyItems);
+                adapter.updateData(monthlyItems);
+                
+                if (firstMonth != null && firstData != null) {
+                    tvCurrentMonth.setText(firstMonth);
+                    tvCurrentTotal.setText(NumberFormatUtil.formatCurrency(firstData.total));
+                }
+            });
+        });
     }
     
     private static class MonthlyData {

@@ -29,10 +29,13 @@ import com.finance.loanmanager.util.NumberFormatUtil;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
     private LoanRepository repository;
+    private ExecutorService executorService;
     
     private CardView cardCurrentMonth;
     private CardView cardStats;
@@ -60,12 +63,21 @@ public class MainActivity extends AppCompatActivity {
         
         try {
             repository = new LoanRepository(getApplication());
+            executorService = Executors.newSingleThreadExecutor();
             initViews();
             setupListeners();
             observeData();
         } catch (Exception e) {
             Toast.makeText(this, "应用初始化失败: " + e.getMessage(), Toast.LENGTH_LONG).show();
             finish();
+        }
+    }
+    
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (executorService != null && !executorService.isShutdown()) {
+            executorService.shutdown();
         }
     }
     
@@ -126,9 +138,18 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void refreshData() {
-        loansWithStatus = repository.getLoansWithStatus();
-        updateUI();
-        checkDueDateReminders();
+        // 在后台线程执行数据库查询，避免主线程阻塞
+        executorService.execute(() -> {
+            final List<LoanRepository.LoanWithStatus> result = repository.getLoansWithStatus();
+            final List<Loan> dueTodayLoans = repository.getDueTodayLoans();
+            runOnUiThread(() -> {
+                loansWithStatus = result;
+                updateUI();
+                if (!dueTodayLoans.isEmpty()) {
+                    showReminderDialog(dueTodayLoans);
+                }
+            });
+        });
     }
     
     private void updateUI() {
@@ -206,11 +227,9 @@ public class MainActivity extends AppCompatActivity {
         grid.addView(cardView);
     }
     
+    // 此方法已合并到 refreshData() 中，保留空实现以兼容旧代码
     private void checkDueDateReminders() {
-        List<Loan> dueTodayLoans = repository.getDueTodayLoans();
-        if (!dueTodayLoans.isEmpty()) {
-            showReminderDialog(dueTodayLoans);
-        }
+        // 提醒逻辑已在 refreshData 的回调中处理
     }
     
     private void showReminderDialog(List<Loan> dueLoans) {
