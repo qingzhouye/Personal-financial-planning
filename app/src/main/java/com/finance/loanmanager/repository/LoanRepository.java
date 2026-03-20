@@ -90,6 +90,10 @@ public class LoanRepository {
         return paymentDao.getAllPaymentsLive();
     }
     
+    public List<Payment> getAllPaymentsSync() {
+        return paymentDao.getAllPayments();
+    }
+    
     public List<Payment> getPaymentsByLoanId(int loanId) {
         return paymentDao.getPaymentsByLoanId(loanId);
     }

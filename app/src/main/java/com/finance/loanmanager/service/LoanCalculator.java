@@ -351,11 +351,16 @@ public class LoanCalculator {
      */
     private static Calendar parseDate(String dateStr) {
         Calendar cal = Calendar.getInstance();
+        if (dateStr == null || dateStr.trim().isEmpty()) {
+            return cal; // 返回当前日期
+        }
         try {
             String[] parts = dateStr.split("-");
-            cal.set(Integer.parseInt(parts[0]), 
-                    Integer.parseInt(parts[1]) - 1, 
-                    Integer.parseInt(parts[2]));
+            if (parts.length >= 3) {
+                cal.set(Integer.parseInt(parts[0]), 
+                        Integer.parseInt(parts[1]) - 1, 
+                        Integer.parseInt(parts[2]));
+            }
         } catch (Exception e) {
             // 使用当前日期作为默认值
         }

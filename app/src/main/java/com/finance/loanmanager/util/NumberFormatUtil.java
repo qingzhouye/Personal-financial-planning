@@ -50,6 +50,9 @@ public class NumberFormatUtil {
      * 安全解析字符串为double
      */
     public static double parseDouble(String str) {
+        if (str == null || str.trim().isEmpty()) {
+            return 0;
+        }
         try {
             return Double.parseDouble(str.trim());
         } catch (NumberFormatException e) {
@@ -61,6 +64,9 @@ public class NumberFormatUtil {
      * 安全解析字符串为int
      */
     public static int parseInt(String str) {
+        if (str == null || str.trim().isEmpty()) {
+            return 0;
+        }
         try {
             return Integer.parseInt(str.trim());
         } catch (NumberFormatException e) {

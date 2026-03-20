@@ -127,7 +127,8 @@ public class DataManagementActivity extends AppCompatActivity {
         executorService.execute(() -> {
             try {
                 List<Loan> loans = repository.getAllLoansSync();
-                List<Payment> payments = repository.getAllPayments().getValue();
+                // 直接查询所有还款记录，避免LiveData.getValue()可能返回null的问题
+                List<Payment> payments = repository.getAllPaymentsSync();
                 
                 ExportData exportData = new ExportData(loans, payments);
                 String json = gson.toJson(exportData);

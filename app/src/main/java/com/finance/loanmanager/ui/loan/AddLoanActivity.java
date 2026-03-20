@@ -64,9 +64,17 @@ public class AddLoanActivity extends AppCompatActivity {
         initViews();
         setupListeners();
         
-        // 设置默认日期
-        etStartDate.setText(DateUtil.getCurrentDate());
-        etCreditCardDate.setText(DateUtil.getCurrentDate());
+        // 设置默认日期 - 确保日期字段不为空
+        String currentDate = DateUtil.getCurrentDate();
+        if (currentDate == null || currentDate.isEmpty()) {
+            currentDate = "2026-01-01"; // 备用默认日期
+        }
+        if (etStartDate != null) {
+            etStartDate.setText(currentDate);
+        }
+        if (etCreditCardDate != null) {
+            etCreditCardDate.setText(currentDate);
+        }
     }
     
     @Override

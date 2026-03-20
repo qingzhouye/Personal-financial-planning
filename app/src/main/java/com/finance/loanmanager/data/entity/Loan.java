@@ -47,6 +47,11 @@ public class Loan {
     private double originalMonthlyPayment;
     
     public Loan() {
+        // 设置默认值，避免空指针
+        this.name = "";
+        this.loanType = "normal";
+        this.repaymentMethod = "equal_interest";
+        this.startDate = "2026-01-01";
     }
     
     public Loan(@NonNull String name, @NonNull String loanType, @NonNull String repaymentMethod,
