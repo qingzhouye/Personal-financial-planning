@@ -215,7 +215,6 @@ public class MainActivity extends AppCompatActivity {
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPrincipal), getString(R.string.total_amount));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalRemaining), getString(R.string.remaining_principal));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPaid), getString(R.string.total_paid));
-        addStatCard(gridStats, String.valueOf(paidOffCount), getString(R.string.paid_off));
     }
     
     private void addStatCard(GridLayout grid, String value, String label) {
