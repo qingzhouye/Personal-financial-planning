@@ -301,6 +301,8 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/spacing_sm"
                         android:text="@string/export_data"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         style="@style/SecondaryButton" />
 
                     <Button
@@ -310,6 +312,8 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="@dimen/spacing_sm"
                         android:text="@string/import_data"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         style="@style/SecondaryButton" />
 
                     <Button
@@ -318,6 +322,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/clear_data"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         style="@style/DangerButton" />
                 </LinearLayout>
             </LinearLayout>

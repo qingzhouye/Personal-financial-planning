@@ -38,6 +38,41 @@
             android:textColor="@color/semi_transparent_white" />
     </LinearLayout>
 
+    <!-- 表头 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@color/primary"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="日期"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_white" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="总金额"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="明细"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_white" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
