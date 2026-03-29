@@ -3,22 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/spacing_lg"
+    android:paddingTop="@dimen/safe_area_top">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/gradient_primary"
-        android:padding="16dp"
-        android:layout_marginBottom="16dp">
+        android:padding="@dimen/card_padding"
+        android:layout_marginBottom="@dimen/spacing_lg">
 
         <TextView
             android:id="@+id/tvLoanInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/text_white"
-            android:textSize="14sp" />
+            android:textSize="@dimen/text_sm" />
     </LinearLayout>
 
     <LinearLayout
@@ -26,8 +27,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/card_background_alt"
-        android:padding="12dp"
-        android:layout_marginBottom="16dp">
+        android:padding="@dimen/spacing_md"
+        android:layout_marginBottom="@dimen/spacing_lg">
 
         <LinearLayout
             android:layout_width="0dp"

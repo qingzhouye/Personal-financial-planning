@@ -3,15 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/spacing_lg"
+    android:paddingTop="@dimen/safe_area_top">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/gradient_primary"
-        android:padding="20dp"
-        android:layout_marginBottom="16dp">
+        android:padding="@dimen/spacing_xl"
+        android:layout_marginBottom="@dimen/spacing_lg">
 
         <TextView
             android:layout_width="wrap_content"
@@ -24,7 +25,7 @@
             android:id="@+id/tvCurrentTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
+            android:textSize="@dimen/text_headline"
             android:textStyle="bold"
             android:textColor="@color/text_white" />
 
@@ -32,8 +33,8 @@
             android:id="@+id/tvCurrentMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="14sp"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:textSize="@dimen/text_sm"
             android:textColor="@color/semi_transparent_white" />
     </LinearLayout>
 

@@ -58,52 +58,55 @@
     <style name="SuccessButton" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/success</item>
         <item name="android:textColor">@color/text_white</item>
-        <item name="cornerRadius">8dp</item>
+        <item name="cornerRadius">@dimen/spacing_sm</item>
+        <item name="android:minHeight">@dimen/button_height</item>
     </style>
     
     <style name="DangerButton" parent="Widget.Material3.Button">
         <item name="android:backgroundTint">@color/danger</item>
         <item name="android:textColor">@color/text_white</item>
-        <item name="cornerRadius">8dp</item>
+        <item name="cornerRadius">@dimen/spacing_sm</item>
+        <item name="android:minHeight">@dimen/button_height</item>
     </style>
     
     <style name="SecondaryButton" parent="Widget.Material3.Button.OutlinedButton">
         <item name="strokeColor">@color/primary</item>
         <item name="android:textColor">@color/primary</item>
-        <item name="cornerRadius">8dp</item>
+        <item name="cornerRadius">@dimen/spacing_sm</item>
+        <item name="android:minHeight">@dimen/button_height</item>
     </style>
     
     <!-- Input Style -->
     <style name="InputStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/input_border</item>
         <item name="boxStrokeWidth">2dp</item>
-        <item name="boxCornerRadiusTopStart">10dp</item>
-        <item name="boxCornerRadiusTopEnd">10dp</item>
-        <item name="boxCornerRadiusBottomStart">10dp</item>
-        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/input_corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/input_corner_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/input_corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/input_corner_radius</item>
     </style>
     
     <!-- Text Styles -->
     <style name="TitleText">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_title</item>
         <item name="android:textColor">@color/primary_dark</item>
         <item name="android:textStyle">bold</item>
     </style>
     
     <style name="CardTitleText">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_xl</item>
         <item name="android:textColor">@color/primary_dark</item>
         <item name="android:textStyle">bold</item>
     </style>
     
     <style name="StatValueText">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/text_xxl</item>
         <item name="android:textColor">@color/text_white</item>
         <item name="android:textStyle">bold</item>
     </style>
     
     <style name="StatLabelText">
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/text_sm</item>
         <item name="android:textColor">@color/semi_transparent_white</item>
     </style>
 </resources>

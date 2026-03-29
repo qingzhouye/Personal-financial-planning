@@ -13,14 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp"
+        android:padding="@dimen/card_padding"
         android:gravity="center">
 
         <TextView
             android:id="@+id/tvStatValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_xl"
             android:textStyle="bold"
             android:textColor="@color/text_white" />
 
@@ -28,8 +28,8 @@
             android:id="@+id/tvStatLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textSize="11sp"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:textSize="@dimen/text_xs"
             android:textColor="@color/semi_transparent_white" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

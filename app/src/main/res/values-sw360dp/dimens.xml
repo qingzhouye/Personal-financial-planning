@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 标准屏幕手机 (360dp-400dp) - 如 6.4寸手机 -->
+    
+    <!-- 状态栏高度 -->
+    <dimen name="status_bar_height">28dp</dimen>
+    
+    <!-- 通用间距 -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">14dp</dimen>
+    <dimen name="spacing_lg">18dp</dimen>
+    <dimen name="spacing_xl">22dp</dimen>
+    <dimen name="spacing_xxl">28dp</dimen>
+    
+    <!-- 顶部安全区域 -->
+    <dimen name="safe_area_top">74dp</dimen>
+    
+    <!-- 卡片间距 -->
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_padding">14dp</dimen>
+    <dimen name="card_corner_radius">14dp</dimen>
+    <dimen name="card_elevation">6dp</dimen>
+    
+    <!-- 文字大小 -->
+    <dimen name="text_xs">11sp</dimen>
+    <dimen name="text_sm">13sp</dimen>
+    <dimen name="text_md">15sp</dimen>
+    <dimen name="text_lg">17sp</dimen>
+    <dimen name="text_xl">19sp</dimen>
+    <dimen name="text_xxl">22sp</dimen>
+    <dimen name="text_title">26sp</dimen>
+    <dimen name="text_headline">30sp</dimen>
+    
+    <!-- 按钮尺寸 -->
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="button_padding_horizontal">28dp</dimen>
+    <dimen name="button_corner_radius">24dp</dimen>
+    
+    <!-- 输入框 -->
+    <dimen name="input_height">52dp</dimen>
+    <dimen name="input_corner_radius">10dp</dimen>
+    
+    <!-- 图标尺寸 -->
+    <dimen name="icon_sm">18dp</dimen>
+    <dimen name="icon_md">26dp</dimen>
+    <dimen name="icon_lg">36dp</dimen>
+    <dimen name="icon_xl">44dp</dimen>
+    
+    <!-- 列表项 -->
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="list_item_padding">14dp</dimen>
+    
+    <!-- 进度条 -->
+    <dimen name="progress_height">18dp</dimen>
+</resources>

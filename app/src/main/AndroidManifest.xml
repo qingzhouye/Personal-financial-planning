@@ -28,7 +28,8 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.LoanManager.NoActionBar">
+            android:theme="@style/Theme.LoanManager.NoActionBar"
+            android:configChanges="orientation|screenSize|smallestScreenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -38,32 +39,38 @@
         <activity
             android:name=".ui.loan.AddLoanActivity"
             android:label="@string/add_loan"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize" />
         
         <activity
             android:name=".ui.loan.LoanListActivity"
             android:label="@string/loan_list"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize" />
         
         <activity
             android:name=".ui.loan.LoanDetailActivity"
             android:label="@string/loan_detail"
-            android:parentActivityName=".ui.loan.LoanListActivity" />
+            android:parentActivityName=".ui.loan.LoanListActivity"
+            android:configChanges="orientation|screenSize" />
         
         <activity
             android:name=".ui.schedule.PaymentScheduleActivity"
             android:label="@string/payment_schedule"
-            android:parentActivityName=".ui.loan.LoanDetailActivity" />
+            android:parentActivityName=".ui.loan.LoanDetailActivity"
+            android:configChanges="orientation|screenSize" />
         
         <activity
             android:name=".ui.monthly.MonthlyTotalActivity"
             android:label="@string/monthly_total"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize" />
         
         <activity
             android:name=".ui.data.DataManagementActivity"
             android:label="@string/data_management"
-            android:parentActivityName=".ui.main.MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize" />
             
     </application>
 

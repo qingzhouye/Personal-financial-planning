@@ -17,14 +17,14 @@ import com.finance.loanmanager.data.AppDatabase;
 import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.data.entity.Payment;
 import com.finance.loanmanager.repository.LoanRepository;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -33,11 +33,14 @@ public class DataManagementActivity extends AppCompatActivity {
     
     private LoanRepository repository;
     private ExecutorService executorService;
-    private Gson gson;
     
     // 使用新的 Activity Result API
     private ActivityResultLauncher<Intent> exportLauncher;
     private ActivityResultLauncher<Intent> importLauncher;
+    
+    // XLSX 工作表名称
+    private static final String SHEET_LOANS = "贷款信息";
+    private static final String SHEET_PAYMENTS = "还款记录";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,6 @@ public class DataManagementActivity extends AppCompatActivity {
         
         repository = new LoanRepository(getApplication());
         executorService = Executors.newSingleThreadExecutor();
-        gson = new GsonBuilder().setPrettyPrinting().create();
         
         // 注册 Activity Result Launchers
         exportLauncher = registerForActivityResult(
@@ -110,15 +112,15 @@ public class DataManagementActivity extends AppCompatActivity {
     private void startExport() {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/json");
-        intent.putExtra(Intent.EXTRA_TITLE, "loan_data_" + System.currentTimeMillis() + ".json");
+        intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        intent.putExtra(Intent.EXTRA_TITLE, "贷款数据_" + System.currentTimeMillis() + ".xlsx");
         exportLauncher.launch(intent);
     }
     
     private void startImport() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/json");
+        intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         importLauncher.launch(intent);
     }
     
@@ -127,16 +129,25 @@ public class DataManagementActivity extends AppCompatActivity {
         executorService.execute(() -> {
             try {
                 List<Loan> loans = repository.getAllLoansSync();
-                // 直接查询所有还款记录，避免LiveData.getValue()可能返回null的问题
                 List<Payment> payments = repository.getAllPaymentsSync();
                 
-                ExportData exportData = new ExportData(loans, payments);
-                String json = gson.toJson(exportData);
+                // 创建 XLSX 工作簿
+                Workbook workbook = new XSSFWorkbook();
                 
+                // 创建贷款信息工作表
+                Sheet loanSheet = workbook.createSheet(SHEET_LOANS);
+                createLoanSheet(loanSheet, loans);
+                
+                // 创建还款记录工作表
+                Sheet paymentSheet = workbook.createSheet(SHEET_PAYMENTS);
+                createPaymentSheet(paymentSheet, payments);
+                
+                // 写入文件
                 OutputStream outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
-                    outputStream.write(json.getBytes());
+                    workbook.write(outputStream);
                     outputStream.close();
+                    workbook.close();
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
                 }
             } catch (Exception e) {
@@ -144,6 +155,92 @@ public class DataManagementActivity extends AppCompatActivity {
             }
             runOnUiThread(this::finish);
         });
+    }
+    
+    /**
+     * 创建贷款信息工作表
+     * XLSX 模板结构:
+     * 列A: ID | 列B: 贷款名称 | 列C: 贷款类型 | 列D: 还款方式 | 列E: 本金 | 列F: 年利率(%) | 列G: 期限(月) | 列H: 开始日期 | 列I: 信用卡额度 | 列J: 还款日 | 列K: 原始月供
+     */
+    private void createLoanSheet(Sheet sheet, List<Loan> loans) {
+        // 创建标题行样式
+        CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
+        Font headerFont = sheet.getWorkbook().createFont();
+        headerFont.setBold(true);
+        headerStyle.setFont(headerFont);
+        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        
+        // 创建标题行
+        Row headerRow = sheet.createRow(0);
+        String[] headers = {"ID", "贷款名称", "贷款类型", "还款方式", "本金", "年利率(%)", "期限(月)", "开始日期", "信用卡额度", "还款日", "原始月供"};
+        for (int i = 0; i < headers.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(headers[i]);
+            cell.setCellStyle(headerStyle);
+        }
+        
+        // 填充数据
+        int rowNum = 1;
+        for (Loan loan : loans) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(loan.getId());
+            row.createCell(1).setCellValue(loan.getName());
+            row.createCell(2).setCellValue(loan.getLoanType());
+            row.createCell(3).setCellValue(loan.getRepaymentMethod());
+            row.createCell(4).setCellValue(loan.getPrincipal());
+            row.createCell(5).setCellValue(loan.getAnnualRate());
+            row.createCell(6).setCellValue(loan.getMonths());
+            row.createCell(7).setCellValue(loan.getStartDate());
+            row.createCell(8).setCellValue(loan.getCreditLimit());
+            row.createCell(9).setCellValue(loan.getDueDate());
+            row.createCell(10).setCellValue(loan.getOriginalMonthlyPayment());
+        }
+        
+        // 自动调整列宽
+        for (int i = 0; i < headers.length; i++) {
+            sheet.autoSizeColumn(i);
+        }
+    }
+    
+    /**
+     * 创建还款记录工作表
+     * XLSX 模板结构:
+     * 列A: ID | 列B: 贷款ID | 列C: 还款金额 | 列D: 还款日期 | 列E: 备注
+     */
+    private void createPaymentSheet(Sheet sheet, List<Payment> payments) {
+        // 创建标题行样式
+        CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
+        Font headerFont = sheet.getWorkbook().createFont();
+        headerFont.setBold(true);
+        headerStyle.setFont(headerFont);
+        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        
+        // 创建标题行
+        Row headerRow = sheet.createRow(0);
+        String[] headers = {"ID", "贷款ID", "还款金额", "还款日期", "备注"};
+        for (int i = 0; i < headers.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(headers[i]);
+            cell.setCellStyle(headerStyle);
+        }
+        
+        // 填充数据
+        int rowNum = 1;
+        for (Payment payment : payments) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(payment.getId());
+            row.createCell(1).setCellValue(payment.getLoanId());
+            row.createCell(2).setCellValue(payment.getAmount());
+            row.createCell(3).setCellValue(payment.getDate());
+            row.createCell(4).setCellValue(payment.getNote() != null ? payment.getNote() : "");
+        }
+        
+        // 自动调整列宽
+        for (int i = 0; i < headers.length; i++) {
+            sheet.autoSizeColumn(i);
+        }
     }
     
     private void confirmImport(Uri uri) {
@@ -161,40 +258,34 @@ public class DataManagementActivity extends AppCompatActivity {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
                 if (inputStream != null) {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                    StringBuilder jsonBuilder = new StringBuilder();
-                    String line;
-                    while ((line = reader.readLine()) != null) {
-                        jsonBuilder.append(line);
-                    }
-                    reader.close();
+                    // 读取 XLSX 文件
+                    Workbook workbook = new XSSFWorkbook(inputStream);
+                    
+                    // 解析贷款信息
+                    List<Loan> loans = parseLoanSheet(workbook.getSheet(SHEET_LOANS));
+                    
+                    // 解析还款记录
+                    List<Payment> payments = parsePaymentSheet(workbook.getSheet(SHEET_PAYMENTS));
+                    
+                    workbook.close();
                     inputStream.close();
                     
-                    String json = jsonBuilder.toString();
-                    ExportData exportData = gson.fromJson(json, new TypeToken<ExportData>(){}.getType());
+                    // 清空现有数据
+                    repository.deleteAllPayments();
+                    repository.deleteAllLoans();
                     
-                    if (exportData != null) {
-                        // 清空现有数据
-                        repository.deleteAllPayments();
-                        repository.deleteAllLoans();
-                        
-                        // 导入新数据
-                        if (exportData.loans != null) {
-                            for (Loan loan : exportData.loans) {
-                                loan.setId(0); // 重置ID
-                                repository.insertLoan(loan);
-                            }
-                        }
-                        
-                        if (exportData.payments != null) {
-                            for (Payment payment : exportData.payments) {
-                                payment.setId(0); // 重置ID
-                                repository.insertPayment(payment);
-                            }
-                        }
-                        
-                        runOnUiThread(() -> Toast.makeText(this, R.string.import_success, Toast.LENGTH_SHORT).show());
+                    // 导入新数据
+                    for (Loan loan : loans) {
+                        loan.setId(0); // 重置ID
+                        repository.insertLoan(loan);
                     }
+                    
+                    for (Payment payment : payments) {
+                        payment.setId(0); // 重置ID
+                        repository.insertPayment(payment);
+                    }
+                    
+                    runOnUiThread(() -> Toast.makeText(this, R.string.import_success, Toast.LENGTH_SHORT).show());
                 }
             } catch (Exception e) {
                 runOnUiThread(() -> Toast.makeText(this, R.string.import_failed + ": " + e.getMessage(), Toast.LENGTH_SHORT).show());
@@ -203,13 +294,176 @@ public class DataManagementActivity extends AppCompatActivity {
         });
     }
     
-    private static class ExportData {
-        List<Loan> loans;
-        List<Payment> payments;
+    /**
+     * 解析贷款信息工作表
+     * XLSX 模板结构:
+     * 列A: ID | 列B: 贷款名称 | 列C: 贷款类型 | 列D: 还款方式 | 列E: 本金 | 列F: 年利率(%) | 列G: 期限(月) | 列H: 开始日期 | 列I: 信用卡额度 | 列J: 还款日 | 列K: 原始月供
+     */
+    private List<Loan> parseLoanSheet(Sheet sheet) {
+        List<Loan> loans = new ArrayList<>();
+        if (sheet == null) return loans;
         
-        ExportData(List<Loan> loans, List<Payment> payments) {
-            this.loans = loans;
-            this.payments = payments;
+        Iterator<Row> rowIterator = sheet.iterator();
+        // 跳过标题行
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+        
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Loan loan = new Loan();
+            
+            // 读取各列数据
+            Cell nameCell = row.getCell(1);
+            if (nameCell != null) {
+                loan.setName(getCellStringValue(nameCell));
+            }
+            
+            Cell loanTypeCell = row.getCell(2);
+            if (loanTypeCell != null) {
+                loan.setLoanType(getCellStringValue(loanTypeCell));
+            }
+            
+            Cell repaymentMethodCell = row.getCell(3);
+            if (repaymentMethodCell != null) {
+                loan.setRepaymentMethod(getCellStringValue(repaymentMethodCell));
+            }
+            
+            Cell principalCell = row.getCell(4);
+            if (principalCell != null) {
+                loan.setPrincipal(getCellNumericValue(principalCell));
+            }
+            
+            Cell annualRateCell = row.getCell(5);
+            if (annualRateCell != null) {
+                loan.setAnnualRate(getCellNumericValue(annualRateCell));
+            }
+            
+            Cell monthsCell = row.getCell(6);
+            if (monthsCell != null) {
+                loan.setMonths((int) getCellNumericValue(monthsCell));
+            }
+            
+            Cell startDateCell = row.getCell(7);
+            if (startDateCell != null) {
+                loan.setStartDate(getCellStringValue(startDateCell));
+            }
+            
+            Cell creditLimitCell = row.getCell(8);
+            if (creditLimitCell != null) {
+                loan.setCreditLimit(getCellNumericValue(creditLimitCell));
+            }
+            
+            Cell dueDateCell = row.getCell(9);
+            if (dueDateCell != null) {
+                loan.setDueDate((int) getCellNumericValue(dueDateCell));
+            }
+            
+            Cell originalMonthlyPaymentCell = row.getCell(10);
+            if (originalMonthlyPaymentCell != null) {
+                loan.setOriginalMonthlyPayment(getCellNumericValue(originalMonthlyPaymentCell));
+            }
+            
+            // 只添加有效的贷款记录（必须有名称）
+            if (loan.getName() != null && !loan.getName().trim().isEmpty()) {
+                loans.add(loan);
+            }
+        }
+        
+        return loans;
+    }
+    
+    /**
+     * 解析还款记录工作表
+     * XLSX 模板结构:
+     * 列A: ID | 列B: 贷款ID | 列C: 还款金额 | 列D: 还款日期 | 列E: 备注
+     */
+    private List<Payment> parsePaymentSheet(Sheet sheet) {
+        List<Payment> payments = new ArrayList<>();
+        if (sheet == null) return payments;
+        
+        Iterator<Row> rowIterator = sheet.iterator();
+        // 跳过标题行
+        if (rowIterator.hasNext()) {
+            rowIterator.next();
+        }
+        
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Payment payment = new Payment();
+            
+            // 读取各列数据
+            Cell loanIdCell = row.getCell(1);
+            if (loanIdCell != null) {
+                payment.setLoanId((int) getCellNumericValue(loanIdCell));
+            }
+            
+            Cell amountCell = row.getCell(2);
+            if (amountCell != null) {
+                payment.setAmount(getCellNumericValue(amountCell));
+            }
+            
+            Cell dateCell = row.getCell(3);
+            if (dateCell != null) {
+                payment.setDate(getCellStringValue(dateCell));
+            }
+            
+            Cell noteCell = row.getCell(4);
+            if (noteCell != null) {
+                payment.setNote(getCellStringValue(noteCell));
+            }
+            
+            // 只添加有效的还款记录（必须有贷款ID和金额）
+            if (payment.getLoanId() > 0 && payment.getAmount() > 0) {
+                payments.add(payment);
+            }
+        }
+        
+        return payments;
+    }
+    
+    /**
+     * 获取单元格的字符串值
+     */
+    private String getCellStringValue(Cell cell) {
+        switch (cell.getCellType()) {
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    return cell.getDateCellValue().toString();
+                }
+                return String.valueOf(cell.getNumericCellValue());
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue());
+            case FORMULA:
+                return cell.getCellFormula();
+            default:
+                return "";
+        }
+    }
+    
+    /**
+     * 获取单元格的数值
+     */
+    private double getCellNumericValue(Cell cell) {
+        switch (cell.getCellType()) {
+            case NUMERIC:
+                return cell.getNumericCellValue();
+            case STRING:
+                try {
+                    return Double.parseDouble(cell.getStringCellValue());
+                } catch (NumberFormatException e) {
+                    return 0;
+                }
+            case FORMULA:
+                try {
+                    return cell.getNumericCellValue();
+                } catch (Exception e) {
+                    return 0;
+                }
+            default:
+                return 0;
         }
     }
 }

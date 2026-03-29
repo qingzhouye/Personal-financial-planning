@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_lg">
 
         <!-- 贷款类型 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="@dimen/spacing_md"
             style="@style/InputStyle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -31,7 +31,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="@dimen/spacing_md"
             style="@style/InputStyle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -46,7 +46,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="@dimen/spacing_md"
             style="@style/InputStyle">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -65,8 +65,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/card_background_alt"
-            android:padding="16dp"
-            android:layout_marginBottom="12dp">
+            android:padding="@dimen/card_padding"
+            android:layout_marginBottom="@dimen/spacing_md">
 
             <TextView
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -94,7 +94,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -108,7 +108,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -142,7 +142,7 @@
             android:orientation="vertical"
             android:background="@color/card_background_alt"
             android:padding="16dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="@dimen/spacing_md"
             android:visibility="gone">
 
             <TextView
@@ -157,7 +157,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -171,7 +171,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -186,7 +186,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -201,7 +201,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="@dimen/spacing_sm"
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText

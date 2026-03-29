@@ -9,27 +9,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_lg"
+        android:paddingTop="@dimen/safe_area_top">
 
         <!-- 标题 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_title"
-            android:textSize="28sp"
+            android:textSize="@dimen/text_headline"
             android:textStyle="bold"
             android:textColor="@color/primary_dark"
             android:gravity="center"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="@dimen/spacing_xxl" />
 
         <!-- 本月应还金额卡片 -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardCurrentMonth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
             android:visibility="gone">
 
             <LinearLayout
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/gradient_primary"
-                android:padding="20dp">
+                android:padding="@dimen/spacing_xl">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -56,13 +57,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/semi_transparent_white"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_sm" />
 
                         <TextView
                             android:id="@+id/tvCurrentMonthTotal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="32sp"
+                            android:textSize="@dimen/text_xxl"
                             android:textStyle="bold"
                             android:textColor="@color/text_white" />
                     </LinearLayout>
@@ -78,13 +79,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/active_loans"
                             android:textColor="@color/semi_transparent_white"
-                            android:textSize="14sp" />
+                            android:textSize="@dimen/text_sm" />
 
                         <TextView
                             android:id="@+id/tvActiveLoanCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
+                            android:textSize="@dimen/text_lg"
                             android:textStyle="bold"
                             android:textColor="@color/text_white" />
                     </LinearLayout>
@@ -95,8 +96,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="16dp"
-                    android:padding="12dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
+                    android:padding="@dimen/spacing_md"
                     android:background="@color/semi_transparent_white">
 
                     <LinearLayout
@@ -110,13 +111,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/daily_payment"
                             android:textColor="@color/semi_transparent_white"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/text_xs" />
 
                         <TextView
                             android:id="@+id/tvDailyPayment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:textSize="@dimen/text_xl"
                             android:textStyle="bold"
                             android:textColor="@color/text_white" />
                     </LinearLayout>
@@ -132,13 +133,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/remaining_days"
                             android:textColor="@color/semi_transparent_white"
-                            android:textSize="12sp" />
+                            android:textSize="@dimen/text_xs" />
 
                         <TextView
                             android:id="@+id/tvRemainingDays"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
+                            android:textSize="@dimen/text_md"
                             android:textStyle="bold"
                             android:textColor="@color/text_white" />
                     </LinearLayout>
@@ -148,9 +149,9 @@
                     android:id="@+id/tvCurrentMonthDetails"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/spacing_md"
                     android:textColor="@color/semi_transparent_white"
-                    android:textSize="12sp" />
+                    android:textSize="@dimen/text_xs" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -159,25 +160,25 @@
             android:id="@+id/cardStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
             android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/card_padding">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/loan_overview"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_xl"
                     android:textStyle="bold"
                     android:textColor="@color/primary_dark"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="@dimen/spacing_lg" />
 
                 <!-- 统计网格 -->
                 <GridLayout
@@ -193,7 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/spacing_lg"
                     android:text="@string/view_monthly_total"
                     style="@style/PrimaryButton" />
             </LinearLayout>
@@ -203,24 +204,24 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            android:layout_marginBottom="@dimen/spacing_lg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/card_padding">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/add_new_loan"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_xl"
                     android:textStyle="bold"
                     android:textColor="@color/primary_dark"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="@dimen/spacing_lg" />
 
                 <Button
                     android:id="@+id/btnAddLoan"
@@ -236,25 +237,25 @@
             android:id="@+id/cardLoanManage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
+            android:layout_marginBottom="@dimen/spacing_lg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
             android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/card_padding">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/loan_management"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_xl"
                     android:textStyle="bold"
                     android:textColor="@color/primary_dark"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="@dimen/spacing_lg" />
 
                 <Button
                     android:id="@+id/btnViewLoans"
@@ -269,23 +270,23 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp">
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/card_padding">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/data_management"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/text_xl"
                     android:textStyle="bold"
                     android:textColor="@color/primary_dark"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="@dimen/spacing_lg" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -298,7 +299,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="@dimen/spacing_sm"
                         android:text="@string/export_data"
                         style="@style/SecondaryButton" />
 
@@ -307,7 +308,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="@dimen/spacing_sm"
                         android:text="@string/import_data"
                         style="@style/SecondaryButton" />
 

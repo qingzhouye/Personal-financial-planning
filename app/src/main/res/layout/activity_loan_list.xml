@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/spacing_lg"
+    android:paddingTop="@dimen/safe_area_top">
 
     <TextView
         android:id="@+id/tvEmpty"
@@ -12,7 +13,7 @@
         android:gravity="center"
         android:text="@string/no_loans"
         android:textColor="@color/text_hint"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_lg"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
