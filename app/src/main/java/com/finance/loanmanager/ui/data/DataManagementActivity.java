@@ -113,7 +113,9 @@ public class DataManagementActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        intent.putExtra(Intent.EXTRA_TITLE, "贷款数据_" + System.currentTimeMillis() + ".xlsx");
+        // 使用更简单的文件名格式
+        String fileName = "loan_data_" + System.currentTimeMillis() + ".xlsx";
+        intent.putExtra(Intent.EXTRA_TITLE, fileName);
         exportLauncher.launch(intent);
     }
     
@@ -131,8 +133,18 @@ public class DataManagementActivity extends AppCompatActivity {
                 List<Loan> loans = repository.getAllLoansSync();
                 List<Payment> payments = repository.getAllPaymentsSync();
                 
+                // 确保列表不为null
+                if (loans == null) loans = new ArrayList<>();
+                if (payments == null) payments = new ArrayList<>();
+                
+                // 调试日志：检查数据是否为空
+                System.out.println("导出数据调试 - 贷款数量: " + loans.size());
+                System.out.println("导出数据调试 - 还款记录数量: " + payments.size());
+                
                 // 创建 XLSX 工作簿
+                System.out.println("导出数据调试 - 开始创建XSSFWorkbook");
                 Workbook workbook = new XSSFWorkbook();
+                System.out.println("导出数据调试 - XSSFWorkbook创建成功");
                 
                 // 创建贷款信息工作表
                 Sheet loanSheet = workbook.createSheet(SHEET_LOANS);
@@ -146,12 +158,19 @@ public class DataManagementActivity extends AppCompatActivity {
                 OutputStream outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
                     workbook.write(outputStream);
+                    outputStream.flush();
                     outputStream.close();
                     workbook.close();
+                    System.out.println("导出数据调试 - 文件写入成功");
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
+                } else {
+                    System.err.println("导出数据调试 - 无法打开输出流，uri=" + uri);
+                    runOnUiThread(() -> Toast.makeText(this, R.string.export_failed + ": 无法创建文件", Toast.LENGTH_SHORT).show());
                 }
             } catch (Exception e) {
-                runOnUiThread(() -> Toast.makeText(this, R.string.export_failed + ": " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                e.printStackTrace();
+                final String errorMsg = e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName();
+                runOnUiThread(() -> Toast.makeText(this, getString(R.string.export_failed) + ": " + errorMsg, Toast.LENGTH_LONG).show());
             }
             runOnUiThread(this::finish);
         });
@@ -185,13 +204,13 @@ public class DataManagementActivity extends AppCompatActivity {
         for (Loan loan : loans) {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(loan.getId());
-            row.createCell(1).setCellValue(loan.getName());
-            row.createCell(2).setCellValue(loan.getLoanType());
-            row.createCell(3).setCellValue(loan.getRepaymentMethod());
+            row.createCell(1).setCellValue(loan.getName() != null ? loan.getName() : "");
+            row.createCell(2).setCellValue(loan.getLoanType() != null ? loan.getLoanType() : "");
+            row.createCell(3).setCellValue(loan.getRepaymentMethod() != null ? loan.getRepaymentMethod() : "");
             row.createCell(4).setCellValue(loan.getPrincipal());
             row.createCell(5).setCellValue(loan.getAnnualRate());
             row.createCell(6).setCellValue(loan.getMonths());
-            row.createCell(7).setCellValue(loan.getStartDate());
+            row.createCell(7).setCellValue(loan.getStartDate() != null ? loan.getStartDate() : "");
             row.createCell(8).setCellValue(loan.getCreditLimit());
             row.createCell(9).setCellValue(loan.getDueDate());
             row.createCell(10).setCellValue(loan.getOriginalMonthlyPayment());
@@ -233,7 +252,7 @@ public class DataManagementActivity extends AppCompatActivity {
             row.createCell(0).setCellValue(payment.getId());
             row.createCell(1).setCellValue(payment.getLoanId());
             row.createCell(2).setCellValue(payment.getAmount());
-            row.createCell(3).setCellValue(payment.getDate());
+            row.createCell(3).setCellValue(payment.getDate() != null ? payment.getDate() : "");
             row.createCell(4).setCellValue(payment.getNote() != null ? payment.getNote() : "");
         }
         
