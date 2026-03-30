@@ -14,7 +14,7 @@
     <dimen name="spacing_xxl">24dp</dimen>
     
     <!-- 顶部安全区域 -->
-    <dimen name="safe_area_top">70dp</dimen>
+    <dimen name="safe_area_top">108dp</dimen>
     
     <!-- 卡片间距 -->
     <dimen name="card_margin">8dp</dimen>
