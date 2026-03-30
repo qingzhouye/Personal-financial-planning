@@ -228,22 +228,29 @@ public class AddLoanActivity extends AppCompatActivity {
     }
     
     private void showConfirmDialog(Loan loan) {
-        StringBuilder message = new StringBuilder();
-        message.append("贷款类型：").append(loan.getLoanTypeName()).append("\n");
-        message.append("名称：").append(loan.getName()).append("\n");
-        message.append("还款方式：").append(loan.getRepaymentMethodName()).append("\n");
-        message.append("本金/额度：").append(NumberFormatUtil.formatCurrency(loan.getPrincipal())).append("\n");
-        message.append("年利率：").append(loan.getAnnualRate()).append("%\n");
-        message.append("期限：").append(loan.getMonths()).append("个月\n");
-        message.append("开始日期：").append(loan.getStartDate()).append("\n");
+        // 加载自定义布局
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_confirm_loan, null);
         
+        // 设置各字段值
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvLoanType)).setText(loan.getLoanTypeName());
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvLoanName)).setText(loan.getName());
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvRepaymentMethod)).setText(loan.getRepaymentMethodName());
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvPrincipal)).setText(NumberFormatUtil.formatCurrency(loan.getPrincipal()));
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvAnnualRate)).setText(loan.getAnnualRate() + "%");
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvMonths)).setText(loan.getMonths() + "个月");
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvStartDate)).setText(loan.getStartDate());
+        
+        // 如果是信用卡，显示还款日
         if (loan.isCreditCard()) {
-            message.append("还款日：每月").append(loan.getDueDate()).append("号\n");
+            LinearLayout layoutDueDate = dialogView.findViewById(R.id.layoutDueDate);
+            android.widget.TextView tvDueDate = dialogView.findViewById(R.id.tvDueDate);
+            layoutDueDate.setVisibility(View.VISIBLE);
+            tvDueDate.setText("每月" + loan.getDueDate() + "号");
         }
         
         new AlertDialog.Builder(this)
                 .setTitle(R.string.confirm_add)
-                .setMessage(message.toString())
+                .setView(dialogView)
                 .setPositiveButton(R.string.confirm, (dialog, which) -> {
                     // 在后台线程执行数据库插入
                     executorService.execute(() -> {
