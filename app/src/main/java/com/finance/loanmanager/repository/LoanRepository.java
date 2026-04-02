@@ -14,6 +14,7 @@ import com.finance.loanmanager.data.entity.LoanStatus;
 import com.finance.loanmanager.data.entity.LoanWithPayments;
 import com.finance.loanmanager.data.entity.Payment;
 import com.finance.loanmanager.service.LoanCalculator;
+import com.finance.loanmanager.util.BackupManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,10 @@ public class LoanRepository {
     private final LiveData<List<Loan>> allLoans;
     private final ExecutorService executorService;
     private final Handler mainHandler;
+    private final Application application;
     
     public LoanRepository(Application application) {
+        this.application = application;
         AppDatabase database = AppDatabase.getInstance(application);
         loanDao = database.loanDao();
         paymentDao = database.paymentDao();
@@ -65,23 +68,30 @@ public class LoanRepository {
         );
         loan.setOriginalMonthlyPayment(originalPayment);
         
-        return loanDao.insertLoan(loan);
+        long id = loanDao.insertLoan(loan);
+        // 数据变更后自动备份
+        triggerAutoBackup();
+        return id;
     }
     
     public void updateLoan(Loan loan) {
         loanDao.updateLoan(loan);
+        triggerAutoBackup();
     }
     
     public void deleteLoan(Loan loan) {
         loanDao.deleteLoan(loan);
+        triggerAutoBackup();
     }
     
     public void deleteLoanById(int loanId) {
         loanDao.deleteLoanById(loanId);
+        triggerAutoBackup();
     }
     
     public void deleteAllLoans() {
         loanDao.deleteAllLoans();
+        triggerAutoBackup();
     }
     
     // ==================== 还款记录操作 ====================
@@ -99,15 +109,19 @@ public class LoanRepository {
     }
     
     public long insertPayment(Payment payment) {
-        return paymentDao.insertPayment(payment);
+        long id = paymentDao.insertPayment(payment);
+        triggerAutoBackup();
+        return id;
     }
     
     public void deletePayment(Payment payment) {
         paymentDao.deletePayment(payment);
+        triggerAutoBackup();
     }
     
     public void deleteAllPayments() {
         paymentDao.deleteAllPayments();
+        triggerAutoBackup();
     }
     
     // ==================== 业务方法 ====================
@@ -216,6 +230,7 @@ public class LoanRepository {
             );
             loan.setOriginalMonthlyPayment(originalPayment);
             long id = loanDao.insertLoan(loan);
+            triggerAutoBackup();
             mainHandler.post(() -> {
                 if (callback != null) {
                     callback.onComplete(id);
@@ -227,6 +242,7 @@ public class LoanRepository {
     public void insertPaymentAsync(Payment payment, InsertCallback callback) {
         executorService.execute(() -> {
             long id = paymentDao.insertPayment(payment);
+            triggerAutoBackup();
             mainHandler.post(() -> {
                 if (callback != null) {
                     callback.onComplete(id);
@@ -239,12 +255,41 @@ public class LoanRepository {
         executorService.execute(() -> {
             paymentDao.deletePaymentsByLoanId(loanId);
             loanDao.deleteLoanById(loanId);
+            triggerAutoBackup();
             mainHandler.post(() -> {
                 if (callback != null) {
                     callback.onComplete();
                 }
             });
         });
+    }
+    
+    // ==================== 自动备份 ====================
+    
+    /**
+     * 触发自动备份（静默执行，不显示提示）
+     */
+    private void triggerAutoBackup() {
+        try {
+            BackupManager backupManager = new BackupManager(application);
+            backupManager.performAutoBackup(new BackupManager.BackupCallback() {
+                @Override
+                public void onSuccess(String message) {
+                    // 静默备份成功，不显示提示
+                    android.util.Log.d("LoanRepository", "Auto backup success: " + message);
+                    backupManager.shutdown();
+                }
+                
+                @Override
+                public void onError(String error) {
+                    // 静默备份失败，记录日志
+                    android.util.Log.e("LoanRepository", "Auto backup failed: " + error);
+                    backupManager.shutdown();
+                }
+            });
+        } catch (Exception e) {
+            android.util.Log.e("LoanRepository", "Auto backup exception: " + e.getMessage());
+        }
     }
     
     // ==================== 回调接口 ====================

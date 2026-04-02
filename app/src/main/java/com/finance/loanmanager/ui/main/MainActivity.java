@@ -22,10 +22,12 @@ import com.finance.loanmanager.R;
 import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.data.entity.LoanStatus;
 import com.finance.loanmanager.repository.LoanRepository;
+import com.finance.loanmanager.ui.data.BackupRestoreDialog;
 import com.finance.loanmanager.ui.data.DataManagementActivity;
 import com.finance.loanmanager.ui.loan.AddLoanActivity;
 import com.finance.loanmanager.ui.loan.LoanListActivity;
 import com.finance.loanmanager.ui.monthly.MonthlyTotalActivity;
+import com.finance.loanmanager.util.BackupManager;
 import com.finance.loanmanager.util.DateUtil;
 import com.finance.loanmanager.util.NumberFormatUtil;
 
@@ -34,6 +36,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import android.content.SharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
     private Button btnClear;
     
     private List<LoanRepository.LoanWithStatus> loansWithStatus = new ArrayList<>();
+    private BackupManager backupManager;
+    private static final String PREFS_NAME = "LoanManagerPrefs";
+    private static final String KEY_BACKUP_CHECKED = "backup_checked";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,14 +81,64 @@ public class MainActivity extends AppCompatActivity {
         
         try {
             repository = new LoanRepository(getApplication());
+            backupManager = new BackupManager(this);
             executorService = Executors.newSingleThreadExecutor();
             initViews();
             setupListeners();
             observeData();
+            
+            // 检查是否需要显示备份恢复对话框
+            checkAndShowBackupRestoreDialog();
         } catch (Exception e) {
             Toast.makeText(this, "应用初始化失败: " + e.getMessage(), Toast.LENGTH_LONG).show();
             finish();
         }
+    }
+    
+    /**
+     * 检查并显示备份恢复对话框
+     */
+    private void checkAndShowBackupRestoreDialog() {
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean alreadyChecked = prefs.getBoolean(KEY_BACKUP_CHECKED, false);
+        
+        // 如果已经检查过，不再显示
+        if (alreadyChecked) {
+            return;
+        }
+        
+        // 检查是否存在备份文件
+        if (backupManager.hasAutoBackup()) {
+            // 延迟一点显示，等UI完全加载
+            findViewById(android.R.id.content).postDelayed(() -> {
+                showBackupRestoreDialog();
+            }, 500);
+        }
+        
+        // 标记已检查（无论是否有备份都标记，避免反复检查）
+        prefs.edit().putBoolean(KEY_BACKUP_CHECKED, true).apply();
+    }
+    
+    /**
+     * 显示备份恢复对话框
+     */
+    private void showBackupRestoreDialog() {
+        BackupRestoreDialog dialog = new BackupRestoreDialog();
+        dialog.setRestoreListener(new BackupRestoreDialog.RestoreListener() {
+            @Override
+            public void onRestoreComplete(boolean success) {
+                if (success) {
+                    // 恢复成功后刷新数据
+                    refreshData();
+                }
+            }
+            
+            @Override
+            public void onDismiss() {
+                // 对话框关闭后的处理
+            }
+        });
+        dialog.show(getSupportFragmentManager(), "BackupRestoreDialog");
     }
     
     @Override
@@ -90,6 +146,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         if (executorService != null && !executorService.isShutdown()) {
             executorService.shutdown();
+        }
+        if (backupManager != null) {
+            backupManager.shutdown();
         }
     }
     
