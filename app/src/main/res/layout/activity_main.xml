@@ -12,16 +12,33 @@
         android:padding="@dimen/spacing_lg"
         android:paddingTop="@dimen/safe_area_top">
 
-        <!-- 标题 -->
-        <TextView
+        <!-- 标题栏 -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_title"
-            android:textSize="@dimen/text_headline"
-            android:textStyle="bold"
-            android:textColor="@color/primary_dark"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/spacing_xxl" />
+            android:layout_marginBottom="@dimen/spacing_xxl">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_title"
+                android:textSize="@dimen/text_headline"
+                android:textStyle="bold"
+                android:textColor="@color/primary_dark"
+                android:gravity="center" />
+
+            <ImageView
+                android:id="@+id/btnVersionInfo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:contentDescription="@string/version_info"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true" />
+        </RelativeLayout>
 
         <!-- 本月应还金额卡片 -->
         <androidx.cardview.widget.CardView

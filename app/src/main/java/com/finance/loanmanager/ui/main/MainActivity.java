@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,10 @@ import com.finance.loanmanager.util.BackupManager;
 import com.finance.loanmanager.util.DateUtil;
 import com.finance.loanmanager.util.NumberFormatUtil;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -59,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnExport;
     private Button btnImport;
     private Button btnClear;
+    private ImageView btnVersionInfo;
     
     private List<LoanRepository.LoanWithStatus> loansWithStatus = new ArrayList<>();
     private BackupManager backupManager;
@@ -175,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         btnExport = findViewById(R.id.btnExport);
         btnImport = findViewById(R.id.btnImport);
         btnClear = findViewById(R.id.btnClear);
+        btnVersionInfo = findViewById(R.id.btnVersionInfo);
     }
     
     private void setupListeners() {
@@ -196,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
         btnExport.setOnClickListener(v -> exportData());
         btnImport.setOnClickListener(v -> importData());
         btnClear.setOnClickListener(v -> clearData());
+        btnVersionInfo.setOnClickListener(v -> showVersionInfo());
     }
     
     private void observeData() {
@@ -355,5 +363,37 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton(R.string.cancel, null)
                 .show();
+    }
+    
+    /**
+     * 显示版本说明对话框
+     */
+    private void showVersionInfo() {
+        String versionContent = readVersionNotesFromAssets();
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.version_info_title)
+                .setMessage(versionContent)
+                .setPositiveButton(R.string.i_know, null)
+                .show();
+    }
+    
+    /**
+     * 从 assets 读取版本说明文件
+     */
+    private String readVersionNotesFromAssets() {
+        StringBuilder content = new StringBuilder();
+        try {
+            InputStream is = getAssets().open("version_notes.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            reader.close();
+            is.close();
+        } catch (IOException e) {
+            return getString(R.string.version_info_load_failed);
+        }
+        return content.toString();
     }
 }

@@ -134,4 +134,9 @@
     <string name="auto_backup_failed">自动备份失败</string>
     <string name="current_data_exists">⚠️ 当前已有 %d 笔贷款数据，恢复将覆盖现有数据</string>
     <string name="current_data_empty">✓ 当前数据库为空，建议恢复备份</string>
+    
+    <!-- Version Info -->
+    <string name="version_info">版本说明</string>
+    <string name="version_info_title">版本说明</string>
+    <string name="version_info_load_failed">无法加载版本说明文件</string>
 </resources>
