@@ -1,5 +1,6 @@
 package com.finance.loanmanager.util;
 
+import android.app.Application;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
@@ -47,7 +48,7 @@ public class BackupManager {
     
     public BackupManager(Context context) {
         this.context = context.getApplicationContext();
-        this.repository = new LoanRepository(context);
+        this.repository = new LoanRepository((Application) this.context);
         this.executorService = Executors.newSingleThreadExecutor();
     }
     
