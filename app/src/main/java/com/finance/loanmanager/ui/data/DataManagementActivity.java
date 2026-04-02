@@ -141,6 +141,8 @@ public class DataManagementActivity extends AppCompatActivity {
     private void exportData(Uri uri) {
         // 在后台线程执行导出操作
         executorService.execute(() -> {
+            OutputStream outputStream = null;
+            Workbook workbook = null;
             try {
                 List<Loan> loans = repository.getAllLoansSync();
                 List<Payment> payments = repository.getAllPaymentsSync();
@@ -153,9 +155,13 @@ public class DataManagementActivity extends AppCompatActivity {
                 System.out.println("导出数据调试 - 贷款数量: " + loans.size());
                 System.out.println("导出数据调试 - 还款记录数量: " + payments.size());
                 
+                if (loans.isEmpty() && payments.isEmpty()) {
+                    System.err.println("导出数据调试 - 警告：数据库中没有数据");
+                }
+                
                 // 创建 XLSX 工作簿
                 System.out.println("导出数据调试 - 开始创建XSSFWorkbook");
-                Workbook workbook = new XSSFWorkbook();
+                workbook = new XSSFWorkbook();
                 System.out.println("导出数据调试 - XSSFWorkbook创建成功");
                 
                 // 创建贷款信息工作表
@@ -167,12 +173,11 @@ public class DataManagementActivity extends AppCompatActivity {
                 createPaymentSheet(paymentSheet, payments);
                 
                 // 写入文件
-                OutputStream outputStream = getContentResolver().openOutputStream(uri);
+                outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
+                    System.out.println("导出数据调试 - 开始写入文件...");
                     workbook.write(outputStream);
                     outputStream.flush();
-                    outputStream.close();
-                    workbook.close();
                     System.out.println("导出数据调试 - 文件写入成功");
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
                 } else {
@@ -180,11 +185,25 @@ public class DataManagementActivity extends AppCompatActivity {
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_failed + ": 无法创建文件", Toast.LENGTH_SHORT).show());
                 }
             } catch (Exception e) {
+                System.err.println("导出数据调试 - 发生异常: " + e.getClass().getName());
+                System.err.println("导出数据调试 - 异常消息: " + e.getMessage());
                 e.printStackTrace();
                 final String errorMsg = e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName();
                 runOnUiThread(() -> Toast.makeText(this, getString(R.string.export_failed) + ": " + errorMsg, Toast.LENGTH_LONG).show());
+            } finally {
+                // 确保资源正确关闭
+                try {
+                    if (outputStream != null) {
+                        outputStream.close();
+                    }
+                    if (workbook != null) {
+                        workbook.close();
+                    }
+                } catch (Exception e) {
+                    System.err.println("导出数据调试 - 关闭资源时发生异常: " + e.getMessage());
+                }
+                runOnUiThread(this::finish);
             }
-            runOnUiThread(this::finish);
         });
     }
     
@@ -228,10 +247,13 @@ public class DataManagementActivity extends AppCompatActivity {
             row.createCell(10).setCellValue(loan.getOriginalMonthlyPayment());
         }
         
-        // 自动调整列宽
-        for (int i = 0; i < headers.length; i++) {
-            sheet.autoSizeColumn(i);
+        // 设置固定列宽（Android不支持autoSizeColumn，因为缺少AWT类）
+        // 列宽单位: 1/256个字符宽度
+        int[] columnWidths = {2500, 6000, 4000, 4000, 4000, 3500, 3000, 4000, 4000, 3000, 4000};
+        for (int i = 0; i < headers.length && i < columnWidths.length; i++) {
+            sheet.setColumnWidth(i, columnWidths[i]);
         }
+        System.out.println("导出数据调试 - 贷款工作表创建完成，数据行数: " + (rowNum - 1));
     }
     
     /**
@@ -268,10 +290,12 @@ public class DataManagementActivity extends AppCompatActivity {
             row.createCell(4).setCellValue(payment.getNote() != null ? payment.getNote() : "");
         }
         
-        // 自动调整列宽
-        for (int i = 0; i < headers.length; i++) {
-            sheet.autoSizeColumn(i);
+        // 设置固定列宽（Android不支持autoSizeColumn，因为缺少AWT类）
+        int[] columnWidths = {2500, 4000, 4000, 4000, 6000};
+        for (int i = 0; i < headers.length && i < columnWidths.length; i++) {
+            sheet.setColumnWidth(i, columnWidths[i]);
         }
+        System.out.println("导出数据调试 - 还款记录工作表创建完成，数据行数: " + (rowNum - 1));
     }
     
     private void confirmImport(Uri uri) {
