@@ -63,12 +63,38 @@ public class BackupManager {
         return new File(backupDir, AUTO_BACKUP_FILE);
     }
     
+    // 最小有效备份文件大小（字节）- 包含标题行的XLSX至少几千字节
+    private static final long MIN_VALID_BACKUP_SIZE = 100;
+    
     /**
-     * 检查是否存在自动备份文件
+     * 检查是否存在有效的自动备份文件
      */
     public boolean hasAutoBackup() {
         File backupFile = getAutoBackupFile();
-        return backupFile.exists() && backupFile.length() > 0;
+        if (!backupFile.exists() || backupFile.length() < MIN_VALID_BACKUP_SIZE) {
+            return false;
+        }
+        // 额外验证：尝试读取文件头确认是有效的XLSX
+        return isValidXlsxFile(backupFile);
+    }
+    
+    /**
+     * 验证文件是否为有效的XLSX文件
+     */
+    private boolean isValidXlsxFile(File file) {
+        try (FileInputStream fis = new FileInputStream(file)) {
+            // XLSX文件是ZIP格式，前4个字节应该是 ZIP magic number: 50 4B 03 04
+            byte[] header = new byte[4];
+            int read = fis.read(header);
+            if (read < 4) {
+                return false;
+            }
+            // ZIP文件魔数: 0x50 0x4B 0x03 0x04
+            return header[0] == 0x50 && header[1] == 0x4B && 
+                   header[2] == 0x03 && header[3] == 0x04;
+        } catch (Exception e) {
+            return false;
+        }
     }
     
     /**
@@ -438,7 +464,8 @@ public class BackupManager {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
-                if (DateUtil.isCellDateFormatted(cell)) {
+                // 检查是否为日期格式
+                if (isCellDateFormatted(cell)) {
                     return cell.getDateCellValue().toString();
                 }
                 return String.valueOf(cell.getNumericCellValue());
@@ -448,6 +475,23 @@ public class BackupManager {
                 return cell.getCellFormula();
             default:
                 return "";
+        }
+    }
+    
+    /**
+     * 检查单元格是否为日期格式
+     * 替代 Apache POI 的 DateUtil.isCellDateFormatted
+     */
+    private boolean isCellDateFormatted(Cell cell) {
+        try {
+            short dataFormat = cell.getCellStyle().getDataFormat();
+            // 常见的日期格式索引
+            return dataFormat == 0x0e || dataFormat == 0x0f || dataFormat == 0x10 ||
+                   dataFormat == 0x11 || dataFormat == 0x12 || dataFormat == 0x13 ||
+                   dataFormat == 0x14 || dataFormat == 0x15 || dataFormat == 0x16 ||
+                   dataFormat == 0x2d || dataFormat == 0x2e || dataFormat == 0x2f;
+        } catch (Exception e) {
+            return false;
         }
     }
     

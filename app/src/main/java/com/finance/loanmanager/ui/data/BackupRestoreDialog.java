@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
 import com.finance.loanmanager.R;
+import com.finance.loanmanager.repository.LoanRepository;
 import com.finance.loanmanager.util.BackupManager;
 
 /**
@@ -42,6 +43,10 @@ public class BackupRestoreDialog extends DialogFragment {
         backupManager = new BackupManager(context);
         backupInfo = backupManager.getBackupInfo();
         
+        // 检查当前数据库是否有数据
+        LoanRepository repository = new LoanRepository(requireActivity().getApplication());
+        int currentLoanCount = repository.getAllLoansSync().size();
+        
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         
         // 使用自定义布局
@@ -51,11 +56,23 @@ public class BackupRestoreDialog extends DialogFragment {
         TextView tvBackupInfo = view.findViewById(R.id.tv_backup_info);
         TextView tvBackupDate = view.findViewById(R.id.tv_backup_date);
         TextView tvBackupSize = view.findViewById(R.id.tv_backup_size);
+        TextView tvCurrentData = view.findViewById(R.id.tv_current_data);
         
         if (backupInfo != null) {
             tvBackupInfo.setText(getString(R.string.backup_found_info, backupInfo.fileName));
             tvBackupDate.setText(getString(R.string.backup_date, backupInfo.getFormattedDate()));
             tvBackupSize.setText(getString(R.string.backup_size, backupInfo.getFormattedSize()));
+        }
+        
+        // 显示当前数据状态
+        if (tvCurrentData != null) {
+            if (currentLoanCount > 0) {
+                tvCurrentData.setText(getString(R.string.current_data_exists, currentLoanCount));
+                tvCurrentData.setTextColor(context.getResources().getColor(android.R.color.holo_orange_dark, null));
+            } else {
+                tvCurrentData.setText(R.string.current_data_empty);
+                tvCurrentData.setTextColor(context.getResources().getColor(android.R.color.holo_green_dark, null));
+            }
         }
         
         // 设置按钮点击事件

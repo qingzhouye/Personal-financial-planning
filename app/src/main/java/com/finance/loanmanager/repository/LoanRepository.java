@@ -266,30 +266,47 @@ public class LoanRepository {
     
     // ==================== 自动备份 ====================
     
+    private static final long BACKUP_DEBOUNCE_MS = 3000; // 3秒防抖
+    private static long lastBackupTime = 0;
+    private static final Object backupLock = new Object();
+    
     /**
-     * 触发自动备份（静默执行，不显示提示）
+     * 触发自动备份（带防抖机制，静默执行）
      */
     private void triggerAutoBackup() {
-        try {
-            BackupManager backupManager = new BackupManager(application);
-            backupManager.performAutoBackup(new BackupManager.BackupCallback() {
-                @Override
-                public void onSuccess(String message) {
-                    // 静默备份成功，不显示提示
-                    android.util.Log.d("LoanRepository", "Auto backup success: " + message);
-                    backupManager.shutdown();
-                }
-                
-                @Override
-                public void onError(String error) {
-                    // 静默备份失败，记录日志
-                    android.util.Log.e("LoanRepository", "Auto backup failed: " + error);
-                    backupManager.shutdown();
-                }
-            });
-        } catch (Exception e) {
-            android.util.Log.e("LoanRepository", "Auto backup exception: " + e.getMessage());
+        synchronized (backupLock) {
+            long currentTime = System.currentTimeMillis();
+            // 如果距离上次备份不足3秒，跳过
+            if (currentTime - lastBackupTime < BACKUP_DEBOUNCE_MS) {
+                android.util.Log.d("LoanRepository", "Auto backup skipped (debounce)");
+                return;
+            }
+            lastBackupTime = currentTime;
         }
+        
+        executorService.execute(() -> {
+            try {
+                // 延迟执行，合并连续操作
+                Thread.sleep(1000);
+                
+                BackupManager backupManager = new BackupManager(application);
+                backupManager.performAutoBackup(new BackupManager.BackupCallback() {
+                    @Override
+                    public void onSuccess(String message) {
+                        android.util.Log.d("LoanRepository", "Auto backup success: " + message);
+                        backupManager.shutdown();
+                    }
+                    
+                    @Override
+                    public void onError(String error) {
+                        android.util.Log.e("LoanRepository", "Auto backup failed: " + error);
+                        backupManager.shutdown();
+                    }
+                });
+            } catch (Exception e) {
+                android.util.Log.e("LoanRepository", "Auto backup exception: " + e.getMessage());
+            }
+        });
     }
     
     // ==================== 回调接口 ====================

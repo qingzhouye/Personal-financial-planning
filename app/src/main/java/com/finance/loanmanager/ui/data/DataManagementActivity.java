@@ -485,7 +485,8 @@ public class DataManagementActivity extends AppCompatActivity {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
-                if (DateUtil.isCellDateFormatted(cell)) {
+                // 检查是否为日期格式
+                if (isCellDateFormatted(cell)) {
                     return cell.getDateCellValue().toString();
                 }
                 return String.valueOf(cell.getNumericCellValue());
@@ -495,6 +496,23 @@ public class DataManagementActivity extends AppCompatActivity {
                 return cell.getCellFormula();
             default:
                 return "";
+        }
+    }
+    
+    /**
+     * 检查单元格是否为日期格式
+     * 替代 Apache POI 的 DateUtil.isCellDateFormatted
+     */
+    private boolean isCellDateFormatted(Cell cell) {
+        try {
+            short dataFormat = cell.getCellStyle().getDataFormat();
+            // 常见的日期格式索引
+            return dataFormat == 0x0e || dataFormat == 0x0f || dataFormat == 0x10 ||
+                   dataFormat == 0x11 || dataFormat == 0x12 || dataFormat == 0x13 ||
+                   dataFormat == 0x14 || dataFormat == 0x15 || dataFormat == 0x16 ||
+                   dataFormat == 0x2d || dataFormat == 0x2e || dataFormat == 0x2f;
+        } catch (Exception e) {
+            return false;
         }
     }
     
