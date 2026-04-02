@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/spacing_lg"
-        android:paddingTop="@dimen/safe_area_top">
+        android:paddingTop="@dimen/status_bar_height">
 
         <!-- 贷款类型 -->
         <com.google.android.material.textfield.TextInputLayout

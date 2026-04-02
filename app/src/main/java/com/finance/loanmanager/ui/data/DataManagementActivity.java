@@ -130,6 +130,9 @@ public class DataManagementActivity extends AppCompatActivity {
         // 在后台线程执行导出操作
         executorService.execute(() -> {
             try {
+                // 重新获取数据库实例，确保连接正常
+                System.out.println("导出数据调试 - 开始获取数据");
+                
                 List<Loan> loans = repository.getAllLoansSync();
                 List<Payment> payments = repository.getAllPaymentsSync();
                 
@@ -140,6 +143,12 @@ public class DataManagementActivity extends AppCompatActivity {
                 // 调试日志：检查数据是否为空
                 System.out.println("导出数据调试 - 贷款数量: " + loans.size());
                 System.out.println("导出数据调试 - 还款记录数量: " + payments.size());
+                
+                // 打印第一条贷款数据用于调试
+                if (!loans.isEmpty()) {
+                    Loan firstLoan = loans.get(0);
+                    System.out.println("导出数据调试 - 第一条贷款: ID=" + firstLoan.getId() + ", 名称=" + firstLoan.getName());
+                }
                 
                 // 创建 XLSX 工作簿
                 System.out.println("导出数据调试 - 开始创建XSSFWorkbook");
@@ -155,12 +164,24 @@ public class DataManagementActivity extends AppCompatActivity {
                 createPaymentSheet(paymentSheet, payments);
                 
                 // 写入文件
+                System.out.println("导出数据调试 - 开始写入文件，uri=" + uri);
                 OutputStream outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
+                    System.out.println("导出数据调试 - 输出流打开成功");
+                    
+                    // 写入工作簿到输出流
                     workbook.write(outputStream);
+                    System.out.println("导出数据调试 - workbook.write() 完成");
+                    
                     outputStream.flush();
+                    System.out.println("导出数据调试 - flush() 完成");
+                    
                     outputStream.close();
+                    System.out.println("导出数据调试 - 输出流关闭");
+                    
                     workbook.close();
+                    System.out.println("导出数据调试 - 工作簿关闭");
+                    
                     System.out.println("导出数据调试 - 文件写入成功");
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
                 } else {
@@ -182,6 +203,8 @@ public class DataManagementActivity extends AppCompatActivity {
      * 列A: ID | 列B: 贷款名称 | 列C: 贷款类型 | 列D: 还款方式 | 列E: 本金 | 列F: 年利率(%) | 列G: 期限(月) | 列H: 开始日期 | 列I: 信用卡额度 | 列J: 还款日 | 列K: 原始月供
      */
     private void createLoanSheet(Sheet sheet, List<Loan> loans) {
+        System.out.println("createLoanSheet - 开始创建工作表，数据条数: " + (loans != null ? loans.size() : 0));
+        
         // 创建标题行样式
         CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
         Font headerFont = sheet.getWorkbook().createFont();
@@ -198,28 +221,66 @@ public class DataManagementActivity extends AppCompatActivity {
             cell.setCellValue(headers[i]);
             cell.setCellStyle(headerStyle);
         }
+        System.out.println("createLoanSheet - 标题行创建完成");
         
         // 填充数据
         int rowNum = 1;
-        for (Loan loan : loans) {
-            Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(loan.getId());
-            row.createCell(1).setCellValue(loan.getName() != null ? loan.getName() : "");
-            row.createCell(2).setCellValue(loan.getLoanType() != null ? loan.getLoanType() : "");
-            row.createCell(3).setCellValue(loan.getRepaymentMethod() != null ? loan.getRepaymentMethod() : "");
-            row.createCell(4).setCellValue(loan.getPrincipal());
-            row.createCell(5).setCellValue(loan.getAnnualRate());
-            row.createCell(6).setCellValue(loan.getMonths());
-            row.createCell(7).setCellValue(loan.getStartDate() != null ? loan.getStartDate() : "");
-            row.createCell(8).setCellValue(loan.getCreditLimit());
-            row.createCell(9).setCellValue(loan.getDueDate());
-            row.createCell(10).setCellValue(loan.getOriginalMonthlyPayment());
+        if (loans != null) {
+            for (Loan loan : loans) {
+                Row row = sheet.createRow(rowNum++);
+                
+                // ID - 整数
+                Cell idCell = row.createCell(0);
+                idCell.setCellValue(loan.getId());
+                
+                // 贷款名称 - 字符串
+                Cell nameCell = row.createCell(1);
+                nameCell.setCellValue(loan.getName() != null ? loan.getName() : "");
+                
+                // 贷款类型 - 字符串
+                Cell typeCell = row.createCell(2);
+                typeCell.setCellValue(loan.getLoanType() != null ? loan.getLoanType() : "");
+                
+                // 还款方式 - 字符串
+                Cell methodCell = row.createCell(3);
+                methodCell.setCellValue(loan.getRepaymentMethod() != null ? loan.getRepaymentMethod() : "");
+                
+                // 本金 - 数值
+                Cell principalCell = row.createCell(4);
+                principalCell.setCellValue(loan.getPrincipal());
+                
+                // 年利率 - 数值
+                Cell rateCell = row.createCell(5);
+                rateCell.setCellValue(loan.getAnnualRate());
+                
+                // 期限 - 整数
+                Cell monthsCell = row.createCell(6);
+                monthsCell.setCellValue(loan.getMonths());
+                
+                // 开始日期 - 字符串
+                Cell dateCell = row.createCell(7);
+                dateCell.setCellValue(loan.getStartDate() != null ? loan.getStartDate() : "");
+                
+                // 信用卡额度 - 数值
+                Cell limitCell = row.createCell(8);
+                limitCell.setCellValue(loan.getCreditLimit());
+                
+                // 还款日 - 整数
+                Cell dueCell = row.createCell(9);
+                dueCell.setCellValue(loan.getDueDate());
+                
+                // 原始月供 - 数值
+                Cell monthlyCell = row.createCell(10);
+                monthlyCell.setCellValue(loan.getOriginalMonthlyPayment());
+            }
         }
+        System.out.println("createLoanSheet - 数据填充完成，共 " + (rowNum - 1) + " 行数据");
         
         // 自动调整列宽
         for (int i = 0; i < headers.length; i++) {
             sheet.autoSizeColumn(i);
         }
+        System.out.println("createLoanSheet - 工作表创建完成");
     }
     
     /**
@@ -228,6 +289,8 @@ public class DataManagementActivity extends AppCompatActivity {
      * 列A: ID | 列B: 贷款ID | 列C: 还款金额 | 列D: 还款日期 | 列E: 备注
      */
     private void createPaymentSheet(Sheet sheet, List<Payment> payments) {
+        System.out.println("createPaymentSheet - 开始创建工作表，数据条数: " + (payments != null ? payments.size() : 0));
+        
         // 创建标题行样式
         CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
         Font headerFont = sheet.getWorkbook().createFont();
@@ -244,22 +307,42 @@ public class DataManagementActivity extends AppCompatActivity {
             cell.setCellValue(headers[i]);
             cell.setCellStyle(headerStyle);
         }
+        System.out.println("createPaymentSheet - 标题行创建完成");
         
         // 填充数据
         int rowNum = 1;
-        for (Payment payment : payments) {
-            Row row = sheet.createRow(rowNum++);
-            row.createCell(0).setCellValue(payment.getId());
-            row.createCell(1).setCellValue(payment.getLoanId());
-            row.createCell(2).setCellValue(payment.getAmount());
-            row.createCell(3).setCellValue(payment.getDate() != null ? payment.getDate() : "");
-            row.createCell(4).setCellValue(payment.getNote() != null ? payment.getNote() : "");
+        if (payments != null) {
+            for (Payment payment : payments) {
+                Row row = sheet.createRow(rowNum++);
+                
+                // ID - 整数
+                Cell idCell = row.createCell(0);
+                idCell.setCellValue(payment.getId());
+                
+                // 贷款ID - 整数
+                Cell loanIdCell = row.createCell(1);
+                loanIdCell.setCellValue(payment.getLoanId());
+                
+                // 还款金额 - 数值
+                Cell amountCell = row.createCell(2);
+                amountCell.setCellValue(payment.getAmount());
+                
+                // 还款日期 - 字符串
+                Cell dateCell = row.createCell(3);
+                dateCell.setCellValue(payment.getDate() != null ? payment.getDate() : "");
+                
+                // 备注 - 字符串
+                Cell noteCell = row.createCell(4);
+                noteCell.setCellValue(payment.getNote() != null ? payment.getNote() : "");
+            }
         }
+        System.out.println("createPaymentSheet - 数据填充完成，共 " + (rowNum - 1) + " 行数据");
         
         // 自动调整列宽
         for (int i = 0; i < headers.length; i++) {
             sheet.autoSizeColumn(i);
         }
+        System.out.println("createPaymentSheet - 工作表创建完成");
     }
     
     private void confirmImport(Uri uri) {
