@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private CardView cardCurrentMonth;
     private CardView cardStats;
     private CardView cardLoanManage;
+    private CardView cardAddLoan;
     private TextView tvCurrentDate;
     private TextView tvCurrentMonthTotal;
     private TextView tvActiveLoanCount;
@@ -61,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAddLoan;
     private Button btnViewLoans;
     private Button btnViewMonthlyTotal;
-    private Button btnExport;
-    private Button btnImport;
-    private Button btnClear;
     private ImageView btnVersionInfo;
     
     private List<LoanRepository.LoanWithStatus> loansWithStatus = new ArrayList<>();
@@ -168,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         cardCurrentMonth = findViewById(R.id.cardCurrentMonth);
         cardStats = findViewById(R.id.cardStats);
         cardLoanManage = findViewById(R.id.cardLoanManage);
+        cardAddLoan = findViewById(R.id.cardAddLoan);
         tvCurrentDate = findViewById(R.id.tvCurrentDate);
         tvCurrentMonthTotal = findViewById(R.id.tvCurrentMonthTotal);
         tvActiveLoanCount = findViewById(R.id.tvActiveLoanCount);
@@ -178,9 +177,6 @@ public class MainActivity extends AppCompatActivity {
         btnAddLoan = findViewById(R.id.btnAddLoan);
         btnViewLoans = findViewById(R.id.btnViewLoans);
         btnViewMonthlyTotal = findViewById(R.id.btnViewMonthlyTotal);
-        btnExport = findViewById(R.id.btnExport);
-        btnImport = findViewById(R.id.btnImport);
-        btnClear = findViewById(R.id.btnClear);
         btnVersionInfo = findViewById(R.id.btnVersionInfo);
     }
     
@@ -200,10 +196,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
         
-        btnExport.setOnClickListener(v -> exportData());
-        btnImport.setOnClickListener(v -> importData());
-        btnClear.setOnClickListener(v -> clearData());
-        btnVersionInfo.setOnClickListener(v -> showVersionInfo());
+        btnVersionInfo.setOnClickListener(v -> showMainMenu());
     }
     
     private void observeData() {
@@ -236,12 +229,14 @@ public class MainActivity extends AppCompatActivity {
             cardCurrentMonth.setVisibility(View.GONE);
             cardStats.setVisibility(View.GONE);
             cardLoanManage.setVisibility(View.GONE);
+            cardAddLoan.setVisibility(View.VISIBLE);
             return;
         }
         
         cardCurrentMonth.setVisibility(View.VISIBLE);
         cardStats.setVisibility(View.VISIBLE);
-        cardLoanManage.setVisibility(View.VISIBLE);
+        cardLoanManage.setVisibility(View.GONE); // 贷款管理功能已移到二级菜单
+        cardAddLoan.setVisibility(View.GONE);
         
         // 计算统计数据
         int totalCount = loansWithStatus.size();
@@ -290,19 +285,25 @@ public class MainActivity extends AppCompatActivity {
                                   double totalRemaining, double totalPaid, int paidOffCount) {
         gridStats.removeAllViews();
         
-        addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
+        // 贷款总数卡片 - 可点击打开贷款管理菜单
+        View totalLoansCard = addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
+        totalLoansCard.setOnClickListener(v -> showLoanManagementMenu());
+        totalLoansCard.setClickable(true);
+        totalLoansCard.setForeground(getDrawable(android.R.attr.selectableItemBackground));
+        
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPrincipal), getString(R.string.total_amount));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalRemaining), getString(R.string.remaining_principal));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPaid), getString(R.string.total_paid));
     }
     
-    private void addStatCard(GridLayout grid, String value, String label) {
+    private View addStatCard(GridLayout grid, String value, String label) {
         View cardView = LayoutInflater.from(this).inflate(R.layout.item_stat_card, grid, false);
         TextView tvValue = cardView.findViewById(R.id.tvStatValue);
         TextView tvLabel = cardView.findViewById(R.id.tvStatLabel);
         tvValue.setText(value);
         tvLabel.setText(label);
         grid.addView(cardView);
+        return cardView;
     }
     
     // 此方法已合并到 refreshData() 中，保留空实现以兼容旧代码
@@ -365,6 +366,82 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
     
+    /**
+     * 显示主菜单对话框（一级菜单：版本说明、数据管理、添加贷款）
+     * 当应用有数据时，显示添加贷款选项
+     */
+    private void showMainMenu() {
+        boolean hasData = !loansWithStatus.isEmpty();
+        String[] items = hasData 
+                ? new String[]{"版本说明", "数据管理", "添加贷款"}
+                : new String[]{"版本说明", "数据管理"};
+        
+        new AlertDialog.Builder(this)
+                .setTitle("菜单")
+                .setItems(items, (dialog, which) -> {
+                    if (which == 0) {
+                        showVersionInfo();
+                    } else if (which == 1) {
+                        showDataManagementMenu();
+                    } else if (which == 2 && hasData) {
+                        // 添加贷款
+                        Intent intent = new Intent(this, AddLoanActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    /**
+     * 显示数据管理二级菜单对话框
+     */
+    private void showDataManagementMenu() {
+        String[] items = {"导出数据", "导入数据", "清空数据"};
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.data_management)
+                .setItems(items, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            exportData();
+                            break;
+                        case 1:
+                            importData();
+                            break;
+                        case 2:
+                            clearData();
+                            break;
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    /**
+     * 显示贷款管理二级菜单对话框
+     */
+    private void showLoanManagementMenu() {
+        String[] items = {"查看我的贷款", "添加新贷款"};
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.loan_management)
+                .setItems(items, (dialog, which) -> {
+                    switch (which) {
+                        case 0:
+                            // 查看我的贷款
+                            Intent viewIntent = new Intent(this, LoanListActivity.class);
+                            startActivity(viewIntent);
+                            break;
+                        case 1:
+                            // 添加新贷款
+                            Intent addIntent = new Intent(this, AddLoanActivity.class);
+                            startActivity(addIntent);
+                            break;
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
     /**
      * 显示版本说明对话框
      */
