@@ -289,7 +289,10 @@ public class MainActivity extends AppCompatActivity {
         View totalLoansCard = addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
         totalLoansCard.setOnClickListener(v -> showLoanManagementMenu());
         totalLoansCard.setClickable(true);
-        totalLoansCard.setForeground(getDrawable(android.R.attr.selectableItemBackground));
+        // 使用 TypedValue 正确获取属性对应的 drawable
+        android.util.TypedValue outValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+        totalLoansCard.setForeground(getDrawable(outValue.resourceId));
         
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPrincipal), getString(R.string.total_amount));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalRemaining), getString(R.string.remaining_principal));
