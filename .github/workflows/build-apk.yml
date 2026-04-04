@@ -13,6 +13,8 @@ jobs:
     
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+      VERSION_CODE: ${{ github.run_number }}
+      VERSION_NAME: "2.3.${{ github.run_number }}"
     
     steps:
     - uses: actions/checkout@v4
@@ -43,6 +45,9 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     
+    - name: Print version info
+      run: echo "Building version ${{ env.VERSION_NAME }} (code ${{ env.VERSION_CODE }})"
+    
     - name: Clean Gradle Build
       run: ./gradlew clean
     
@@ -55,13 +60,13 @@ jobs:
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-debug
+        name: app-debug-v${{ env.VERSION_NAME }}
         path: app/build/outputs/apk/debug/app-debug.apk
         retention-days: 30
     
     - name: Upload Release APK
       uses: actions/upload-artifact@v4
       with:
-        name: app-release
-        path: app/build/outputs/apk/release/app-release-unsigned.apk
+        name: app-release-v${{ env.VERSION_NAME }}
+        path: app/build/outputs/apk/release/app-release.apk
         retention-days: 30

@@ -10,16 +10,26 @@ android {
         applicationId "com.finance.loanmanager"
         minSdk 26
         targetSdk 36
-        versionCode 3
-        versionName "2.3.1"
+        versionCode (System.getenv("VERSION_CODE") ? System.getenv("VERSION_CODE").toInteger() : 3)
+        versionName (System.getenv("VERSION_NAME") ?: "2.3.1")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('../loanmanager-release.keystore')
+            storePassword 'loanmanager123'
+            keyAlias 'loanmanager'
+            keyPassword 'loanmanager123'
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             debuggable true

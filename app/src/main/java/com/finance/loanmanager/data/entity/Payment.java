@@ -2,6 +2,7 @@ package com.finance.loanmanager.data.entity;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
@@ -40,12 +41,14 @@ public class Payment {
     public Payment() {
     }
     
+    @Ignore
     public Payment(int loanId, double amount, @NonNull String date) {
         this.loanId = loanId;
         this.amount = amount;
         this.date = date;
     }
     
+    @Ignore
     public Payment(int loanId, double amount, @NonNull String date, String note) {
         this.loanId = loanId;
         this.amount = amount;

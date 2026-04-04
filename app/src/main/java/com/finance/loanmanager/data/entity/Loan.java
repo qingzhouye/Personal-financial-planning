@@ -1,6 +1,7 @@
 package com.finance.loanmanager.data.entity;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
 
@@ -54,6 +55,7 @@ public class Loan {
         this.startDate = "2026-01-01";
     }
     
+    @Ignore
     public Loan(@NonNull String name, @NonNull String loanType, @NonNull String repaymentMethod,
                 double principal, double annualRate, int months, @NonNull String startDate) {
         this.name = name;

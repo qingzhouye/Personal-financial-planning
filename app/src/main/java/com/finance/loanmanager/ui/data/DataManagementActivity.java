@@ -11,6 +11,9 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.finance.loanmanager.R;
 import com.finance.loanmanager.data.AppDatabase;
@@ -45,6 +48,15 @@ public class DataManagementActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // 适配 Android 15/16 Edge-to-Edge 安全区域
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
+            Insets systemBars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout()
+            );
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         
         repository = new LoanRepository(getApplication());
         executorService = Executors.newSingleThreadExecutor();
@@ -129,6 +141,8 @@ public class DataManagementActivity extends AppCompatActivity {
     private void exportData(Uri uri) {
         // 在后台线程执行导出操作
         executorService.execute(() -> {
+            OutputStream outputStream = null;
+            Workbook workbook = null;
             try {
                 // 重新获取数据库实例，确保连接正常
                 System.out.println("导出数据调试 - 开始获取数据");
@@ -144,15 +158,20 @@ public class DataManagementActivity extends AppCompatActivity {
                 System.out.println("导出数据调试 - 贷款数量: " + loans.size());
                 System.out.println("导出数据调试 - 还款记录数量: " + payments.size());
                 
+<<<<<<< HEAD
                 // 打印第一条贷款数据用于调试
                 if (!loans.isEmpty()) {
                     Loan firstLoan = loans.get(0);
                     System.out.println("导出数据调试 - 第一条贷款: ID=" + firstLoan.getId() + ", 名称=" + firstLoan.getName());
+=======
+                if (loans.isEmpty() && payments.isEmpty()) {
+                    System.err.println("导出数据调试 - 警告：数据库中没有数据");
+>>>>>>> upstream/main
                 }
                 
                 // 创建 XLSX 工作簿
                 System.out.println("导出数据调试 - 开始创建XSSFWorkbook");
-                Workbook workbook = new XSSFWorkbook();
+                workbook = new XSSFWorkbook();
                 System.out.println("导出数据调试 - XSSFWorkbook创建成功");
                 
                 // 创建贷款信息工作表
@@ -164,16 +183,23 @@ public class DataManagementActivity extends AppCompatActivity {
                 createPaymentSheet(paymentSheet, payments);
                 
                 // 写入文件
+<<<<<<< HEAD
                 System.out.println("导出数据调试 - 开始写入文件，uri=" + uri);
                 OutputStream outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
                     System.out.println("导出数据调试 - 输出流打开成功");
                     
                     // 写入工作簿到输出流
+=======
+                outputStream = getContentResolver().openOutputStream(uri);
+                if (outputStream != null) {
+                    System.out.println("导出数据调试 - 开始写入文件...");
+>>>>>>> upstream/main
                     workbook.write(outputStream);
                     System.out.println("导出数据调试 - workbook.write() 完成");
                     
                     outputStream.flush();
+<<<<<<< HEAD
                     System.out.println("导出数据调试 - flush() 完成");
                     
                     outputStream.close();
@@ -182,6 +208,8 @@ public class DataManagementActivity extends AppCompatActivity {
                     workbook.close();
                     System.out.println("导出数据调试 - 工作簿关闭");
                     
+=======
+>>>>>>> upstream/main
                     System.out.println("导出数据调试 - 文件写入成功");
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
                 } else {
@@ -189,11 +217,25 @@ public class DataManagementActivity extends AppCompatActivity {
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_failed + ": 无法创建文件", Toast.LENGTH_SHORT).show());
                 }
             } catch (Exception e) {
+                System.err.println("导出数据调试 - 发生异常: " + e.getClass().getName());
+                System.err.println("导出数据调试 - 异常消息: " + e.getMessage());
                 e.printStackTrace();
                 final String errorMsg = e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName();
                 runOnUiThread(() -> Toast.makeText(this, getString(R.string.export_failed) + ": " + errorMsg, Toast.LENGTH_LONG).show());
+            } finally {
+                // 确保资源正确关闭
+                try {
+                    if (outputStream != null) {
+                        outputStream.close();
+                    }
+                    if (workbook != null) {
+                        workbook.close();
+                    }
+                } catch (Exception e) {
+                    System.err.println("导出数据调试 - 关闭资源时发生异常: " + e.getMessage());
+                }
+                runOnUiThread(this::finish);
             }
-            runOnUiThread(this::finish);
         });
     }
     
@@ -276,11 +318,17 @@ public class DataManagementActivity extends AppCompatActivity {
         }
         System.out.println("createLoanSheet - 数据填充完成，共 " + (rowNum - 1) + " 行数据");
         
-        // 自动调整列宽
-        for (int i = 0; i < headers.length; i++) {
-            sheet.autoSizeColumn(i);
+        // 设置固定列宽（Android不支持autoSizeColumn，因为缺少AWT类）
+        // 列宽单位: 1/256个字符宽度
+        int[] columnWidths = {2500, 6000, 4000, 4000, 4000, 3500, 3000, 4000, 4000, 3000, 4000};
+        for (int i = 0; i < headers.length && i < columnWidths.length; i++) {
+            sheet.setColumnWidth(i, columnWidths[i]);
         }
+<<<<<<< HEAD
         System.out.println("createLoanSheet - 工作表创建完成");
+=======
+        System.out.println("导出数据调试 - 贷款工作表创建完成，数据行数: " + (rowNum - 1));
+>>>>>>> upstream/main
     }
     
     /**
@@ -338,11 +386,16 @@ public class DataManagementActivity extends AppCompatActivity {
         }
         System.out.println("createPaymentSheet - 数据填充完成，共 " + (rowNum - 1) + " 行数据");
         
-        // 自动调整列宽
-        for (int i = 0; i < headers.length; i++) {
-            sheet.autoSizeColumn(i);
+        // 设置固定列宽（Android不支持autoSizeColumn，因为缺少AWT类）
+        int[] columnWidths = {2500, 4000, 4000, 4000, 6000};
+        for (int i = 0; i < headers.length && i < columnWidths.length; i++) {
+            sheet.setColumnWidth(i, columnWidths[i]);
         }
+<<<<<<< HEAD
         System.out.println("createPaymentSheet - 工作表创建完成");
+=======
+        System.out.println("导出数据调试 - 还款记录工作表创建完成，数据行数: " + (rowNum - 1));
+>>>>>>> upstream/main
     }
     
     private void confirmImport(Uri uri) {
@@ -532,7 +585,8 @@ public class DataManagementActivity extends AppCompatActivity {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
-                if (DateUtil.isCellDateFormatted(cell)) {
+                // 检查是否为日期格式
+                if (isCellDateFormatted(cell)) {
                     return cell.getDateCellValue().toString();
                 }
                 return String.valueOf(cell.getNumericCellValue());
@@ -542,6 +596,23 @@ public class DataManagementActivity extends AppCompatActivity {
                 return cell.getCellFormula();
             default:
                 return "";
+        }
+    }
+    
+    /**
+     * 检查单元格是否为日期格式
+     * 替代 Apache POI 的 DateUtil.isCellDateFormatted
+     */
+    private boolean isCellDateFormatted(Cell cell) {
+        try {
+            short dataFormat = cell.getCellStyle().getDataFormat();
+            // 常见的日期格式索引
+            return dataFormat == 0x0e || dataFormat == 0x0f || dataFormat == 0x10 ||
+                   dataFormat == 0x11 || dataFormat == 0x12 || dataFormat == 0x13 ||
+                   dataFormat == 0x14 || dataFormat == 0x15 || dataFormat == 0x16 ||
+                   dataFormat == 0x2d || dataFormat == 0x2e || dataFormat == 0x2f;
+        } catch (Exception e) {
+            return false;
         }
     }
     
