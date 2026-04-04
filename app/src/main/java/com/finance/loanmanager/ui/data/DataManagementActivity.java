@@ -159,10 +159,13 @@ public class DataManagementActivity extends AppCompatActivity {
                 System.out.println("导出数据调试 - 还款记录数量: " + payments.size());
                 
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (loans.isEmpty() && payments.isEmpty()) {
                     System.err.println("导出数据调试 - 警告：数据库中没有数据");
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
                 // 打印第一条贷款数据用于调试
                 if (!loans.isEmpty()) {
                     Loan firstLoan = loans.get(0);
@@ -171,6 +174,9 @@ public class DataManagementActivity extends AppCompatActivity {
                 if (loans.isEmpty() && payments.isEmpty()) {
                     System.err.println("导出数据调试 - 警告：数据库中没有数据");
 >>>>>>> upstream/main
+<<<<<<< HEAD
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+=======
 >>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
                 }
                 
@@ -189,11 +195,14 @@ public class DataManagementActivity extends AppCompatActivity {
                 
                 // 写入文件
 <<<<<<< HEAD
+<<<<<<< HEAD
                 outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
                     System.out.println("导出数据调试 - 开始写入文件...");
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
                 System.out.println("导出数据调试 - 开始写入文件，uri=" + uri);
                 OutputStream outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
@@ -205,14 +214,20 @@ public class DataManagementActivity extends AppCompatActivity {
                 if (outputStream != null) {
                     System.out.println("导出数据调试 - 开始写入文件...");
 >>>>>>> upstream/main
+<<<<<<< HEAD
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+=======
 >>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
                     workbook.write(outputStream);
                     System.out.println("导出数据调试 - workbook.write() 完成");
                     
                     outputStream.flush();
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
                     System.out.println("导出数据调试 - flush() 完成");
                     
                     outputStream.close();
@@ -223,6 +238,9 @@ public class DataManagementActivity extends AppCompatActivity {
                     
 =======
 >>>>>>> upstream/main
+<<<<<<< HEAD
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+=======
 >>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
                     System.out.println("导出数据调试 - 文件写入成功");
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
@@ -339,13 +357,19 @@ public class DataManagementActivity extends AppCompatActivity {
             sheet.setColumnWidth(i, columnWidths[i]);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("导出数据调试 - 贷款工作表创建完成，数据行数: " + (rowNum - 1));
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
         System.out.println("createLoanSheet - 工作表创建完成");
 =======
         System.out.println("导出数据调试 - 贷款工作表创建完成，数据行数: " + (rowNum - 1));
 >>>>>>> upstream/main
+<<<<<<< HEAD
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+=======
 >>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
     }
     
@@ -410,13 +434,19 @@ public class DataManagementActivity extends AppCompatActivity {
             sheet.setColumnWidth(i, columnWidths[i]);
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
         System.out.println("导出数据调试 - 还款记录工作表创建完成，数据行数: " + (rowNum - 1));
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
         System.out.println("createPaymentSheet - 工作表创建完成");
 =======
         System.out.println("导出数据调试 - 还款记录工作表创建完成，数据行数: " + (rowNum - 1));
 >>>>>>> upstream/main
+<<<<<<< HEAD
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+=======
 >>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
     }
     

@@ -286,12 +286,18 @@ public class MainActivity extends AppCompatActivity {
         gridStats.removeAllViews();
         
 <<<<<<< HEAD
+<<<<<<< HEAD
         // 贷款总数卡片 - 可点击直接跳转到贷款列表
         View totalLoansCard = addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
         totalLoansCard.setOnClickListener(v -> {
             Intent intent = new Intent(this, LoanListActivity.class);
             startActivity(intent);
         });
+=======
+        // 贷款总数卡片 - 可点击打开贷款管理菜单
+        View totalLoansCard = addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
+        totalLoansCard.setOnClickListener(v -> showLoanManagementMenu());
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
 =======
         // 贷款总数卡片 - 可点击打开贷款管理菜单
         View totalLoansCard = addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
@@ -381,10 +387,13 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 显示主菜单对话框（一级菜单：版本说明、数据管理、添加贷款）
 <<<<<<< HEAD
+<<<<<<< HEAD
      */
     private void showMainMenu() {
         String[] items = new String[]{"版本说明", "数据管理", "添加贷款"};
 =======
+=======
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
      * 当应用有数据时，显示添加贷款选项
      */
     private void showMainMenu() {
@@ -392,6 +401,9 @@ public class MainActivity extends AppCompatActivity {
         String[] items = hasData 
                 ? new String[]{"版本说明", "数据管理", "添加贷款"}
                 : new String[]{"版本说明", "数据管理"};
+<<<<<<< HEAD
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+=======
 >>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
         
         new AlertDialog.Builder(this)
@@ -402,7 +414,12 @@ public class MainActivity extends AppCompatActivity {
                     } else if (which == 1) {
                         showDataManagementMenu();
 <<<<<<< HEAD
+<<<<<<< HEAD
                     } else if (which == 2) {
+=======
+                    } else if (which == 2 && hasData) {
+                        // 添加贷款
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
 =======
                     } else if (which == 2 && hasData) {
                         // 添加贷款

@@ -10,14 +10,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
 <<<<<<< HEAD
+<<<<<<< HEAD
         android:padding="@dimen/spacing_lg">
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
         android:padding="@dimen/spacing_lg"
         android:paddingTop="@dimen/status_bar_height">
 =======
         android:padding="@dimen/spacing_lg">
 >>>>>>> upstream/main
+<<<<<<< HEAD
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+=======
 >>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
 
         <!-- 贷款类型 -->
