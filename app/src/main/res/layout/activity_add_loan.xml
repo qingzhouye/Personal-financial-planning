@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:padding="@dimen/spacing_lg">
 
-        <!-- 贷款类型 -->
+        <!-- 璐锋绫诲瀷 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
                 android:clickable="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- 名称 -->
+        <!-- 鍚嶇О -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- 还款方式 -->
+        <!-- 杩樻鏂瑰紡 -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 android:clickable="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- 普通贷款信息 -->
+        <!-- 鏅€氳捶娆句俊鎭?-->
         <LinearLayout
             android:id="@+id/layoutNormalFields"
             android:layout_width="match_parent"
@@ -134,7 +134,7 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!-- 信用卡信息 -->
+        <!-- 淇＄敤鍗′俊鎭?-->
         <LinearLayout
             android:id="@+id/layoutCreditCardFields"
             android:layout_width="match_parent"
@@ -227,7 +227,7 @@
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
-        <!-- 提交按钮 -->
+        <!-- 鎻愪氦鎸夐挳 -->
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="match_parent"

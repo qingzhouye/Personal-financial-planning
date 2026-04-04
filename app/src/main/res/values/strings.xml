@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">个人财务规划</string>
+    <string name="app_name">FreeMe</string>
     
     <!-- Main Activity -->
-    <string name="app_title">个人财务管理</string>
+    <string name="app_title">Personal finance management</string>
     <string name="current_month_payment">本月应还金额</string>
     <string name="daily_payment">每日应还金额（按30天计）</string>
     <string name="remaining_days">剩余天数</string>

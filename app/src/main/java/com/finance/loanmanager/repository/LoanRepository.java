@@ -51,7 +51,15 @@ public class LoanRepository {
     }
     
     public List<Loan> getAllLoansSync() {
-        return loanDao.getAllLoans();
+        try {
+            List<Loan> loans = loanDao.getAllLoans();
+            System.out.println("LoanRepository.getAllLoansSync - 获取到 " + (loans != null ? loans.size() : 0) + " 条贷款记录");
+            return loans;
+        } catch (Exception e) {
+            System.err.println("LoanRepository.getAllLoansSync - 获取数据失败: " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
     
     public Loan getLoanById(int loanId) {
@@ -101,7 +109,15 @@ public class LoanRepository {
     }
     
     public List<Payment> getAllPaymentsSync() {
-        return paymentDao.getAllPayments();
+        try {
+            List<Payment> payments = paymentDao.getAllPayments();
+            System.out.println("LoanRepository.getAllPaymentsSync - 获取到 " + (payments != null ? payments.size() : 0) + " 条还款记录");
+            return payments;
+        } catch (Exception e) {
+            System.err.println("LoanRepository.getAllPaymentsSync - 获取数据失败: " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
     
     public List<Payment> getPaymentsByLoanId(int loanId) {

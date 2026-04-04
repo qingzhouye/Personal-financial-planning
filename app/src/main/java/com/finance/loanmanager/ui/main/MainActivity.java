@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        // 适配 Android 15/16 Edge-to-Edge 安全区域
+        // 閫傞厤 Android 15/16 Edge-to-Edge 瀹夊叏鍖哄煙
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
             Insets systemBars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout()
@@ -91,56 +91,50 @@ public class MainActivity extends AppCompatActivity {
             setupListeners();
             observeData();
             
-            // 检查是否需要显示备份恢复对话框
+            // 妫€鏌ユ槸鍚﹂渶瑕佹樉绀哄浠芥仮澶嶅璇濇
             checkAndShowBackupRestoreDialog();
         } catch (Exception e) {
-            Toast.makeText(this, "应用初始化失败: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "搴旂敤鍒濆鍖栧け璐? " + e.getMessage(), Toast.LENGTH_LONG).show();
             finish();
         }
     }
     
     /**
-     * 检查并显示备份恢复对话框
-     */
+     * 妫€鏌ュ苟鏄剧ず澶囦唤鎭㈠瀵硅瘽妗?     */
     private void checkAndShowBackupRestoreDialog() {
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         boolean alreadyChecked = prefs.getBoolean(KEY_BACKUP_CHECKED, false);
         
-        // 如果已经检查过，不再显示
-        if (alreadyChecked) {
+        // 濡傛灉宸茬粡妫€鏌ヨ繃锛屼笉鍐嶆樉绀?        if (alreadyChecked) {
             return;
         }
         
-        // 检查是否存在备份文件
-        if (backupManager.hasAutoBackup()) {
-            // 延迟一点显示，等UI完全加载
+        // 妫€鏌ユ槸鍚﹀瓨鍦ㄥ浠芥枃浠?        if (backupManager.hasAutoBackup()) {
+            // 寤惰繜涓€鐐规樉绀猴紝绛塙I瀹屽叏鍔犺浇
             findViewById(android.R.id.content).postDelayed(() -> {
                 showBackupRestoreDialog();
             }, 500);
         }
         
-        // 标记已检查（无论是否有备份都标记，避免反复检查）
+        // 鏍囪宸叉鏌ワ紙鏃犺鏄惁鏈夊浠介兘鏍囪锛岄伩鍏嶅弽澶嶆鏌ワ級
         prefs.edit().putBoolean(KEY_BACKUP_CHECKED, true).apply();
     }
     
     /**
-     * 显示备份恢复对话框
-     */
+     * 鏄剧ず澶囦唤鎭㈠瀵硅瘽妗?     */
     private void showBackupRestoreDialog() {
         BackupRestoreDialog dialog = new BackupRestoreDialog();
         dialog.setRestoreListener(new BackupRestoreDialog.RestoreListener() {
             @Override
             public void onRestoreComplete(boolean success) {
                 if (success) {
-                    // 恢复成功后刷新数据
-                    refreshData();
+                    // 鎭㈠鎴愬姛鍚庡埛鏂版暟鎹?                    refreshData();
                 }
             }
             
             @Override
             public void onDismiss() {
-                // 对话框关闭后的处理
-            }
+                // 瀵硅瘽妗嗗叧闂悗鐨勫鐞?            }
         });
         dialog.show(getSupportFragmentManager(), "BackupRestoreDialog");
     }
@@ -210,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void refreshData() {
-        // 在后台线程执行数据库查询，避免主线程阻塞
+        // 鍦ㄥ悗鍙扮嚎绋嬫墽琛屾暟鎹簱鏌ヨ锛岄伩鍏嶄富绾跨▼闃诲
         executorService.execute(() -> {
             final List<LoanRepository.LoanWithStatus> result = repository.getLoansWithStatus();
             final List<Loan> dueTodayLoans = repository.getDueTodayLoans();
@@ -235,10 +229,9 @@ public class MainActivity extends AppCompatActivity {
         
         cardCurrentMonth.setVisibility(View.VISIBLE);
         cardStats.setVisibility(View.VISIBLE);
-        cardLoanManage.setVisibility(View.GONE); // 贷款管理功能已移到二级菜单
-        cardAddLoan.setVisibility(View.GONE);
+        cardLoanManage.setVisibility(View.GONE); // 璐锋绠＄悊鍔熻兘宸茬Щ鍒颁簩绾ц彍鍗?        cardAddLoan.setVisibility(View.GONE);
         
-        // 计算统计数据
+        // 璁＄畻缁熻鏁版嵁
         int totalCount = loansWithStatus.size();
         double totalPrincipal = 0;
         double totalRemaining = 0;
@@ -267,17 +260,17 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         
-        // 更新本月应还卡片
+        // 鏇存柊鏈湀搴旇繕鍗＄墖
         String currentMonth = DateUtil.formatMonthCN(DateUtil.getCurrentMonth());
         tvCurrentDate.setText(currentMonth + " " + getString(R.string.current_month_payment));
         tvCurrentMonthTotal.setText(NumberFormatUtil.formatCurrency(currentMonthTotal));
-        tvActiveLoanCount.setText(activeCount + " 笔");
+        tvActiveLoanCount.setText(activeCount + " 绗?);
         tvDailyPayment.setText(NumberFormatUtil.formatCurrency(currentMonthTotal / 30));
-        tvRemainingDays.setText(DateUtil.getRemainingDaysInMonth() + " 天");
+        tvRemainingDays.setText(DateUtil.getRemainingDaysInMonth() + " 澶?);
         tvCurrentMonthDetails.setText(detailsBuilder.length() > 0 ? 
-                detailsBuilder.toString() : "本月无待还款项");
+                detailsBuilder.toString() : "鏈湀鏃犲緟杩樻椤?);
         
-        // 更新统计卡片
+        // 鏇存柊缁熻鍗＄墖
         updateStatsGrid(totalCount, totalPrincipal, totalRemaining, totalPaid, paidOffCount);
     }
     
@@ -285,11 +278,11 @@ public class MainActivity extends AppCompatActivity {
                                   double totalRemaining, double totalPaid, int paidOffCount) {
         gridStats.removeAllViews();
         
-        // 贷款总数卡片 - 可点击打开贷款管理菜单
+        // 璐锋鎬绘暟鍗＄墖 - 鍙偣鍑绘墦寮€璐锋绠＄悊鑿滃崟
         View totalLoansCard = addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
         totalLoansCard.setOnClickListener(v -> showLoanManagementMenu());
         totalLoansCard.setClickable(true);
-        // 使用 TypedValue 正确获取属性对应的 drawable
+        // 浣跨敤 TypedValue 姝ｇ‘鑾峰彇灞炴€у搴旂殑 drawable
         android.util.TypedValue outValue = new android.util.TypedValue();
         getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
         totalLoansCard.setForeground(getDrawable(outValue.resourceId));
@@ -309,25 +302,24 @@ public class MainActivity extends AppCompatActivity {
         return cardView;
     }
     
-    // 此方法已合并到 refreshData() 中，保留空实现以兼容旧代码
-    private void checkDueDateReminders() {
-        // 提醒逻辑已在 refreshData 的回调中处理
+    // 姝ゆ柟娉曞凡鍚堝苟鍒?refreshData() 涓紝淇濈暀绌哄疄鐜颁互鍏煎鏃т唬鐮?    private void checkDueDateReminders() {
+        // 鎻愰啋閫昏緫宸插湪 refreshData 鐨勫洖璋冧腑澶勭悊
     }
     
     private void showReminderDialog(List<Loan> dueLoans) {
         StringBuilder message = new StringBuilder();
-        message.append("今天是 ").append(DateUtil.formatDateCN(DateUtil.getCurrentDate())).append("\n\n");
-        message.append("您有 ").append(dueLoans.size()).append(" 笔信用卡账单今日到期：\n\n");
+        message.append("浠婂ぉ鏄?").append(DateUtil.formatDateCN(DateUtil.getCurrentDate())).append("\n\n");
+        message.append("鎮ㄦ湁 ").append(dueLoans.size()).append(" 绗斾俊鐢ㄥ崱璐﹀崟浠婃棩鍒版湡锛歕n\n");
         
         for (Loan loan : dueLoans) {
             LoanStatus status = repository.getLoanStatus(loan.getId());
             message.append(loan.getName())
-                    .append("\n本期应还：")
+                    .append("\n鏈湡搴旇繕锛?)
                     .append(NumberFormatUtil.formatCurrency(status != null ? status.getNewMonthlyPayment() : 0))
                     .append("\n\n");
         }
         
-        message.append("请及时还款，避免产生逾期费用！");
+        message.append("璇峰強鏃惰繕娆撅紝閬垮厤浜х敓閫炬湡璐圭敤锛?);
         
         new AlertDialog.Builder(this)
                 .setTitle(R.string.reminder_title)
@@ -370,24 +362,24 @@ public class MainActivity extends AppCompatActivity {
     }
     
     /**
-     * 显示主菜单对话框（一级菜单：版本说明、数据管理、添加贷款）
-     * 当应用有数据时，显示添加贷款选项
+     * 鏄剧ず涓昏彍鍗曞璇濇锛堜竴绾ц彍鍗曪細鐗堟湰璇存槑銆佹暟鎹鐞嗐€佹坊鍔犺捶娆撅級
+     * 褰撳簲鐢ㄦ湁鏁版嵁鏃讹紝鏄剧ず娣诲姞璐锋閫夐」
      */
     private void showMainMenu() {
         boolean hasData = !loansWithStatus.isEmpty();
         String[] items = hasData 
-                ? new String[]{"版本说明", "数据管理", "添加贷款"}
-                : new String[]{"版本说明", "数据管理"};
+                ? new String[]{"鐗堟湰璇存槑", "鏁版嵁绠＄悊", "娣诲姞璐锋"}
+                : new String[]{"鐗堟湰璇存槑", "鏁版嵁绠＄悊"};
         
         new AlertDialog.Builder(this)
-                .setTitle("菜单")
+                .setTitle("鑿滃崟")
                 .setItems(items, (dialog, which) -> {
                     if (which == 0) {
                         showVersionInfo();
                     } else if (which == 1) {
                         showDataManagementMenu();
                     } else if (which == 2 && hasData) {
-                        // 添加贷款
+                        // 娣诲姞璐锋
                         Intent intent = new Intent(this, AddLoanActivity.class);
                         startActivity(intent);
                     }
@@ -397,10 +389,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 显示数据管理二级菜单对话框
-     */
+     * 鏄剧ず鏁版嵁绠＄悊浜岀骇鑿滃崟瀵硅瘽妗?     */
     private void showDataManagementMenu() {
-        String[] items = {"导出数据", "导入数据", "清空数据"};
+        String[] items = {"瀵煎嚭鏁版嵁", "瀵煎叆鏁版嵁", "娓呯┖鏁版嵁"};
         new AlertDialog.Builder(this)
                 .setTitle(R.string.data_management)
                 .setItems(items, (dialog, which) -> {
@@ -421,22 +412,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 显示贷款管理二级菜单对话框
-     */
+     * 鏄剧ず璐锋绠＄悊浜岀骇鑿滃崟瀵硅瘽妗?     */
     private void showLoanManagementMenu() {
-        String[] items = {"查看我的贷款", "添加新贷款"};
+        String[] items = {"鏌ョ湅鎴戠殑璐锋", "娣诲姞鏂拌捶娆?};
         new AlertDialog.Builder(this)
                 .setTitle(R.string.loan_management)
                 .setItems(items, (dialog, which) -> {
                     switch (which) {
                         case 0:
-                            // 查看我的贷款
+                            // 鏌ョ湅鎴戠殑璐锋
                             Intent viewIntent = new Intent(this, LoanListActivity.class);
                             startActivity(viewIntent);
                             break;
                         case 1:
-                            // 添加新贷款
-                            Intent addIntent = new Intent(this, AddLoanActivity.class);
+                            // 娣诲姞鏂拌捶娆?                            Intent addIntent = new Intent(this, AddLoanActivity.class);
                             startActivity(addIntent);
                             break;
                     }
@@ -446,8 +435,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 显示版本说明对话框
-     */
+     * 鏄剧ず鐗堟湰璇存槑瀵硅瘽妗?     */
     private void showVersionInfo() {
         String versionContent = readVersionNotesFromAssets();
         new AlertDialog.Builder(this)
@@ -458,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     /**
-     * 从 assets 读取版本说明文件
+     * 浠?assets 璇诲彇鐗堟湰璇存槑鏂囦欢
      */
     private String readVersionNotesFromAssets() {
         StringBuilder content = new StringBuilder();
