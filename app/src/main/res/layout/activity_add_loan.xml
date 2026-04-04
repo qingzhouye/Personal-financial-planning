@@ -9,7 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+<<<<<<< HEAD
         android:padding="@dimen/spacing_lg">
+=======
+<<<<<<< HEAD
+        android:padding="@dimen/spacing_lg"
+        android:paddingTop="@dimen/status_bar_height">
+=======
+        android:padding="@dimen/spacing_lg">
+>>>>>>> upstream/main
+>>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
 
         <!-- 贷款类型 -->
         <com.google.android.material.textfield.TextInputLayout
