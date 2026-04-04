@@ -37,19 +37,18 @@ public class DataManagementActivity extends AppCompatActivity {
     private LoanRepository repository;
     private ExecutorService executorService;
     
-    // 使用新的 Activity Result API
+    // 浣跨敤鏂扮殑 Activity Result API
     private ActivityResultLauncher<Intent> exportLauncher;
     private ActivityResultLauncher<Intent> importLauncher;
     
-    // XLSX 工作表名称
-    private static final String SHEET_LOANS = "贷款信息";
-    private static final String SHEET_PAYMENTS = "还款记录";
+    // XLSX 宸ヤ綔琛ㄥ悕绉?    private static final String SHEET_LOANS = "璐锋淇℃伅";
+    private static final String SHEET_PAYMENTS = "杩樻璁板綍";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        // 适配 Android 15/16 Edge-to-Edge 安全区域
+        // 閫傞厤 Android 15/16 Edge-to-Edge 瀹夊叏鍖哄煙
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
             Insets systemBars = insets.getInsets(
                 WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout()
@@ -61,7 +60,7 @@ public class DataManagementActivity extends AppCompatActivity {
         repository = new LoanRepository(getApplication());
         executorService = Executors.newSingleThreadExecutor();
         
-        // 注册 Activity Result Launchers
+        // 娉ㄥ唽 Activity Result Launchers
         exportLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -125,8 +124,7 @@ public class DataManagementActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        // 使用更简单的文件名格式
-        String fileName = "loan_data_" + System.currentTimeMillis() + ".xlsx";
+        // 浣跨敤鏇寸畝鍗曠殑鏂囦欢鍚嶆牸寮?        String fileName = "loan_data_" + System.currentTimeMillis() + ".xlsx";
         intent.putExtra(Intent.EXTRA_TITLE, fileName);
         exportLauncher.launch(intent);
     }
@@ -139,123 +137,54 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     private void exportData(Uri uri) {
-        // 在后台线程执行导出操作
-        executorService.execute(() -> {
+        // 鍦ㄥ悗鍙扮嚎绋嬫墽琛屽鍑烘搷浣?        executorService.execute(() -> {
             OutputStream outputStream = null;
             Workbook workbook = null;
             try {
-                // 重新获取数据库实例，确保连接正常
-                System.out.println("导出数据调试 - 开始获取数据");
-                
                 List<Loan> loans = repository.getAllLoansSync();
                 List<Payment> payments = repository.getAllPaymentsSync();
                 
-                // 确保列表不为null
+                // 纭繚鍒楄〃涓嶄负null
                 if (loans == null) loans = new ArrayList<>();
                 if (payments == null) payments = new ArrayList<>();
                 
-                // 调试日志：检查数据是否为空
-                System.out.println("导出数据调试 - 贷款数量: " + loans.size());
-                System.out.println("导出数据调试 - 还款记录数量: " + payments.size());
+                // 璋冭瘯鏃ュ織锛氭鏌ユ暟鎹槸鍚︿负绌?                System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - 璐锋鏁伴噺: " + loans.size());
+                System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - 杩樻璁板綍鏁伴噺: " + payments.size());
                 
-<<<<<<< HEAD
-<<<<<<< HEAD
                 if (loans.isEmpty() && payments.isEmpty()) {
-                    System.err.println("导出数据调试 - 警告：数据库中没有数据");
-=======
-<<<<<<< HEAD
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-                // 打印第一条贷款数据用于调试
-                if (!loans.isEmpty()) {
-                    Loan firstLoan = loans.get(0);
-                    System.out.println("导出数据调试 - 第一条贷款: ID=" + firstLoan.getId() + ", 名称=" + firstLoan.getName());
-=======
-                if (loans.isEmpty() && payments.isEmpty()) {
-                    System.err.println("导出数据调试 - 警告：数据库中没有数据");
->>>>>>> upstream/main
-<<<<<<< HEAD
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+                    System.err.println("瀵煎嚭鏁版嵁璋冭瘯 - 璀﹀憡锛氭暟鎹簱涓病鏈夋暟鎹?);
                 }
                 
-                // 创建 XLSX 工作簿
-                System.out.println("导出数据调试 - 开始创建XSSFWorkbook");
+                // 鍒涘缓 XLSX 宸ヤ綔绨?                System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - 寮€濮嬪垱寤篨SSFWorkbook");
                 workbook = new XSSFWorkbook();
-                System.out.println("导出数据调试 - XSSFWorkbook创建成功");
+                System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - XSSFWorkbook鍒涘缓鎴愬姛");
                 
-                // 创建贷款信息工作表
-                Sheet loanSheet = workbook.createSheet(SHEET_LOANS);
+                // 鍒涘缓璐锋淇℃伅宸ヤ綔琛?                Sheet loanSheet = workbook.createSheet(SHEET_LOANS);
                 createLoanSheet(loanSheet, loans);
                 
-                // 创建还款记录工作表
-                Sheet paymentSheet = workbook.createSheet(SHEET_PAYMENTS);
+                // 鍒涘缓杩樻璁板綍宸ヤ綔琛?                Sheet paymentSheet = workbook.createSheet(SHEET_PAYMENTS);
                 createPaymentSheet(paymentSheet, payments);
                 
-                // 写入文件
-<<<<<<< HEAD
-<<<<<<< HEAD
+                // 鍐欏叆鏂囦欢
                 outputStream = getContentResolver().openOutputStream(uri);
                 if (outputStream != null) {
-                    System.out.println("导出数据调试 - 开始写入文件...");
-=======
-<<<<<<< HEAD
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-                System.out.println("导出数据调试 - 开始写入文件，uri=" + uri);
-                OutputStream outputStream = getContentResolver().openOutputStream(uri);
-                if (outputStream != null) {
-                    System.out.println("导出数据调试 - 输出流打开成功");
-                    
-                    // 写入工作簿到输出流
-=======
-                outputStream = getContentResolver().openOutputStream(uri);
-                if (outputStream != null) {
-                    System.out.println("导出数据调试 - 开始写入文件...");
->>>>>>> upstream/main
-<<<<<<< HEAD
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+                    System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - 寮€濮嬪啓鍏ユ枃浠?..");
                     workbook.write(outputStream);
-                    System.out.println("导出数据调试 - workbook.write() 完成");
-                    
                     outputStream.flush();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-                    System.out.println("导出数据调试 - flush() 完成");
-                    
-                    outputStream.close();
-                    System.out.println("导出数据调试 - 输出流关闭");
-                    
-                    workbook.close();
-                    System.out.println("导出数据调试 - 工作簿关闭");
-                    
-=======
->>>>>>> upstream/main
-<<<<<<< HEAD
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-                    System.out.println("导出数据调试 - 文件写入成功");
+                    System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - 鏂囦欢鍐欏叆鎴愬姛");
                     runOnUiThread(() -> Toast.makeText(this, R.string.export_success, Toast.LENGTH_SHORT).show());
                 } else {
-                    System.err.println("导出数据调试 - 无法打开输出流，uri=" + uri);
-                    runOnUiThread(() -> Toast.makeText(this, R.string.export_failed + ": 无法创建文件", Toast.LENGTH_SHORT).show());
+                    System.err.println("瀵煎嚭鏁版嵁璋冭瘯 - 鏃犳硶鎵撳紑杈撳嚭娴侊紝uri=" + uri);
+                    runOnUiThread(() -> Toast.makeText(this, R.string.export_failed + ": 鏃犳硶鍒涘缓鏂囦欢", Toast.LENGTH_SHORT).show());
                 }
             } catch (Exception e) {
-                System.err.println("导出数据调试 - 发生异常: " + e.getClass().getName());
-                System.err.println("导出数据调试 - 异常消息: " + e.getMessage());
+                System.err.println("瀵煎嚭鏁版嵁璋冭瘯 - 鍙戠敓寮傚父: " + e.getClass().getName());
+                System.err.println("瀵煎嚭鏁版嵁璋冭瘯 - 寮傚父娑堟伅: " + e.getMessage());
                 e.printStackTrace();
                 final String errorMsg = e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName();
                 runOnUiThread(() -> Toast.makeText(this, getString(R.string.export_failed) + ": " + errorMsg, Toast.LENGTH_LONG).show());
             } finally {
-                // 确保资源正确关闭
+                // 纭繚璧勬簮姝ｇ‘鍏抽棴
                 try {
                     if (outputStream != null) {
                         outputStream.close();
@@ -264,7 +193,7 @@ public class DataManagementActivity extends AppCompatActivity {
                         workbook.close();
                     }
                 } catch (Exception e) {
-                    System.err.println("导出数据调试 - 关闭资源时发生异常: " + e.getMessage());
+                    System.err.println("瀵煎嚭鏁版嵁璋冭瘯 - 鍏抽棴璧勬簮鏃跺彂鐢熷紓甯? " + e.getMessage());
                 }
                 runOnUiThread(this::finish);
             }
@@ -272,182 +201,87 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     /**
-     * 创建贷款信息工作表
-     * XLSX 模板结构:
-     * 列A: ID | 列B: 贷款名称 | 列C: 贷款类型 | 列D: 还款方式 | 列E: 本金 | 列F: 年利率(%) | 列G: 期限(月) | 列H: 开始日期 | 列I: 信用卡额度 | 列J: 还款日 | 列K: 原始月供
+     * 鍒涘缓璐锋淇℃伅宸ヤ綔琛?     * XLSX 妯℃澘缁撴瀯:
+     * 鍒桝: ID | 鍒桞: 璐锋鍚嶇О | 鍒桟: 璐锋绫诲瀷 | 鍒桪: 杩樻鏂瑰紡 | 鍒桬: 鏈噾 | 鍒桭: 骞村埄鐜?%) | 鍒桮: 鏈熼檺(鏈? | 鍒桯: 寮€濮嬫棩鏈?| 鍒桰: 淇＄敤鍗￠搴?| 鍒桱: 杩樻鏃?| 鍒桲: 鍘熷鏈堜緵
      */
     private void createLoanSheet(Sheet sheet, List<Loan> loans) {
-        System.out.println("createLoanSheet - 开始创建工作表，数据条数: " + (loans != null ? loans.size() : 0));
-        
-        // 创建标题行样式
-        CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
+        // 鍒涘缓鏍囬琛屾牱寮?        CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
         Font headerFont = sheet.getWorkbook().createFont();
         headerFont.setBold(true);
         headerStyle.setFont(headerFont);
         headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
         headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         
-        // 创建标题行
-        Row headerRow = sheet.createRow(0);
-        String[] headers = {"ID", "贷款名称", "贷款类型", "还款方式", "本金", "年利率(%)", "期限(月)", "开始日期", "信用卡额度", "还款日", "原始月供"};
+        // 鍒涘缓鏍囬琛?        Row headerRow = sheet.createRow(0);
+        String[] headers = {"ID", "璐锋鍚嶇О", "璐锋绫诲瀷", "杩樻鏂瑰紡", "鏈噾", "骞村埄鐜?%)", "鏈熼檺(鏈?", "寮€濮嬫棩鏈?, "淇＄敤鍗￠搴?, "杩樻鏃?, "鍘熷鏈堜緵"};
         for (int i = 0; i < headers.length; i++) {
             Cell cell = headerRow.createCell(i);
             cell.setCellValue(headers[i]);
             cell.setCellStyle(headerStyle);
         }
-        System.out.println("createLoanSheet - 标题行创建完成");
         
-        // 填充数据
+        // 濉厖鏁版嵁
         int rowNum = 1;
-        if (loans != null) {
-            for (Loan loan : loans) {
-                Row row = sheet.createRow(rowNum++);
-                
-                // ID - 整数
-                Cell idCell = row.createCell(0);
-                idCell.setCellValue(loan.getId());
-                
-                // 贷款名称 - 字符串
-                Cell nameCell = row.createCell(1);
-                nameCell.setCellValue(loan.getName() != null ? loan.getName() : "");
-                
-                // 贷款类型 - 字符串
-                Cell typeCell = row.createCell(2);
-                typeCell.setCellValue(loan.getLoanType() != null ? loan.getLoanType() : "");
-                
-                // 还款方式 - 字符串
-                Cell methodCell = row.createCell(3);
-                methodCell.setCellValue(loan.getRepaymentMethod() != null ? loan.getRepaymentMethod() : "");
-                
-                // 本金 - 数值
-                Cell principalCell = row.createCell(4);
-                principalCell.setCellValue(loan.getPrincipal());
-                
-                // 年利率 - 数值
-                Cell rateCell = row.createCell(5);
-                rateCell.setCellValue(loan.getAnnualRate());
-                
-                // 期限 - 整数
-                Cell monthsCell = row.createCell(6);
-                monthsCell.setCellValue(loan.getMonths());
-                
-                // 开始日期 - 字符串
-                Cell dateCell = row.createCell(7);
-                dateCell.setCellValue(loan.getStartDate() != null ? loan.getStartDate() : "");
-                
-                // 信用卡额度 - 数值
-                Cell limitCell = row.createCell(8);
-                limitCell.setCellValue(loan.getCreditLimit());
-                
-                // 还款日 - 整数
-                Cell dueCell = row.createCell(9);
-                dueCell.setCellValue(loan.getDueDate());
-                
-                // 原始月供 - 数值
-                Cell monthlyCell = row.createCell(10);
-                monthlyCell.setCellValue(loan.getOriginalMonthlyPayment());
-            }
+        for (Loan loan : loans) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(loan.getId());
+            row.createCell(1).setCellValue(loan.getName() != null ? loan.getName() : "");
+            row.createCell(2).setCellValue(loan.getLoanType() != null ? loan.getLoanType() : "");
+            row.createCell(3).setCellValue(loan.getRepaymentMethod() != null ? loan.getRepaymentMethod() : "");
+            row.createCell(4).setCellValue(loan.getPrincipal());
+            row.createCell(5).setCellValue(loan.getAnnualRate());
+            row.createCell(6).setCellValue(loan.getMonths());
+            row.createCell(7).setCellValue(loan.getStartDate() != null ? loan.getStartDate() : "");
+            row.createCell(8).setCellValue(loan.getCreditLimit());
+            row.createCell(9).setCellValue(loan.getDueDate());
+            row.createCell(10).setCellValue(loan.getOriginalMonthlyPayment());
         }
-        System.out.println("createLoanSheet - 数据填充完成，共 " + (rowNum - 1) + " 行数据");
         
-        // 设置固定列宽（Android不支持autoSizeColumn，因为缺少AWT类）
-        // 列宽单位: 1/256个字符宽度
-        int[] columnWidths = {2500, 6000, 4000, 4000, 4000, 3500, 3000, 4000, 4000, 3000, 4000};
+        // 璁剧疆鍥哄畾鍒楀锛圓ndroid涓嶆敮鎸乤utoSizeColumn锛屽洜涓虹己灏慉WT绫伙級
+        // 鍒楀鍗曚綅: 1/256涓瓧绗﹀搴?        int[] columnWidths = {2500, 6000, 4000, 4000, 4000, 3500, 3000, 4000, 4000, 3000, 4000};
         for (int i = 0; i < headers.length && i < columnWidths.length; i++) {
             sheet.setColumnWidth(i, columnWidths[i]);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        System.out.println("导出数据调试 - 贷款工作表创建完成，数据行数: " + (rowNum - 1));
-=======
-<<<<<<< HEAD
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-        System.out.println("createLoanSheet - 工作表创建完成");
-=======
-        System.out.println("导出数据调试 - 贷款工作表创建完成，数据行数: " + (rowNum - 1));
->>>>>>> upstream/main
-<<<<<<< HEAD
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+        System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - 璐锋宸ヤ綔琛ㄥ垱寤哄畬鎴愶紝鏁版嵁琛屾暟: " + (rowNum - 1));
     }
     
     /**
-     * 创建还款记录工作表
-     * XLSX 模板结构:
-     * 列A: ID | 列B: 贷款ID | 列C: 还款金额 | 列D: 还款日期 | 列E: 备注
+     * 鍒涘缓杩樻璁板綍宸ヤ綔琛?     * XLSX 妯℃澘缁撴瀯:
+     * 鍒桝: ID | 鍒桞: 璐锋ID | 鍒桟: 杩樻閲戦 | 鍒桪: 杩樻鏃ユ湡 | 鍒桬: 澶囨敞
      */
     private void createPaymentSheet(Sheet sheet, List<Payment> payments) {
-        System.out.println("createPaymentSheet - 开始创建工作表，数据条数: " + (payments != null ? payments.size() : 0));
-        
-        // 创建标题行样式
-        CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
+        // 鍒涘缓鏍囬琛屾牱寮?        CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
         Font headerFont = sheet.getWorkbook().createFont();
         headerFont.setBold(true);
         headerStyle.setFont(headerFont);
         headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
         headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         
-        // 创建标题行
-        Row headerRow = sheet.createRow(0);
-        String[] headers = {"ID", "贷款ID", "还款金额", "还款日期", "备注"};
+        // 鍒涘缓鏍囬琛?        Row headerRow = sheet.createRow(0);
+        String[] headers = {"ID", "璐锋ID", "杩樻閲戦", "杩樻鏃ユ湡", "澶囨敞"};
         for (int i = 0; i < headers.length; i++) {
             Cell cell = headerRow.createCell(i);
             cell.setCellValue(headers[i]);
             cell.setCellStyle(headerStyle);
         }
-        System.out.println("createPaymentSheet - 标题行创建完成");
         
-        // 填充数据
+        // 濉厖鏁版嵁
         int rowNum = 1;
-        if (payments != null) {
-            for (Payment payment : payments) {
-                Row row = sheet.createRow(rowNum++);
-                
-                // ID - 整数
-                Cell idCell = row.createCell(0);
-                idCell.setCellValue(payment.getId());
-                
-                // 贷款ID - 整数
-                Cell loanIdCell = row.createCell(1);
-                loanIdCell.setCellValue(payment.getLoanId());
-                
-                // 还款金额 - 数值
-                Cell amountCell = row.createCell(2);
-                amountCell.setCellValue(payment.getAmount());
-                
-                // 还款日期 - 字符串
-                Cell dateCell = row.createCell(3);
-                dateCell.setCellValue(payment.getDate() != null ? payment.getDate() : "");
-                
-                // 备注 - 字符串
-                Cell noteCell = row.createCell(4);
-                noteCell.setCellValue(payment.getNote() != null ? payment.getNote() : "");
-            }
+        for (Payment payment : payments) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(payment.getId());
+            row.createCell(1).setCellValue(payment.getLoanId());
+            row.createCell(2).setCellValue(payment.getAmount());
+            row.createCell(3).setCellValue(payment.getDate() != null ? payment.getDate() : "");
+            row.createCell(4).setCellValue(payment.getNote() != null ? payment.getNote() : "");
         }
-        System.out.println("createPaymentSheet - 数据填充完成，共 " + (rowNum - 1) + " 行数据");
         
-        // 设置固定列宽（Android不支持autoSizeColumn，因为缺少AWT类）
+        // 璁剧疆鍥哄畾鍒楀锛圓ndroid涓嶆敮鎸乤utoSizeColumn锛屽洜涓虹己灏慉WT绫伙級
         int[] columnWidths = {2500, 4000, 4000, 4000, 6000};
         for (int i = 0; i < headers.length && i < columnWidths.length; i++) {
             sheet.setColumnWidth(i, columnWidths[i]);
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        System.out.println("导出数据调试 - 还款记录工作表创建完成，数据行数: " + (rowNum - 1));
-=======
-<<<<<<< HEAD
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-        System.out.println("createPaymentSheet - 工作表创建完成");
-=======
-        System.out.println("导出数据调试 - 还款记录工作表创建完成，数据行数: " + (rowNum - 1));
->>>>>>> upstream/main
-<<<<<<< HEAD
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
-=======
->>>>>>> d2a47a0f0c79ee2770e0e8b03f5ca497f00252fe
+        System.out.println("瀵煎嚭鏁版嵁璋冭瘯 - 杩樻璁板綍宸ヤ綔琛ㄥ垱寤哄畬鎴愶紝鏁版嵁琛屾暟: " + (rowNum - 1));
     }
     
     private void confirmImport(Uri uri) {
@@ -460,35 +294,33 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     private void importData(Uri uri) {
-        // 在后台线程执行导入操作
-        executorService.execute(() -> {
+        // 鍦ㄥ悗鍙扮嚎绋嬫墽琛屽鍏ユ搷浣?        executorService.execute(() -> {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
                 if (inputStream != null) {
-                    // 读取 XLSX 文件
+                    // 璇诲彇 XLSX 鏂囦欢
                     Workbook workbook = new XSSFWorkbook(inputStream);
                     
-                    // 解析贷款信息
+                    // 瑙ｆ瀽璐锋淇℃伅
                     List<Loan> loans = parseLoanSheet(workbook.getSheet(SHEET_LOANS));
                     
-                    // 解析还款记录
+                    // 瑙ｆ瀽杩樻璁板綍
                     List<Payment> payments = parsePaymentSheet(workbook.getSheet(SHEET_PAYMENTS));
                     
                     workbook.close();
                     inputStream.close();
                     
-                    // 清空现有数据
+                    // 娓呯┖鐜版湁鏁版嵁
                     repository.deleteAllPayments();
                     repository.deleteAllLoans();
                     
-                    // 导入新数据
-                    for (Loan loan : loans) {
-                        loan.setId(0); // 重置ID
+                    // 瀵煎叆鏂版暟鎹?                    for (Loan loan : loans) {
+                        loan.setId(0); // 閲嶇疆ID
                         repository.insertLoan(loan);
                     }
                     
                     for (Payment payment : payments) {
-                        payment.setId(0); // 重置ID
+                        payment.setId(0); // 閲嶇疆ID
                         repository.insertPayment(payment);
                     }
                     
@@ -502,17 +334,15 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     /**
-     * 解析贷款信息工作表
-     * XLSX 模板结构:
-     * 列A: ID | 列B: 贷款名称 | 列C: 贷款类型 | 列D: 还款方式 | 列E: 本金 | 列F: 年利率(%) | 列G: 期限(月) | 列H: 开始日期 | 列I: 信用卡额度 | 列J: 还款日 | 列K: 原始月供
+     * 瑙ｆ瀽璐锋淇℃伅宸ヤ綔琛?     * XLSX 妯℃澘缁撴瀯:
+     * 鍒桝: ID | 鍒桞: 璐锋鍚嶇О | 鍒桟: 璐锋绫诲瀷 | 鍒桪: 杩樻鏂瑰紡 | 鍒桬: 鏈噾 | 鍒桭: 骞村埄鐜?%) | 鍒桮: 鏈熼檺(鏈? | 鍒桯: 寮€濮嬫棩鏈?| 鍒桰: 淇＄敤鍗￠搴?| 鍒桱: 杩樻鏃?| 鍒桲: 鍘熷鏈堜緵
      */
     private List<Loan> parseLoanSheet(Sheet sheet) {
         List<Loan> loans = new ArrayList<>();
         if (sheet == null) return loans;
         
         Iterator<Row> rowIterator = sheet.iterator();
-        // 跳过标题行
-        if (rowIterator.hasNext()) {
+        // 璺宠繃鏍囬琛?        if (rowIterator.hasNext()) {
             rowIterator.next();
         }
         
@@ -520,7 +350,7 @@ public class DataManagementActivity extends AppCompatActivity {
             Row row = rowIterator.next();
             Loan loan = new Loan();
             
-            // 读取各列数据
+            // 璇诲彇鍚勫垪鏁版嵁
             Cell nameCell = row.getCell(1);
             if (nameCell != null) {
                 loan.setName(getCellStringValue(nameCell));
@@ -571,8 +401,7 @@ public class DataManagementActivity extends AppCompatActivity {
                 loan.setOriginalMonthlyPayment(getCellNumericValue(originalMonthlyPaymentCell));
             }
             
-            // 只添加有效的贷款记录（必须有名称）
-            if (loan.getName() != null && !loan.getName().trim().isEmpty()) {
+            // 鍙坊鍔犳湁鏁堢殑璐锋璁板綍锛堝繀椤绘湁鍚嶇О锛?            if (loan.getName() != null && !loan.getName().trim().isEmpty()) {
                 loans.add(loan);
             }
         }
@@ -581,17 +410,15 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     /**
-     * 解析还款记录工作表
-     * XLSX 模板结构:
-     * 列A: ID | 列B: 贷款ID | 列C: 还款金额 | 列D: 还款日期 | 列E: 备注
+     * 瑙ｆ瀽杩樻璁板綍宸ヤ綔琛?     * XLSX 妯℃澘缁撴瀯:
+     * 鍒桝: ID | 鍒桞: 璐锋ID | 鍒桟: 杩樻閲戦 | 鍒桪: 杩樻鏃ユ湡 | 鍒桬: 澶囨敞
      */
     private List<Payment> parsePaymentSheet(Sheet sheet) {
         List<Payment> payments = new ArrayList<>();
         if (sheet == null) return payments;
         
         Iterator<Row> rowIterator = sheet.iterator();
-        // 跳过标题行
-        if (rowIterator.hasNext()) {
+        // 璺宠繃鏍囬琛?        if (rowIterator.hasNext()) {
             rowIterator.next();
         }
         
@@ -599,7 +426,7 @@ public class DataManagementActivity extends AppCompatActivity {
             Row row = rowIterator.next();
             Payment payment = new Payment();
             
-            // 读取各列数据
+            // 璇诲彇鍚勫垪鏁版嵁
             Cell loanIdCell = row.getCell(1);
             if (loanIdCell != null) {
                 payment.setLoanId((int) getCellNumericValue(loanIdCell));
@@ -620,7 +447,7 @@ public class DataManagementActivity extends AppCompatActivity {
                 payment.setNote(getCellStringValue(noteCell));
             }
             
-            // 只添加有效的还款记录（必须有贷款ID和金额）
+            // 鍙坊鍔犳湁鏁堢殑杩樻璁板綍锛堝繀椤绘湁璐锋ID鍜岄噾棰濓級
             if (payment.getLoanId() > 0 && payment.getAmount() > 0) {
                 payments.add(payment);
             }
@@ -630,14 +457,13 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     /**
-     * 获取单元格的字符串值
-     */
+     * 鑾峰彇鍗曞厓鏍肩殑瀛楃涓插€?     */
     private String getCellStringValue(Cell cell) {
         switch (cell.getCellType()) {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
-                // 检查是否为日期格式
+                // 妫€鏌ユ槸鍚︿负鏃ユ湡鏍煎紡
                 if (isCellDateFormatted(cell)) {
                     return cell.getDateCellValue().toString();
                 }
@@ -652,14 +478,12 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     /**
-     * 检查单元格是否为日期格式
-     * 替代 Apache POI 的 DateUtil.isCellDateFormatted
+     * 妫€鏌ュ崟鍏冩牸鏄惁涓烘棩鏈熸牸寮?     * 鏇夸唬 Apache POI 鐨?DateUtil.isCellDateFormatted
      */
     private boolean isCellDateFormatted(Cell cell) {
         try {
             short dataFormat = cell.getCellStyle().getDataFormat();
-            // 常见的日期格式索引
-            return dataFormat == 0x0e || dataFormat == 0x0f || dataFormat == 0x10 ||
+            // 甯歌鐨勬棩鏈熸牸寮忕储寮?            return dataFormat == 0x0e || dataFormat == 0x0f || dataFormat == 0x10 ||
                    dataFormat == 0x11 || dataFormat == 0x12 || dataFormat == 0x13 ||
                    dataFormat == 0x14 || dataFormat == 0x15 || dataFormat == 0x16 ||
                    dataFormat == 0x2d || dataFormat == 0x2e || dataFormat == 0x2f;
@@ -669,8 +493,7 @@ public class DataManagementActivity extends AppCompatActivity {
     }
     
     /**
-     * 获取单元格的数值
-     */
+     * 鑾峰彇鍗曞厓鏍肩殑鏁板€?     */
     private double getCellNumericValue(Cell cell) {
         switch (cell.getCellType()) {
             case NUMERIC:
