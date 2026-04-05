@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-35:/values-zh-rTW/values-zh-rTW.xml",
+            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-37:/values-zh-rTW/values-zh-rTW.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.10\\transforms\\9ccc33c38f4f1e59d62ce32e6a8efa38\\transformed\\ucrop-2.2.8\\res\\values-zh-rTW\\values-zh-rTW.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,97,174,228,282,329,446,490",
+                        "endColumns": "41,76,53,53,46,116,43,42",
+                        "endOffsets": "92,169,223,277,324,441,485,528"
+                    },
+                    "to": {
+                        "startLines": "117,118,119,120,121,122,123,124",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "8956,8998,9075,9129,9183,9230,9347,9391",
+                        "endColumns": "41,76,53,53,46,116,43,42",
+                        "endOffsets": "8993,9070,9124,9178,9225,9342,9386,9429"
+                    }
+                },
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.10\\transforms\\d55ef5ccc4ed29bae9e48b675a9aec34\\transformed\\core-1.15.0\\res\\values-zh-rTW\\values-zh-rTW.xml",
                     "from": {

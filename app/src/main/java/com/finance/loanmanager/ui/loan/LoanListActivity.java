@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,13 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.finance.loanmanager.R;
 import com.finance.loanmanager.repository.LoanRepository;
+import com.finance.loanmanager.ui.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class LoanListActivity extends AppCompatActivity {
+public class LoanListActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
     private TextView tvEmpty;

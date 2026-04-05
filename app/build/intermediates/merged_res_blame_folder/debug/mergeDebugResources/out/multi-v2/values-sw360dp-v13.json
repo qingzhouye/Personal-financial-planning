@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-35:/values-sw360dp-v13/values-sw360dp-v13.xml",
+            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-37:/values-sw360dp-v13/values-sw360dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Administrator\\Desktop\\应用\\Personal-financial-planning\\app\\src\\main\\res\\values-sw360dp\\dimens.xml",
+                    "source": "C:\\Users\\Administrator\\Documents\\GitHub\\Personal-financial-planning\\app\\src\\main\\res\\values-sw360dp\\dimens.xml",
                     "from": {
                         "startLines": "38,36,37,21,22,19,20,47,46,45,48,42,41,51,52,55,16,11,10,9,12,8,13,5,32,28,27,26,33,31,29,25,30",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",

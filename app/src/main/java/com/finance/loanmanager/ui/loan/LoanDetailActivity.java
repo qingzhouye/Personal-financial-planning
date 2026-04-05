@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -20,6 +19,7 @@ import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.data.entity.LoanStatus;
 import com.finance.loanmanager.data.entity.Payment;
 import com.finance.loanmanager.repository.LoanRepository;
+import com.finance.loanmanager.ui.BaseActivity;
 import com.finance.loanmanager.ui.schedule.PaymentScheduleActivity;
 import com.finance.loanmanager.util.DateUtil;
 import com.finance.loanmanager.util.NumberFormatUtil;
@@ -28,7 +28,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class LoanDetailActivity extends AppCompatActivity {
+public class LoanDetailActivity extends BaseActivity {
 
     private int loanId;
     private LoanRepository repository;

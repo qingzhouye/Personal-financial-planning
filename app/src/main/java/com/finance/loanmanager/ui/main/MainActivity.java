@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -23,11 +22,13 @@ import com.finance.loanmanager.R;
 import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.data.entity.LoanStatus;
 import com.finance.loanmanager.repository.LoanRepository;
+import com.finance.loanmanager.ui.BaseActivity;
 import com.finance.loanmanager.ui.data.BackupRestoreDialog;
 import com.finance.loanmanager.ui.data.DataManagementActivity;
 import com.finance.loanmanager.ui.loan.AddLoanActivity;
 import com.finance.loanmanager.ui.loan.LoanListActivity;
 import com.finance.loanmanager.ui.monthly.MonthlyTotalActivity;
+import com.finance.loanmanager.ui.settings.BackgroundSettingsActivity;
 import com.finance.loanmanager.util.BackupManager;
 import com.finance.loanmanager.util.DateUtil;
 import com.finance.loanmanager.util.NumberFormatUtil;
@@ -43,7 +44,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.content.SharedPreferences;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private LoanRepository repository;
     private ExecutorService executorService;
@@ -370,14 +371,14 @@ public class MainActivity extends AppCompatActivity {
     }
     
     /**
-     * 显示主菜单对话框（一级菜单：版本说明、数据管理、添加贷款）
+     * 显示主菜单对话框（一级菜单：版本说明、数据管理、设置背景、添加贷款）
      * 当应用有数据时，显示添加贷款选项
      */
     private void showMainMenu() {
         boolean hasData = !loansWithStatus.isEmpty();
         String[] items = hasData 
-                ? new String[]{"版本说明", "数据管理", "添加贷款"}
-                : new String[]{"版本说明", "数据管理"};
+                ? new String[]{"版本说明", "数据管理", "设置背景", "添加贷款"}
+                : new String[]{"版本说明", "数据管理", "设置背景"};
         
         new AlertDialog.Builder(this)
                 .setTitle("菜单")
@@ -386,7 +387,11 @@ public class MainActivity extends AppCompatActivity {
                         showVersionInfo();
                     } else if (which == 1) {
                         showDataManagementMenu();
-                    } else if (which == 2 && hasData) {
+                    } else if (which == 2) {
+                        // 设置背景
+                        Intent intent = new Intent(this, BackgroundSettingsActivity.class);
+                        startActivity(intent);
+                    } else if (which == 3 && hasData) {
                         // 添加贷款
                         Intent intent = new Intent(this, AddLoanActivity.class);
                         startActivity(intent);

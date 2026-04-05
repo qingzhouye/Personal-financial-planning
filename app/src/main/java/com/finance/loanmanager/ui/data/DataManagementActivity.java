@@ -10,7 +10,6 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -20,6 +19,7 @@ import com.finance.loanmanager.data.AppDatabase;
 import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.data.entity.Payment;
 import com.finance.loanmanager.repository.LoanRepository;
+import com.finance.loanmanager.ui.BaseActivity;
 
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class DataManagementActivity extends AppCompatActivity {
+public class DataManagementActivity extends BaseActivity {
     
     private LoanRepository repository;
     private ExecutorService executorService;

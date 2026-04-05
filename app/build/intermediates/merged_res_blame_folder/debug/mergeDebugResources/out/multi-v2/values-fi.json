@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-35:/values-fi/values-fi.xml",
+            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-37:/values-fi/values-fi.xml",
             "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.10\\transforms\\9ccc33c38f4f1e59d62ce32e6a8efa38\\transformed\\ucrop-2.2.8\\res\\values-fi\\values-fi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,178,243,293",
+                        "endColumns": "122,64,49,48",
+                        "endOffsets": "173,238,288,337"
+                    },
+                    "to": {
+                        "startLines": "117,118,119,120",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "9849,9972,10037,10087",
+                        "endColumns": "122,64,49,48",
+                        "endOffsets": "9967,10032,10082,10131"
+                    }
+                },
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.10\\transforms\\d55ef5ccc4ed29bae9e48b675a9aec34\\transformed\\core-1.15.0\\res\\values-fi\\values-fi.xml",
                     "from": {

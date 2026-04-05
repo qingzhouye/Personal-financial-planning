@@ -23,7 +23,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoanManager"
         android:name=".LoanManagerApplication"
-        android:enableOnBackInvokedCallback="true">
+        android:enableOnBackInvokedCallback="true"
+        android:requestLegacyExternalStorage="true">
+        
+        <!-- FileProvider for UCrop -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         
         <activity
             android:name=".ui.main.MainActivity"
@@ -71,6 +83,18 @@
             android:label="@string/data_management"
             android:parentActivityName=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize" />
+        
+        <activity
+            android:name=".ui.settings.BackgroundSettingsActivity"
+            android:label="@string/background_settings"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize" />
+        
+        <!-- UCrop Activity -->
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
             
     </application>
 

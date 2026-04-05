@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -15,6 +14,7 @@ import com.finance.loanmanager.R;
 import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.repository.LoanRepository;
 import com.finance.loanmanager.service.LoanCalculator;
+import com.finance.loanmanager.ui.BaseActivity;
 import com.finance.loanmanager.util.NumberFormatUtil;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class PaymentScheduleActivity extends AppCompatActivity {
+public class PaymentScheduleActivity extends BaseActivity {
 
     private int loanId;
     private LoanRepository repository;

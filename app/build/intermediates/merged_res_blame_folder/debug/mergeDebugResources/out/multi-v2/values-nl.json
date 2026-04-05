@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-35:/values-nl/values-nl.xml",
+            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-37:/values-nl/values-nl.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.10\\transforms\\d55ef5ccc4ed29bae9e48b675a9aec34\\transformed\\core-1.15.0\\res\\values-nl\\values-nl.xml",
@@ -35,6 +35,23 @@
                         "startOffsets": "319,437,542,649,734,838,958,1036,1112,1204,1298,1393,1487,1587,1681,1777,1872,1964,2056,2138,2249,2352,2451,2566,2680,2783,2938,9605",
                         "endColumns": "117,104,106,84,103,119,77,75,91,93,94,93,99,93,95,94,91,91,81,110,102,98,114,113,102,154,102,82",
                         "endOffsets": "432,537,644,729,833,953,1031,1107,1199,1293,1388,1482,1582,1676,1772,1867,1959,2051,2133,2244,2347,2446,2561,2675,2778,2933,3036,9683"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.10\\transforms\\9ccc33c38f4f1e59d62ce32e6a8efa38\\transformed\\ucrop-2.2.8\\res\\values-nl\\values-nl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,105,170,229,284,333",
+                        "endColumns": "49,64,58,54,48,47",
+                        "endOffsets": "100,165,224,279,328,376"
+                    },
+                    "to": {
+                        "startLines": "117,118,119,120,121,122",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "10020,10070,10135,10194,10249,10298",
+                        "endColumns": "49,64,58,54,48,47",
+                        "endOffsets": "10065,10130,10189,10244,10293,10341"
                     }
                 },
                 {

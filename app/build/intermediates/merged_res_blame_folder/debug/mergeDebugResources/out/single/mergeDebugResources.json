@@ -1,114 +1,122 @@
 [
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_item_schedule.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/item_schedule.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_main.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_dialog_confirm_loan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/dialog_confirm_loan.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_activity_payment_schedule.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/activity_payment_schedule.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_loan_detail.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/activity_loan_detail.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_activity_loan_detail.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/activity_loan_detail.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_dialog_backup_restore.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/dialog_backup_restore.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_dialog_backup_restore.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/dialog_backup_restore.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_dialog_confirm_loan.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/dialog_confirm_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_activity_loan_list.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/activity_loan_list.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_activity_main.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/activity_main.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/xml_file_paths.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/xml/file_paths.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_danger.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_danger.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout-land_activity_main.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout-land/activity_main.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_add_loan.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/activity_add_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_primary.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_primary.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-xhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_loan.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/item_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-mdpi/ic_launcher.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_success.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_success.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_background_settings.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/activity_background_settings.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_activity_add_loan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/activity_add_loan.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-xhdpi/ic_launcher.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/drawable_gradient_background.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/drawable/gradient_background.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_background.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_background.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_item_stat_card.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/item_stat_card.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_monthly.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/item_monthly.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/drawable_gradient_primary.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/drawable/gradient_primary.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-mdpi/ic_launcher.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_stat_card.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/item_stat_card.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_activity_monthly_total.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/activity_monthly_total.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxxhdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_schedule.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/item_schedule.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/drawable_gradient_success.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/drawable/gradient_success.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_loan_list.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/activity_loan_list.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_item_monthly.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/item_monthly.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-mdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-hdpi/ic_launcher.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-hdpi/ic_launcher_round.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-39:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout-land_activity_main.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout-land/activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/layout_item_loan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/layout/item_loan.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_payment_schedule.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/activity_payment_schedule.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-37:/drawable_gradient_danger.xml.flat",
-        "source": "com.finance.loanmanager.app-main-39:/drawable/gradient_danger.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_monthly_total.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/activity_monthly_total.xml"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.finance.loanmanager.app-main-41:/mipmap-hdpi/ic_launcher.png"
     }
 ]

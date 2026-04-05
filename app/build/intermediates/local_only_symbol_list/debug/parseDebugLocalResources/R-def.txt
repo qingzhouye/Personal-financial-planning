@@ -75,6 +75,8 @@ id btnDelete
 id btnExport
 id btnImport
 id btnMakePayment
+id btnResetBackground
+id btnSelectImage
 id btnSubmit
 id btnVersionInfo
 id btnViewLoans
@@ -99,10 +101,12 @@ id etPaymentAmount
 id etPrincipal
 id etStartDate
 id gridStats
+id ivPreview
 id layoutCreditCardFields
 id layoutDueDate
 id layoutNormalFields
 id layoutPayment
+id previewContainer
 id progressPaid
 id progressRemaining
 id recyclerView
@@ -143,6 +147,7 @@ id tvRepaymentMethod
 id tvStartDate
 id tvStatLabel
 id tvStatValue
+id tvStatus
 id tvSubtitle
 id tvTitle
 id tvTotal
@@ -152,6 +157,7 @@ id tv_backup_info
 id tv_backup_size
 id tv_current_data
 layout activity_add_loan
+layout activity_background_settings
 layout activity_loan_detail
 layout activity_loan_list
 layout activity_main
@@ -174,6 +180,11 @@ string app_name
 string app_title
 string auto_backup_failed
 string auto_backup_success
+string background_reset_success
+string background_set_failed
+string background_set_success
+string background_settings
+string background_settings_desc
 string backup_date
 string backup_deleted
 string backup_found_description
@@ -193,10 +204,13 @@ string confirm_payment
 string credit_card
 string credit_card_info
 string credit_limit
+string crop_background
+string current_background
 string current_data_empty
 string current_data_exists
 string current_month_payment
 string current_month_total
+string custom_background_set
 string daily_payment
 string data_management
 string delete_backup
@@ -243,6 +257,7 @@ string monthly_payment
 string monthly_payment_amount
 string monthly_total
 string no_active_loans
+string no_custom_background
 string no_loans
 string no_schedule
 string normal_loan
@@ -265,11 +280,16 @@ string reminder_message
 string reminder_subtitle
 string reminder_title
 string repayment_method
+string reset_background
+string reset_background_confirm
 string restore_backup
 string restore_failed
 string restore_success
 string restoring_backup
+string select_background_image
+string set_background
 string start_date
+string supported_formats
 string total_amount
 string total_loans
 string total_paid
@@ -293,3 +313,4 @@ style SuccessButton
 style Theme.LoanManager
 style Theme.LoanManager.NoActionBar
 style TitleText
+xml file_paths
