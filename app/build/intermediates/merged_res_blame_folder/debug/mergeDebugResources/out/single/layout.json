@@ -12,8 +12,8 @@
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeDebugResources-38:/layout/activity_background_settings.xml",
-        "source": "com.finance.loanmanager.app-main-41:/layout/activity_background_settings.xml"
+        "merged": "com.finance.loanmanager.app-mergeDebugResources-38:/layout/item_stat_card.xml",
+        "source": "com.finance.loanmanager.app-main-41:/layout/item_stat_card.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeDebugResources-38:\\layout\\dialog_confirm_loan.xml",
@@ -40,12 +40,12 @@
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_add_loan.xml"
     },
     {
-        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeDebugResources-38:\\layout\\activity_loan_detail.xml",
-        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_loan_detail.xml"
-    },
-    {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeDebugResources-38:\\layout\\activity_background_settings.xml",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_background_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeDebugResources-38:\\layout\\activity_loan_detail.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_loan_detail.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeDebugResources-38:\\layout\\activity_payment_schedule.xml",
