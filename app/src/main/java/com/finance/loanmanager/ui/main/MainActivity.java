@@ -32,6 +32,7 @@ import com.finance.loanmanager.ui.settings.BackgroundSettingsActivity;
 import com.finance.loanmanager.util.BackupManager;
 import com.finance.loanmanager.util.DateUtil;
 import com.finance.loanmanager.util.NumberFormatUtil;
+import com.finance.loanmanager.util.ThemeManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,6 +44,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.content.SharedPreferences;
+import android.graphics.drawable.GradientDrawable;
 
 public class MainActivity extends BaseActivity {
 
@@ -74,6 +76,9 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        // 设置本月应还卡片背景为当前主题色渐变
+        setupCurrentMonthCardBackground();
         
         // 适配 Android 15/16 Edge-to-Edge 安全区域
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(android.R.id.content), (v, insets) -> {
@@ -160,9 +165,36 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // 重新设置卡片背景（主题可能已更改）
+        setupCurrentMonthCardBackground();
         refreshData();
     }
     
+    /**
+     * 设置本月应还卡片背景为当前主题色的渐变
+     */
+    private void setupCurrentMonthCardBackground() {
+        CardView cardCurrentMonth = findViewById(R.id.cardCurrentMonth);
+        if (cardCurrentMonth != null) {
+            int themeIndex = ThemeManager.getSavedTheme(this);
+            int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
+            int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
+            
+            // 创建渐变背景
+            GradientDrawable gradient = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                new int[] { primaryColor, darkColor }
+            );
+            gradient.setCornerRadius(24f); // 12dp * 2 for better quality
+            
+            // 设置卡片内容背景
+            LinearLayout cardContent = (LinearLayout) cardCurrentMonth.getChildAt(0);
+            if (cardContent != null) {
+                cardContent.setBackground(gradient);
+            }
+        }
+    }
+
     private void initViews() {
         cardCurrentMonth = findViewById(R.id.cardCurrentMonth);
         cardStats = findViewById(R.id.cardStats);
