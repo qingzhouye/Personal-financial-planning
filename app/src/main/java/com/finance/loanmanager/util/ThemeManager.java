@@ -74,13 +74,13 @@ public class ThemeManager {
      */
     public static int getThemePrimaryColor(int themeIndex) {
         switch (themeIndex) {
-            case THEME_BLUE:   return 0xFF1565C0;
-            case THEME_ORANGE: return 0xFFE65100;
-            case THEME_PURPLE: return 0xFF6A1B9A;
-            case THEME_GREEN:  return 0xFF2E7D32;
-            case THEME_ROSE:   return 0xFFAD1457;
+            case THEME_BLUE:   return 0xFF1976D2;
+            case THEME_ORANGE: return 0xFFEF6C00;
+            case THEME_PURPLE: return 0xFF8E24AA;
+            case THEME_GREEN:  return 0xFF43A047;
+            case THEME_ROSE:   return 0xFFC2185B;
             case THEME_CYAN:
-            default:           return 0xFF00838F;
+            default:           return 0xFF00ACC1;
         }
     }
 
@@ -89,13 +89,13 @@ public class ThemeManager {
      */
     public static int getThemeDarkColor(int themeIndex) {
         switch (themeIndex) {
-            case THEME_BLUE:   return 0xFF0D47A1;
-            case THEME_ORANGE: return 0xFFBF360C;
-            case THEME_PURPLE: return 0xFF4A148C;
-            case THEME_GREEN:  return 0xFF1B5E20;
-            case THEME_ROSE:   return 0xFF880E4F;
+            case THEME_BLUE:   return 0xFF1565C0;
+            case THEME_ORANGE: return 0xFFE65100;
+            case THEME_PURPLE: return 0xFF7B1FA2;
+            case THEME_GREEN:  return 0xFF388E3C;
+            case THEME_ROSE:   return 0xFFAD1457;
             case THEME_CYAN:
-            default:           return 0xFF006064;
+            default:           return 0xFF00838F;
         }
     }
 }

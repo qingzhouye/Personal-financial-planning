@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="accent">#00bcd4</color>
-    <color name="background_end">#80deea</color>
-    <color name="background_mid">#b2ebf2</color>
-    <color name="background_start">#e0f7fa</color>
+    <color name="accent">#00BCD4</color>
+    <color name="background_end">#4DD0E1</color>
+    <color name="background_mid">#80DEEA</color>
+    <color name="background_start">#E0F7FA</color>
     <color name="card_background">#ffffff</color>
     <color name="card_background_alt">#f5f7fa</color>
     <color name="danger">#eb3349</color>
@@ -11,24 +11,24 @@
     <color name="info">#4facfe</color>
     <color name="input_background">#fafafa</color>
     <color name="input_border">#e0e0e0</color>
-    <color name="input_border_focused">#00bcd4</color>
+    <color name="input_border_focused">#00BCD4</color>
     <color name="loan_card_end">#c3cfe2</color>
     <color name="loan_card_start">#f5f7fa</color>
     <color name="loan_due_today_border">#ff9800</color>
     <color name="loan_paid_off_end">#96e6a1</color>
     <color name="loan_paid_off_start">#d4fc79</color>
-    <color name="primary">#00838f</color>
-    <color name="primary_dark">#006064</color>
-    <color name="primary_light">#4dd0e1</color>
+    <color name="primary">#00ACC1</color>
+    <color name="primary_dark">#00838F</color>
+    <color name="primary_light">#4DD0E1</color>
     <color name="semi_transparent_white">#80ffffff</color>
-    <color name="success">#4caf50</color>
+    <color name="success">#4CAF50</color>
     <color name="success_light">#d4fc79</color>
     <color name="text_hint">#999999</color>
     <color name="text_primary">#333333</color>
     <color name="text_secondary">#666666</color>
     <color name="text_white">#ffffff</color>
     <color name="transparent">#00000000</color>
-    <color name="warning">#ff9800</color>
+    <color name="warning">#FF9800</color>
     <color name="warning_light">#fff3e0</color>
     <dimen name="button_corner_radius">22dp</dimen>
     <dimen name="button_height">44dp</dimen>
@@ -265,19 +265,19 @@
         
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
-        
+            
         
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        
+            
         
         <item name="android:statusBarColor">@color/primary_dark</item>
         <item name="android:navigationBarColor">@color/primary_dark</item>
-        
+            
         
         <item name="android:windowBackground">@drawable/gradient_background</item>
-        
+            
         
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
@@ -285,11 +285,11 @@
     <style name="Theme.LoanManager.Blue" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
-        <item name="colorPrimary">#1565C0</item>
-        <item name="colorPrimaryDark">#0D47A1</item>
+        <item name="colorPrimary">#1976D2</item>
+        <item name="colorPrimaryDark">#1565C0</item>
         <item name="colorAccent">#42A5F5</item>
-        <item name="android:statusBarColor">#0D47A1</item>
-        <item name="android:navigationBarColor">#0D47A1</item>
+        <item name="android:statusBarColor">#1565C0</item>
+        <item name="android:navigationBarColor">#1565C0</item>
         <item name="android:windowBackground">@drawable/gradient_background_blue</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
@@ -297,11 +297,11 @@
     <style name="Theme.LoanManager.Green" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
-        <item name="colorPrimary">#2E7D32</item>
-        <item name="colorPrimaryDark">#1B5E20</item>
+        <item name="colorPrimary">#43A047</item>
+        <item name="colorPrimaryDark">#388E3C</item>
         <item name="colorAccent">#66BB6A</item>
-        <item name="android:statusBarColor">#1B5E20</item>
-        <item name="android:navigationBarColor">#1B5E20</item>
+        <item name="android:statusBarColor">#388E3C</item>
+        <item name="android:navigationBarColor">#388E3C</item>
         <item name="android:windowBackground">@drawable/gradient_background_green</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
@@ -313,11 +313,11 @@
     <style name="Theme.LoanManager.Orange" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
-        <item name="colorPrimary">#E65100</item>
-        <item name="colorPrimaryDark">#BF360C</item>
-        <item name="colorAccent">#FF9800</item>
-        <item name="android:statusBarColor">#BF360C</item>
-        <item name="android:navigationBarColor">#BF360C</item>
+        <item name="colorPrimary">#EF6C00</item>
+        <item name="colorPrimaryDark">#E65100</item>
+        <item name="colorAccent">#FFA726</item>
+        <item name="android:statusBarColor">#E65100</item>
+        <item name="android:navigationBarColor">#E65100</item>
         <item name="android:windowBackground">@drawable/gradient_background_orange</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
@@ -325,11 +325,11 @@
     <style name="Theme.LoanManager.Purple" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
-        <item name="colorPrimary">#6A1B9A</item>
-        <item name="colorPrimaryDark">#4A148C</item>
-        <item name="colorAccent">#CE93D8</item>
-        <item name="android:statusBarColor">#4A148C</item>
-        <item name="android:navigationBarColor">#4A148C</item>
+        <item name="colorPrimary">#8E24AA</item>
+        <item name="colorPrimaryDark">#7B1FA2</item>
+        <item name="colorAccent">#AB47BC</item>
+        <item name="android:statusBarColor">#7B1FA2</item>
+        <item name="android:navigationBarColor">#7B1FA2</item>
         <item name="android:windowBackground">@drawable/gradient_background_purple</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
@@ -337,11 +337,11 @@
     <style name="Theme.LoanManager.Rose" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
-        <item name="colorPrimary">#AD1457</item>
-        <item name="colorPrimaryDark">#880E4F</item>
-        <item name="colorAccent">#F48FB1</item>
-        <item name="android:statusBarColor">#880E4F</item>
-        <item name="android:navigationBarColor">#880E4F</item>
+        <item name="colorPrimary">#C2185B</item>
+        <item name="colorPrimaryDark">#AD1457</item>
+        <item name="colorAccent">#EC407A</item>
+        <item name="android:statusBarColor">#AD1457</item>
+        <item name="android:navigationBarColor">#AD1457</item>
         <item name="android:windowBackground">@drawable/gradient_background_rose</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>

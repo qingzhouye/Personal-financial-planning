@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors -->
-    <color name="primary">#00838f</color>
-    <color name="primary_dark">#006064</color>
-    <color name="primary_light">#4dd0e1</color>
-    <color name="accent">#00bcd4</color>
+    <!-- Primary Colors - Fresh Cyan Theme -->
+    <color name="primary">#00ACC1</color>
+    <color name="primary_dark">#00838F</color>
+    <color name="primary_light">#4DD0E1</color>
+    <color name="accent">#00BCD4</color>
     
     <!-- Background Colors -->
-    <color name="background_start">#e0f7fa</color>
-    <color name="background_mid">#b2ebf2</color>
-    <color name="background_end">#80deea</color>
+    <color name="background_start">#E0F7FA</color>
+    <color name="background_mid">#80DEEA</color>
+    <color name="background_end">#4DD0E1</color>
     <color name="card_background">#ffffff</color>
     <color name="card_background_alt">#f5f7fa</color>
     
@@ -20,9 +20,9 @@
     <color name="text_white">#ffffff</color>
     
     <!-- Status Colors -->
-    <color name="success">#4caf50</color>
+    <color name="success">#4CAF50</color>
     <color name="success_light">#d4fc79</color>
-    <color name="warning">#ff9800</color>
+    <color name="warning">#FF9800</color>
     <color name="warning_light">#fff3e0</color>
     <color name="danger">#eb3349</color>
     <color name="info">#4facfe</color>
@@ -37,7 +37,7 @@
     <!-- Input Colors -->
     <color name="input_background">#fafafa</color>
     <color name="input_border">#e0e0e0</color>
-    <color name="input_border_focused">#00bcd4</color>
+    <color name="input_border_focused">#00BCD4</color>
     
     <!-- Divider -->
     <color name="divider">#e0e0e0</color>
