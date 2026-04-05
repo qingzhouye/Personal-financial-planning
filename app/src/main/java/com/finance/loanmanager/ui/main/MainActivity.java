@@ -76,6 +76,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // 隐藏 ActionBar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+        
         setContentView(R.layout.activity_main);
         
         // 设置本月应还卡片背景为当前主题色渐变
@@ -339,6 +345,15 @@ public class MainActivity extends BaseActivity {
         TextView tvLabel = cardView.findViewById(R.id.tvStatLabel);
         tvValue.setText(value);
         tvLabel.setText(label);
+        
+        // 动态设置卡片背景为主题色
+        if (cardView instanceof androidx.cardview.widget.CardView) {
+            androidx.cardview.widget.CardView card = (androidx.cardview.widget.CardView) cardView;
+            int themeIndex = ThemeManager.getSavedTheme(this);
+            int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
+            card.setCardBackgroundColor(primaryColor);
+        }
+        
         grid.addView(cardView);
         return cardView;
     }

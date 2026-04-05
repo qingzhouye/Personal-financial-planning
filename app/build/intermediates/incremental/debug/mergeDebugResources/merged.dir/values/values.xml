@@ -6729,6 +6729,9 @@
         
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
+        
+        
+        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     <style name="Theme.LoanManager.Blue" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
@@ -6741,6 +6744,7 @@
         <item name="android:windowBackground">@drawable/gradient_background_blue</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     <style name="Theme.LoanManager.Green" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
@@ -6753,6 +6757,7 @@
         <item name="android:windowBackground">@drawable/gradient_background_green</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     <style name="Theme.LoanManager.NoActionBar" parent="Theme.LoanManager">
         <item name="windowActionBar">false</item>
@@ -6769,6 +6774,7 @@
         <item name="android:windowBackground">@drawable/gradient_background_orange</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     <style name="Theme.LoanManager.Purple" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
@@ -6781,6 +6787,7 @@
         <item name="android:windowBackground">@drawable/gradient_background_purple</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     <style name="Theme.LoanManager.Rose" parent="Theme.Material3.Light">
         <item name="windowActionBar">true</item>
@@ -6793,6 +6800,7 @@
         <item name="android:windowBackground">@drawable/gradient_background_rose</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     <style name="Theme.Material3.Dark" parent="Base.Theme.Material3.Dark"/>
     <style name="Theme.Material3.Dark.BottomSheetDialog" parent="Base.Theme.Material3.Dark.BottomSheetDialog"/>
@@ -7495,6 +7503,10 @@
         <item name="android:textSize">@dimen/text_title</item>
         <item name="android:textColor">@color/primary_dark</item>
         <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TransparentActionBar" parent="Widget.Material3.ActionBar.Solid">
+        <item name="background">@android:color/transparent</item>
+        <item name="elevation">0dp</item>
     </style>
     <style name="Widget.AppCompat.ActionBar" parent="Base.Widget.AppCompat.ActionBar">
     </style>

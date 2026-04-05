@@ -3,6 +3,7 @@ package com.finance.loanmanager.ui;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -52,16 +53,49 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 在子类setContentView之后调用
      */
     protected void applyBackground() {
-        if (backgroundManager.hasCustomBackground()) {
-            View rootView = findViewById(android.R.id.content);
-            if (rootView != null && rootView instanceof ViewGroup) {
-                ViewGroup contentView = (ViewGroup) rootView;
-                View mainView = contentView.getChildAt(0);
-                if (mainView != null) {
+        View rootView = findViewById(android.R.id.content);
+        if (rootView != null && rootView instanceof ViewGroup) {
+            ViewGroup contentView = (ViewGroup) rootView;
+            View mainView = contentView.getChildAt(0);
+            if (mainView != null) {
+                if (backgroundManager.hasCustomBackground()) {
                     setBackgroundImage(mainView);
+                } else {
+                    // 无自定义背景时，使用主题色渐变背景
+                    setThemeBackground(mainView);
                 }
             }
         }
+    }
+    
+    /**
+     * 设置主题色渐变背景
+     */
+    private void setThemeBackground(View view) {
+        int themeIndex = ThemeManager.getSavedTheme(this);
+        int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
+        int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
+        
+        // 创建浅色渐变背景（使用主题的浅色版本）
+        int lightColor = adjustColorBrightness(primaryColor, 1.4f);
+        int midColor = adjustColorBrightness(primaryColor, 1.2f);
+        
+        GradientDrawable gradient = new GradientDrawable(
+            GradientDrawable.Orientation.TL_BR,
+            new int[] { lightColor, midColor, primaryColor }
+        );
+        view.setBackground(gradient);
+    }
+    
+    /**
+     * 调整颜色亮度
+     */
+    private int adjustColorBrightness(int color, float factor) {
+        int a = (color >> 24) & 0xFF;
+        int r = Math.min(255, (int) (((color >> 16) & 0xFF) * factor));
+        int g = Math.min(255, (int) (((color >> 8) & 0xFF) * factor));
+        int b = Math.min(255, (int) ((color & 0xFF) * factor));
+        return (a << 24) | (r << 16) | (g << 8) | b;
     }
     
     /**
