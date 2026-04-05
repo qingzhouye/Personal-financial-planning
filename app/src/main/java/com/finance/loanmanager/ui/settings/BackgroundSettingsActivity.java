@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +24,15 @@ import com.bumptech.glide.Glide;
 import com.finance.loanmanager.R;
 import com.finance.loanmanager.ui.BaseActivity;
 import com.finance.loanmanager.util.BackgroundManager;
+import com.finance.loanmanager.util.ThemeManager;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.InputStream;
 
 /**
- * 背景设置Activity
- * 允许用户选择、裁切和预览自定义背景
+ * 背景与主题个性化设置 Activity
+ * 允许用户选择主题色调和自定义背景图片
  */
 public class BackgroundSettingsActivity extends BaseActivity {
     
@@ -41,6 +44,22 @@ public class BackgroundSettingsActivity extends BaseActivity {
     private Button btnSelectImage;
     private Button btnResetBackground;
     private View previewContainer;
+
+    // 主题色块容器
+    private LinearLayout themeItemCyan;
+    private LinearLayout themeItemBlue;
+    private LinearLayout themeItemOrange;
+    private LinearLayout themeItemPurple;
+    private LinearLayout themeItemGreen;
+    private LinearLayout themeItemRose;
+
+    // 主题勾选图标
+    private ImageView checkCyan;
+    private ImageView checkBlue;
+    private ImageView checkOrange;
+    private ImageView checkPurple;
+    private ImageView checkGreen;
+    private ImageView checkRose;
     
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     
@@ -53,7 +72,7 @@ public class BackgroundSettingsActivity extends BaseActivity {
         setContentView(R.layout.activity_background_settings);
         
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(R.string.background_settings);
+        getSupportActionBar().setTitle(R.string.personalization_settings);
         
         backgroundManager = new BackgroundManager(this);
         
@@ -69,6 +88,7 @@ public class BackgroundSettingsActivity extends BaseActivity {
     }
     
     private void initViews() {
+        // 背景相关
         ivPreview = findViewById(R.id.ivPreview);
         tvStatus = findViewById(R.id.tvStatus);
         btnSelectImage = findViewById(R.id.btnSelectImage);
@@ -77,6 +97,30 @@ public class BackgroundSettingsActivity extends BaseActivity {
         
         btnSelectImage.setOnClickListener(v -> selectImage());
         btnResetBackground.setOnClickListener(v -> confirmResetBackground());
+
+        // 主题色块
+        themeItemCyan   = findViewById(R.id.themeItemCyan);
+        themeItemBlue   = findViewById(R.id.themeItemBlue);
+        themeItemOrange = findViewById(R.id.themeItemOrange);
+        themeItemPurple = findViewById(R.id.themeItemPurple);
+        themeItemGreen  = findViewById(R.id.themeItemGreen);
+        themeItemRose   = findViewById(R.id.themeItemRose);
+
+        checkCyan   = findViewById(R.id.checkCyan);
+        checkBlue   = findViewById(R.id.checkBlue);
+        checkOrange = findViewById(R.id.checkOrange);
+        checkPurple = findViewById(R.id.checkPurple);
+        checkGreen  = findViewById(R.id.checkGreen);
+        checkRose   = findViewById(R.id.checkRose);
+
+        themeItemCyan.setOnClickListener(v -> applySelectedTheme(ThemeManager.THEME_CYAN));
+        themeItemBlue.setOnClickListener(v -> applySelectedTheme(ThemeManager.THEME_BLUE));
+        themeItemOrange.setOnClickListener(v -> applySelectedTheme(ThemeManager.THEME_ORANGE));
+        themeItemPurple.setOnClickListener(v -> applySelectedTheme(ThemeManager.THEME_PURPLE));
+        themeItemGreen.setOnClickListener(v -> applySelectedTheme(ThemeManager.THEME_GREEN));
+        themeItemRose.setOnClickListener(v -> applySelectedTheme(ThemeManager.THEME_ROSE));
+
+        updateThemeSelection();
     }
     
     private void setupLaunchers() {
@@ -110,6 +154,48 @@ public class BackgroundSettingsActivity extends BaseActivity {
             tvStatus.setText(R.string.no_custom_background);
             btnResetBackground.setVisibility(View.GONE);
         }
+    }
+
+    /**
+     * 应用用户选择的主题，保存后重迟 Activity 生效
+     */
+    private void applySelectedTheme(int themeIndex) {
+        int current = ThemeManager.getSavedTheme(this);
+        if (current == themeIndex) return; // 尚未改变，无需操作
+        ThemeManager.saveTheme(this, themeIndex);
+        // 重迟当前 Activity，使主题立即生效
+        recreate();
+    }
+
+    /**
+     * 更新主题选中状态：显示当前选中主题的勾选图标
+     */
+    private void updateThemeSelection() {
+        int selected = ThemeManager.getSavedTheme(this);
+        checkCyan.setVisibility(selected == ThemeManager.THEME_CYAN ? View.VISIBLE : View.GONE);
+        checkBlue.setVisibility(selected == ThemeManager.THEME_BLUE ? View.VISIBLE : View.GONE);
+        checkOrange.setVisibility(selected == ThemeManager.THEME_ORANGE ? View.VISIBLE : View.GONE);
+        checkPurple.setVisibility(selected == ThemeManager.THEME_PURPLE ? View.VISIBLE : View.GONE);
+        checkGreen.setVisibility(selected == ThemeManager.THEME_GREEN ? View.VISIBLE : View.GONE);
+        checkRose.setVisibility(selected == ThemeManager.THEME_ROSE ? View.VISIBLE : View.GONE);
+
+        // 选中的色块加粗边框高亮
+        highlightThemeItem(themeItemCyan, selected == ThemeManager.THEME_CYAN);
+        highlightThemeItem(themeItemBlue, selected == ThemeManager.THEME_BLUE);
+        highlightThemeItem(themeItemOrange, selected == ThemeManager.THEME_ORANGE);
+        highlightThemeItem(themeItemPurple, selected == ThemeManager.THEME_PURPLE);
+        highlightThemeItem(themeItemGreen, selected == ThemeManager.THEME_GREEN);
+        highlightThemeItem(themeItemRose, selected == ThemeManager.THEME_ROSE);
+    }
+
+    /**
+     * 高亮或取消高亮主题色块容器
+     */
+    private void highlightThemeItem(LinearLayout item, boolean selected) {
+        float scale = selected ? 1.1f : 1.0f;
+        item.setScaleX(scale);
+        item.setScaleY(scale);
+        item.setAlpha(selected ? 1.0f : 0.75f);
     }
     
     /**

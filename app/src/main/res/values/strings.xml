@@ -141,7 +141,7 @@
     <string name="version_info_load_failed">无法加载版本说明文件</string>
     
     <!-- Background Settings -->
-    <string name="background_settings">背景设置</string>
+    <string name="background_settings">背景图片</string>
     <string name="background_settings_desc">您可以自定义应用的背景图片。选择图片后，系统会自动裁切以适应屏幕尺寸。</string>
     <string name="no_custom_background">当前使用默认背景</string>
     <string name="custom_background_set">当前使用自定义背景</string>
@@ -155,4 +155,15 @@
     <string name="crop_background">裁切背景图片</string>
     <string name="supported_formats">支持的图片格式：JPEG、PNG、WebP、GIF、BMP</string>
     <string name="set_background">设置背景</string>
+
+    <!-- Personalization &amp; Theme -->
+    <string name="personalization_settings">个性化设置</string>
+    <string name="theme_settings">主题颜色</string>
+    <string name="theme_settings_desc">选择一个主题，改变整个应用的按钮颜色和色调。</string>
+    <string name="theme_cyan">青色</string>
+    <string name="theme_blue">深蓝</string>
+    <string name="theme_orange">暖橙</string>
+    <string name="theme_purple">紫色</string>
+    <string name="theme_green">深绿</string>
+    <string name="theme_rose">玫瑰</string>
 </resources>

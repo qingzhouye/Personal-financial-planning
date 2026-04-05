@@ -371,14 +371,14 @@ public class MainActivity extends BaseActivity {
     }
     
     /**
-     * 显示主菜单对话框（一级菜单：版本说明、数据管理、设置背景、添加贷款）
+     * 显示主菜单对话框（一级菜单：版本说明、数据管理、个性化设置、添加贷款）
      * 当应用有数据时，显示添加贷款选项
      */
     private void showMainMenu() {
         boolean hasData = !loansWithStatus.isEmpty();
         String[] items = hasData 
-                ? new String[]{"版本说明", "数据管理", "设置背景", "添加贷款"}
-                : new String[]{"版本说明", "数据管理", "设置背景"};
+                ? new String[]{"版本说明", "数据管理", "个性化设置", "添加贷款"}
+                : new String[]{"版本说明", "数据管理", "个性化设置"};
         
         new AlertDialog.Builder(this)
                 .setTitle("菜单")
@@ -388,7 +388,7 @@ public class MainActivity extends BaseActivity {
                     } else if (which == 1) {
                         showDataManagementMenu();
                     } else if (which == 2) {
-                        // 设置背景
+                        // 个性化设置（主题 + 背景）
                         Intent intent = new Intent(this, BackgroundSettingsActivity.class);
                         startActivity(intent);
                     } else if (which == 3 && hasData) {

@@ -86,7 +86,7 @@
         
         <activity
             android:name=".ui.settings.BackgroundSettingsActivity"
-            android:label="@string/background_settings"
+            android:label="@string/personalization_settings"
             android:parentActivityName=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize" />
         

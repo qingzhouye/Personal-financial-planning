@@ -232,7 +232,7 @@ ADDED from C:\Users\Administrator\Documents\GitHub\Personal-financial-planning\a
 	android:parentActivityName
 		ADDED from C:\Users\Administrator\Documents\GitHub\Personal-financial-planning\app\src\main\AndroidManifest.xml:90:13-63
 	android:label
-		ADDED from C:\Users\Administrator\Documents\GitHub\Personal-financial-planning\app\src\main\AndroidManifest.xml:89:13-56
+		ADDED from C:\Users\Administrator\Documents\GitHub\Personal-financial-planning\app\src\main\AndroidManifest.xml:89:13-61
 	android:configChanges
 		ADDED from C:\Users\Administrator\Documents\GitHub\Personal-financial-planning\app\src\main\AndroidManifest.xml:91:13-59
 	android:name

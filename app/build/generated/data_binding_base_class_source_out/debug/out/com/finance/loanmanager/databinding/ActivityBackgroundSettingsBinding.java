@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -29,23 +31,106 @@ public final class ActivityBackgroundSettingsBinding implements ViewBinding {
   public final Button btnSelectImage;
 
   @NonNull
+  public final ImageView checkBlue;
+
+  @NonNull
+  public final ImageView checkCyan;
+
+  @NonNull
+  public final ImageView checkGreen;
+
+  @NonNull
+  public final ImageView checkOrange;
+
+  @NonNull
+  public final ImageView checkPurple;
+
+  @NonNull
+  public final ImageView checkRose;
+
+  @NonNull
+  public final View colorCircleBlue;
+
+  @NonNull
+  public final View colorCircleCyan;
+
+  @NonNull
+  public final View colorCircleGreen;
+
+  @NonNull
+  public final View colorCircleOrange;
+
+  @NonNull
+  public final View colorCirclePurple;
+
+  @NonNull
+  public final View colorCircleRose;
+
+  @NonNull
+  public final GridLayout gridThemes;
+
+  @NonNull
   public final ImageView ivPreview;
 
   @NonNull
   public final CardView previewContainer;
 
   @NonNull
+  public final LinearLayout themeItemBlue;
+
+  @NonNull
+  public final LinearLayout themeItemCyan;
+
+  @NonNull
+  public final LinearLayout themeItemGreen;
+
+  @NonNull
+  public final LinearLayout themeItemOrange;
+
+  @NonNull
+  public final LinearLayout themeItemPurple;
+
+  @NonNull
+  public final LinearLayout themeItemRose;
+
+  @NonNull
   public final TextView tvStatus;
 
   private ActivityBackgroundSettingsBinding(@NonNull ScrollView rootView,
       @NonNull Button btnResetBackground, @NonNull Button btnSelectImage,
-      @NonNull ImageView ivPreview, @NonNull CardView previewContainer,
-      @NonNull TextView tvStatus) {
+      @NonNull ImageView checkBlue, @NonNull ImageView checkCyan, @NonNull ImageView checkGreen,
+      @NonNull ImageView checkOrange, @NonNull ImageView checkPurple, @NonNull ImageView checkRose,
+      @NonNull View colorCircleBlue, @NonNull View colorCircleCyan, @NonNull View colorCircleGreen,
+      @NonNull View colorCircleOrange, @NonNull View colorCirclePurple,
+      @NonNull View colorCircleRose, @NonNull GridLayout gridThemes, @NonNull ImageView ivPreview,
+      @NonNull CardView previewContainer, @NonNull LinearLayout themeItemBlue,
+      @NonNull LinearLayout themeItemCyan, @NonNull LinearLayout themeItemGreen,
+      @NonNull LinearLayout themeItemOrange, @NonNull LinearLayout themeItemPurple,
+      @NonNull LinearLayout themeItemRose, @NonNull TextView tvStatus) {
     this.rootView = rootView;
     this.btnResetBackground = btnResetBackground;
     this.btnSelectImage = btnSelectImage;
+    this.checkBlue = checkBlue;
+    this.checkCyan = checkCyan;
+    this.checkGreen = checkGreen;
+    this.checkOrange = checkOrange;
+    this.checkPurple = checkPurple;
+    this.checkRose = checkRose;
+    this.colorCircleBlue = colorCircleBlue;
+    this.colorCircleCyan = colorCircleCyan;
+    this.colorCircleGreen = colorCircleGreen;
+    this.colorCircleOrange = colorCircleOrange;
+    this.colorCirclePurple = colorCirclePurple;
+    this.colorCircleRose = colorCircleRose;
+    this.gridThemes = gridThemes;
     this.ivPreview = ivPreview;
     this.previewContainer = previewContainer;
+    this.themeItemBlue = themeItemBlue;
+    this.themeItemCyan = themeItemCyan;
+    this.themeItemGreen = themeItemGreen;
+    this.themeItemOrange = themeItemOrange;
+    this.themeItemPurple = themeItemPurple;
+    this.themeItemRose = themeItemRose;
     this.tvStatus = tvStatus;
   }
 
@@ -88,6 +173,84 @@ public final class ActivityBackgroundSettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.checkBlue;
+      ImageView checkBlue = ViewBindings.findChildViewById(rootView, id);
+      if (checkBlue == null) {
+        break missingId;
+      }
+
+      id = R.id.checkCyan;
+      ImageView checkCyan = ViewBindings.findChildViewById(rootView, id);
+      if (checkCyan == null) {
+        break missingId;
+      }
+
+      id = R.id.checkGreen;
+      ImageView checkGreen = ViewBindings.findChildViewById(rootView, id);
+      if (checkGreen == null) {
+        break missingId;
+      }
+
+      id = R.id.checkOrange;
+      ImageView checkOrange = ViewBindings.findChildViewById(rootView, id);
+      if (checkOrange == null) {
+        break missingId;
+      }
+
+      id = R.id.checkPurple;
+      ImageView checkPurple = ViewBindings.findChildViewById(rootView, id);
+      if (checkPurple == null) {
+        break missingId;
+      }
+
+      id = R.id.checkRose;
+      ImageView checkRose = ViewBindings.findChildViewById(rootView, id);
+      if (checkRose == null) {
+        break missingId;
+      }
+
+      id = R.id.colorCircleBlue;
+      View colorCircleBlue = ViewBindings.findChildViewById(rootView, id);
+      if (colorCircleBlue == null) {
+        break missingId;
+      }
+
+      id = R.id.colorCircleCyan;
+      View colorCircleCyan = ViewBindings.findChildViewById(rootView, id);
+      if (colorCircleCyan == null) {
+        break missingId;
+      }
+
+      id = R.id.colorCircleGreen;
+      View colorCircleGreen = ViewBindings.findChildViewById(rootView, id);
+      if (colorCircleGreen == null) {
+        break missingId;
+      }
+
+      id = R.id.colorCircleOrange;
+      View colorCircleOrange = ViewBindings.findChildViewById(rootView, id);
+      if (colorCircleOrange == null) {
+        break missingId;
+      }
+
+      id = R.id.colorCirclePurple;
+      View colorCirclePurple = ViewBindings.findChildViewById(rootView, id);
+      if (colorCirclePurple == null) {
+        break missingId;
+      }
+
+      id = R.id.colorCircleRose;
+      View colorCircleRose = ViewBindings.findChildViewById(rootView, id);
+      if (colorCircleRose == null) {
+        break missingId;
+      }
+
+      id = R.id.gridThemes;
+      GridLayout gridThemes = ViewBindings.findChildViewById(rootView, id);
+      if (gridThemes == null) {
+        break missingId;
+      }
+
       id = R.id.ivPreview;
       ImageView ivPreview = ViewBindings.findChildViewById(rootView, id);
       if (ivPreview == null) {
@@ -100,6 +263,42 @@ public final class ActivityBackgroundSettingsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.themeItemBlue;
+      LinearLayout themeItemBlue = ViewBindings.findChildViewById(rootView, id);
+      if (themeItemBlue == null) {
+        break missingId;
+      }
+
+      id = R.id.themeItemCyan;
+      LinearLayout themeItemCyan = ViewBindings.findChildViewById(rootView, id);
+      if (themeItemCyan == null) {
+        break missingId;
+      }
+
+      id = R.id.themeItemGreen;
+      LinearLayout themeItemGreen = ViewBindings.findChildViewById(rootView, id);
+      if (themeItemGreen == null) {
+        break missingId;
+      }
+
+      id = R.id.themeItemOrange;
+      LinearLayout themeItemOrange = ViewBindings.findChildViewById(rootView, id);
+      if (themeItemOrange == null) {
+        break missingId;
+      }
+
+      id = R.id.themeItemPurple;
+      LinearLayout themeItemPurple = ViewBindings.findChildViewById(rootView, id);
+      if (themeItemPurple == null) {
+        break missingId;
+      }
+
+      id = R.id.themeItemRose;
+      LinearLayout themeItemRose = ViewBindings.findChildViewById(rootView, id);
+      if (themeItemRose == null) {
+        break missingId;
+      }
+
       id = R.id.tvStatus;
       TextView tvStatus = ViewBindings.findChildViewById(rootView, id);
       if (tvStatus == null) {
@@ -107,7 +306,10 @@ public final class ActivityBackgroundSettingsBinding implements ViewBinding {
       }
 
       return new ActivityBackgroundSettingsBinding((ScrollView) rootView, btnResetBackground,
-          btnSelectImage, ivPreview, previewContainer, tvStatus);
+          btnSelectImage, checkBlue, checkCyan, checkGreen, checkOrange, checkPurple, checkRose,
+          colorCircleBlue, colorCircleCyan, colorCircleGreen, colorCircleOrange, colorCirclePurple,
+          colorCircleRose, gridThemes, ivPreview, previewContainer, themeItemBlue, themeItemCyan,
+          themeItemGreen, themeItemOrange, themeItemPurple, themeItemRose, tvStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

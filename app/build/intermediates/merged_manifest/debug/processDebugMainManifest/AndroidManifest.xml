@@ -98,7 +98,7 @@
         <activity
             android:name="com.finance.loanmanager.ui.settings.BackgroundSettingsActivity"
             android:configChanges="orientation|screenSize"
-            android:label="@string/background_settings"
+            android:label="@string/personalization_settings"
             android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
 
         <!-- UCrop Activity -->

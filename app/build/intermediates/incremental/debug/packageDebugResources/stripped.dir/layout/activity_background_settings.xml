@@ -11,6 +11,268 @@
         android:orientation="vertical"
         android:padding="@dimen/spacing_lg">
 
+        <!-- ===== 主题颜色分区 ===== -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/theme_settings"
+            android:textSize="@dimen/text_lg"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="@dimen/spacing_md" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/theme_settings_desc"
+            android:textSize="@dimen/text_sm"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="@dimen/spacing_md" />
+
+        <!-- 主题色块 GridLayout，3列2行 -->
+        <GridLayout
+            android:id="@+id/gridThemes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:layout_marginBottom="@dimen/spacing_lg">
+
+            <!-- 青色（默认）-->
+            <LinearLayout
+                android:id="@+id/themeItemCyan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_sm"
+                android:clickable="true"
+                android:focusable="true">
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+                    <View
+                        android:id="@+id/colorCircleCyan"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/theme_color_circle_cyan" />
+                    <ImageView
+                        android:id="@+id/checkCyan"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:visibility="gone" />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_cyan"
+                    android:textSize="@dimen/text_xs"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- 深蓝商务 -->
+            <LinearLayout
+                android:id="@+id/themeItemBlue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_sm"
+                android:clickable="true"
+                android:focusable="true">
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+                    <View
+                        android:id="@+id/colorCircleBlue"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/theme_color_circle_blue" />
+                    <ImageView
+                        android:id="@+id/checkBlue"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:visibility="gone" />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_blue"
+                    android:textSize="@dimen/text_xs"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- 暖橙活力 -->
+            <LinearLayout
+                android:id="@+id/themeItemOrange"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_sm"
+                android:clickable="true"
+                android:focusable="true">
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+                    <View
+                        android:id="@+id/colorCircleOrange"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/theme_color_circle_orange" />
+                    <ImageView
+                        android:id="@+id/checkOrange"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:visibility="gone" />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_orange"
+                    android:textSize="@dimen/text_xs"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- 紫色优雅 -->
+            <LinearLayout
+                android:id="@+id/themeItemPurple"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_sm"
+                android:clickable="true"
+                android:focusable="true">
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+                    <View
+                        android:id="@+id/colorCirclePurple"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/theme_color_circle_purple" />
+                    <ImageView
+                        android:id="@+id/checkPurple"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:visibility="gone" />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_purple"
+                    android:textSize="@dimen/text_xs"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- 深绿自然 -->
+            <LinearLayout
+                android:id="@+id/themeItemGreen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_sm"
+                android:clickable="true"
+                android:focusable="true">
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+                    <View
+                        android:id="@+id/colorCircleGreen"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/theme_color_circle_green" />
+                    <ImageView
+                        android:id="@+id/checkGreen"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:visibility="gone" />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_green"
+                    android:textSize="@dimen/text_xs"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+            <!-- 玫瑰粉 -->
+            <LinearLayout
+                android:id="@+id/themeItemRose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/spacing_sm"
+                android:clickable="true"
+                android:focusable="true">
+                <FrameLayout
+                    android:layout_width="48dp"
+                    android:layout_height="48dp">
+                    <View
+                        android:id="@+id/colorCircleRose"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/theme_color_circle_rose" />
+                    <ImageView
+                        android:id="@+id/checkRose"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/checkbox_on_background"
+                        android:visibility="gone" />
+                </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/theme_rose"
+                    android:textSize="@dimen/text_xs"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+
+        </GridLayout>
+
+        <!-- 分隔线 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            android:layout_marginBottom="@dimen/spacing_lg" />
+
+        <!-- ===== 背景图片分区标题 ===== -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/background_settings"
+            android:textSize="@dimen/text_lg"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="@dimen/spacing_md" />
+
         <!-- 说明文字 -->
         <TextView
             android:layout_width="match_parent"

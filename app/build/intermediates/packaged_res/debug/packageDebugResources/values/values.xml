@@ -75,7 +75,7 @@
     <string name="background_reset_success">已恢复默认背景</string>
     <string name="background_set_failed">背景设置失败：%s</string>
     <string name="background_set_success">背景设置成功！</string>
-    <string name="background_settings">背景设置</string>
+    <string name="background_settings">背景图片</string>
     <string name="background_settings_desc">您可以自定义应用的背景图片。选择图片后，系统会自动裁切以适应屏幕尺寸。</string>
     <string name="backup_date">备份时间：%s</string>
     <string name="backup_deleted">备份文件已删除</string>
@@ -160,6 +160,7 @@
     <string name="payment_date">还款日期</string>
     <string name="payment_schedule">还款计划表</string>
     <string name="payment_success">还款成功！</string>
+    <string name="personalization_settings">个性化设置</string>
     <string name="principal">贷款本金（元）</string>
     <string name="principal_amount">本金</string>
     <string name="progress">还款进度</string>
@@ -182,6 +183,14 @@
     <string name="set_background">设置背景</string>
     <string name="start_date">开始日期</string>
     <string name="supported_formats">支持的图片格式：JPEG、PNG、WebP、GIF、BMP</string>
+    <string name="theme_blue">深蓝</string>
+    <string name="theme_cyan">青色</string>
+    <string name="theme_green">深绿</string>
+    <string name="theme_orange">暖橙</string>
+    <string name="theme_purple">紫色</string>
+    <string name="theme_rose">玫瑰</string>
+    <string name="theme_settings">主题颜色</string>
+    <string name="theme_settings_desc">选择一个主题，改变整个应用的按钮颜色和色调。</string>
     <string name="total_amount">贷款总额</string>
     <string name="total_loans">贷款总数</string>
     <string name="total_paid">已还金额</string>
@@ -273,9 +282,69 @@
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
+    <style name="Theme.LoanManager.Blue" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#1565C0</item>
+        <item name="colorPrimaryDark">#0D47A1</item>
+        <item name="colorAccent">#42A5F5</item>
+        <item name="android:statusBarColor">#0D47A1</item>
+        <item name="android:navigationBarColor">#0D47A1</item>
+        <item name="android:windowBackground">@drawable/gradient_background_blue</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.LoanManager.Green" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#2E7D32</item>
+        <item name="colorPrimaryDark">#1B5E20</item>
+        <item name="colorAccent">#66BB6A</item>
+        <item name="android:statusBarColor">#1B5E20</item>
+        <item name="android:navigationBarColor">#1B5E20</item>
+        <item name="android:windowBackground">@drawable/gradient_background_green</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
     <style name="Theme.LoanManager.NoActionBar" parent="Theme.LoanManager">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.LoanManager.Orange" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#E65100</item>
+        <item name="colorPrimaryDark">#BF360C</item>
+        <item name="colorAccent">#FF9800</item>
+        <item name="android:statusBarColor">#BF360C</item>
+        <item name="android:navigationBarColor">#BF360C</item>
+        <item name="android:windowBackground">@drawable/gradient_background_orange</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.LoanManager.Purple" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#6A1B9A</item>
+        <item name="colorPrimaryDark">#4A148C</item>
+        <item name="colorAccent">#CE93D8</item>
+        <item name="android:statusBarColor">#4A148C</item>
+        <item name="android:navigationBarColor">#4A148C</item>
+        <item name="android:windowBackground">@drawable/gradient_background_purple</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.LoanManager.Rose" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#AD1457</item>
+        <item name="colorPrimaryDark">#880E4F</item>
+        <item name="colorAccent">#F48FB1</item>
+        <item name="android:statusBarColor">#880E4F</item>
+        <item name="android:navigationBarColor">#880E4F</item>
+        <item name="android:windowBackground">@drawable/gradient_background_rose</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
     <style name="TitleText">
         <item name="android:textSize">@dimen/text_title</item>

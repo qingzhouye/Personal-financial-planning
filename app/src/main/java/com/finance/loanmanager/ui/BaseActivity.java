@@ -19,6 +19,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.finance.loanmanager.util.BackgroundManager;
+import com.finance.loanmanager.util.ThemeManager;
 
 /**
  * Activity基类，负责处理自定义背景
@@ -31,6 +32,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // 必须在 super.onCreate() 之前应用主题，确保颜色在布局渲染前生效
+        ThemeManager.applyTheme(this);
+        
         // 在setContentView之前设置主题背景
         backgroundManager = new BackgroundManager(this);
         
