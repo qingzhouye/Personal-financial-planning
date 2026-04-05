@@ -21,9 +21,6 @@
         <!-- Text colors -->
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
-        
-        <!-- Transparent ActionBar -->
-        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
     
     <!-- Deep Blue Business Theme -->
@@ -38,7 +35,6 @@
         <item name="android:windowBackground">@drawable/gradient_background_blue</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
-        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
 
     <!-- Warm Orange Theme -->
@@ -53,7 +49,6 @@
         <item name="android:windowBackground">@drawable/gradient_background_orange</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
-        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
 
     <!-- Purple Elegant Theme -->
@@ -68,7 +63,6 @@
         <item name="android:windowBackground">@drawable/gradient_background_purple</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
-        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
 
     <!-- Deep Green Nature Theme -->
@@ -83,7 +77,6 @@
         <item name="android:windowBackground">@drawable/gradient_background_green</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
-        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
 
     <!-- Rose Pink Theme -->
@@ -98,19 +91,12 @@
         <item name="android:windowBackground">@drawable/gradient_background_rose</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
-        <item name="actionBarStyle">@style/TransparentActionBar</item>
     </style>
 
     <!-- Theme without ActionBar -->
     <style name="Theme.LoanManager.NoActionBar" parent="Theme.LoanManager">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-    </style>
-    
-    <!-- Transparent ActionBar Style -->
-    <style name="TransparentActionBar" parent="Widget.Material3.ActionBar.Solid">
-        <item name="background">@android:color/transparent</item>
-        <item name="elevation">0dp</item>
     </style>
     
     <!-- Card Style -->

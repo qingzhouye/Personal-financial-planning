@@ -357,5 +357,4 @@ style Theme.LoanManager.Orange
 style Theme.LoanManager.Purple
 style Theme.LoanManager.Rose
 style TitleText
-style TransparentActionBar
 xml file_paths
