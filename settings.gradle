@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LoanManager"
+rootProject.name = "FreeMe"
 include ':app'

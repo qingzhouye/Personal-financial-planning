@@ -1,5 +1,5 @@
 /**
- * 贷款管理器 - 前端数据管理和计算逻辑
+ * FreeMe - Front-end data management and calculation logic
  * 将 Flask 后端的 Python 逻辑移植到 JavaScript
  */
 

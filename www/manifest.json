@@ -1,7 +1,7 @@
 {
-  "name": "个人财务规划",
-  "short_name": "个人财务规划",
-  "description": "个人财务规划工具，帮助您记录和管理贷款",
+  "name": "FreeMe",
+  "short_name": "FreeMe",
+  "description": "Personal financial management tool for loan tracking",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#e0f7fa",
