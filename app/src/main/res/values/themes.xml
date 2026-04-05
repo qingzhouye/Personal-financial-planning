@@ -116,7 +116,7 @@
     
     <!-- Button Styles -->
     <style name="PrimaryButton" parent="Widget.Material3.Button">
-        <item name="android:backgroundTint">@color/primary</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
         <item name="android:textColor">@color/text_white</item>
         <item name="cornerRadius">25dp</item>
         <item name="android:paddingStart">32dp</item>
@@ -140,15 +140,15 @@
     </style>
     
     <style name="SecondaryButton" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="strokeColor">@color/primary</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="cornerRadius">@dimen/spacing_sm</item>
         <item name="android:minHeight">@dimen/button_height</item>
     </style>
     
     <!-- Input Style -->
     <style name="InputStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/input_border</item>
+        <item name="boxStrokeColor">?attr/colorPrimary</item>
         <item name="boxStrokeWidth">2dp</item>
         <item name="boxCornerRadiusTopStart">@dimen/input_corner_radius</item>
         <item name="boxCornerRadiusTopEnd">@dimen/input_corner_radius</item>
