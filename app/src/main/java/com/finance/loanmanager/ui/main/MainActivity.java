@@ -184,13 +184,14 @@ public class MainActivity extends BaseActivity {
         CardView cardCurrentMonth = findViewById(R.id.cardCurrentMonth);
         if (cardCurrentMonth != null) {
             int themeIndex = ThemeManager.getSavedTheme(this);
-            int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
-            int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
+            
+            // 获取主题对应的渐变颜色数组
+            int[] gradientColors = getThemeGradientColors(themeIndex);
             
             // 创建渐变背景
             GradientDrawable gradient = new GradientDrawable(
                 GradientDrawable.Orientation.TL_BR,
-                new int[] { primaryColor, darkColor }
+                gradientColors
             );
             gradient.setCornerRadius(24f); // 12dp * 2 for better quality
             
@@ -199,6 +200,27 @@ public class MainActivity extends BaseActivity {
             if (cardContent != null) {
                 cardContent.setBackground(gradient);
             }
+        }
+    }
+    
+    /**
+     * 获取主题对应的渐变颜色数组
+     */
+    private int[] getThemeGradientColors(int themeIndex) {
+        switch (themeIndex) {
+            case ThemeManager.THEME_BLUE:
+                return new int[] { 0xFF42A5F5, 0xFF90CAF9, 0xFFE3F2FD }; // 深蓝渐变
+            case ThemeManager.THEME_ORANGE:
+                return new int[] { 0xFFFFA726, 0xFFFFCC80, 0xFFFFF3E0 }; // 橙色渐变
+            case ThemeManager.THEME_PURPLE:
+                return new int[] { 0xFFAB47BC, 0xFFCE93D8, 0xFFF3E5F5 }; // 紫色渐变
+            case ThemeManager.THEME_GREEN:
+                return new int[] { 0xFF66BB6A, 0xFFA5D6A7, 0xFFE8F5E9 }; // 绿色渐变
+            case ThemeManager.THEME_ROSE:
+                return new int[] { 0xFFEC407A, 0xFFF48FB1, 0xFFFCE4EC }; // 玫瑰渐变
+            case ThemeManager.THEME_CYAN:
+            default:
+                return new int[] { 0xFF4DD0E1, 0xFF80DEEA, 0xFFE0F7FA }; // 青色渐变
         }
     }
 
@@ -346,12 +368,19 @@ public class MainActivity extends BaseActivity {
         tvValue.setText(value);
         tvLabel.setText(label);
         
-        // 动态设置卡片背景为主题色
+        // 动态设置卡片背景为主题色渐变
         if (cardView instanceof androidx.cardview.widget.CardView) {
             androidx.cardview.widget.CardView card = (androidx.cardview.widget.CardView) cardView;
             int themeIndex = ThemeManager.getSavedTheme(this);
-            int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
-            card.setCardBackgroundColor(primaryColor);
+            int[] gradientColors = getThemeGradientColors(themeIndex);
+            
+            // 创建渐变背景
+            GradientDrawable gradient = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                gradientColors
+            );
+            gradient.setCornerRadius(16f); // 8dp * 2 for better quality
+            card.setBackground(gradient);
         }
         
         grid.addView(cardView);

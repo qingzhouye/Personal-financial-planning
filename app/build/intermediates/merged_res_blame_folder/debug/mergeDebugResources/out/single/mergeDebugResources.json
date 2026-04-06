@@ -28,10 +28,6 @@
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_orange.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_orange.xml"
-    },
-    {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_item_stat_card.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\item_stat_card.xml"
     },
@@ -56,10 +52,6 @@
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_background.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_rose.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_rose.xml"
-    },
-    {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_item_loan.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\item_loan.xml"
     },
@@ -70,6 +62,10 @@
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_monthly_total.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_monthly_total.xml"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_primary.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_primary.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_green.xml.flat",
@@ -86,10 +82,6 @@
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_blue.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_blue.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_cyan.xml.flat",
@@ -118,14 +110,6 @@
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xhdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_purple.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_purple.xml"
-    },
-    {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_cyan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_cyan.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_background_purple.xml.flat",
@@ -174,10 +158,6 @@
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xxxhdpi\\ic_launcher_round.png"
-    },
-    {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_green.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_green.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_item_monthly.xml.flat",

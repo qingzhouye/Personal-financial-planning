@@ -73,29 +73,34 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     private void setThemeBackground(View view) {
         int themeIndex = ThemeManager.getSavedTheme(this);
-        int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
-        int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
-        
-        // 创建浅色渐变背景（使用主题的浅色版本）
-        int lightColor = adjustColorBrightness(primaryColor, 1.4f);
-        int midColor = adjustColorBrightness(primaryColor, 1.2f);
+        int[] gradientColors = getThemeGradientColors(themeIndex);
         
         GradientDrawable gradient = new GradientDrawable(
             GradientDrawable.Orientation.TL_BR,
-            new int[] { lightColor, midColor, primaryColor }
+            gradientColors
         );
         view.setBackground(gradient);
     }
     
     /**
-     * 调整颜色亮度
+     * 获取主题对应的渐变颜色数组
      */
-    private int adjustColorBrightness(int color, float factor) {
-        int a = (color >> 24) & 0xFF;
-        int r = Math.min(255, (int) (((color >> 16) & 0xFF) * factor));
-        int g = Math.min(255, (int) (((color >> 8) & 0xFF) * factor));
-        int b = Math.min(255, (int) ((color & 0xFF) * factor));
-        return (a << 24) | (r << 16) | (g << 8) | b;
+    private int[] getThemeGradientColors(int themeIndex) {
+        switch (themeIndex) {
+            case ThemeManager.THEME_BLUE:
+                return new int[] { 0xFF42A5F5, 0xFF90CAF9, 0xFFE3F2FD }; // 深蓝渐变
+            case ThemeManager.THEME_ORANGE:
+                return new int[] { 0xFFFFA726, 0xFFFFCC80, 0xFFFFF3E0 }; // 橙色渐变
+            case ThemeManager.THEME_PURPLE:
+                return new int[] { 0xFFAB47BC, 0xFFCE93D8, 0xFFF3E5F5 }; // 紫色渐变
+            case ThemeManager.THEME_GREEN:
+                return new int[] { 0xFF66BB6A, 0xFFA5D6A7, 0xFFE8F5E9 }; // 绿色渐变
+            case ThemeManager.THEME_ROSE:
+                return new int[] { 0xFFEC407A, 0xFFF48FB1, 0xFFFCE4EC }; // 玫瑰渐变
+            case ThemeManager.THEME_CYAN:
+            default:
+                return new int[] { 0xFF4DD0E1, 0xFF80DEEA, 0xFFE0F7FA }; // 青色渐变
+        }
     }
     
     /**
