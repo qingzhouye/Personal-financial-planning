@@ -179,4 +179,18 @@
         <item name="android:textSize">@dimen/text_sm</item>
         <item name="android:textColor">@color/semi_transparent_white</item>
     </style>
+    
+    <!-- UCrop Activity Theme - 适配 Android 16 Edge-to-Edge -->
+    <style name="UCropTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <!-- 禁用 Edge-to-Edge，使用传统窗口适配 -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <!-- 状态栏和导航栏颜色 -->
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+    </style>
 </resources>

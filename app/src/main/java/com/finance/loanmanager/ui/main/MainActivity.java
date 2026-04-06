@@ -100,6 +100,10 @@ public class MainActivity extends BaseActivity {
             repository = new LoanRepository(getApplication());
             backupManager = new BackupManager(this);
             executorService = Executors.newSingleThreadExecutor();
+            
+            // 初始化当前主题标记
+            lastKnownTheme = ThemeManager.getSavedTheme(this);
+            
             initViews();
             setupListeners();
             observeData();
@@ -174,7 +178,53 @@ public class MainActivity extends BaseActivity {
         super.onResume();
         // 重新设置卡片背景（主题可能已更改）
         setupCurrentMonthCardBackground();
+        // 刷新按钮和统计卡片背景
+        refreshThemeDependentViews();
         refreshData();
+    }
+    
+    /**
+     * 刷新依赖主题颜色的视图
+     */
+    private void refreshThemeDependentViews() {
+        // 刷新"查看每月总还款金额"按钮背景
+        if (btnViewMonthlyTotal != null) {
+            btnViewMonthlyTotal.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
+                getResources().getColor(R.color.primary, getTheme())));
+        }
+        
+        // 刷新添加贷款按钮背景
+        if (btnAddLoan != null) {
+            btnAddLoan.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
+                getResources().getColor(R.color.primary, getTheme())));
+        }
+        
+        // 刷新查看贷款按钮背景
+        if (btnViewLoans != null) {
+            btnViewLoans.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
+                getResources().getColor(R.color.primary, getTheme())));
+        }
+        
+        // 刷新标题栏文字颜色
+        TextView titleView = findViewById(R.id.tvCurrentDate);
+        if (titleView != null) {
+            // 重新加载整个UI以应用新主题
+            recreateIfThemeChanged();
+        }
+    }
+    
+    private int lastKnownTheme = -1;
+    
+    /**
+     * 如果主题发生变化，重新创建Activity
+     */
+    private void recreateIfThemeChanged() {
+        int currentTheme = ThemeManager.getSavedTheme(this);
+        if (lastKnownTheme != -1 && lastKnownTheme != currentTheme) {
+            // 主题发生变化，重新创建
+            recreate();
+        }
+        lastKnownTheme = currentTheme;
     }
     
     /**

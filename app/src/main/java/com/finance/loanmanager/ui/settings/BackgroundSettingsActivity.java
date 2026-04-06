@@ -175,8 +175,42 @@ public class BackgroundSettingsActivity extends BaseActivity {
         int current = ThemeManager.getSavedTheme(this);
         if (current == themeIndex) return; // 尚未改变，无需操作
         ThemeManager.saveTheme(this, themeIndex);
-        // 重迟当前 Activity，使主题立即生效
+        
+        // 立即更新状态栏颜色
+        updateStatusBarColor(themeIndex);
+        
+        // 重迟当前 Activity，使主题完全生效
         recreate();
+    }
+    
+    /**
+     * 立即更新状态栏颜色
+     */
+    private void updateStatusBarColor(int themeIndex) {
+        int statusBarColor;
+        switch (themeIndex) {
+            case ThemeManager.THEME_BLUE:
+                statusBarColor = 0xFF1565C0;
+                break;
+            case ThemeManager.THEME_ORANGE:
+                statusBarColor = 0xFFE65100;
+                break;
+            case ThemeManager.THEME_PURPLE:
+                statusBarColor = 0xFF7B1FA2;
+                break;
+            case ThemeManager.THEME_GREEN:
+                statusBarColor = 0xFF388E3C;
+                break;
+            case ThemeManager.THEME_ROSE:
+                statusBarColor = 0xFFAD1457;
+                break;
+            case ThemeManager.THEME_CYAN:
+            default:
+                statusBarColor = 0xFF00838F;
+                break;
+        }
+        getWindow().setStatusBarColor(statusBarColor);
+        getWindow().setNavigationBarColor(statusBarColor);
     }
 
     /**
@@ -254,6 +288,9 @@ public class BackgroundSettingsActivity extends BaseActivity {
         options.setStatusBarColor(getResources().getColor(R.color.primary_dark, null));
         options.setToolbarColor(getResources().getColor(R.color.primary, null));
         options.setActiveControlsWidgetColor(getResources().getColor(R.color.accent, null));
+        
+        // Android 16 Edge-to-Edge 适配：禁用裁切视图的 Edge-to-Edge，避免按钮被导航栏遮挡
+        options.setRootViewBackgroundColor(getResources().getColor(R.color.background_start, null));
         
         UCrop.of(sourceUri, destinationUri)
             .withAspectRatio(aspectRatioX, aspectRatioY)
