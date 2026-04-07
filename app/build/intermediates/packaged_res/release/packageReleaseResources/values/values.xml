@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="accent">#00bcd4</color>
-    <color name="background_end">#80deea</color>
-    <color name="background_mid">#b2ebf2</color>
-    <color name="background_start">#e0f7fa</color>
+    <color name="accent">#00BCD4</color>
+    <color name="background_end">#4DD0E1</color>
+    <color name="background_mid">#80DEEA</color>
+    <color name="background_start">#E0F7FA</color>
     <color name="card_background">#ffffff</color>
     <color name="card_background_alt">#f5f7fa</color>
+    <color name="card_background_transparent">#40000000</color>
     <color name="danger">#eb3349</color>
     <color name="divider">#e0e0e0</color>
     <color name="info">#4facfe</color>
     <color name="input_background">#fafafa</color>
     <color name="input_border">#e0e0e0</color>
-    <color name="input_border_focused">#00bcd4</color>
+    <color name="input_border_focused">#00BCD4</color>
     <color name="loan_card_end">#c3cfe2</color>
     <color name="loan_card_start">#f5f7fa</color>
     <color name="loan_due_today_border">#ff9800</color>
     <color name="loan_paid_off_end">#96e6a1</color>
     <color name="loan_paid_off_start">#d4fc79</color>
-    <color name="primary">#00838f</color>
-    <color name="primary_dark">#006064</color>
-    <color name="primary_light">#4dd0e1</color>
+    <color name="primary">#00ACC1</color>
+    <color name="primary_dark">#00838F</color>
+    <color name="primary_light">#4DD0E1</color>
     <color name="semi_transparent_white">#80ffffff</color>
-    <color name="success">#4caf50</color>
+    <color name="success">#4CAF50</color>
     <color name="success_light">#d4fc79</color>
     <color name="text_hint">#999999</color>
     <color name="text_primary">#333333</color>
     <color name="text_secondary">#666666</color>
     <color name="text_white">#ffffff</color>
+    <color name="text_white_bold">#FFFFFF</color>
     <color name="transparent">#00000000</color>
-    <color name="warning">#ff9800</color>
+    <color name="warning">#FF9800</color>
     <color name="warning_light">#fff3e0</color>
     <dimen name="button_corner_radius">22dp</dimen>
     <dimen name="button_height">44dp</dimen>
@@ -68,8 +70,22 @@
     <string name="add_loan_button">添加贷款</string>
     <string name="add_new_loan">添加新贷款</string>
     <string name="annual_rate">年利率（%）</string>
-    <string name="app_name">个人财务规划</string>
-    <string name="app_title">个人财务管理</string>
+    <string name="app_name">FreeMe</string>
+    <string name="app_title">Personal financial management</string>
+    <string name="auto_backup_failed">自动备份失败</string>
+    <string name="auto_backup_success">数据已自动备份</string>
+    <string name="background_reset_success">已恢复默认背景</string>
+    <string name="background_set_failed">背景设置失败：%s</string>
+    <string name="background_set_success">背景设置成功！</string>
+    <string name="background_settings">背景图片</string>
+    <string name="background_settings_desc">您可以自定义应用的背景图片。选择图片后，系统会自动裁切以适应屏幕尺寸。</string>
+    <string name="backup_date">备份时间：%s</string>
+    <string name="backup_deleted">备份文件已删除</string>
+    <string name="backup_found_description">检测到您之前使用过此应用并留有数据备份，是否恢复数据？</string>
+    <string name="backup_found_info">备份文件：%s</string>
+    <string name="backup_found_title">发现数据备份</string>
+    <string name="backup_restore_prompt">您可以选择恢复数据、忽略此备份，或删除备份文件。</string>
+    <string name="backup_size">文件大小：%s</string>
     <string name="cancel">取消</string>
     <string name="clear_confirm">确定要清空所有数据吗？此操作不可恢复！</string>
     <string name="clear_confirm_again">再次确认：是否清空所有贷款和还款记录？</string>
@@ -82,10 +98,18 @@
     <string name="credit_card">信用卡</string>
     <string name="credit_card_info">信用卡信息</string>
     <string name="credit_limit">分期总额（元）</string>
+    <string name="crop_background">裁切背景图片</string>
+    <string name="current_background">当前背景</string>
+    <string name="current_data_empty">✓ 当前数据库为空，建议恢复备份</string>
+    <string name="current_data_exists">⚠️ 当前已有 %d 笔贷款数据，恢复将覆盖现有数据</string>
     <string name="current_month_payment">本月应还金额</string>
     <string name="current_month_total">当前月</string>
+    <string name="custom_background_set">当前使用自定义背景</string>
     <string name="daily_payment">每日应还金额（按30天计）</string>
     <string name="data_management">数据管理</string>
+    <string name="delete_backup">删除备份文件</string>
+    <string name="delete_backup_confirm_message">删除后无法恢复，确定要删除此备份文件吗？</string>
+    <string name="delete_backup_confirm_title">确认删除</string>
     <string name="delete_confirm">确定要删除此贷款吗？</string>
     <string name="delete_loan">删除</string>
     <string name="due_date">还款日（每月几号）</string>
@@ -101,6 +125,7 @@
     <string name="export_success">数据导出成功！</string>
     <string name="grand_total">合计</string>
     <string name="i_know">我知道了</string>
+    <string name="ignore_backup">暂时忽略</string>
     <string name="import_confirm">导入数据将覆盖现有数据，是否继续？</string>
     <string name="import_data">导入数据</string>
     <string name="import_failed">导入失败</string>
@@ -126,6 +151,7 @@
     <string name="monthly_payment_amount">月供</string>
     <string name="monthly_total">每月总还款金额汇总</string>
     <string name="no_active_loans">无待还贷款</string>
+    <string name="no_custom_background">当前使用默认背景</string>
     <string name="no_loans">暂无贷款记录</string>
     <string name="no_schedule">无还款计划</string>
     <string name="normal_loan">普通贷款</string>
@@ -136,6 +162,7 @@
     <string name="payment_date">还款日期</string>
     <string name="payment_schedule">还款计划表</string>
     <string name="payment_success">还款成功！</string>
+    <string name="personalization_settings">个性化设置</string>
     <string name="principal">贷款本金（元）</string>
     <string name="principal_amount">本金</string>
     <string name="progress">还款进度</string>
@@ -148,11 +175,31 @@
     <string name="reminder_subtitle">请及时还款，避免产生逾期费用！</string>
     <string name="reminder_title">今日还款提醒</string>
     <string name="repayment_method">还款方式</string>
+    <string name="reset_background">恢复默认背景</string>
+    <string name="reset_background_confirm">确定要恢复默认背景吗？</string>
+    <string name="restore_backup">恢复数据</string>
+    <string name="restore_failed">恢复失败</string>
+    <string name="restore_success">数据恢复成功！</string>
+    <string name="restoring_backup">正在恢复数据...</string>
+    <string name="select_background_image">选择背景图片</string>
+    <string name="set_background">设置背景</string>
     <string name="start_date">开始日期</string>
+    <string name="supported_formats">支持的图片格式：JPEG、PNG、WebP、GIF、BMP</string>
+    <string name="theme_blue">深蓝</string>
+    <string name="theme_cyan">青色</string>
+    <string name="theme_green">深绿</string>
+    <string name="theme_orange">暖橙</string>
+    <string name="theme_purple">紫色</string>
+    <string name="theme_rose">玫瑰</string>
+    <string name="theme_settings">主题颜色</string>
+    <string name="theme_settings_desc">选择一个主题，改变整个应用的按钮颜色和色调。</string>
     <string name="total_amount">贷款总额</string>
     <string name="total_loans">贷款总数</string>
     <string name="total_paid">已还金额</string>
     <string name="total_payment_col">总还款额</string>
+    <string name="version_info">版本说明</string>
+    <string name="version_info_load_failed">无法加载版本说明文件</string>
+    <string name="version_info_title">版本说明</string>
     <string name="view_monthly_total">查看每月总还款金额</string>
     <string name="view_my_loans">查看我的贷款</string>
     <string name="view_schedule">还款计划</string>
@@ -174,7 +221,7 @@
         <item name="android:minHeight">@dimen/button_height</item>
     </style>
     <style name="InputStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
-        <item name="boxStrokeColor">@color/input_border</item>
+        <item name="boxStrokeColor">?attr/colorPrimary</item>
         <item name="boxStrokeWidth">2dp</item>
         <item name="boxCornerRadiusTopStart">@dimen/input_corner_radius</item>
         <item name="boxCornerRadiusTopEnd">@dimen/input_corner_radius</item>
@@ -182,7 +229,7 @@
         <item name="boxCornerRadiusBottomEnd">@dimen/input_corner_radius</item>
     </style>
     <style name="PrimaryButton" parent="Widget.Material3.Button">
-        <item name="android:backgroundTint">@color/primary</item>
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
         <item name="android:textColor">@color/text_white</item>
         <item name="cornerRadius">25dp</item>
         <item name="android:paddingStart">32dp</item>
@@ -191,8 +238,8 @@
         <item name="android:paddingBottom">12dp</item>
     </style>
     <style name="SecondaryButton" parent="Widget.Material3.Button.OutlinedButton">
-        <item name="strokeColor">@color/primary</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="cornerRadius">@dimen/spacing_sm</item>
         <item name="android:minHeight">@dimen/button_height</item>
     </style>
@@ -220,20 +267,45 @@
         
         <item name="windowActionBar">true</item>
         <item name="windowNoTitle">false</item>
-        
+            
         
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
+            
         
+        <item name="android:statusBarColor">@android:color/transparent</item>
         
-        <item name="android:statusBarColor">@color/primary_dark</item>
-        <item name="android:navigationBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         
         
         <item name="android:windowBackground">@drawable/gradient_background</item>
+            
         
-        
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.LoanManager.Blue" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#1976D2</item>
+        <item name="colorPrimaryDark">#1565C0</item>
+        <item name="colorAccent">#42A5F5</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/gradient_background_blue</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.LoanManager.Green" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#43A047</item>
+        <item name="colorPrimaryDark">#388E3C</item>
+        <item name="colorAccent">#66BB6A</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/gradient_background_green</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
@@ -241,9 +313,57 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="Theme.LoanManager.Orange" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#EF6C00</item>
+        <item name="colorPrimaryDark">#E65100</item>
+        <item name="colorAccent">#FFA726</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/gradient_background_orange</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.LoanManager.Purple" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#8E24AA</item>
+        <item name="colorPrimaryDark">#7B1FA2</item>
+        <item name="colorAccent">#AB47BC</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/gradient_background_purple</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
+    <style name="Theme.LoanManager.Rose" parent="Theme.Material3.Light">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">#C2185B</item>
+        <item name="colorPrimaryDark">#AD1457</item>
+        <item name="colorAccent">#EC407A</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/gradient_background_rose</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+    </style>
     <style name="TitleText">
         <item name="android:textSize">@dimen/text_title</item>
         <item name="android:textColor">@color/primary_dark</item>
         <item name="android:textStyle">bold</item>
+    </style>
+    <style name="UCropTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+        
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 </resources>

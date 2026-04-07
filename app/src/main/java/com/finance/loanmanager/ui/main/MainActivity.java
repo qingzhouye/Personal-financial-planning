@@ -27,7 +27,6 @@ import com.finance.loanmanager.ui.BaseActivity;
 import com.finance.loanmanager.ui.data.BackupRestoreDialog;
 import com.finance.loanmanager.ui.data.DataManagementActivity;
 import com.finance.loanmanager.ui.loan.AddLoanActivity;
-import com.finance.loanmanager.ui.loan.LoanListActivity;
 import com.finance.loanmanager.ui.monthly.MonthlyTotalActivity;
 import com.finance.loanmanager.ui.settings.BackgroundSettingsActivity;
 import com.finance.loanmanager.util.BackupManager;
@@ -46,8 +45,11 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
+import android.widget.ScrollView;
 
 public class MainActivity extends BaseActivity {
 
@@ -66,9 +68,9 @@ public class MainActivity extends BaseActivity {
     private TextView tvCurrentMonthDetails;
     private GridLayout gridStats;
     private Button btnAddLoan;
-    private Button btnViewLoans;
     private Button btnViewMonthlyTotal;
     private ImageView btnVersionInfo;
+    private LinearLayout layoutDailyPayment;
     
     private List<LoanRepository.LoanWithStatus> loansWithStatus = new ArrayList<>();
     private BackupManager backupManager;
@@ -194,25 +196,36 @@ public class MainActivity extends BaseActivity {
      */
     private void applyTransparentCardStyle() {
         boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
-        
+            
         // 设置本月应还卡片样式
         if (cardCurrentMonth != null) {
             LinearLayout cardContent = (LinearLayout) cardCurrentMonth.getChildAt(0);
             if (cardContent != null) {
                 if (hasCustomBg) {
-                    // 自定义背景模式：透明背景
+                    cardCurrentMonth.setCardBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    cardCurrentMonth.setCardElevation(0);
                     cardContent.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                    // 设置白色加粗文字
                     applyWhiteTextStyleToCurrentMonthCard();
                 } else {
-                    // 普通模式：主题色渐变背景
+                    cardCurrentMonth.setCardBackgroundColor(getResources().getColor(R.color.card_background));
+                    cardCurrentMonth.setCardElevation(getResources().getDimension(R.dimen.card_elevation));
                     setupCurrentMonthCardBackground();
-                    // 恢复默认文字样式
                     applyDefaultTextStyleToCurrentMonthCard();
                 }
             }
         }
         
+        // 设置每日应还区域背景色
+        if (layoutDailyPayment != null) {
+            if (hasCustomBg) {
+                // 自定义背景模式：更深的半透明灰色背景，提高白字对比度
+                layoutDailyPayment.setBackgroundColor(0x80000000); // 50% 透明度的黑色
+            } else {
+                // 普通模式：恢复半透明白色
+                layoutDailyPayment.setBackgroundColor(getResources().getColor(R.color.semi_transparent_white));
+            }
+        }
+            
         // 设置统计概览卡片样式
         if (cardStats != null) {
             if (hasCustomBg) {
@@ -224,14 +237,75 @@ public class MainActivity extends BaseActivity {
                     titleView.setTextColor(getResources().getColor(R.color.text_white));
                     titleView.setTypeface(null, Typeface.BOLD);
                 }
+                // 自定义背景模式："查看每月总还款金额"按钮改为透明背景+白色边框
+                if (btnViewMonthlyTotal != null) {
+                    btnViewMonthlyTotal.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
+                        getResources().getColor(android.R.color.transparent)));
+                    // 添加白色边框
+                    GradientDrawable drawable = new GradientDrawable();
+                    drawable.setColor(getResources().getColor(android.R.color.transparent));
+                    drawable.setStroke(3, getResources().getColor(R.color.text_white));
+                    drawable.setCornerRadius(50f);
+                    btnViewMonthlyTotal.setBackground(drawable);
+                    btnViewMonthlyTotal.setTextColor(getResources().getColor(R.color.text_white));
+                }
             } else {
                 cardStats.setCardBackgroundColor(getResources().getColor(R.color.card_background));
                 cardStats.setCardElevation(getResources().getDimension(R.dimen.card_elevation));
-                // 恢复标题默认样式
+                // 恢夌标题默认样式
                 TextView titleView = findViewById(R.id.tvLoanOverviewTitle);
                 if (titleView != null) {
                     titleView.setTextColor(getResources().getColor(R.color.primary_dark));
                     titleView.setTypeface(null, Typeface.BOLD);
+                }
+                // 恢夌按钮默认样式
+                if (btnViewMonthlyTotal != null) {
+                    android.util.TypedValue typedValue = new android.util.TypedValue();
+                    getTheme().resolveAttribute(android.R.attr.colorPrimary, typedValue, true);
+                    int primaryColor = typedValue.data;
+                    btnViewMonthlyTotal.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
+                    btnViewMonthlyTotal.setBackgroundResource(R.drawable.gradient_primary);
+                    btnViewMonthlyTotal.setTextColor(getResources().getColor(R.color.text_white));
+                }
+            }
+            
+            // 刷新统计网格中的卡片样式（当从背景设置页面返回时需要重新创建统计卡片）
+            if (!loansWithStatus.isEmpty()) {
+                refreshStatsGrid();
+            }
+        }
+            
+        // 设置添加新贷款卡片样式（无数据时显示）
+        if (cardAddLoan != null) {
+            if (hasCustomBg) {
+                cardAddLoan.setCardBackgroundColor(getResources().getColor(android.R.color.transparent));
+                cardAddLoan.setCardElevation(0);
+                // 设置标题文字为白色加粗
+                TextView addLoanTitle = cardAddLoan.findViewWithTag("add_loan_title");
+                // 直接遍历子view处理
+                LinearLayout addLoanContent = (LinearLayout) cardAddLoan.getChildAt(0);
+                if (addLoanContent != null) {
+                    for (int i = 0; i < addLoanContent.getChildCount(); i++) {
+                        View child = addLoanContent.getChildAt(i);
+                        if (child instanceof TextView) {
+                            ((TextView) child).setTextColor(getResources().getColor(R.color.text_white));
+                            ((TextView) child).setTypeface(null, Typeface.BOLD);
+                        }
+                    }
+                }
+            } else {
+                cardAddLoan.setCardBackgroundColor(getResources().getColor(R.color.card_background));
+                cardAddLoan.setCardElevation(getResources().getDimension(R.dimen.card_elevation));
+                // 恢夌标题文字默认样式
+                LinearLayout addLoanContent = (LinearLayout) cardAddLoan.getChildAt(0);
+                if (addLoanContent != null) {
+                    for (int i = 0; i < addLoanContent.getChildCount(); i++) {
+                        View child = addLoanContent.getChildAt(i);
+                        if (child instanceof TextView) {
+                            ((TextView) child).setTextColor(getResources().getColor(R.color.primary_dark));
+                            ((TextView) child).setTypeface(null, Typeface.BOLD);
+                        }
+                    }
                 }
             }
         }
@@ -309,19 +383,19 @@ public class MainActivity extends BaseActivity {
         getTheme().resolveAttribute(android.R.attr.colorPrimary, typedValue, true);
         int primaryColor = typedValue.data;
         
+        // 如果没有自定义背景，才刷新按钮为主题色
+        boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
+        
         // 刷新"查看每月总还款金额"按钮背景
-        if (btnViewMonthlyTotal != null) {
+        if (btnViewMonthlyTotal != null && !hasCustomBg) {
             btnViewMonthlyTotal.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
+            btnViewMonthlyTotal.setBackgroundResource(R.drawable.gradient_primary);
+            btnViewMonthlyTotal.setTextColor(getResources().getColor(R.color.text_white));
         }
         
         // 刷新添加贷款按钮背景
         if (btnAddLoan != null) {
             btnAddLoan.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
-        }
-        
-        // 刷新查看贷款按钮背景
-        if (btnViewLoans != null) {
-            btnViewLoans.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
         }
         
         // 刷新标题栏文字颜色
@@ -406,19 +480,14 @@ public class MainActivity extends BaseActivity {
         tvCurrentMonthDetails = findViewById(R.id.tvCurrentMonthDetails);
         gridStats = findViewById(R.id.gridStats);
         btnAddLoan = findViewById(R.id.btnAddLoan);
-        btnViewLoans = findViewById(R.id.btnViewLoans);
         btnViewMonthlyTotal = findViewById(R.id.btnViewMonthlyTotal);
         btnVersionInfo = findViewById(R.id.btnVersionInfo);
+        layoutDailyPayment = findViewById(R.id.layoutDailyPayment);
     }
     
     private void setupListeners() {
         btnAddLoan.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddLoanActivity.class);
-            startActivity(intent);
-        });
-        
-        btnViewLoans.setOnClickListener(v -> {
-            Intent intent = new Intent(this, LoanListActivity.class);
             startActivity(intent);
         });
         
@@ -528,6 +597,30 @@ public class MainActivity extends BaseActivity {
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPrincipal), getString(R.string.total_amount));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalRemaining), getString(R.string.remaining_principal));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPaid), getString(R.string.total_paid));
+    }
+    
+    /**
+     * 刷新统计网格（用于主题或背景切换后重新创建统计卡片）
+     */
+    private void refreshStatsGrid() {
+        // 计算统计数据
+        int totalCount = loansWithStatus.size();
+        double totalPrincipal = 0;
+        double totalRemaining = 0;
+        double totalPaid = 0;
+        int paidOffCount = 0;
+        
+        for (LoanRepository.LoanWithStatus lws : loansWithStatus) {
+            totalPrincipal += lws.loan.getPrincipal();
+            totalRemaining += lws.status.getRemainingPrincipal();
+            totalPaid += lws.status.getTotalPaid();
+            
+            if (lws.status.isPaidOff()) {
+                paidOffCount++;
+            }
+        }
+        
+        updateStatsGrid(totalCount, totalPrincipal, totalRemaining, totalPaid, paidOffCount);
     }
     
     private View addStatCard(GridLayout grid, String value, String label) {
@@ -645,82 +738,359 @@ public class MainActivity extends BaseActivity {
     
     /**
      * 显示主菜单对话框（一级菜单：版本说明、数据管理、个性化设置、添加贷款）
-     * 当应用有数据时，显示添加贷款选项
+     * 使用自定义卡片样式布局，带渐变标题头部
      */
     private void showMainMenu() {
         boolean hasData = !loansWithStatus.isEmpty();
-        String[] items = hasData 
-                ? new String[]{"版本说明", "数据管理", "个性化设置", "添加贷款"}
-                : new String[]{"版本说明", "数据管理", "个性化设置"};
-        
-        new AlertDialog.Builder(this)
-                .setTitle("菜单")
-                .setItems(items, (dialog, which) -> {
-                    if (which == 0) {
-                        showVersionInfo();
-                    } else if (which == 1) {
-                        showDataManagementMenu();
-                    } else if (which == 2) {
-                        // 个性化设置（主题 + 背景）
-                        Intent intent = new Intent(this, BackgroundSettingsActivity.class);
-                        startActivity(intent);
-                    } else if (which == 3 && hasData) {
-                        // 添加贷款
-                        Intent intent = new Intent(this, AddLoanActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show();
+
+        // 加载自定义菜单视图
+        View menuView = LayoutInflater.from(this).inflate(R.layout.dialog_main_menu, null);
+
+        // 动态设置渐变头部背景（跟随当前主题色）
+        View menuHeader = menuView.findViewById(R.id.menuHeader);
+        int themeIndex = ThemeManager.getSavedTheme(this);
+        int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
+        int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
+        GradientDrawable headerBg = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                new int[]{primaryColor, darkColor});
+        float cornerRadius = dp2px(20);
+        headerBg.setCornerRadii(new float[]{
+                cornerRadius, cornerRadius, cornerRadius, cornerRadius,
+                0, 0, 0, 0
+        });
+        menuHeader.setBackground(headerBg);
+
+        // 条件显示添加贷款菜单项
+        View dividerAddLoan = menuView.findViewById(R.id.dividerAddLoan);
+        LinearLayout menuItemAddLoan = menuView.findViewById(R.id.menuItemAddLoan);
+        if (hasData) {
+            dividerAddLoan.setVisibility(View.VISIBLE);
+            menuItemAddLoan.setVisibility(View.VISIBLE);
+        }
+
+        // 创建透明背景的对话框
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(menuView)
+                .create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        // 设置各菜单项点击事件
+        menuView.findViewById(R.id.menuItemVersion).setOnClickListener(v -> {
+            dialog.dismiss();
+            showVersionInfo();
+        });
+        menuView.findViewById(R.id.menuItemData).setOnClickListener(v -> {
+            dialog.dismiss();
+            showDataManagementMenu();
+        });
+        menuView.findViewById(R.id.menuItemSettings).setOnClickListener(v -> {
+            dialog.dismiss();
+            Intent intent = new Intent(this, BackgroundSettingsActivity.class);
+            startActivity(intent);
+        });
+        if (hasData) {
+            menuItemAddLoan.setOnClickListener(v -> {
+                dialog.dismiss();
+                Intent intent = new Intent(this, AddLoanActivity.class);
+                startActivity(intent);
+            });
+        }
+        menuView.findViewById(R.id.btnMenuClose).setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
 
     /**
-     * 显示数据管理二级菜单对话框
+     * 显示数据管理二级菜单对话框（自定义卡片样式）
      */
     private void showDataManagementMenu() {
-        String[] items = {"导出数据", "导入数据", "清空数据"};
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.data_management)
-                .setItems(items, (dialog, which) -> {
-                    switch (which) {
-                        case 0:
-                            exportData();
-                            break;
-                        case 1:
-                            importData();
-                            break;
-                        case 2:
-                            clearData();
-                            break;
-                    }
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show();
+        // 加载自定义菜单视图
+        View dataMenuView = LayoutInflater.from(this).inflate(R.layout.dialog_data_menu, null);
+
+        // 动态设置渐变头部背景
+        View dataMenuHeader = dataMenuView.findViewById(R.id.dataMenuHeader);
+        int themeIndex = ThemeManager.getSavedTheme(this);
+        int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
+        int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
+        GradientDrawable headerBg = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                new int[]{primaryColor, darkColor});
+        float cornerRadius = dp2px(20);
+        headerBg.setCornerRadii(new float[]{
+                cornerRadius, cornerRadius, cornerRadius, cornerRadius,
+                0, 0, 0, 0
+        });
+        dataMenuHeader.setBackground(headerBg);
+
+        // 创建透明背景对话框
+        AlertDialog dataDialog = new AlertDialog.Builder(this)
+                .setView(dataMenuView)
+                .create();
+        if (dataDialog.getWindow() != null) {
+            dataDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+        // 设置各菜单项点击事件
+        dataMenuView.findViewById(R.id.dataMenuItemExport).setOnClickListener(v -> {
+            dataDialog.dismiss();
+            exportData();
+        });
+        dataMenuView.findViewById(R.id.dataMenuItemImport).setOnClickListener(v -> {
+            dataDialog.dismiss();
+            importData();
+        });
+        dataMenuView.findViewById(R.id.dataMenuItemClear).setOnClickListener(v -> {
+            dataDialog.dismiss();
+            clearData();
+        });
+        dataMenuView.findViewById(R.id.btnDataMenuClose).setOnClickListener(v -> dataDialog.dismiss());
+
+        dataDialog.show();
     }
 
     /**
-     * 显示贷款管理二级菜单对话框
+     * 显示贷款管理对话框，使用卡片样式展示贷款列表（带渐变头部）
      */
     private void showLoanManagementMenu() {
-        String[] items = {"查看我的贷款", "添加新贷款"};
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.loan_management)
-                .setItems(items, (dialog, which) -> {
-                    switch (which) {
-                        case 0:
-                            // 查看我的贷款
-                            Intent viewIntent = new Intent(this, LoanListActivity.class);
-                            startActivity(viewIntent);
-                            break;
-                        case 1:
-                            // 添加新贷款
-                            Intent addIntent = new Intent(this, AddLoanActivity.class);
-                            startActivity(addIntent);
-                            break;
-                    }
-                })
-                .setNegativeButton(R.string.cancel, null)
-                .show();
+        // 获取当前主题颜色
+        int themeIndex = ThemeManager.getSavedTheme(this);
+        int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
+        int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
+        int[] gradientColors = getThemeGradientColors(themeIndex);
+
+        if (loansWithStatus.isEmpty()) {
+            // 暂无贷款 - 显示样式化提示
+            android.widget.FrameLayout emptyHeader = new android.widget.FrameLayout(this);
+            LinearLayout.LayoutParams headerLp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, dp2px(80));
+            emptyHeader.setLayoutParams(headerLp);
+            GradientDrawable emptyHeaderBg = new GradientDrawable(
+                    GradientDrawable.Orientation.TL_BR, new int[]{primaryColor, darkColor});
+            float r = dp2px(20);
+            emptyHeaderBg.setCornerRadii(new float[]{r, r, r, r, 0, 0, 0, 0});
+            emptyHeader.setBackground(emptyHeaderBg);
+
+            LinearLayout titleLayout = new LinearLayout(this);
+            titleLayout.setOrientation(LinearLayout.VERTICAL);
+            titleLayout.setGravity(android.view.Gravity.CENTER);
+            android.widget.FrameLayout.LayoutParams tlp = new android.widget.FrameLayout.LayoutParams(
+                    android.widget.FrameLayout.LayoutParams.WRAP_CONTENT,
+                    android.widget.FrameLayout.LayoutParams.WRAP_CONTENT);
+            tlp.gravity = android.view.Gravity.CENTER;
+            titleLayout.setLayoutParams(tlp);
+
+            TextView tvTitle = new TextView(this);
+            tvTitle.setText(getString(R.string.loan_management));
+            tvTitle.setTextColor(0xFFFFFFFF);
+            tvTitle.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 18);
+            tvTitle.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
+            tvTitle.setGravity(android.view.Gravity.CENTER);
+            titleLayout.addView(tvTitle);
+
+            TextView tvSub = new TextView(this);
+            tvSub.setText("暂无贷款记录");
+            tvSub.setTextColor(0xCCFFFFFF);
+            tvSub.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 11);
+            tvSub.setGravity(android.view.Gravity.CENTER);
+            LinearLayout.LayoutParams subLp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            subLp.topMargin = dp2px(3);
+            tvSub.setLayoutParams(subLp);
+            titleLayout.addView(tvSub);
+            emptyHeader.addView(titleLayout);
+
+            com.google.android.material.button.MaterialButton closeBtn =
+                    new com.google.android.material.button.MaterialButton(
+                            this, null, com.google.android.material.R.attr.borderlessButtonStyle);
+            closeBtn.setText("关  闭");
+            closeBtn.setTextColor(primaryColor);
+
+            LinearLayout btnContainer = new LinearLayout(this);
+            btnContainer.setOrientation(LinearLayout.HORIZONTAL);
+            btnContainer.setGravity(android.view.Gravity.CENTER);
+            btnContainer.setPadding(0, dp2px(4), 0, dp2px(16));
+            btnContainer.addView(closeBtn);
+
+            LinearLayout card = new LinearLayout(this);
+            card.setOrientation(LinearLayout.VERTICAL);
+            android.graphics.drawable.GradientDrawable cardBg = new android.graphics.drawable.GradientDrawable();
+            cardBg.setColor(0xFFFFFFFF);
+            cardBg.setCornerRadius(dp2px(20));
+            card.setBackground(cardBg);
+            card.addView(emptyHeader);
+            card.addView(btnContainer);
+
+            LinearLayout wrapper = new LinearLayout(this);
+            wrapper.setOrientation(LinearLayout.VERTICAL);
+            wrapper.setPadding(dp2px(20), dp2px(12), dp2px(20), dp2px(12));
+            wrapper.addView(card);
+
+            AlertDialog emptyDialog = new AlertDialog.Builder(this)
+                    .setView(wrapper).create();
+            if (emptyDialog.getWindow() != null) {
+                emptyDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            }
+            closeBtn.setOnClickListener(v -> emptyDialog.dismiss());
+            emptyDialog.show();
+            return;
+        }
+
+        // ── 有数据：构建卡片列表 ──
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.setFillViewport(true);
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(dp2px(12), dp2px(8), dp2px(12), dp2px(8));
+        scrollView.addView(container);
+
+        // 为每个贷款创建卡片
+        for (int i = 0; i < loansWithStatus.size(); i++) {
+            final LoanRepository.LoanWithStatus lws = loansWithStatus.get(i);
+            View cardView = LayoutInflater.from(this).inflate(R.layout.dialog_loan_card_item, container, false);
+
+            // 设置卡片内容背景为当前主题渐变
+            LinearLayout cardContent = cardView.findViewById(R.id.cardContent);
+            GradientDrawable gradient = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR, gradientColors
+            );
+            gradient.setCornerRadius(dp2px(12));
+            cardContent.setBackground(gradient);
+
+            // 填充数据
+            TextView tvIcon = cardView.findViewById(R.id.tvLoanIcon);
+            TextView tvName = cardView.findViewById(R.id.tvLoanName);
+            TextView tvMethod = cardView.findViewById(R.id.tvRepaymentMethod);
+            TextView tvStatus = cardView.findViewById(R.id.tvLoanStatus);
+            TextView tvMonthly = cardView.findViewById(R.id.tvMonthlyPayment);
+            TextView tvRemaining = cardView.findViewById(R.id.tvRemainingPrincipal);
+
+            tvIcon.setText(lws.loan.isCreditCard() ? "💳" : "🏦");
+            tvName.setText(lws.loan.getName());
+            tvMethod.setText(lws.loan.getRepaymentMethodName());
+            tvMonthly.setText(NumberFormatUtil.formatCurrency(lws.status.getNewMonthlyPayment()));
+            tvRemaining.setText(NumberFormatUtil.formatCurrency(lws.status.getRemainingPrincipal()));
+
+            // 已还清标签
+            if (lws.status.isPaidOff()) {
+                tvStatus.setVisibility(View.VISIBLE);
+                tvStatus.setText("已还清");
+                GradientDrawable paidGradient = new GradientDrawable(
+                    GradientDrawable.Orientation.TL_BR,
+                    new int[] { 0xFF66BB6A, 0xFF81C784, 0xFFA5D6A7 }
+                );
+                paidGradient.setCornerRadius(dp2px(12));
+                cardContent.setBackground(paidGradient);
+            }
+
+            // 点击跳转贷款详情
+            cardView.setOnClickListener(v -> {
+                Intent intent = new Intent(this, com.finance.loanmanager.ui.loan.LoanDetailActivity.class);
+                intent.putExtra("loan_id", lws.loan.getId());
+                startActivity(intent);
+            });
+
+            container.addView(cardView);
+        }
+
+        // ── 构建带渐变头部的外层包装 ──
+        // 渐变头部
+        android.widget.FrameLayout headerView = new android.widget.FrameLayout(this);
+        LinearLayout.LayoutParams headerLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, dp2px(80));
+        headerView.setLayoutParams(headerLp);
+        GradientDrawable headerBg = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR, new int[]{primaryColor, darkColor});
+        float cornerRadius = dp2px(20);
+        headerBg.setCornerRadii(new float[]{cornerRadius, cornerRadius, cornerRadius, cornerRadius, 0, 0, 0, 0});
+        headerView.setBackground(headerBg);
+
+        LinearLayout headerContent = new LinearLayout(this);
+        headerContent.setOrientation(LinearLayout.VERTICAL);
+        headerContent.setGravity(android.view.Gravity.CENTER);
+        android.widget.FrameLayout.LayoutParams hcLp = new android.widget.FrameLayout.LayoutParams(
+                android.widget.FrameLayout.LayoutParams.WRAP_CONTENT,
+                android.widget.FrameLayout.LayoutParams.WRAP_CONTENT);
+        hcLp.gravity = android.view.Gravity.CENTER;
+        headerContent.setLayoutParams(hcLp);
+
+        TextView tvHeaderTitle = new TextView(this);
+        tvHeaderTitle.setText(getString(R.string.loan_management));
+        tvHeaderTitle.setTextColor(0xFFFFFFFF);
+        tvHeaderTitle.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 18);
+        tvHeaderTitle.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
+        tvHeaderTitle.setGravity(android.view.Gravity.CENTER);
+        tvHeaderTitle.setLetterSpacing(0.08f);
+        headerContent.addView(tvHeaderTitle);
+
+        TextView tvHeaderSub = new TextView(this);
+        tvHeaderSub.setText("点击贷款卡片查看详情");
+        tvHeaderSub.setTextColor(0xCCFFFFFF);
+        tvHeaderSub.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, 11);
+        tvHeaderSub.setGravity(android.view.Gravity.CENTER);
+        LinearLayout.LayoutParams subLp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        subLp.topMargin = dp2px(3);
+        tvHeaderSub.setLayoutParams(subLp);
+        headerContent.addView(tvHeaderSub);
+        headerView.addView(headerContent);
+
+        // 细分割线
+        View divider = new View(this);
+        divider.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 1));
+        divider.setBackgroundColor(0xFFF0F0F0);
+
+        // 关闭按钮
+        com.google.android.material.button.MaterialButton closeBtn =
+                new com.google.android.material.button.MaterialButton(
+                        this, null, com.google.android.material.R.attr.borderlessButtonStyle);
+        closeBtn.setText("关  闭");
+        closeBtn.setTextColor(primaryColor);
+
+        LinearLayout btnContainer = new LinearLayout(this);
+        btnContainer.setOrientation(LinearLayout.HORIZONTAL);
+        btnContainer.setGravity(android.view.Gravity.CENTER);
+        btnContainer.setPadding(0, dp2px(4), 0, dp2px(16));
+        btnContainer.addView(closeBtn);
+
+        // 白色圆角卡片容器
+        LinearLayout card = new LinearLayout(this);
+        card.setOrientation(LinearLayout.VERTICAL);
+        android.graphics.drawable.GradientDrawable cardBg = new android.graphics.drawable.GradientDrawable();
+        cardBg.setColor(0xFFFFFFFF);
+        cardBg.setCornerRadius(dp2px(20));
+        card.setBackground(cardBg);
+        card.setElevation(dp2px(6));
+        card.addView(headerView);
+        card.addView(divider);
+        card.addView(scrollView);
+        card.addView(btnContainer);
+
+        // 外层边距包装
+        LinearLayout wrapper = new LinearLayout(this);
+        wrapper.setOrientation(LinearLayout.VERTICAL);
+        wrapper.setPadding(dp2px(20), dp2px(12), dp2px(20), dp2px(12));
+        wrapper.addView(card);
+
+        // 显示对话框
+        AlertDialog loanDialog = new AlertDialog.Builder(this)
+                .setView(wrapper)
+                .create();
+        if (loanDialog.getWindow() != null) {
+            loanDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        closeBtn.setOnClickListener(v -> loanDialog.dismiss());
+        loanDialog.show();
+    }
+    
+    /**
+     * dp 转 px
+     */
+    private int dp2px(int dp) {
+        return (int) (dp * getResources().getDisplayMetrics().density + 0.5f);
     }
 
     /**

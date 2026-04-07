@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -23,7 +21,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.bumptech.glide.Glide;
 import com.finance.loanmanager.R;
 import com.finance.loanmanager.ui.BaseActivity;
 import com.finance.loanmanager.util.BackgroundManager;
@@ -42,11 +39,8 @@ public class BackgroundSettingsActivity extends BaseActivity {
     private static final int REQUEST_CODE_UCROP = 1001;
     
     private BackgroundManager backgroundManager;
-    private ImageView ivPreview;
-    private TextView tvStatus;
     private Button btnSelectImage;
     private Button btnResetBackground;
-    private View previewContainer;
 
     // 主题色块容器
     private LinearLayout themeItemCyan;
@@ -101,11 +95,8 @@ public class BackgroundSettingsActivity extends BaseActivity {
     
     private void initViews() {
         // 背景相关
-        ivPreview = findViewById(R.id.ivPreview);
-        tvStatus = findViewById(R.id.tvStatus);
         btnSelectImage = findViewById(R.id.btnSelectImage);
         btnResetBackground = findViewById(R.id.btnResetBackground);
-        previewContainer = findViewById(R.id.previewContainer);
         
         btnSelectImage.setOnClickListener(v -> selectImage());
         btnResetBackground.setOnClickListener(v -> confirmResetBackground());
@@ -151,19 +142,10 @@ public class BackgroundSettingsActivity extends BaseActivity {
     }
     
     private void updateUI() {
+        // 根据是否有自定义背景显示/隐藏重置按钮
         if (backgroundManager.hasCustomBackground()) {
-            previewContainer.setVisibility(View.VISIBLE);
-            tvStatus.setText(R.string.custom_background_set);
             btnResetBackground.setVisibility(View.VISIBLE);
-            
-            // 加载预览图
-            Glide.with(this)
-                .load(backgroundManager.getBackgroundFile())
-                .centerCrop()
-                .into(ivPreview);
         } else {
-            previewContainer.setVisibility(View.GONE);
-            tvStatus.setText(R.string.no_custom_background);
             btnResetBackground.setVisibility(View.GONE);
         }
     }
@@ -176,41 +158,8 @@ public class BackgroundSettingsActivity extends BaseActivity {
         if (current == themeIndex) return; // 尚未改变，无需操作
         ThemeManager.saveTheme(this, themeIndex);
         
-        // 立即更新状态栏颜色
-        updateStatusBarColor(themeIndex);
-        
         // 重迟当前 Activity，使主题完全生效
         recreate();
-    }
-    
-    /**
-     * 立即更新状态栏颜色
-     */
-    private void updateStatusBarColor(int themeIndex) {
-        int statusBarColor;
-        switch (themeIndex) {
-            case ThemeManager.THEME_BLUE:
-                statusBarColor = 0xFF1565C0;
-                break;
-            case ThemeManager.THEME_ORANGE:
-                statusBarColor = 0xFFE65100;
-                break;
-            case ThemeManager.THEME_PURPLE:
-                statusBarColor = 0xFF7B1FA2;
-                break;
-            case ThemeManager.THEME_GREEN:
-                statusBarColor = 0xFF388E3C;
-                break;
-            case ThemeManager.THEME_ROSE:
-                statusBarColor = 0xFFAD1457;
-                break;
-            case ThemeManager.THEME_CYAN:
-            default:
-                statusBarColor = 0xFF00838F;
-                break;
-        }
-        getWindow().setStatusBarColor(statusBarColor);
-        getWindow().setNavigationBarColor(statusBarColor);
     }
 
     /**

@@ -4,163 +4,227 @@
         "source": "com.finance.loanmanager.app-main-41:/layout/activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxhdpi/ic_launcher.png"
-    },
-    {
         "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_loan_detail.xml.flat",
         "source": "com.finance.loanmanager.app-main-41:/layout/activity_loan_detail.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_dialog_backup_restore.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/dialog_backup_restore.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_item_schedule.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\item_schedule.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_dialog_confirm_loan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/dialog_confirm_loan.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_blue.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\theme_color_circle_blue.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_ic_menu_data.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/ic_menu_data.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxhdpi/ic_launcher_round.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_bg_menu_icon_purple.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/bg_menu_icon_purple.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_orange.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_orange.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_item_stat_card.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\item_stat_card.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/xml_file_paths.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/xml/file_paths.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_danger.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_danger.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_add_loan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/activity_add_loan.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_rose.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_rose.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_bg_menu_icon_green.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/bg_menu_icon_green.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_primary.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_primary.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_background.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_background.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_background_purple.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_background_purple.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_monthly_total.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_monthly_total.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-xhdpi/ic_launcher_round.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_bg_menu_icon_cyan.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/bg_menu_icon_cyan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_background_rose.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_background_rose.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_green.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\theme_color_circle_green.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_background_blue.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_background_blue.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_bg_menu_dialog_card.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/bg_menu_dialog_card.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_loan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/item_loan.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_ic_menu_palette.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/ic_menu_palette.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_success.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_success.xml"
-    },
-    {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_blue.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_blue.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_cyan.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\theme_color_circle_cyan.xml"
     },
     {
         "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_background_settings.xml.flat",
         "source": "com.finance.loanmanager.app-main-41:/layout/activity_background_settings.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-xhdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_dialog_confirm_loan.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\dialog_confirm_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_background_green.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_background_green.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_background.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_background.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_danger.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_danger.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_monthly.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/item_monthly.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-mdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_background_settings.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_background_settings.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_purple.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_purple.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_bg_menu_icon_orange.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/bg_menu_icon_orange.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_cyan.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_cyan.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_payment_schedule.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_payment_schedule.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_stat_card.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/item_stat_card.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_ic_menu_info.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/ic_menu_info.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxxhdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_background_blue.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_background_blue.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_item_schedule.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/item_schedule.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\xml_file_paths.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\xml\\file_paths.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_loan_list.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/activity_loan_list.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_add_loan.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_add_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-mdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout-land_activity_main.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout-land\\activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-hdpi/ic_launcher_round.png"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout-land_activity_main.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout-land/activity_main.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_ic_arrow_right.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/ic_arrow_right.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_payment_schedule.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/activity_payment_schedule.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_loan_list.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_loan_list.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/layout_activity_monthly_total.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/layout/activity_monthly_total.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_item_loan.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\item_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_theme_color_circle_green.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/theme_color_circle_green.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_purple.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\theme_color_circle_purple.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_background_orange.xml.flat",
-        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_background_orange.xml"
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_dialog_main_menu.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/dialog_main_menu.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_gradient_primary.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/gradient_primary.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-39:/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "com.finance.loanmanager.app-main-41:/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_rose.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\theme_color_circle_rose.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-39:/layout_dialog_loan_card_item.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/layout/dialog_loan_card_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_background_orange.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_background_orange.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_activity_loan_detail.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\activity_loan_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_theme_color_circle_orange.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\theme_color_circle_orange.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-39:/drawable_ic_menu_add.xml.flat",
+        "source": "com.finance.loanmanager.app-main-41:/drawable/ic_menu_add.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_background_purple.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_background_purple.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_dialog_backup_restore.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\dialog_backup_restore.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_primary.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_primary.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_success.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_success.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_background_green.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_background_green.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\layout_item_monthly.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\layout\\item_monthly.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-debug-39:\\drawable_gradient_background_rose.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-41:\\drawable\\gradient_background_rose.xml"
     }
 ]

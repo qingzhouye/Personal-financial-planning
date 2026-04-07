@@ -282,54 +282,6 @@
             android:textColor="@color/text_secondary"
             android:layout_marginBottom="@dimen/spacing_lg" />
 
-        <!-- 状态显示 -->
-        <TextView
-            android:id="@+id/tvStatus"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/no_custom_background"
-            android:textSize="@dimen/text_lg"
-            android:textColor="@color/primary_dark"
-            android:textStyle="bold"
-            android:layout_marginBottom="@dimen/spacing_lg" />
-
-        <!-- 预览区域 -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/previewContainer"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="@dimen/spacing_lg"
-            app:cardCornerRadius="@dimen/card_corner_radius"
-            app:cardElevation="@dimen/card_elevation"
-            android:visibility="gone">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/ivPreview"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/current_background" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="@dimen/spacing_sm"
-                    android:text="@string/current_background"
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/text_sm"
-                    android:background="#80000000"
-                    android:paddingStart="@dimen/spacing_sm"
-                    android:paddingEnd="@dimen/spacing_sm"
-                    android:paddingTop="@dimen/spacing_xs"
-                    android:paddingBottom="@dimen/spacing_xs" />
-            </FrameLayout>
-        </androidx.cardview.widget.CardView>
-
         <!-- 选择图片按钮 -->
         <Button
             android:id="@+id/btnSelectImage"

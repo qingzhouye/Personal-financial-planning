@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -124,6 +125,22 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final GridLayout gridStats;
 
+  /**
+   * This binding is not available in all configurations.
+   * <p>
+   * Present:
+   * <ul>
+   *   <li>layout/</li>
+   * </ul>
+   *
+   * Absent:
+   * <ul>
+   *   <li>layout-land/</li>
+   * </ul>
+   */
+  @Nullable
+  public final LinearLayout layoutDailyPayment;
+
   @NonNull
   public final TextView tvActiveLoanCount;
 
@@ -164,10 +181,10 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull Button btnViewMonthlyTotal, @Nullable CardView cardAddLoan,
       @NonNull CardView cardCurrentMonth, @NonNull CardView cardLoanManage,
       @NonNull CardView cardStats, @NonNull GridLayout gridStats,
-      @NonNull TextView tvActiveLoanCount, @NonNull TextView tvCurrentDate,
-      @NonNull TextView tvCurrentMonthDetails, @NonNull TextView tvCurrentMonthTotal,
-      @NonNull TextView tvDailyPayment, @Nullable TextView tvLoanOverviewTitle,
-      @NonNull TextView tvRemainingDays) {
+      @Nullable LinearLayout layoutDailyPayment, @NonNull TextView tvActiveLoanCount,
+      @NonNull TextView tvCurrentDate, @NonNull TextView tvCurrentMonthDetails,
+      @NonNull TextView tvCurrentMonthTotal, @NonNull TextView tvDailyPayment,
+      @Nullable TextView tvLoanOverviewTitle, @NonNull TextView tvRemainingDays) {
     this.rootView = rootView;
     this.btnAddLoan = btnAddLoan;
     this.btnClear = btnClear;
@@ -181,6 +198,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.cardLoanManage = cardLoanManage;
     this.cardStats = cardStats;
     this.gridStats = gridStats;
+    this.layoutDailyPayment = layoutDailyPayment;
     this.tvActiveLoanCount = tvActiveLoanCount;
     this.tvCurrentDate = tvCurrentDate;
     this.tvCurrentMonthDetails = tvCurrentMonthDetails;
@@ -274,6 +292,9 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.layoutDailyPayment;
+      LinearLayout layoutDailyPayment = ViewBindings.findChildViewById(rootView, id);
+
       id = R.id.tvActiveLoanCount;
       TextView tvActiveLoanCount = ViewBindings.findChildViewById(rootView, id);
       if (tvActiveLoanCount == null) {
@@ -315,9 +336,9 @@ public final class ActivityMainBinding implements ViewBinding {
 
       return new ActivityMainBinding((ScrollView) rootView, btnAddLoan, btnClear, btnExport,
           btnImport, btnVersionInfo, btnViewLoans, btnViewMonthlyTotal, cardAddLoan,
-          cardCurrentMonth, cardLoanManage, cardStats, gridStats, tvActiveLoanCount, tvCurrentDate,
-          tvCurrentMonthDetails, tvCurrentMonthTotal, tvDailyPayment, tvLoanOverviewTitle,
-          tvRemainingDays);
+          cardCurrentMonth, cardLoanManage, cardStats, gridStats, layoutDailyPayment,
+          tvActiveLoanCount, tvCurrentDate, tvCurrentMonthDetails, tvCurrentMonthTotal,
+          tvDailyPayment, tvLoanOverviewTitle, tvRemainingDays);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

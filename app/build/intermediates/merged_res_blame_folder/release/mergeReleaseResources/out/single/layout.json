@@ -1,46 +1,66 @@
 [
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/item_stat_card.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/item_stat_card.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\dialog_confirm_loan.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\dialog_confirm_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/activity_add_loan.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/activity_add_loan.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\activity_loan_list.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\activity_loan_list.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/activity_loan_detail.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/activity_loan_detail.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\activity_payment_schedule.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\activity_payment_schedule.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/item_schedule.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/item_schedule.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\item_schedule.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\item_schedule.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/activity_payment_schedule.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/activity_payment_schedule.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\activity_add_loan.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\activity_add_loan.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/dialog_confirm_loan.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/dialog_confirm_loan.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\item_monthly.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\item_monthly.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/activity_main.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/activity_main.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\item_stat_card.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\item_stat_card.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/activity_loan_list.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/activity_loan_list.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\dialog_loan_card_item.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\dialog_loan_card_item.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/item_monthly.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/item_monthly.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/activity_monthly_total.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/activity_monthly_total.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\activity_monthly_total.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\activity_monthly_total.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-mergeReleaseResources-36:/layout/item_loan.xml",
-        "source": "com.finance.loanmanager.app-main-38:/layout/item_loan.xml"
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\item_loan.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\item_loan.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\dialog_backup_restore.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\dialog_backup_restore.xml"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-mergeReleaseResources-38:/layout/dialog_data_menu.xml",
+        "source": "com.finance.loanmanager.app-main-40:/layout/dialog_data_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\activity_loan_detail.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\activity_loan_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\dialog_main_menu.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\dialog_main_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-mergeReleaseResources-38:\\layout\\activity_background_settings.xml",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.10\\com.finance.loanmanager.app-main-40:\\layout\\activity_background_settings.xml"
     }
 ]

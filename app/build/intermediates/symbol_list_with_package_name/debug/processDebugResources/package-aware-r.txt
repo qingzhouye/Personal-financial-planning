@@ -3128,6 +3128,11 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_menu_dialog_card
+drawable bg_menu_icon_cyan
+drawable bg_menu_icon_green
+drawable bg_menu_icon_orange
+drawable bg_menu_icon_purple
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
 drawable btn_checkbox_unchecked_mtrl
@@ -3151,6 +3156,7 @@ drawable gradient_danger
 drawable gradient_primary
 drawable gradient_success
 drawable ic_arrow_back_black_24
+drawable ic_arrow_right
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -3164,6 +3170,10 @@ drawable ic_launcher_foreground
 drawable ic_m3_chip_check
 drawable ic_m3_chip_checked_circle
 drawable ic_m3_chip_close
+drawable ic_menu_add
+drawable ic_menu_data
+drawable ic_menu_info
+drawable ic_menu_palette
 drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
@@ -3378,6 +3388,7 @@ id btnDelete
 id btnExport
 id btnImport
 id btnMakePayment
+id btnMenuClose
 id btnResetBackground
 id btnSelectImage
 id btnSubmit
@@ -3393,6 +3404,7 @@ id cache_measures
 id callMeasure
 id cancel_button
 id cardAddLoan
+id cardContent
 id cardCurrentMonth
 id cardLoanManage
 id cardStats
@@ -3465,6 +3477,7 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id dividerAddLoan
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -3558,12 +3571,12 @@ id inward
 id is_pooling_container_tag
 id italic
 id item_touch_helper_previous_elevation
-id ivPreview
 id jumpToEnd
 id jumpToStart
 id labeled
 id layout
 id layoutCreditCardFields
+id layoutDailyPayment
 id layoutDueDate
 id layoutNormalFields
 id layoutPayment
@@ -3604,6 +3617,11 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id matrix
+id menuHeader
+id menuItemAddLoan
+id menuItemData
+id menuItemSettings
+id menuItemVersion
 id menu_crop
 id menu_loader
 id message
@@ -3694,7 +3712,6 @@ id pooling_container_listener_holder_tag
 id position
 id postLayout
 id pressed
-id previewContainer
 id progressPaid
 id progressRemaining
 id progress_circular
@@ -3852,9 +3869,11 @@ id tvDueDate
 id tvEmpty
 id tvIcon
 id tvInterest
+id tvLoanIcon
 id tvLoanInfo
 id tvLoanName
 id tvLoanOverviewTitle
+id tvLoanStatus
 id tvLoanType
 id tvLoans
 id tvMonth
@@ -3871,11 +3890,11 @@ id tvRate
 id tvRemaining
 id tvRemainingDays
 id tvRemainingPercent
+id tvRemainingPrincipal
 id tvRepaymentMethod
 id tvStartDate
 id tvStatLabel
 id tvStatValue
-id tvStatus
 id tvSubtitle
 id tvTitle
 id tvTotal
@@ -4056,6 +4075,8 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dialog_backup_restore
 layout dialog_confirm_loan
+layout dialog_loan_card_item
+layout dialog_main_menu
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_loan

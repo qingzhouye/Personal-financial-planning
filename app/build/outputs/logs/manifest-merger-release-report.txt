@@ -1,12 +1,24 @@
 -- Merging decision tree log ---
+provider#androidx.core.content.FileProvider
+INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:30:9-38:20
+	android:grantUriPermissions
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:34:13-47
+	android:authorities
+		INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:32:13-64
+	android:exported
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:33:13-37
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:31:13-62
 manifest
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-77:12
-INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-77:12
-INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-77:12
-INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-77:12
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-102:12
+INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:2:1-102:12
 MERGED from [androidx.databinding:viewbinding:8.6.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\d812c99b1a0b4e406134e61981a1a425\transformed\viewbinding-8.6.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\fe956730653fbd9bb193f043d2ecc9f6\transformed\material-1.12.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\e2bc2ff48f590405db3d96a9d6bb1bc8\transformed\constraintlayout-2.2.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.github.yalantis:ucrop:2.2.8] C:\Users\Administrator\.gradle\caches\8.10\transforms\9ccc33c38f4f1e59d62ce32e6a8efa38\transformed\ucrop-2.2.8\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\288c1d51244673f6ffb00affd7779fde\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\fd90c3eca7cd3cdb541f0191554298e0\transformed\appcompat-1.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] C:\Users\Administrator\.gradle\caches\8.10\transforms\2a7dcdefd2dce6b24933180273321108\transformed\viewpager2-1.1.0-beta02\AndroidManifest.xml:2:1-7:12
@@ -14,6 +26,7 @@ MERGED from [androidx.recyclerview:recyclerview:1.3.2] C:\Users\Administrator\.g
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\f87f45c4a5c28729c3ae62ca19d90ea4\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\e16b484f0c99c1e9b7ca681dda6b515c\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\89675557cdb0f5b388c4f04f634b1c78\transformed\emoji2-1.3.0\AndroidManifest.xml:17:1-35:12
+MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\618907e636d9e1c8be84d77c91dd760b\transformed\glide-4.16.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Administrator\.gradle\caches\8.10\transforms\a4ed96dacc51c248a89ff63b65915877\transformed\fragment-1.5.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.8.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\2b12881d2e8d852fdbe72cf79ea45134\transformed\activity-1.8.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\Administrator\.gradle\caches\8.10\transforms\68b6f1e68942723fb2e920bcef7d8235\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
@@ -48,6 +61,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ad
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\0774a73e07fe323e3053c89d9103d035\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\ca4d1f0b8ded4980143ab269366c8dde\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\eac1633e8241c9a0c281074cb044bed5\transformed\sqlite-2.4.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\Administrator\.gradle\caches\8.10\transforms\301638627260cbe5a84449a169051f31\transformed\exifinterface-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\6c52fc1154029bd59564c144b5d9afc9\transformed\gifdecoder-4.16.0\AndroidManifest.xml:2:1-9:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\59ecdc55cb6e45dd521b99f35cb9e59d\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\1a8f4aaa044b2e7c53ceddfa0677f774\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\0441769290688c5f8906283922314ca6\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -90,8 +105,8 @@ ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app
 	android:name
 		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:15:22-77
 application
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-75:19
-INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-75:19
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-100:19
+INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-100:19
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\fe956730653fbd9bb193f043d2ecc9f6\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\fe956730653fbd9bb193f043d2ecc9f6\transformed\material-1.12.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\e2bc2ff48f590405db3d96a9d6bb1bc8\transformed\constraintlayout-2.2.0\AndroidManifest.xml:7:5-20
@@ -112,6 +127,8 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ad
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Administrator\.gradle\caches\8.10\transforms\cf6c48ff86591f2b5ce0c5348228b09a\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
 		INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml
+	android:requestLegacyExternalStorage
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:27:9-52
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.15.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\d55ef5ccc4ed29bae9e48b675a9aec34\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
@@ -131,85 +148,111 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Ad
 	android:name
 		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:25:9-47
 activity#com.finance.loanmanager.ui.main.MainActivity
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:28:9-37:20
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:40:9-49:20
 	android:exported
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:30:13-36
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:42:13-36
 	android:configChanges
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:32:13-78
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:44:13-78
 	android:theme
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:31:13-65
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:43:13-65
 	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:29:13-49
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:41:13-49
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:33:13-36:29
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:45:13-48:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:34:17-69
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:46:17-69
 	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:34:25-66
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:46:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:35:17-77
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:47:17-77
 	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:35:27-74
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:47:27-74
 activity#com.finance.loanmanager.ui.loan.AddLoanActivity
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:39:9-43:62
-	android:parentActivityName
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:42:13-63
-	android:label
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:41:13-45
-	android:configChanges
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:43:13-59
-	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:40:13-52
-activity#com.finance.loanmanager.ui.loan.LoanListActivity
-ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:45:9-49:62
-	android:parentActivityName
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:48:13-63
-	android:label
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:47:13-46
-	android:configChanges
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:49:13-59
-	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:46:13-53
-activity#com.finance.loanmanager.ui.loan.LoanDetailActivity
 ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:51:9-55:62
 	android:parentActivityName
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:54:13-67
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:54:13-63
 	android:label
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:53:13-48
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:53:13-45
 	android:configChanges
 		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:55:13-59
 	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:52:13-55
-activity#com.finance.loanmanager.ui.schedule.PaymentScheduleActivity
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:52:13-52
+activity#com.finance.loanmanager.ui.loan.LoanListActivity
 ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:57:9-61:62
 	android:parentActivityName
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:60:13-69
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:60:13-63
 	android:label
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:59:13-53
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:59:13-46
 	android:configChanges
 		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:61:13-59
 	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:58:13-64
-activity#com.finance.loanmanager.ui.monthly.MonthlyTotalActivity
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:58:13-53
+activity#com.finance.loanmanager.ui.loan.LoanDetailActivity
 ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:63:9-67:62
 	android:parentActivityName
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:66:13-63
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:66:13-67
 	android:label
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:65:13-50
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:65:13-48
 	android:configChanges
 		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:67:13-59
 	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:64:13-60
-activity#com.finance.loanmanager.ui.data.DataManagementActivity
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:64:13-55
+activity#com.finance.loanmanager.ui.schedule.PaymentScheduleActivity
 ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:69:9-73:62
 	android:parentActivityName
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:72:13-63
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:72:13-69
 	android:label
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:71:13-52
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:71:13-53
 	android:configChanges
 		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:73:13-59
 	android:name
-		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:70:13-59
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:70:13-64
+activity#com.finance.loanmanager.ui.monthly.MonthlyTotalActivity
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:75:9-79:62
+	android:parentActivityName
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:78:13-63
+	android:label
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:77:13-50
+	android:configChanges
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:79:13-59
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:76:13-60
+activity#com.finance.loanmanager.ui.data.DataManagementActivity
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:81:9-85:62
+	android:parentActivityName
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:84:13-63
+	android:label
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:83:13-52
+	android:configChanges
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:85:13-59
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:82:13-59
+activity#com.finance.loanmanager.ui.settings.BackgroundSettingsActivity
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:87:9-91:62
+	android:parentActivityName
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:90:13-63
+	android:label
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:89:13-61
+	android:configChanges
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:91:13-59
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:88:13-67
+activity#com.yalantis.ucrop.UCropActivity
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:94:9-98:55
+	android:screenOrientation
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:96:13-49
+	android:windowSoftInputMode
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:98:13-52
+	android:theme
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:97:13-46
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:95:13-60
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:35:13-37:54
+	android:resource
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:37:17-51
+	android:name
+		ADDED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:36:17-67
 uses-sdk
 INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml
@@ -220,6 +263,8 @@ MERGED from [com.google.android.material:material:1.12.0] C:\Users\Administrator
 MERGED from [com.google.android.material:material:1.12.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\fe956730653fbd9bb193f043d2ecc9f6\transformed\material-1.12.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\e2bc2ff48f590405db3d96a9d6bb1bc8\transformed\constraintlayout-2.2.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.constraintlayout:constraintlayout:2.2.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\e2bc2ff48f590405db3d96a9d6bb1bc8\transformed\constraintlayout-2.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.github.yalantis:ucrop:2.2.8] C:\Users\Administrator\.gradle\caches\8.10\transforms\9ccc33c38f4f1e59d62ce32e6a8efa38\transformed\ucrop-2.2.8\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.yalantis:ucrop:2.2.8] C:\Users\Administrator\.gradle\caches\8.10\transforms\9ccc33c38f4f1e59d62ce32e6a8efa38\transformed\ucrop-2.2.8\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\288c1d51244673f6ffb00affd7779fde\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\288c1d51244673f6ffb00affd7779fde\transformed\appcompat-resources-1.7.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.7.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\fd90c3eca7cd3cdb541f0191554298e0\transformed\appcompat-1.7.0\AndroidManifest.xml:5:5-44
@@ -234,6 +279,8 @@ MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Administrator\.
 MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\e16b484f0c99c1e9b7ca681dda6b515c\transformed\emoji2-views-helper-1.3.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\89675557cdb0f5b388c4f04f634b1c78\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
 MERGED from [androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\89675557cdb0f5b388c4f04f634b1c78\transformed\emoji2-1.3.0\AndroidManifest.xml:21:5-44
+MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\618907e636d9e1c8be84d77c91dd760b\transformed\glide-4.16.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:glide:4.16.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\618907e636d9e1c8be84d77c91dd760b\transformed\glide-4.16.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Administrator\.gradle\caches\8.10\transforms\a4ed96dacc51c248a89ff63b65915877\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.5.4] C:\Users\Administrator\.gradle\caches\8.10\transforms\a4ed96dacc51c248a89ff63b65915877\transformed\fragment-1.5.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.8.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\2b12881d2e8d852fdbe72cf79ea45134\transformed\activity-1.8.0\AndroidManifest.xml:20:5-44
@@ -302,6 +349,10 @@ MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\Administrator\.gra
 MERGED from [androidx.sqlite:sqlite-framework:2.4.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\ca4d1f0b8ded4980143ab269366c8dde\transformed\sqlite-framework-2.4.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\eac1633e8241c9a0c281074cb044bed5\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.sqlite:sqlite:2.4.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\eac1633e8241c9a0c281074cb044bed5\transformed\sqlite-2.4.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\Administrator\.gradle\caches\8.10\transforms\301638627260cbe5a84449a169051f31\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\Administrator\.gradle\caches\8.10\transforms\301638627260cbe5a84449a169051f31\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\6c52fc1154029bd59564c144b5d9afc9\transformed\gifdecoder-4.16.0\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.bumptech.glide:gifdecoder:4.16.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\6c52fc1154029bd59564c144b5d9afc9\transformed\gifdecoder-4.16.0\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\59ecdc55cb6e45dd521b99f35cb9e59d\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\59ecdc55cb6e45dd521b99f35cb9e59d\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\Administrator\.gradle\caches\8.10\transforms\1a8f4aaa044b2e7c53ceddfa0677f774\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44

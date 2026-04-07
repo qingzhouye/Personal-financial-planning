@@ -3,7 +3,7 @@
     dir="C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app"
     name=":app"
     type="APP"
-    maven="LoanManager:app:unspecified"
+    maven="FreeMe:app:unspecified"
     agpVersion="8.6.0"
     buildFolder="build"
     bootClassPath="C:\Users\Administrator\AppData\Local\Android\Sdk\platforms\android-36\android.jar;C:\Users\Administrator\AppData\Local\Android\Sdk\build-tools\34.0.0\core-lambda-stubs.jar"
