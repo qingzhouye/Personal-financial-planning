@@ -14,6 +14,7 @@ import android.view.Window;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
@@ -54,6 +55,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 设置状态栏透明
         Window window = getWindow();
         if (window != null) {
+            // 关键：让内容延伸到系统栏区域（Edge-to-Edge），状态栏才真正透明
+            WindowCompat.setDecorFitsSystemWindows(window, false);
             // 状态栏透明
             window.setStatusBarColor(android.graphics.Color.TRANSPARENT);
         }
@@ -112,18 +115,18 @@ public abstract class BaseActivity extends AppCompatActivity {
     private int[] getThemeGradientColors(int themeIndex) {
         switch (themeIndex) {
             case ThemeManager.THEME_BLUE:
-                return new int[] { 0xFF42A5F5, 0xFF90CAF9, 0xFFE3F2FD }; // 深蓝渐变
+                return new int[] { 0xFF42A5F5, 0xFF64B5F6, 0xFF90CAF9 }; // 深蓝渐变（柔和）
             case ThemeManager.THEME_ORANGE:
-                return new int[] { 0xFFFFA726, 0xFFFFCC80, 0xFFFFF3E0 }; // 橙色渐变
+                return new int[] { 0xFFFFA726, 0xFFFFB74D, 0xFFFFCC80 }; // 橙色渐变（柔和）
             case ThemeManager.THEME_PURPLE:
-                return new int[] { 0xFFAB47BC, 0xFFCE93D8, 0xFFF3E5F5 }; // 紫色渐变
+                return new int[] { 0xFFAB47BC, 0xFFBA68C8, 0xFFCE93D8 }; // 紫色渐变（柔和）
             case ThemeManager.THEME_GREEN:
-                return new int[] { 0xFF66BB6A, 0xFFA5D6A7, 0xFFE8F5E9 }; // 绿色渐变
+                return new int[] { 0xFF66BB6A, 0xFF81C784, 0xFFA5D6A7 }; // 绿色渐变（柔和）
             case ThemeManager.THEME_ROSE:
-                return new int[] { 0xFFEC407A, 0xFFF48FB1, 0xFFFCE4EC }; // 玫瑰渐变
+                return new int[] { 0xFFEC407A, 0xFFF06292, 0xFFF48FB1 }; // 玫瑰渐变（柔和）
             case ThemeManager.THEME_CYAN:
             default:
-                return new int[] { 0xFF4DD0E1, 0xFF80DEEA, 0xFFE0F7FA }; // 青色渐变
+                return new int[] { 0xFF4DD0E1, 0xFF63D7E5, 0xFF80DEEA }; // 青色渐变（柔和）
         }
     }
     
