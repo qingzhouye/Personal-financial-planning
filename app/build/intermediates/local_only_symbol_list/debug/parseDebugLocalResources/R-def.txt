@@ -6,6 +6,7 @@ color background_mid
 color background_start
 color card_background
 color card_background_alt
+color card_background_transparent
 color danger
 color divider
 color info
@@ -27,6 +28,7 @@ color text_hint
 color text_primary
 color text_secondary
 color text_white
+color text_white_bold
 color transparent
 color warning
 color warning_light
@@ -157,6 +159,7 @@ id tvIcon
 id tvInterest
 id tvLoanInfo
 id tvLoanName
+id tvLoanOverviewTitle
 id tvLoanType
 id tvLoans
 id tvMonth
@@ -357,4 +360,5 @@ style Theme.LoanManager.Orange
 style Theme.LoanManager.Purple
 style Theme.LoanManager.Rose
 style TitleText
+style UCropTheme
 xml file_paths

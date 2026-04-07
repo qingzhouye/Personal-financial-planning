@@ -139,6 +139,22 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final TextView tvDailyPayment;
 
+  /**
+   * This binding is not available in all configurations.
+   * <p>
+   * Present:
+   * <ul>
+   *   <li>layout/</li>
+   * </ul>
+   *
+   * Absent:
+   * <ul>
+   *   <li>layout-land/</li>
+   * </ul>
+   */
+  @Nullable
+  public final TextView tvLoanOverviewTitle;
+
   @NonNull
   public final TextView tvRemainingDays;
 
@@ -150,7 +166,8 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull CardView cardStats, @NonNull GridLayout gridStats,
       @NonNull TextView tvActiveLoanCount, @NonNull TextView tvCurrentDate,
       @NonNull TextView tvCurrentMonthDetails, @NonNull TextView tvCurrentMonthTotal,
-      @NonNull TextView tvDailyPayment, @NonNull TextView tvRemainingDays) {
+      @NonNull TextView tvDailyPayment, @Nullable TextView tvLoanOverviewTitle,
+      @NonNull TextView tvRemainingDays) {
     this.rootView = rootView;
     this.btnAddLoan = btnAddLoan;
     this.btnClear = btnClear;
@@ -169,6 +186,7 @@ public final class ActivityMainBinding implements ViewBinding {
     this.tvCurrentMonthDetails = tvCurrentMonthDetails;
     this.tvCurrentMonthTotal = tvCurrentMonthTotal;
     this.tvDailyPayment = tvDailyPayment;
+    this.tvLoanOverviewTitle = tvLoanOverviewTitle;
     this.tvRemainingDays = tvRemainingDays;
   }
 
@@ -286,6 +304,9 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tvLoanOverviewTitle;
+      TextView tvLoanOverviewTitle = ViewBindings.findChildViewById(rootView, id);
+
       id = R.id.tvRemainingDays;
       TextView tvRemainingDays = ViewBindings.findChildViewById(rootView, id);
       if (tvRemainingDays == null) {
@@ -295,7 +316,8 @@ public final class ActivityMainBinding implements ViewBinding {
       return new ActivityMainBinding((ScrollView) rootView, btnAddLoan, btnClear, btnExport,
           btnImport, btnVersionInfo, btnViewLoans, btnViewMonthlyTotal, cardAddLoan,
           cardCurrentMonth, cardLoanManage, cardStats, gridStats, tvActiveLoanCount, tvCurrentDate,
-          tvCurrentMonthDetails, tvCurrentMonthTotal, tvDailyPayment, tvRemainingDays);
+          tvCurrentMonthDetails, tvCurrentMonthTotal, tvDailyPayment, tvLoanOverviewTitle,
+          tvRemainingDays);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -1408,6 +1408,7 @@ color call_notification_answer_color
 color call_notification_decline_color
 color card_background
 color card_background_alt
+color card_background_transparent
 color cardview_dark_background
 color cardview_light_background
 color cardview_shadow_end_color
@@ -2157,6 +2158,7 @@ color text_hint
 color text_primary
 color text_secondary
 color text_white
+color text_white_bold
 color tooltip_background_dark
 color tooltip_background_light
 color transparent
@@ -3852,6 +3854,7 @@ id tvIcon
 id tvInterest
 id tvLoanInfo
 id tvLoanName
+id tvLoanOverviewTitle
 id tvLoanType
 id tvLoans
 id tvMonth
@@ -5203,6 +5206,7 @@ style ThemeOverlay_MaterialComponents_Toolbar_Popup_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Surface
 style TitleText
+style UCropTheme
 style Widget_AppCompat_ActionBar
 style Widget_AppCompat_ActionBar_Solid
 style Widget_AppCompat_ActionBar_TabBar

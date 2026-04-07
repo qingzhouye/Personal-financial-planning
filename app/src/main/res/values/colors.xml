@@ -45,4 +45,8 @@
     <!-- Transparent -->
     <color name="transparent">#00000000</color>
     <color name="semi_transparent_white">#80ffffff</color>
+    
+    <!-- Custom Background Mode Colors -->
+    <color name="card_background_transparent">#40000000</color>
+    <color name="text_white_bold">#FFFFFF</color>
 </resources>

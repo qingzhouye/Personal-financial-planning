@@ -2,12 +2,14 @@ package com.finance.loanmanager.ui;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -40,6 +42,28 @@ public abstract class BaseActivity extends AppCompatActivity {
         backgroundManager = new BackgroundManager(this);
         
         super.onCreate(savedInstanceState);
+        
+        // 设置透明状态栏和ActionBar
+        setupTransparentStatusBarAndActionBar();
+    }
+    
+    /**
+     * 设置透明状态栏和ActionBar背景
+     */
+    protected void setupTransparentStatusBarAndActionBar() {
+        // 设置状态栏透明
+        Window window = getWindow();
+        if (window != null) {
+            // 状态栏透明
+            window.setStatusBarColor(android.graphics.Color.TRANSPARENT);
+        }
+        
+        // 设置ActionBar背景透明
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            // 禁用ActionBar阴影
+            getSupportActionBar().setElevation(0);
+        }
     }
     
     @Override

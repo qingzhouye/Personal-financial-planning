@@ -33,6 +33,7 @@ import com.finance.loanmanager.ui.settings.BackgroundSettingsActivity;
 import com.finance.loanmanager.util.BackupManager;
 import com.finance.loanmanager.util.DateUtil;
 import com.finance.loanmanager.util.NumberFormatUtil;
+import com.finance.loanmanager.util.BackgroundManager;
 import com.finance.loanmanager.util.ThemeManager;
 
 import java.io.BufferedReader;
@@ -45,6 +46,7 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 
 public class MainActivity extends BaseActivity {
@@ -70,6 +72,7 @@ public class MainActivity extends BaseActivity {
     
     private List<LoanRepository.LoanWithStatus> loansWithStatus = new ArrayList<>();
     private BackupManager backupManager;
+    private BackgroundManager backgroundManager;
     private static final String PREFS_NAME = "LoanManagerPrefs";
     private static final String KEY_BACKUP_CHECKED = "backup_checked";
 
@@ -99,6 +102,7 @@ public class MainActivity extends BaseActivity {
         try {
             repository = new LoanRepository(getApplication());
             backupManager = new BackupManager(this);
+            backgroundManager = new BackgroundManager(this);
             executorService = Executors.newSingleThreadExecutor();
             
             // 初始化当前主题标记
@@ -178,31 +182,146 @@ public class MainActivity extends BaseActivity {
         super.onResume();
         // 重新设置卡片背景（主题可能已更改）
         setupCurrentMonthCardBackground();
+        // 应用自定义背景模式下的透明卡片样式
+        applyTransparentCardStyle();
         // 刷新按钮和统计卡片背景
         refreshThemeDependentViews();
         refreshData();
     }
     
     /**
+     * 当设置了自定义背景时，应用透明卡片样式
+     */
+    private void applyTransparentCardStyle() {
+        boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
+        
+        // 设置本月应还卡片样式
+        if (cardCurrentMonth != null) {
+            LinearLayout cardContent = (LinearLayout) cardCurrentMonth.getChildAt(0);
+            if (cardContent != null) {
+                if (hasCustomBg) {
+                    // 自定义背景模式：透明背景
+                    cardContent.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    // 设置白色加粗文字
+                    applyWhiteTextStyleToCurrentMonthCard();
+                } else {
+                    // 普通模式：主题色渐变背景
+                    setupCurrentMonthCardBackground();
+                    // 恢复默认文字样式
+                    applyDefaultTextStyleToCurrentMonthCard();
+                }
+            }
+        }
+        
+        // 设置统计概览卡片样式
+        if (cardStats != null) {
+            if (hasCustomBg) {
+                cardStats.setCardBackgroundColor(getResources().getColor(android.R.color.transparent));
+                cardStats.setCardElevation(0);
+                // 设置标题为白色加粗
+                TextView titleView = findViewById(R.id.tvLoanOverviewTitle);
+                if (titleView != null) {
+                    titleView.setTextColor(getResources().getColor(R.color.text_white));
+                    titleView.setTypeface(null, Typeface.BOLD);
+                }
+            } else {
+                cardStats.setCardBackgroundColor(getResources().getColor(R.color.card_background));
+                cardStats.setCardElevation(getResources().getDimension(R.dimen.card_elevation));
+                // 恢复标题默认样式
+                TextView titleView = findViewById(R.id.tvLoanOverviewTitle);
+                if (titleView != null) {
+                    titleView.setTextColor(getResources().getColor(R.color.primary_dark));
+                    titleView.setTypeface(null, Typeface.BOLD);
+                }
+            }
+        }
+    }
+    
+    /**
+     * 为本月应还卡片应用白色加粗文字样式（自定义背景模式）
+     */
+    private void applyWhiteTextStyleToCurrentMonthCard() {
+        int whiteColor = getResources().getColor(R.color.text_white);
+        
+        if (tvCurrentDate != null) {
+            tvCurrentDate.setTextColor(whiteColor);
+            tvCurrentDate.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvCurrentMonthTotal != null) {
+            tvCurrentMonthTotal.setTextColor(whiteColor);
+            tvCurrentMonthTotal.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvActiveLoanCount != null) {
+            tvActiveLoanCount.setTextColor(whiteColor);
+            tvActiveLoanCount.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvDailyPayment != null) {
+            tvDailyPayment.setTextColor(whiteColor);
+            tvDailyPayment.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvRemainingDays != null) {
+            tvRemainingDays.setTextColor(whiteColor);
+            tvRemainingDays.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvCurrentMonthDetails != null) {
+            tvCurrentMonthDetails.setTextColor(whiteColor);
+        }
+    }
+    
+    /**
+     * 恢复本月应还卡片的默认文字样式
+     */
+    private void applyDefaultTextStyleToCurrentMonthCard() {
+        int semiTransparentWhite = getResources().getColor(R.color.semi_transparent_white);
+        int whiteColor = getResources().getColor(R.color.text_white);
+        
+        if (tvCurrentDate != null) {
+            tvCurrentDate.setTextColor(semiTransparentWhite);
+            tvCurrentDate.setTypeface(null, Typeface.NORMAL);
+        }
+        if (tvCurrentMonthTotal != null) {
+            tvCurrentMonthTotal.setTextColor(whiteColor);
+            tvCurrentMonthTotal.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvActiveLoanCount != null) {
+            tvActiveLoanCount.setTextColor(whiteColor);
+            tvActiveLoanCount.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvDailyPayment != null) {
+            tvDailyPayment.setTextColor(whiteColor);
+            tvDailyPayment.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvRemainingDays != null) {
+            tvRemainingDays.setTextColor(whiteColor);
+            tvRemainingDays.setTypeface(null, Typeface.BOLD);
+        }
+        if (tvCurrentMonthDetails != null) {
+            tvCurrentMonthDetails.setTextColor(semiTransparentWhite);
+        }
+    }
+    
+    /**
      * 刷新依赖主题颜色的视图
      */
     private void refreshThemeDependentViews() {
+        // 获取当前主题的 colorPrimary 颜色
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        getTheme().resolveAttribute(android.R.attr.colorPrimary, typedValue, true);
+        int primaryColor = typedValue.data;
+        
         // 刷新"查看每月总还款金额"按钮背景
         if (btnViewMonthlyTotal != null) {
-            btnViewMonthlyTotal.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
-                getResources().getColor(R.color.primary, getTheme())));
+            btnViewMonthlyTotal.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
         }
         
         // 刷新添加贷款按钮背景
         if (btnAddLoan != null) {
-            btnAddLoan.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
-                getResources().getColor(R.color.primary, getTheme())));
+            btnAddLoan.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
         }
         
         // 刷新查看贷款按钮背景
         if (btnViewLoans != null) {
-            btnViewLoans.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
-                getResources().getColor(R.color.primary, getTheme())));
+            btnViewLoans.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
         }
         
         // 刷新标题栏文字颜色
@@ -418,19 +537,46 @@ public class MainActivity extends BaseActivity {
         tvValue.setText(value);
         tvLabel.setText(label);
         
-        // 动态设置卡片背景为主题色渐变
+        // 动态设置卡片背景
         if (cardView instanceof androidx.cardview.widget.CardView) {
             androidx.cardview.widget.CardView card = (androidx.cardview.widget.CardView) cardView;
-            int themeIndex = ThemeManager.getSavedTheme(this);
-            int[] gradientColors = getThemeGradientColors(themeIndex);
             
-            // 创建渐变背景
-            GradientDrawable gradient = new GradientDrawable(
-                GradientDrawable.Orientation.TL_BR,
-                gradientColors
-            );
-            gradient.setCornerRadius(16f); // 8dp * 2 for better quality
-            card.setBackground(gradient);
+            // 检查是否有自定义背景
+            boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
+            
+            if (hasCustomBg) {
+                // 自定义背景模式：透明背景 + 白色边框
+                card.setCardBackgroundColor(getResources().getColor(android.R.color.transparent));
+                card.setCardElevation(0);
+                
+                // 添加半透明边框
+                GradientDrawable borderDrawable = new GradientDrawable();
+                borderDrawable.setColor(getResources().getColor(android.R.color.transparent));
+                borderDrawable.setStroke(2, getResources().getColor(R.color.semi_transparent_white));
+                borderDrawable.setCornerRadius(16f);
+                card.setBackground(borderDrawable);
+                
+                // 设置文字为白色加粗
+                tvValue.setTextColor(getResources().getColor(R.color.text_white));
+                tvValue.setTypeface(null, Typeface.BOLD);
+                tvLabel.setTextColor(getResources().getColor(R.color.text_white));
+            } else {
+                // 普通模式：主题色渐变背景
+                int themeIndex = ThemeManager.getSavedTheme(this);
+                int[] gradientColors = getThemeGradientColors(themeIndex);
+                
+                GradientDrawable gradient = new GradientDrawable(
+                    GradientDrawable.Orientation.TL_BR,
+                    gradientColors
+                );
+                gradient.setCornerRadius(16f);
+                card.setBackground(gradient);
+                
+                // 恢复默认文字样式
+                tvValue.setTextColor(getResources().getColor(R.color.text_white));
+                tvValue.setTypeface(null, Typeface.BOLD);
+                tvLabel.setTextColor(getResources().getColor(R.color.semi_transparent_white));
+            }
         }
         
         grid.addView(cardView);
