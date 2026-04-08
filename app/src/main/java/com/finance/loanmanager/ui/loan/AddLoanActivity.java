@@ -76,6 +76,7 @@ public class AddLoanActivity extends BaseActivity {
         
         initViews();
         setupListeners();
+        applyTransparentCardStyle();
         
         // 设置默认日期 - 确保日期字段不为空
         String currentDate = DateUtil.getCurrentDate();
@@ -178,6 +179,31 @@ public class AddLoanActivity extends BaseActivity {
             layoutCreditCardFields.setVisibility(View.GONE);
             selectedRepaymentMethod = "equal_interest";
             spinnerRepaymentMethod.setText(repaymentMethodNames[0]);
+        }
+    }
+    
+    /**
+     * 当设置了自定义背景时，应用透明卡片样式
+     */
+    private void applyTransparentCardStyle() {
+        boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
+        
+        // 设置普通贷款信息区域背景
+        if (layoutNormalFields != null) {
+            if (hasCustomBg) {
+                layoutNormalFields.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            } else {
+                layoutNormalFields.setBackgroundColor(getResources().getColor(R.color.card_background_alt));
+            }
+        }
+        
+        // 设置信用卡信息区域背景
+        if (layoutCreditCardFields != null) {
+            if (hasCustomBg) {
+                layoutCreditCardFields.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            } else {
+                layoutCreditCardFields.setBackgroundColor(getResources().getColor(R.color.card_background_alt));
+            }
         }
     }
     
