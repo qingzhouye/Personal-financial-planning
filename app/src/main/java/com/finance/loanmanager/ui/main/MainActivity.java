@@ -114,6 +114,16 @@ public class MainActivity extends BaseActivity {
             setupListeners();
             observeData();
             
+            // 如果是 Activity 重建（如主题切换后），立即同步加载数据避免概览区域短暂空白
+            if (savedInstanceState != null) {
+                try {
+                    loansWithStatus = repository.getLoansWithStatus();
+                    updateUI();
+                } catch (Exception ignored) {
+                    // 同步加载失败时会由 onResume 中的异步 refreshData 备底
+                }
+            }
+            
             // 检查是否需要显示备份恢复对话框
             checkAndShowBackupRestoreDialog();
         } catch (Exception e) {
@@ -182,6 +192,16 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        
+        // 【优先检测主题变化】如果主题已改变，立即 recreate 并跳过后续旧主题渲染
+        int currentTheme = ThemeManager.getSavedTheme(this);
+        if (lastKnownTheme != -1 && lastKnownTheme != currentTheme) {
+            lastKnownTheme = currentTheme;
+            recreate();
+            return;
+        }
+        lastKnownTheme = currentTheme;
+        
         // 重新设置卡片背景（主题可能已更改）
         setupCurrentMonthCardBackground();
         // 应用自定义背景模式下的透明卡片样式
@@ -397,28 +417,9 @@ public class MainActivity extends BaseActivity {
         if (btnAddLoan != null) {
             btnAddLoan.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
         }
-        
-        // 刷新标题栏文字颜色
-        TextView titleView = findViewById(R.id.tvCurrentDate);
-        if (titleView != null) {
-            // 重新加载整个UI以应用新主题
-            recreateIfThemeChanged();
-        }
     }
     
     private int lastKnownTheme = -1;
-    
-    /**
-     * 如果主题发生变化，重新创建Activity
-     */
-    private void recreateIfThemeChanged() {
-        int currentTheme = ThemeManager.getSavedTheme(this);
-        if (lastKnownTheme != -1 && lastKnownTheme != currentTheme) {
-            // 主题发生变化，重新创建
-            recreate();
-        }
-        lastKnownTheme = currentTheme;
-    }
     
     /**
      * 设置本月应还卡片背景为当前主题色的渐变

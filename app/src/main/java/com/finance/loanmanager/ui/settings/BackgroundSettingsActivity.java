@@ -158,7 +158,10 @@ public class BackgroundSettingsActivity extends BaseActivity {
         if (current == themeIndex) return; // 尚未改变，无需操作
         ThemeManager.saveTheme(this, themeIndex);
         
-        // 重迟当前 Activity，使主题完全生效
+        // 清除静态缓存，确保其他 Activity 返回时使用新主题的渐变背景
+        BaseActivity.clearBackgroundCache();
+        
+        // 重建当前 Activity，使主题完全生效
         recreate();
     }
 
