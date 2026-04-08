@@ -34,6 +34,7 @@ public class AddLoanActivity extends BaseActivity {
     private TextInputEditText spinnerLoanType;
     private TextInputEditText etLoanName;
     private TextInputEditText spinnerRepaymentMethod;
+    private LinearLayout layoutBasicInfo;
     private LinearLayout layoutNormalFields;
     private LinearLayout layoutCreditCardFields;
     private TextInputEditText etPrincipal;
@@ -112,6 +113,7 @@ public class AddLoanActivity extends BaseActivity {
         spinnerLoanType = findViewById(R.id.spinnerLoanType);
         etLoanName = findViewById(R.id.etLoanName);
         spinnerRepaymentMethod = findViewById(R.id.spinnerRepaymentMethod);
+        layoutBasicInfo = findViewById(R.id.layoutBasicInfo);
         layoutNormalFields = findViewById(R.id.layoutNormalFields);
         layoutCreditCardFields = findViewById(R.id.layoutCreditCardFields);
         etPrincipal = findViewById(R.id.etPrincipal);
@@ -187,6 +189,15 @@ public class AddLoanActivity extends BaseActivity {
      */
     private void applyTransparentCardStyle() {
         boolean hasCustomBg = getBackgroundManager() != null && getBackgroundManager().hasCustomBackground();
+        
+        // 设置基本信息区域背景
+        if (layoutBasicInfo != null) {
+            if (hasCustomBg) {
+                layoutBasicInfo.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            } else {
+                layoutBasicInfo.setBackgroundColor(getResources().getColor(R.color.card_background_alt));
+            }
+        }
         
         // 设置普通贷款信息区域背景
         if (layoutNormalFields != null) {
