@@ -207,6 +207,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
     
     /**
+     * 获取 BackgroundManager 实例，供子类使用
+     */
+    protected BackgroundManager getBackgroundManager() {
+        return backgroundManager;
+    }
+    
+    /**
      * 设置Edge-to-Edge安全区域
      */
     protected void setupWindowInsets() {

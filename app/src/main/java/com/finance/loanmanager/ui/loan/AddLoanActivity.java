@@ -186,7 +186,7 @@ public class AddLoanActivity extends BaseActivity {
      * 当设置了自定义背景时，应用透明卡片样式
      */
     private void applyTransparentCardStyle() {
-        boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
+        boolean hasCustomBg = getBackgroundManager() != null && getBackgroundManager().hasCustomBackground();
         
         // 设置普通贷款信息区域背景
         if (layoutNormalFields != null) {
