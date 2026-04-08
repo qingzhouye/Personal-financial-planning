@@ -30,7 +30,7 @@ jobs:
 
     - name: Install Android SDK Platform and Build Tools
       run: |
-        sdkmanager "platforms;android-36" "build-tools;36.0.0"
+        sdkmanager "platforms;android-35" "build-tools;35.0.0"
     
     - name: Cache Gradle dependencies
       uses: actions/cache@v4
@@ -53,6 +53,10 @@ jobs:
     
     - name: Build Debug APK
       run: ./gradlew assembleDebug --refresh-dependencies
+    
+    - name: Generate Release Keystore
+      run: |
+        keytool -genkey -v -keystore loanmanager-release.keystore -alias loanmanager -keyalg RSA -keysize 2048 -validity 10000 -storepass loanmanager123 -keypass loanmanager123 -dname "CN=LoanManager"
     
     - name: Build Release APK
       run: ./gradlew assembleRelease --refresh-dependencies
