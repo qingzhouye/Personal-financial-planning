@@ -55,7 +55,11 @@ jobs:
     
     - name: Generate Release Keystore
       run: |
-        keytool -genkey -v -keystore loanmanager-release.keystore -alias loanmanager -keyalg RSA -keysize 2048 -validity 10000 -storepass loanmanager123 -keypass loanmanager123 -dname "CN=LoanManager"
+        if [ ! -f loanmanager-release.keystore ]; then
+          keytool -genkey -v -keystore loanmanager-release.keystore -alias loanmanager -keyalg RSA -keysize 2048 -validity 10000 -storepass loanmanager123 -keypass loanmanager123 -dname "CN=LoanManager"
+        else
+          echo "Keystore already exists, skipping generation"
+        fi
     
     - name: Build Release APK
       run: ./gradlew assembleRelease --refresh-dependencies
