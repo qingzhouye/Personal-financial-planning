@@ -114,14 +114,17 @@ public class MainActivity extends BaseActivity {
             setupListeners();
             observeData();
             
-            // 如果是 Activity 重建（如主题切换后），立即同步加载数据避免概览区域短暂空白
-            if (savedInstanceState != null) {
-                try {
-                    loansWithStatus = repository.getLoansWithStatus();
-                    updateUI();
-                } catch (Exception ignored) {
-                    // 同步加载失败时会由 onResume 中的异步 refreshData 备底
-                }
+            // 【关键修复】在 onCreate 中立即应用透明卡片样式，确保自定义背景下内容正确显示
+            // 这样在数据加载完成前，样式就已经正确设置
+            applyTransparentCardStyle();
+            
+            // 同步加载数据避免概览区域短暂空白
+            // 无论是首次启动还是 Activity 重建，都尝试同步加载一次数据
+            try {
+                loansWithStatus = repository.getLoansWithStatus();
+                updateUI();
+            } catch (Exception ignored) {
+                // 同步加载失败时会由 onResume 中的异步 refreshData 备底
             }
             
             // 检查是否需要显示备份恢复对话框

@@ -170,6 +170,16 @@ public abstract class BaseActivity extends AppCompatActivity {
             return;
         }
         
+        // 【修复】在异步加载完成前，先设置主题渐变背景作为占位，避免界面空白
+        // 这样可以确保在图片加载期间，界面已经有背景，自定义背景下的透明卡片样式也能正确显示
+        int themeIndex = ThemeManager.getSavedTheme(this);
+        int[] gradientColors = getThemeGradientColors(themeIndex);
+        GradientDrawable placeholderGradient = new GradientDrawable(
+            GradientDrawable.Orientation.TL_BR,
+            gradientColors
+        );
+        view.setBackground(placeholderGradient);
+        
         // 使用 Glide 加载，带磁盘缓存 + 文件签名用于缓存失效
         Glide.with(this)
             .load(bgFile)
