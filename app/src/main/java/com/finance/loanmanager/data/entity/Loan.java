@@ -18,7 +18,7 @@ public class Loan {
     @NonNull
     private String name;
     
-    // 贷款类型: normal(普通贷款), credit_card(信用卡)
+    // 贷款类型: normal(普通贷款), credit_card(信用卡), student_loan(国家助学贷款)
     @NonNull
     private String loanType;
     
@@ -43,6 +43,10 @@ public class Loan {
     // 信用卡特有字段
     private double creditLimit;  // 信用卡额度
     private int dueDate;         // 还款日(每月几号)
+    
+    // 国家助学贷款特有字段
+    private double yearlyPayment;     // 每年固定还款金额
+    private double firstYearBalance;  // 第一年还款后余额（初始本金）
     
     // 原始月供(创建时计算)
     private double originalMonthlyPayment;
@@ -168,9 +172,20 @@ public class Loan {
     }
     
     /**
+     * 判断是否为国家助学贷款
+     */
+    public boolean isStudentLoan() {
+        return "student_loan".equals(loanType);
+    }
+    
+    /**
      * 获取还款方式的中文名称
      */
     public String getRepaymentMethodName() {
+        // 国家助学贷款特殊处理
+        if (isStudentLoan()) {
+            return "固定年还款";
+        }
         switch (repaymentMethod) {
             case "equal_interest":
                 return "等额本息";
@@ -186,9 +201,56 @@ public class Loan {
     }
     
     /**
+     * 获取国家助学贷款的还款年限
+     * 还款年限 = 初始本金 / 每年固定还款金额
+     */
+    public int getStudentLoanYears() {
+        if (!isStudentLoan() || yearlyPayment <= 0) {
+            return 0;
+        }
+        return (int) Math.ceil(firstYearBalance / yearlyPayment);
+    }
+    
+    /**
+     * 获取国家助学贷款当年应还总额
+     * 当年应还 = 固定本金还款 + 当年利息
+     * @param currentBalance 当前余额
+     * @return 当年应还总额
+     */
+    public double getStudentLoanYearTotalPayment(double currentBalance) {
+        if (!isStudentLoan()) {
+            return 0;
+        }
+        double yearInterest = currentBalance * (annualRate / 100);
+        double principalPayment = Math.min(yearlyPayment, currentBalance);
+        return principalPayment + yearInterest;
+    }
+    
+    /**
      * 获取贷款类型的中文名称
      */
     public String getLoanTypeName() {
-        return isCreditCard() ? "信用卡" : "普通贷款";
+        if (isCreditCard()) {
+            return "信用卡";
+        } else if (isStudentLoan()) {
+            return "国家助学贷款";
+        }
+        return "普通贷款";
+    }
+    
+    public double getYearlyPayment() {
+        return yearlyPayment;
+    }
+    
+    public void setYearlyPayment(double yearlyPayment) {
+        this.yearlyPayment = yearlyPayment;
+    }
+    
+    public double getFirstYearBalance() {
+        return firstYearBalance;
+    }
+    
+    public void setFirstYearBalance(double firstYearBalance) {
+        this.firstYearBalance = firstYearBalance;
     }
 }

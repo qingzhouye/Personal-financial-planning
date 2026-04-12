@@ -37,6 +37,7 @@ public class AddLoanActivity extends BaseActivity {
     private LinearLayout layoutBasicInfo;
     private LinearLayout layoutNormalFields;
     private LinearLayout layoutCreditCardFields;
+    private LinearLayout layoutStudentLoanFields;
     private TextInputEditText etPrincipal;
     private TextInputEditText etAnnualRate;
     private TextInputEditText etMonths;
@@ -46,12 +47,16 @@ public class AddLoanActivity extends BaseActivity {
     private TextInputEditText etCreditCardDate;
     private TextInputEditText etDueDate;
     private TextInputEditText etCreditCardRate;
+    private TextInputEditText etStudentLoanRate;
+    private TextInputEditText etYearlyPayment;
+    private TextInputEditText etFirstYearBalance;
+    private TextInputEditText etStudentLoanDate;
     private Button btnSubmit;
     
     private String selectedLoanType = "normal";
     private String selectedRepaymentMethod = "equal_interest";
-    private final String[] loanTypes = {"normal", "credit_card"};
-    private final String[] loanTypeNames = {"普通贷款", "信用卡"};
+    private final String[] loanTypes = {"normal", "credit_card", "student_loan"};
+    private final String[] loanTypeNames = {"普通贷款", "信用卡", "国家助学贷款"};
     private final String[] repaymentMethods = {"equal_interest", "equal_principal", "interest_first", "lump_sum"};
     private final String[] repaymentMethodNames = {"等额本息", "等额本金", "先息后本", "利随本清"};
 
@@ -116,6 +121,7 @@ public class AddLoanActivity extends BaseActivity {
         layoutBasicInfo = findViewById(R.id.layoutBasicInfo);
         layoutNormalFields = findViewById(R.id.layoutNormalFields);
         layoutCreditCardFields = findViewById(R.id.layoutCreditCardFields);
+        layoutStudentLoanFields = findViewById(R.id.layoutStudentLoanFields);
         etPrincipal = findViewById(R.id.etPrincipal);
         etAnnualRate = findViewById(R.id.etAnnualRate);
         etMonths = findViewById(R.id.etMonths);
@@ -125,6 +131,10 @@ public class AddLoanActivity extends BaseActivity {
         etCreditCardDate = findViewById(R.id.etCreditCardDate);
         etDueDate = findViewById(R.id.etDueDate);
         etCreditCardRate = findViewById(R.id.etCreditCardRate);
+        etStudentLoanRate = findViewById(R.id.etStudentLoanRate);
+        etYearlyPayment = findViewById(R.id.etYearlyPayment);
+        etFirstYearBalance = findViewById(R.id.etFirstYearBalance);
+        etStudentLoanDate = findViewById(R.id.etStudentLoanDate);
         btnSubmit = findViewById(R.id.btnSubmit);
         
         spinnerLoanType.setText(loanTypeNames[0]);
@@ -137,6 +147,7 @@ public class AddLoanActivity extends BaseActivity {
         
         etStartDate.setOnClickListener(v -> showDatePicker(etStartDate));
         etCreditCardDate.setOnClickListener(v -> showDatePicker(etCreditCardDate));
+        etStudentLoanDate.setOnClickListener(v -> showDatePicker(etStudentLoanDate));
         
         btnSubmit.setOnClickListener(v -> submitLoan());
     }
@@ -174,11 +185,19 @@ public class AddLoanActivity extends BaseActivity {
         if ("credit_card".equals(selectedLoanType)) {
             layoutNormalFields.setVisibility(View.GONE);
             layoutCreditCardFields.setVisibility(View.VISIBLE);
+            layoutStudentLoanFields.setVisibility(View.GONE);
+            selectedRepaymentMethod = "lump_sum";
+            spinnerRepaymentMethod.setText(repaymentMethodNames[3]);
+        } else if ("student_loan".equals(selectedLoanType)) {
+            layoutNormalFields.setVisibility(View.GONE);
+            layoutCreditCardFields.setVisibility(View.GONE);
+            layoutStudentLoanFields.setVisibility(View.VISIBLE);
             selectedRepaymentMethod = "lump_sum";
             spinnerRepaymentMethod.setText(repaymentMethodNames[3]);
         } else {
             layoutNormalFields.setVisibility(View.VISIBLE);
             layoutCreditCardFields.setVisibility(View.GONE);
+            layoutStudentLoanFields.setVisibility(View.GONE);
             selectedRepaymentMethod = "equal_interest";
             spinnerRepaymentMethod.setText(repaymentMethodNames[0]);
         }
@@ -216,6 +235,15 @@ public class AddLoanActivity extends BaseActivity {
                 layoutCreditCardFields.setBackgroundColor(getResources().getColor(R.color.card_background_alt));
             }
         }
+        
+        // 设置国家助学贷款信息区域背景
+        if (layoutStudentLoanFields != null) {
+            if (hasCustomBg) {
+                layoutStudentLoanFields.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+            } else {
+                layoutStudentLoanFields.setBackgroundColor(getResources().getColor(R.color.card_background_alt));
+            }
+        }
     }
     
     private void submitLoan() {
@@ -248,6 +276,35 @@ public class AddLoanActivity extends BaseActivity {
             loan.setAnnualRate(rate > 0 ? rate : 18);
             loan.setDueDate(dueDate > 0 ? dueDate : 1);
             loan.setStartDate(date.isEmpty() ? DateUtil.getCurrentDate() : date);
+        } else if ("student_loan".equals(selectedLoanType)) {
+            // 国家助学贷款：固定10年（120个月），固定还款日12月20日
+            double rate = NumberFormatUtil.parseDouble(etStudentLoanRate.getText().toString());
+            double yearlyPayment = NumberFormatUtil.parseDouble(etYearlyPayment.getText().toString());
+            double firstYearBalance = NumberFormatUtil.parseDouble(etFirstYearBalance.getText().toString());
+            String date = etStudentLoanDate.getText().toString();
+            
+            if (rate < 0) {
+                etStudentLoanRate.setError("请输入有效利率");
+                return;
+            }
+            if (yearlyPayment <= 0) {
+                etYearlyPayment.setError("请输入每年还款金额");
+                return;
+            }
+            if (firstYearBalance < 0) {
+                etFirstYearBalance.setError("请输入初始本金余额");
+                return;
+            }
+            
+            // 国家助学贷款固定参数
+            loan.setAnnualRate(rate);
+            loan.setMonths(120); // 10年 = 120个月
+            loan.setDueDate(20); // 固定还款日12月20日
+            loan.setStartDate(date.isEmpty() ? DateUtil.getCurrentDate() : date);
+            loan.setYearlyPayment(yearlyPayment);
+            loan.setFirstYearBalance(firstYearBalance);
+            // 本金设为初始余额，用于后续计算
+            loan.setPrincipal(firstYearBalance);
         } else {
             double principal = NumberFormatUtil.parseDouble(etPrincipal.getText().toString());
             double rate = NumberFormatUtil.parseDouble(etAnnualRate.getText().toString());
@@ -296,6 +353,14 @@ public class AddLoanActivity extends BaseActivity {
             android.widget.TextView tvDueDate = dialogView.findViewById(R.id.tvDueDate);
             layoutDueDate.setVisibility(View.VISIBLE);
             tvDueDate.setText("每月" + loan.getDueDate() + "号");
+        }
+        
+        // 如果是国家助学贷款，显示特定信息
+        if (loan.isStudentLoan()) {
+            LinearLayout layoutDueDate = dialogView.findViewById(R.id.layoutDueDate);
+            android.widget.TextView tvDueDate = dialogView.findViewById(R.id.tvDueDate);
+            layoutDueDate.setVisibility(View.VISIBLE);
+            tvDueDate.setText("每年12月20日");
         }
         
         new AlertDialog.Builder(this)

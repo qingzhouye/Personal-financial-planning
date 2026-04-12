@@ -115,6 +115,11 @@ public class LoanCalculator {
         double remainingPrincipal = loan.getPrincipal() - totalPaid;
         String repaymentMethod = loan.getRepaymentMethod();
         
+        // 国家助学贷款特殊计算
+        if (loan.isStudentLoan()) {
+            return calculateStudentLoanStatus(loan, payments, totalPaid);
+        }
+        
         // 信用卡特殊计算
         if (loan.isCreditCard()) {
             boolean isPaidOff = remainingPrincipal <= 0;
@@ -317,6 +322,141 @@ public class LoanCalculator {
                         Math.round(currentBalance * 100) / 100.0
                 ));
             }
+        }
+        
+        // 国家助学贷款使用特殊的还款计划计算
+        if (loan.isStudentLoan()) {
+            return getStudentLoanPaymentSchedule(loan, payments, totalPaid, remainingPrincipal);
+        }
+        
+        return schedule;
+    }
+    
+    /**
+     * 计算国家助学贷款状态
+     * 国家助学贷款特殊还款规则：
+     * 1. 每年固定还款金额全部用于抵扣本金
+     * 2. 利息按剩余本金 × 年利率单独计算
+     * 3. 还款年限 = 本金总额 / 每年固定还款金额
+     * 4. 每年还款日固定为12月20日
+     */
+    private static LoanStatus calculateStudentLoanStatus(Loan loan, List<Payment> payments, double totalPaid) {
+        double firstYearBalance = loan.getFirstYearBalance();
+        double yearlyPayment = loan.getYearlyPayment();
+        double annualRate = loan.getAnnualRate();
+        Calendar startCal = parseDate(loan.getStartDate());
+        Calendar todayCal = Calendar.getInstance();
+        
+        // 计算总还款年限（本金/每年固定还款）
+        int totalYears = (int) Math.ceil(firstYearBalance / yearlyPayment);
+        
+        // 计算从第一年开始经过了多少年
+        int yearsPassed = todayCal.get(Calendar.YEAR) - startCal.get(Calendar.YEAR);
+        if (todayCal.get(Calendar.MONTH) < Calendar.DECEMBER || 
+            (todayCal.get(Calendar.MONTH) == Calendar.DECEMBER && todayCal.get(Calendar.DAY_OF_MONTH) < 20)) {
+            yearsPassed--; // 如果还没到当年12月20日，算上一年
+        }
+        yearsPassed = Math.max(0, yearsPassed);
+        
+        // 计算当前余额：每年固定还款全部用于还本金
+        double currentBalance = firstYearBalance;
+        double totalInterestPaid = 0;
+        for (int i = 0; i < yearsPassed && i < totalYears; i++) {
+            // 当年利息（按年初余额计算）
+            double yearInterest = currentBalance * (annualRate / 100);
+            totalInterestPaid += yearInterest;
+            
+            // 固定还款全部用于抵扣本金
+            currentBalance = currentBalance - yearlyPayment;
+            if (currentBalance < 0) {
+                currentBalance = 0;
+                break;
+            }
+        }
+        
+        // 计算当年应还利息（如果还没还款）
+        double currentYearInterest = currentBalance * (annualRate / 100);
+        
+        // 扣除已还款金额（额外还款）
+        double extraPaid = totalPaid - (yearsPassed * yearlyPayment) - totalInterestPaid;
+        if (extraPaid > 0) {
+            currentBalance -= extraPaid;
+        }
+        
+        boolean isPaidOff = currentBalance <= 0;
+        int remainingYears = Math.max(0, totalYears - yearsPassed);
+        
+        // 当年应还总额 = 固定本金还款 + 当年利息
+        double yearTotalPayment = yearlyPayment + currentYearInterest;
+        
+        return new LoanStatus(
+                Math.max(0, Math.round(currentBalance * 100) / 100.0),
+                remainingYears,
+                Math.round(yearTotalPayment * 100) / 100.0,
+                totalPaid,
+                isPaidOff,
+                "student_loan"
+        );
+    }
+    
+    /**
+     * 获取国家助学贷款还款计划表
+     * 每年12月20日还款
+     * 还款规则：
+     * 1. 每年固定还款金额全部用于抵扣本金
+     * 2. 利息按剩余本金 × 年利率单独计算
+     * 3. 每年实际还款 = 固定本金还款 + 当年利息
+     */
+    private static List<PaymentScheduleItem> getStudentLoanPaymentSchedule(Loan loan, List<Payment> payments, 
+                                                                          double totalPaid, double remainingPrincipal) {
+        List<PaymentScheduleItem> schedule = new ArrayList<>();
+        
+        double firstYearBalance = loan.getFirstYearBalance();
+        double yearlyPayment = loan.getYearlyPayment();
+        double annualRate = loan.getAnnualRate();
+        Calendar startCal = parseDate(loan.getStartDate());
+        int startYear = startCal.get(Calendar.YEAR);
+        
+        // 计算总还款年限
+        int totalYears = (int) Math.ceil(firstYearBalance / yearlyPayment);
+        
+        double currentBalance = firstYearBalance;
+        
+        // 生成还款计划
+        for (int year = 1; year <= totalYears; year++) {
+            // 如果余额已经为0，结束循环
+            if (currentBalance <= 0) {
+                break;
+            }
+            
+            // 当年利息（按年初余额计算）
+            double yearInterest = currentBalance * (annualRate / 100);
+            
+            // 当年本金还款（固定金额，但不超余额）
+            double principalPayment = Math.min(yearlyPayment, currentBalance);
+            
+            // 当年实际还款总额 = 本金 + 利息
+            double yearTotalPayment = principalPayment + yearInterest;
+            
+            // 还款后余额
+            currentBalance = currentBalance - principalPayment;
+            
+            // 确保余额不为负
+            if (currentBalance < 0) {
+                currentBalance = 0;
+            }
+            
+            // 还款日期：每年12月20日
+            String paymentDate = String.format("%04d-12-20", startYear + year - 1);
+            
+            schedule.add(new PaymentScheduleItem(
+                    year,
+                    paymentDate,
+                    Math.round(yearTotalPayment * 100) / 100.0,
+                    Math.round(principalPayment * 100) / 100.0,
+                    Math.round(yearInterest * 100) / 100.0,
+                    Math.round(currentBalance * 100) / 100.0
+            ));
         }
         
         return schedule;

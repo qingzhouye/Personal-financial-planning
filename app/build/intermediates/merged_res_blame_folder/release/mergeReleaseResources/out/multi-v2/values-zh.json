@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.finance.loanmanager.app-mergeReleaseResources-37:/values-zh/values-zh.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.9\\transforms\\aa039487d187916b90a2f2ef4a21297e\\transformed\\ucrop-2.2.8\\res\\values-zh\\values-zh.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,97,151,205,252,296",
+                        "endColumns": "41,53,53,46,43,42",
+                        "endOffsets": "92,146,200,247,291,334"
+                    }
+                }
+            ]
+        }
+    ]
+}

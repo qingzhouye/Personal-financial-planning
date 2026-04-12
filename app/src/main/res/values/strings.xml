@@ -31,6 +31,7 @@
     <string name="loan_type">贷款类型</string>
     <string name="normal_loan">普通贷款</string>
     <string name="credit_card">信用卡</string>
+    <string name="student_loan">国家助学贷款</string>
     <string name="loan_name">名称</string>
     <string name="loan_name_hint">例如：房贷、车贷、招行信用卡</string>
     <string name="repayment_method">还款方式</string>
@@ -44,6 +45,10 @@
     <string name="loan_months">贷款期限（月）</string>
     <string name="start_date">开始日期</string>
     <string name="credit_card_info">信用卡信息</string>
+    <string name="student_loan_info">国家助学贷款信息</string>
+    <string name="yearly_payment">每年还款金额（元）</string>
+    <string name="first_year_balance">初始本金余额（元）</string>
+    <string name="student_loan_hint">固定还款日：每年12月20日，贷款年限：10年</string>
     <string name="credit_limit">分期总额（元）</string>
     <string name="installment_months">分期期数（月）</string>
     <string name="due_date">还款日（每月几号）</string>
