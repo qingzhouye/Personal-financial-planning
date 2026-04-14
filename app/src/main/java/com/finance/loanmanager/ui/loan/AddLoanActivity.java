@@ -261,7 +261,8 @@ public class AddLoanActivity extends BaseActivity {
         if ("credit_card".equals(selectedLoanType)) {
             double creditLimit = NumberFormatUtil.parseDouble(etCreditLimit.getText().toString());
             int months = NumberFormatUtil.parseInt(etCreditCardMonths.getText().toString());
-            double rate = NumberFormatUtil.parseDouble(etCreditCardRate.getText().toString());
+            String rateStr = etCreditCardRate.getText().toString().trim();
+            double rate = NumberFormatUtil.parseDouble(rateStr);
             int dueDate = NumberFormatUtil.parseInt(etDueDate.getText().toString());
             String date = etCreditCardDate.getText().toString();
             
@@ -270,10 +271,17 @@ public class AddLoanActivity extends BaseActivity {
                 return;
             }
             
+            // 如果用户输入了内容但解析失败，显示错误提示
+            if (!rateStr.isEmpty() && rate == 0 && !rateStr.equals("0") && !rateStr.equals("0.0") && !rateStr.equals("0.00")) {
+                etCreditCardRate.setError("请输入有效的利率值");
+                return;
+            }
+            
             loan.setPrincipal(creditLimit);
             loan.setCreditLimit(creditLimit);
             loan.setMonths(months > 0 ? months : 12);
-            loan.setAnnualRate(rate > 0 ? rate : 18);
+            // 如果用户没有输入或输入为空，使用默认值18%；否则使用用户输入的值
+            loan.setAnnualRate(rateStr.isEmpty() ? 18 : rate);
             loan.setDueDate(dueDate > 0 ? dueDate : 1);
             loan.setStartDate(date.isEmpty() ? DateUtil.getCurrentDate() : date);
         } else if ("student_loan".equals(selectedLoanType)) {
