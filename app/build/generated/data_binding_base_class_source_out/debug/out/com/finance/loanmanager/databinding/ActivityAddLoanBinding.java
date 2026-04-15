@@ -46,9 +46,6 @@ public final class ActivityAddLoanBinding implements ViewBinding {
   public final TextInputEditText etFirstYearBalance;
 
   @NonNull
-  public final TextInputEditText etFirstYearPayment;
-
-  @NonNull
   public final TextInputEditText etLoanName;
 
   @NonNull
@@ -65,6 +62,9 @@ public final class ActivityAddLoanBinding implements ViewBinding {
 
   @NonNull
   public final TextInputEditText etStudentLoanRate;
+
+  @NonNull
+  public final TextInputEditText etYearlyPayment;
 
   @NonNull
   public final LinearLayout layoutBasicInfo;
@@ -88,10 +88,10 @@ public final class ActivityAddLoanBinding implements ViewBinding {
       @NonNull TextInputEditText etAnnualRate, @NonNull TextInputEditText etCreditCardDate,
       @NonNull TextInputEditText etCreditCardMonths, @NonNull TextInputEditText etCreditCardRate,
       @NonNull TextInputEditText etCreditLimit, @NonNull TextInputEditText etDueDate,
-      @NonNull TextInputEditText etFirstYearBalance, @NonNull TextInputEditText etFirstYearPayment,
-      @NonNull TextInputEditText etLoanName, @NonNull TextInputEditText etMonths,
-      @NonNull TextInputEditText etPrincipal, @NonNull TextInputEditText etStartDate,
-      @NonNull TextInputEditText etStudentLoanDate, @NonNull TextInputEditText etStudentLoanRate,
+      @NonNull TextInputEditText etFirstYearBalance, @NonNull TextInputEditText etLoanName,
+      @NonNull TextInputEditText etMonths, @NonNull TextInputEditText etPrincipal,
+      @NonNull TextInputEditText etStartDate, @NonNull TextInputEditText etStudentLoanDate,
+      @NonNull TextInputEditText etStudentLoanRate, @NonNull TextInputEditText etYearlyPayment,
       @NonNull LinearLayout layoutBasicInfo, @NonNull LinearLayout layoutCreditCardFields,
       @NonNull LinearLayout layoutNormalFields, @NonNull LinearLayout layoutStudentLoanFields,
       @NonNull TextInputEditText spinnerLoanType,
@@ -105,13 +105,13 @@ public final class ActivityAddLoanBinding implements ViewBinding {
     this.etCreditLimit = etCreditLimit;
     this.etDueDate = etDueDate;
     this.etFirstYearBalance = etFirstYearBalance;
-    this.etFirstYearPayment = etFirstYearPayment;
     this.etLoanName = etLoanName;
     this.etMonths = etMonths;
     this.etPrincipal = etPrincipal;
     this.etStartDate = etStartDate;
     this.etStudentLoanDate = etStudentLoanDate;
     this.etStudentLoanRate = etStudentLoanRate;
+    this.etYearlyPayment = etYearlyPayment;
     this.layoutBasicInfo = layoutBasicInfo;
     this.layoutCreditCardFields = layoutCreditCardFields;
     this.layoutNormalFields = layoutNormalFields;
@@ -195,12 +195,6 @@ public final class ActivityAddLoanBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.etFirstYearPayment;
-      TextInputEditText etFirstYearPayment = ViewBindings.findChildViewById(rootView, id);
-      if (etFirstYearPayment == null) {
-        break missingId;
-      }
-
       id = R.id.etLoanName;
       TextInputEditText etLoanName = ViewBindings.findChildViewById(rootView, id);
       if (etLoanName == null) {
@@ -234,6 +228,12 @@ public final class ActivityAddLoanBinding implements ViewBinding {
       id = R.id.etStudentLoanRate;
       TextInputEditText etStudentLoanRate = ViewBindings.findChildViewById(rootView, id);
       if (etStudentLoanRate == null) {
+        break missingId;
+      }
+
+      id = R.id.etYearlyPayment;
+      TextInputEditText etYearlyPayment = ViewBindings.findChildViewById(rootView, id);
+      if (etYearlyPayment == null) {
         break missingId;
       }
 
@@ -275,8 +275,8 @@ public final class ActivityAddLoanBinding implements ViewBinding {
 
       return new ActivityAddLoanBinding((ScrollView) rootView, btnSubmit, etAnnualRate,
           etCreditCardDate, etCreditCardMonths, etCreditCardRate, etCreditLimit, etDueDate,
-          etFirstYearBalance, etFirstYearPayment, etLoanName, etMonths, etPrincipal, etStartDate,
-          etStudentLoanDate, etStudentLoanRate, layoutBasicInfo, layoutCreditCardFields,
+          etFirstYearBalance, etLoanName, etMonths, etPrincipal, etStartDate, etStudentLoanDate,
+          etStudentLoanRate, etYearlyPayment, layoutBasicInfo, layoutCreditCardFields,
           layoutNormalFields, layoutStudentLoanFields, spinnerLoanType, spinnerRepaymentMethod);
     }
     String missingId = rootView.getResources().getResourceName(id);

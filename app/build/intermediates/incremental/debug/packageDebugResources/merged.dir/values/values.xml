@@ -123,8 +123,7 @@
     <string name="export_data">导出数据</string>
     <string name="export_failed">导出失败</string>
     <string name="export_success">数据导出成功！</string>
-    <string name="first_year_balance">第一年还款后余额（元）</string>
-    <string name="first_year_payment">第一年应还金额（元）</string>
+    <string name="first_year_balance">初始本金余额（元）</string>
     <string name="grand_total">合计</string>
     <string name="i_know">我知道了</string>
     <string name="ignore_backup">暂时忽略</string>
@@ -208,6 +207,7 @@
     <string name="view_monthly_total">查看每月总还款金额</string>
     <string name="view_my_loans">查看我的贷款</string>
     <string name="view_schedule">还款计划</string>
+    <string name="yearly_payment">每年还款金额（元）</string>
     <style name="CardStyle">
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">8dp</item>

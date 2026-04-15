@@ -137,6 +137,7 @@ id dataMenuItemClear
 id dataMenuItemExport
 id dataMenuItemImport
 id dividerAddLoan
+id dividerDetails
 id etAnnualRate
 id etCreditCardDate
 id etCreditCardMonths
@@ -144,7 +145,6 @@ id etCreditCardRate
 id etCreditLimit
 id etDueDate
 id etFirstYearBalance
-id etFirstYearPayment
 id etLoanName
 id etMonths
 id etPaymentAmount
@@ -152,11 +152,15 @@ id etPrincipal
 id etStartDate
 id etStudentLoanDate
 id etStudentLoanRate
+id etYearlyPayment
 id gridStats
 id gridThemes
 id layoutBasicInfo
 id layoutCreditCardFields
+id layoutCurrentMonthDetails
 id layoutDailyPayment
+id layoutDetailsLeft
+id layoutDetailsRight
 id layoutDueDate
 id layoutNormalFields
 id layoutPayment
@@ -181,7 +185,6 @@ id tvActiveLoanCount
 id tvAnnualRate
 id tvCurrentDate
 id tvCurrentMonth
-id tvCurrentMonthDetails
 id tvCurrentMonthTotal
 id tvCurrentTotal
 id tvDailyPayment
@@ -301,7 +304,6 @@ string export_data
 string export_failed
 string export_success
 string first_year_balance
-string first_year_payment
 string grand_total
 string i_know
 string ignore_backup
@@ -385,6 +387,7 @@ string version_info_title
 string view_monthly_total
 string view_my_loans
 string view_schedule
+string yearly_payment
 style CardStyle
 style CardTitleText
 style DangerButton

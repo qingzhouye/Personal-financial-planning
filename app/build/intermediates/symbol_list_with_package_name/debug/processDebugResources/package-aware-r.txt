@@ -3488,6 +3488,7 @@ id disablePostScroll
 id disableScroll
 id disjoint
 id dividerAddLoan
+id dividerDetails
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -3518,7 +3519,6 @@ id etCreditCardRate
 id etCreditLimit
 id etDueDate
 id etFirstYearBalance
-id etFirstYearPayment
 id etLoanName
 id etMonths
 id etPaymentAmount
@@ -3526,6 +3526,7 @@ id etPrincipal
 id etStartDate
 id etStudentLoanDate
 id etStudentLoanRate
+id etYearlyPayment
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -3591,7 +3592,10 @@ id labeled
 id layout
 id layoutBasicInfo
 id layoutCreditCardFields
+id layoutCurrentMonthDetails
 id layoutDailyPayment
+id layoutDetailsLeft
+id layoutDetailsRight
 id layoutDueDate
 id layoutNormalFields
 id layoutPayment
@@ -3876,7 +3880,6 @@ id tvActiveLoanCount
 id tvAnnualRate
 id tvCurrentDate
 id tvCurrentMonth
-id tvCurrentMonthDetails
 id tvCurrentMonthTotal
 id tvCurrentTotal
 id tvDailyPayment
@@ -4282,7 +4285,6 @@ string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string first_year_balance
-string first_year_payment
 string grand_total
 string hide_bottom_view_on_scroll_behavior
 string i_know
@@ -4489,6 +4491,7 @@ string version_info_title
 string view_monthly_total
 string view_my_loans
 string view_schedule
+string yearly_payment
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

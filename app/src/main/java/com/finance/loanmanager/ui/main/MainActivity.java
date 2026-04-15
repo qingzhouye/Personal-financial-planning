@@ -65,7 +65,10 @@ public class MainActivity extends BaseActivity {
     private TextView tvActiveLoanCount;
     private TextView tvDailyPayment;
     private TextView tvRemainingDays;
-    private TextView tvCurrentMonthDetails;
+    private LinearLayout layoutCurrentMonthDetails;
+    private LinearLayout layoutDetailsLeft;
+    private LinearLayout layoutDetailsRight;
+    private View dividerDetails;
     private GridLayout gridStats;
     private Button btnAddLoan;
     private Button btnViewMonthlyTotal;
@@ -360,9 +363,7 @@ public class MainActivity extends BaseActivity {
             tvRemainingDays.setTextColor(whiteColor);
             tvRemainingDays.setTypeface(null, Typeface.BOLD);
         }
-        if (tvCurrentMonthDetails != null) {
-            tvCurrentMonthDetails.setTextColor(whiteColor);
-        }
+        // 两栏布局的文字样式在 updateUI() 中动态设置
     }
     
     /**
@@ -392,9 +393,7 @@ public class MainActivity extends BaseActivity {
             tvRemainingDays.setTextColor(whiteColor);
             tvRemainingDays.setTypeface(null, Typeface.BOLD);
         }
-        if (tvCurrentMonthDetails != null) {
-            tvCurrentMonthDetails.setTextColor(semiTransparentWhite);
-        }
+        // 两栏布局的文字样式在 updateUI() 中动态设置
     }
     
     /**
@@ -481,7 +480,10 @@ public class MainActivity extends BaseActivity {
         tvActiveLoanCount = findViewById(R.id.tvActiveLoanCount);
         tvDailyPayment = findViewById(R.id.tvDailyPayment);
         tvRemainingDays = findViewById(R.id.tvRemainingDays);
-        tvCurrentMonthDetails = findViewById(R.id.tvCurrentMonthDetails);
+        layoutCurrentMonthDetails = findViewById(R.id.layoutCurrentMonthDetails);
+        layoutDetailsLeft = findViewById(R.id.layoutDetailsLeft);
+        layoutDetailsRight = findViewById(R.id.layoutDetailsRight);
+        dividerDetails = findViewById(R.id.dividerDetails);
         gridStats = findViewById(R.id.gridStats);
         btnAddLoan = findViewById(R.id.btnAddLoan);
         btnViewMonthlyTotal = findViewById(R.id.btnViewMonthlyTotal);
@@ -542,6 +544,10 @@ public class MainActivity extends BaseActivity {
         cardLoanManage.setVisibility(View.GONE); // 贷款管理功能已移到二级菜单
         cardAddLoan.setVisibility(View.GONE);
         
+        // 【关键修复】数据加载完成后，重新应用透明卡片样式
+        // 这解决了自定义背景下，首次启动APP时统计卡片不显示的问题
+        applyTransparentCardStyle();
+        
         // 计算统计数据
         int totalCount = loansWithStatus.size();
         double totalPrincipal = 0;
@@ -550,7 +556,7 @@ public class MainActivity extends BaseActivity {
         int paidOffCount = 0;
         double currentMonthTotal = 0;
         int activeCount = 0;
-        StringBuilder detailsBuilder = new StringBuilder();
+        List<String> activeLoanDetails = new ArrayList<>();
         
         for (LoanRepository.LoanWithStatus lws : loansWithStatus) {
             totalPrincipal += lws.loan.getPrincipal();
@@ -562,12 +568,9 @@ public class MainActivity extends BaseActivity {
             } else {
                 activeCount++;
                 currentMonthTotal += lws.status.getNewMonthlyPayment();
-                if (detailsBuilder.length() > 0) {
-                    detailsBuilder.append(" | ");
-                }
-                detailsBuilder.append(lws.loan.getName())
-                        .append(": ")
-                        .append(NumberFormatUtil.formatCurrency(lws.status.getNewMonthlyPayment()));
+                // 收集活跃贷款的详情信息
+                String detail = lws.loan.getName() + ": " + NumberFormatUtil.formatCurrency(lws.status.getNewMonthlyPayment());
+                activeLoanDetails.add(detail);
             }
         }
         
@@ -578,11 +581,85 @@ public class MainActivity extends BaseActivity {
         tvActiveLoanCount.setText(activeCount + " 笔");
         tvDailyPayment.setText(NumberFormatUtil.formatCurrency(currentMonthTotal / 30));
         tvRemainingDays.setText(DateUtil.getRemainingDaysInMonth() + " 天");
-        tvCurrentMonthDetails.setText(detailsBuilder.length() > 0 ? 
-                detailsBuilder.toString() : "本月无待还款项");
+        
+        // 更新两栏布局的贷款详情
+        updateLoanDetailsColumns(activeLoanDetails);
         
         // 更新统计卡片
         updateStatsGrid(totalCount, totalPrincipal, totalRemaining, totalPaid, paidOffCount);
+    }
+    
+    /**
+     * 更新两栏布局的贷款详情
+     */
+    private void updateLoanDetailsColumns(List<String> activeLoanDetails) {
+        // 清空现有内容
+        if (layoutDetailsLeft != null) {
+            layoutDetailsLeft.removeAllViews();
+        }
+        if (layoutDetailsRight != null) {
+            layoutDetailsRight.removeAllViews();
+        }
+        
+        // 如果没有活跃贷款，显示提示
+        if (activeLoanDetails.isEmpty()) {
+            if (layoutDetailsLeft != null) {
+                TextView emptyText = new TextView(this);
+                emptyText.setText("本月无待还款项");
+                emptyText.setTextSize(12);
+                emptyText.setTextColor(getResources().getColor(R.color.semi_transparent_white));
+                layoutDetailsLeft.addView(emptyText);
+            }
+            // 隐藏分隔线
+            if (dividerDetails != null) {
+                dividerDetails.setVisibility(View.GONE);
+            }
+            return;
+        }
+        
+        // 显示分隔线
+        if (dividerDetails != null) {
+            dividerDetails.setVisibility(View.VISIBLE);
+        }
+        
+        // 计算分割点：将详情平均分配到两栏
+        int totalItems = activeLoanDetails.size();
+        int leftCount = (totalItems + 1) / 2; // 左栏多一个（如果总数为奇数）
+        
+        // 确定文字颜色（自定义背景下用白色，否则用半透明白色）
+        boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
+        int textColor = hasCustomBg ? 
+                getResources().getColor(R.color.text_white) : 
+                getResources().getColor(R.color.semi_transparent_white);
+        
+        // 填充左栏
+        if (layoutDetailsLeft != null) {
+            for (int i = 0; i < leftCount && i < totalItems; i++) {
+                TextView textView = createDetailTextView(activeLoanDetails.get(i), textColor);
+                layoutDetailsLeft.addView(textView);
+            }
+        }
+        
+        // 填充右栏
+        if (layoutDetailsRight != null) {
+            for (int i = leftCount; i < totalItems; i++) {
+                TextView textView = createDetailTextView(activeLoanDetails.get(i), textColor);
+                layoutDetailsRight.addView(textView);
+            }
+        }
+    }
+    
+    /**
+     * 创建贷款详情文本视图
+     */
+    private TextView createDetailTextView(String text, int textColor) {
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setTextSize(12); // text_xs 对应 12sp
+        textView.setTextColor(textColor);
+        textView.setPadding(0, dp2px(2), 0, dp2px(2));
+        textView.setGravity(android.view.Gravity.START); // 左对齐
+        return textView;
     }
     
     private void updateStatsGrid(int totalCount, double totalPrincipal, 

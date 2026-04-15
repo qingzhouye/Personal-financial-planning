@@ -193,10 +193,10 @@
                 style="@style/InputStyle">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFirstYearPayment"
+                    android:id="@+id/etYearlyPayment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/first_year_payment"
+                    android:hint="@string/yearly_payment"
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 

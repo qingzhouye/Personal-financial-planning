@@ -53,7 +53,7 @@ public final class LoanDao_Impl implements LoanDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR ABORT INTO `loans` (`id`,`name`,`loanType`,`repaymentMethod`,`principal`,`annualRate`,`months`,`startDate`,`creditLimit`,`dueDate`,`firstYearPayment`,`firstYearBalance`,`originalMonthlyPayment`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?)";
+        return "INSERT OR ABORT INTO `loans` (`id`,`name`,`loanType`,`repaymentMethod`,`principal`,`annualRate`,`months`,`startDate`,`creditLimit`,`dueDate`,`yearlyPayment`,`firstYearBalance`,`originalMonthlyPayment`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -84,7 +84,7 @@ public final class LoanDao_Impl implements LoanDao {
         }
         statement.bindDouble(9, entity.getCreditLimit());
         statement.bindLong(10, entity.getDueDate());
-        statement.bindDouble(11, entity.getFirstYearPayment());
+        statement.bindDouble(11, entity.getYearlyPayment());
         statement.bindDouble(12, entity.getFirstYearBalance());
         statement.bindDouble(13, entity.getOriginalMonthlyPayment());
       }
@@ -105,7 +105,7 @@ public final class LoanDao_Impl implements LoanDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `loans` SET `id` = ?,`name` = ?,`loanType` = ?,`repaymentMethod` = ?,`principal` = ?,`annualRate` = ?,`months` = ?,`startDate` = ?,`creditLimit` = ?,`dueDate` = ?,`firstYearPayment` = ?,`firstYearBalance` = ?,`originalMonthlyPayment` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `loans` SET `id` = ?,`name` = ?,`loanType` = ?,`repaymentMethod` = ?,`principal` = ?,`annualRate` = ?,`months` = ?,`startDate` = ?,`creditLimit` = ?,`dueDate` = ?,`yearlyPayment` = ?,`firstYearBalance` = ?,`originalMonthlyPayment` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -136,7 +136,7 @@ public final class LoanDao_Impl implements LoanDao {
         }
         statement.bindDouble(9, entity.getCreditLimit());
         statement.bindLong(10, entity.getDueDate());
-        statement.bindDouble(11, entity.getFirstYearPayment());
+        statement.bindDouble(11, entity.getYearlyPayment());
         statement.bindDouble(12, entity.getFirstYearBalance());
         statement.bindDouble(13, entity.getOriginalMonthlyPayment());
         statement.bindLong(14, entity.getId());
@@ -253,7 +253,7 @@ public final class LoanDao_Impl implements LoanDao {
           final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
           final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
           final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-          final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+          final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
           final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
           final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
           final List<Loan> _result = new ArrayList<Loan>(_cursor.getCount());
@@ -306,9 +306,9 @@ public final class LoanDao_Impl implements LoanDao {
             final int _tmpDueDate;
             _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
             _item.setDueDate(_tmpDueDate);
-            final double _tmpFirstYearPayment;
-            _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-            _item.setFirstYearPayment(_tmpFirstYearPayment);
+            final double _tmpYearlyPayment;
+            _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+            _item.setYearlyPayment(_tmpYearlyPayment);
             final double _tmpFirstYearBalance;
             _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
             _item.setFirstYearBalance(_tmpFirstYearBalance);
@@ -347,7 +347,7 @@ public final class LoanDao_Impl implements LoanDao {
       final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
       final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
       final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-      final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+      final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
       final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
       final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
       final List<Loan> _result = new ArrayList<Loan>(_cursor.getCount());
@@ -400,9 +400,9 @@ public final class LoanDao_Impl implements LoanDao {
         final int _tmpDueDate;
         _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
         _item.setDueDate(_tmpDueDate);
-        final double _tmpFirstYearPayment;
-        _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-        _item.setFirstYearPayment(_tmpFirstYearPayment);
+        final double _tmpYearlyPayment;
+        _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+        _item.setYearlyPayment(_tmpYearlyPayment);
         final double _tmpFirstYearBalance;
         _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
         _item.setFirstYearBalance(_tmpFirstYearBalance);
@@ -437,7 +437,7 @@ public final class LoanDao_Impl implements LoanDao {
       final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
       final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
       final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-      final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+      final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
       final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
       final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
       final Loan _result;
@@ -489,9 +489,9 @@ public final class LoanDao_Impl implements LoanDao {
         final int _tmpDueDate;
         _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
         _result.setDueDate(_tmpDueDate);
-        final double _tmpFirstYearPayment;
-        _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-        _result.setFirstYearPayment(_tmpFirstYearPayment);
+        final double _tmpYearlyPayment;
+        _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+        _result.setYearlyPayment(_tmpYearlyPayment);
         final double _tmpFirstYearBalance;
         _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
         _result.setFirstYearBalance(_tmpFirstYearBalance);
@@ -530,7 +530,7 @@ public final class LoanDao_Impl implements LoanDao {
           final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
           final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
           final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-          final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+          final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
           final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
           final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
           final Loan _result;
@@ -582,9 +582,9 @@ public final class LoanDao_Impl implements LoanDao {
             final int _tmpDueDate;
             _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
             _result.setDueDate(_tmpDueDate);
-            final double _tmpFirstYearPayment;
-            _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-            _result.setFirstYearPayment(_tmpFirstYearPayment);
+            final double _tmpYearlyPayment;
+            _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+            _result.setYearlyPayment(_tmpYearlyPayment);
             final double _tmpFirstYearBalance;
             _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
             _result.setFirstYearBalance(_tmpFirstYearBalance);
@@ -628,7 +628,7 @@ public final class LoanDao_Impl implements LoanDao {
         final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
         final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
         final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-        final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+        final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
         final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
         final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
         final LongSparseArray<ArrayList<Payment>> _collectionPayments = new LongSparseArray<ArrayList<Payment>>();
@@ -650,7 +650,7 @@ public final class LoanDao_Impl implements LoanDao {
         final LoanWithPayments _result;
         if (_cursor.moveToFirst()) {
           final Loan _tmpLoan;
-          if (!(_cursor.isNull(_cursorIndexOfId) && _cursor.isNull(_cursorIndexOfName) && _cursor.isNull(_cursorIndexOfLoanType) && _cursor.isNull(_cursorIndexOfRepaymentMethod) && _cursor.isNull(_cursorIndexOfPrincipal) && _cursor.isNull(_cursorIndexOfAnnualRate) && _cursor.isNull(_cursorIndexOfMonths) && _cursor.isNull(_cursorIndexOfStartDate) && _cursor.isNull(_cursorIndexOfCreditLimit) && _cursor.isNull(_cursorIndexOfDueDate) && _cursor.isNull(_cursorIndexOfFirstYearPayment) && _cursor.isNull(_cursorIndexOfFirstYearBalance) && _cursor.isNull(_cursorIndexOfOriginalMonthlyPayment))) {
+          if (!(_cursor.isNull(_cursorIndexOfId) && _cursor.isNull(_cursorIndexOfName) && _cursor.isNull(_cursorIndexOfLoanType) && _cursor.isNull(_cursorIndexOfRepaymentMethod) && _cursor.isNull(_cursorIndexOfPrincipal) && _cursor.isNull(_cursorIndexOfAnnualRate) && _cursor.isNull(_cursorIndexOfMonths) && _cursor.isNull(_cursorIndexOfStartDate) && _cursor.isNull(_cursorIndexOfCreditLimit) && _cursor.isNull(_cursorIndexOfDueDate) && _cursor.isNull(_cursorIndexOfYearlyPayment) && _cursor.isNull(_cursorIndexOfFirstYearBalance) && _cursor.isNull(_cursorIndexOfOriginalMonthlyPayment))) {
             _tmpLoan = new Loan();
             final int _tmpId;
             _tmpId = _cursor.getInt(_cursorIndexOfId);
@@ -698,9 +698,9 @@ public final class LoanDao_Impl implements LoanDao {
             final int _tmpDueDate;
             _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
             _tmpLoan.setDueDate(_tmpDueDate);
-            final double _tmpFirstYearPayment;
-            _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-            _tmpLoan.setFirstYearPayment(_tmpFirstYearPayment);
+            final double _tmpYearlyPayment;
+            _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+            _tmpLoan.setYearlyPayment(_tmpYearlyPayment);
             final double _tmpFirstYearBalance;
             _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
             _tmpLoan.setFirstYearBalance(_tmpFirstYearBalance);
@@ -758,7 +758,7 @@ public final class LoanDao_Impl implements LoanDao {
         final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
         final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
         final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-        final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+        final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
         final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
         final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
         final LongSparseArray<ArrayList<Payment>> _collectionPayments = new LongSparseArray<ArrayList<Payment>>();
@@ -781,7 +781,7 @@ public final class LoanDao_Impl implements LoanDao {
         while (_cursor.moveToNext()) {
           final LoanWithPayments _item;
           final Loan _tmpLoan;
-          if (!(_cursor.isNull(_cursorIndexOfId) && _cursor.isNull(_cursorIndexOfName) && _cursor.isNull(_cursorIndexOfLoanType) && _cursor.isNull(_cursorIndexOfRepaymentMethod) && _cursor.isNull(_cursorIndexOfPrincipal) && _cursor.isNull(_cursorIndexOfAnnualRate) && _cursor.isNull(_cursorIndexOfMonths) && _cursor.isNull(_cursorIndexOfStartDate) && _cursor.isNull(_cursorIndexOfCreditLimit) && _cursor.isNull(_cursorIndexOfDueDate) && _cursor.isNull(_cursorIndexOfFirstYearPayment) && _cursor.isNull(_cursorIndexOfFirstYearBalance) && _cursor.isNull(_cursorIndexOfOriginalMonthlyPayment))) {
+          if (!(_cursor.isNull(_cursorIndexOfId) && _cursor.isNull(_cursorIndexOfName) && _cursor.isNull(_cursorIndexOfLoanType) && _cursor.isNull(_cursorIndexOfRepaymentMethod) && _cursor.isNull(_cursorIndexOfPrincipal) && _cursor.isNull(_cursorIndexOfAnnualRate) && _cursor.isNull(_cursorIndexOfMonths) && _cursor.isNull(_cursorIndexOfStartDate) && _cursor.isNull(_cursorIndexOfCreditLimit) && _cursor.isNull(_cursorIndexOfDueDate) && _cursor.isNull(_cursorIndexOfYearlyPayment) && _cursor.isNull(_cursorIndexOfFirstYearBalance) && _cursor.isNull(_cursorIndexOfOriginalMonthlyPayment))) {
             _tmpLoan = new Loan();
             final int _tmpId;
             _tmpId = _cursor.getInt(_cursorIndexOfId);
@@ -829,9 +829,9 @@ public final class LoanDao_Impl implements LoanDao {
             final int _tmpDueDate;
             _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
             _tmpLoan.setDueDate(_tmpDueDate);
-            final double _tmpFirstYearPayment;
-            _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-            _tmpLoan.setFirstYearPayment(_tmpFirstYearPayment);
+            final double _tmpYearlyPayment;
+            _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+            _tmpLoan.setYearlyPayment(_tmpYearlyPayment);
             final double _tmpFirstYearBalance;
             _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
             _tmpLoan.setFirstYearBalance(_tmpFirstYearBalance);
@@ -886,7 +886,7 @@ public final class LoanDao_Impl implements LoanDao {
       final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
       final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
       final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-      final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+      final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
       final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
       final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
       final List<Loan> _result = new ArrayList<Loan>(_cursor.getCount());
@@ -939,9 +939,9 @@ public final class LoanDao_Impl implements LoanDao {
         final int _tmpDueDate;
         _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
         _item.setDueDate(_tmpDueDate);
-        final double _tmpFirstYearPayment;
-        _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-        _item.setFirstYearPayment(_tmpFirstYearPayment);
+        final double _tmpYearlyPayment;
+        _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+        _item.setYearlyPayment(_tmpYearlyPayment);
         final double _tmpFirstYearBalance;
         _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
         _item.setFirstYearBalance(_tmpFirstYearBalance);
@@ -974,7 +974,7 @@ public final class LoanDao_Impl implements LoanDao {
       final int _cursorIndexOfStartDate = CursorUtil.getColumnIndexOrThrow(_cursor, "startDate");
       final int _cursorIndexOfCreditLimit = CursorUtil.getColumnIndexOrThrow(_cursor, "creditLimit");
       final int _cursorIndexOfDueDate = CursorUtil.getColumnIndexOrThrow(_cursor, "dueDate");
-      final int _cursorIndexOfFirstYearPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearPayment");
+      final int _cursorIndexOfYearlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "yearlyPayment");
       final int _cursorIndexOfFirstYearBalance = CursorUtil.getColumnIndexOrThrow(_cursor, "firstYearBalance");
       final int _cursorIndexOfOriginalMonthlyPayment = CursorUtil.getColumnIndexOrThrow(_cursor, "originalMonthlyPayment");
       final List<Loan> _result = new ArrayList<Loan>(_cursor.getCount());
@@ -1027,9 +1027,9 @@ public final class LoanDao_Impl implements LoanDao {
         final int _tmpDueDate;
         _tmpDueDate = _cursor.getInt(_cursorIndexOfDueDate);
         _item.setDueDate(_tmpDueDate);
-        final double _tmpFirstYearPayment;
-        _tmpFirstYearPayment = _cursor.getDouble(_cursorIndexOfFirstYearPayment);
-        _item.setFirstYearPayment(_tmpFirstYearPayment);
+        final double _tmpYearlyPayment;
+        _tmpYearlyPayment = _cursor.getDouble(_cursorIndexOfYearlyPayment);
+        _item.setYearlyPayment(_tmpYearlyPayment);
         final double _tmpFirstYearBalance;
         _tmpFirstYearBalance = _cursor.getDouble(_cursorIndexOfFirstYearBalance);
         _item.setFirstYearBalance(_tmpFirstYearBalance);

@@ -41,11 +41,11 @@ public final class AppDatabase_Impl extends AppDatabase {
     final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS `loans` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `loanType` TEXT NOT NULL, `repaymentMethod` TEXT NOT NULL, `principal` REAL NOT NULL, `annualRate` REAL NOT NULL, `months` INTEGER NOT NULL, `startDate` TEXT NOT NULL, `creditLimit` REAL NOT NULL, `dueDate` INTEGER NOT NULL, `firstYearPayment` REAL NOT NULL, `firstYearBalance` REAL NOT NULL, `originalMonthlyPayment` REAL NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `loans` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `loanType` TEXT NOT NULL, `repaymentMethod` TEXT NOT NULL, `principal` REAL NOT NULL, `annualRate` REAL NOT NULL, `months` INTEGER NOT NULL, `startDate` TEXT NOT NULL, `creditLimit` REAL NOT NULL, `dueDate` INTEGER NOT NULL, `yearlyPayment` REAL NOT NULL, `firstYearBalance` REAL NOT NULL, `originalMonthlyPayment` REAL NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `payments` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loanId` INTEGER NOT NULL, `amount` REAL NOT NULL, `date` TEXT NOT NULL, `note` TEXT, FOREIGN KEY(`loanId`) REFERENCES `loans`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_payments_loanId` ON `payments` (`loanId`)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '56c40e4424594ec4e5694a38219deb82')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f8a1145aeb854ec14b267e4db549e832')");
       }
 
       @Override
@@ -107,7 +107,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         _columnsLoans.put("startDate", new TableInfo.Column("startDate", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsLoans.put("creditLimit", new TableInfo.Column("creditLimit", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsLoans.put("dueDate", new TableInfo.Column("dueDate", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
-        _columnsLoans.put("firstYearPayment", new TableInfo.Column("firstYearPayment", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsLoans.put("yearlyPayment", new TableInfo.Column("yearlyPayment", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsLoans.put("firstYearBalance", new TableInfo.Column("firstYearBalance", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsLoans.put("originalMonthlyPayment", new TableInfo.Column("originalMonthlyPayment", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final HashSet<TableInfo.ForeignKey> _foreignKeysLoans = new HashSet<TableInfo.ForeignKey>(0);
@@ -138,7 +138,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "56c40e4424594ec4e5694a38219deb82", "e8d110bf7a1befc7d76bef08187e87c3");
+    }, "f8a1145aeb854ec14b267e4db549e832", "74e958a249cf4add4184c042607c96f0");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
