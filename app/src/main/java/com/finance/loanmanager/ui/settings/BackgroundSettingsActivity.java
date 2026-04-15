@@ -1,3 +1,32 @@
+/**
+ * ============================================================================
+ * 文件名: BackgroundSettingsActivity.java
+ * 模块:   UI层 - 个性化设置
+ * 功能:   背景与主题颜色设置界面
+ * 
+ * 主要职责:
+ *   1. 提供主题颜色选择功能（6种主题色）
+ *   2. 支持选择自定义背景图片
+ *   3. 使用 UCrop 裁切图片适应屏幕比例
+ *   4. 支持清除自定义背景恢复默认
+ * 
+ * 主题颜色:
+ *   - 青色 (默认): 清新活力风格
+ *   - 深蓝商务: 稳重专业风格
+ *   - 暖橙活力: 温暖积极风格
+ *   - 紫色优雅: 优雅高贵风格
+ *   - 深绿自然: 自然稳重风格
+ *   - 玫瑰粉: 温柔浪漫风格
+ * 
+ * 技术要点:
+ *   - 使用 Activity Result API 处理图片选择
+ *   - 使用 UCrop 库进行图片裁切
+ *   - 主题切换后自动 recreate Activity 生效
+ * 
+ * @see ThemeManager 主题管理
+ * @see BackgroundManager 背景管理
+ * ============================================================================
+ */
 package com.finance.loanmanager.ui.settings;
 
 import android.app.Activity;
@@ -32,25 +61,51 @@ import java.io.InputStream;
 
 /**
  * 背景与主题个性化设置 Activity
- * 允许用户选择主题色调和自定义背景图片
+ * 
+ * 该界面允许用户自定义应用的外观：
+ *   1. 选择喜欢的主题颜色
+ *   2. 设置自定义背景图片
+ *   3. 清除自定义背景恢复默认渐变
+ * 
+ * 主题切换: 立即生效，recreate 当前 Activity
+ * 背景设置: 需要选择图片并裁切后生效
  */
 public class BackgroundSettingsActivity extends BaseActivity {
     
+    /** UCrop 裁切请求码 */
     private static final int REQUEST_CODE_UCROP = 1001;
     
+    /** 背景管理器 */
     private BackgroundManager backgroundManager;
+    
+    /** 选择图片按钮 */
     private Button btnSelectImage;
+    
+    /** 重置背景按钮 */
     private Button btnResetBackground;
 
-    // 主题色块容器
+    // ==================== 主题色块容器 ====================
+    
+    /** 青色主题色块 */
     private LinearLayout themeItemCyan;
+    
+    /** 深蓝主题色块 */
     private LinearLayout themeItemBlue;
+    
+    /** 橙色主题色块 */
     private LinearLayout themeItemOrange;
+    
+    /** 紫色主题色块 */
     private LinearLayout themeItemPurple;
+    
+    /** 绿色主题色块 */
     private LinearLayout themeItemGreen;
+    
+    /** 玫瑰主题色块 */
     private LinearLayout themeItemRose;
 
-    // 主题勾选图标
+    // ==================== 主题勾选图标 ====================
+    
     private ImageView checkCyan;
     private ImageView checkBlue;
     private ImageView checkOrange;
@@ -58,9 +113,13 @@ public class BackgroundSettingsActivity extends BaseActivity {
     private ImageView checkGreen;
     private ImageView checkRose;
     
+    /** 图片选择启动器 */
     private ActivityResultLauncher<Intent> imagePickerLauncher;
     
+    /** 屏幕宽度 */
     private int screenWidth;
+    
+    /** 屏幕高度 */
     private int screenHeight;
     
     @Override

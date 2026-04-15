@@ -1,3 +1,22 @@
+/**
+ * ============================================================================
+ * 文件名: BackupRestoreDialog.java
+ * 模块:   UI层 - 数据管理
+ * 功能:   备份恢复对话框，在应用启动时检测并提示恢复备份
+ * 
+ * 主要职责:
+ *   1. 检测是否存在有效的备份文件
+ *   2. 显示备份文件信息（文件名、日期、大小）
+ *   3. 提供恢复、忽略、删除备份三个操作选项
+ *   4. 检测当前数据库是否有数据，提示恢复风险
+ * 
+ * 使用场景:
+ *   - 应用首次启动时检测到有备份文件
+ *   - 用户可能需要在设备更换后恢复数据
+ * 
+ * @see BackupManager 备份管理器
+ * ============================================================================
+ */
 package com.finance.loanmanager.ui.data;
 
 import android.app.Dialog;
@@ -19,17 +38,38 @@ import com.finance.loanmanager.util.BackupManager;
 
 /**
  * 备份恢复对话框
- * 应用启动时检测到有备份文件时显示
+ * 
+ * DialogFragment 实现，在检测到存在备份文件时显示。
+ * 提供三个操作选项：
+ *   - 恢复：从备份文件恢复数据
+ *   - 忽略：关闭对话框，保留备份文件
+ *   - 删除：删除备份文件
  */
 public class BackupRestoreDialog extends DialogFragment {
     
+    /**
+     * 恢复操作监听接口
+     */
     public interface RestoreListener {
+        /**
+         * 恢复完成时调用
+         * @param success 是否成功
+         */
         void onRestoreComplete(boolean success);
+        
+        /**
+         * 对话框关闭时调用
+         */
         void onDismiss();
     }
     
+    /** 恢复监听器 */
     private RestoreListener listener;
+    
+    /** 备份管理器 */
     private BackupManager backupManager;
+    
+    /** 备份文件信息 */
     private BackupManager.BackupInfo backupInfo;
     
     public void setRestoreListener(RestoreListener listener) {

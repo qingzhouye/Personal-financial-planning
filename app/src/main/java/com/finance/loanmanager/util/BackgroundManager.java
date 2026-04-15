@@ -1,3 +1,29 @@
+/**
+ * ============================================================================
+ * 文件名: BackgroundManager.java
+ * 模块:   工具类层 (util)
+ * 功能:   背景图片管理工具类，负责应用背景图片的存储和管理
+ * 
+ * 主要职责:
+ *   1. 保存用户选择的自定义背景图片
+ *   2. 自动裁切图片以适应屏幕比例
+ *   3. 管理背景图片的读取和删除
+ *   4. 图片采样和内存优化
+ * 
+ * 技术细节:
+ *   - 使用 SharedPreferences 存储背景路径配置
+ *   - 使用应用内部存储 (filesDir) 保存图片文件
+ *   - 采用采样率压缩减少内存占用
+ *   - 居中裁切保证图片比例适配屏幕
+ * 
+ * 使用场景:
+ *   - 用户在设置页面选择自定义背景图片
+ *   - 各 Activity 加载并显示背景图片
+ *   - 用户清除自定义背景恢复默认
+ * 
+ * @see ThemeManager 主题颜色管理
+ * ============================================================================
+ */
 package com.finance.loanmanager.util;
 
 import android.content.Context;
@@ -16,18 +42,53 @@ import java.io.InputStream;
 
 /**
  * 背景图片管理工具类
- * 负责保存、读取、裁切背景图片
+ * 
+ * 该类负责管理应用的自定义背景图片功能。用户可以选择相册中的图片作为应用背景，
+ * 系统会自动将图片裁切为适合屏幕的比例并保存到内部存储中。
+ * 
+ * 内存优化策略:
+ *   1. 使用 inSampleSize 进行图片采样，降低加载分辨率
+ *   2. 及时回收 Bitmap 资源
+ *   3. 使用 JPEG 格式压缩存储
+ * 
+ * 使用示例:
+ *   BackgroundManager manager = new BackgroundManager(context);
+ *   if (manager.hasCustomBackground()) {
+ *       Bitmap bg = manager.getBackgroundBitmap();
+ *       // 设置背景
+ *   }
  */
 public class BackgroundManager {
     
+    // ==================== 常量定义 ====================
+    
+    /** SharedPreferences 配置文件名 */
     private static final String PREFS_NAME = "BackgroundPrefs";
+    
+    /** 背景图片路径的配置键 */
     private static final String KEY_BACKGROUND_PATH = "background_path";
+    
+    /** 背景图片存储目录名 */
     private static final String BACKGROUND_DIR = "backgrounds";
+    
+    /** 背景图片文件名 */
     private static final String BACKGROUND_FILENAME = "custom_background.jpg";
     
+    // ==================== 成员变量 ====================
+    
+    /** 应用上下文（使用 ApplicationContext 避免内存泄漏） */
     private final Context context;
+    
+    /** SharedPreferences 用于持久化配置 */
     private final SharedPreferences prefs;
     
+    // ==================== 构造方法 ====================
+    
+    /**
+     * 构造背景管理器
+     * 
+     * @param context 上下文对象（内部会转换为 ApplicationContext）
+     */
     public BackgroundManager(Context context) {
         this.context = context.getApplicationContext();
         this.prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

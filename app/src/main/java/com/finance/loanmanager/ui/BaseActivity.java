@@ -1,3 +1,36 @@
+/**
+ * ============================================================================
+ * 文件名: BaseActivity.java
+ * 模块:   UI层 - 基础Activity
+ * 功能:   Activity基类，统一处理主题应用和背景显示
+ * 
+ * 主要职责:
+ *   1. 在 Activity 创建前应用用户选择的主题颜色
+ *   2. 管理自定义背景图片的显示
+ *   3. 设置透明状态栏和导航栏
+ *   4. 提供背景缓存机制优化性能
+ * 
+ * 设计模式:
+ *   - 模板方法模式: 子类继承此类，自动获得主题和背景功能
+ *   - 缓存模式: 使用静态缓存避免重复加载背景资源
+ * 
+ * 背景显示逻辑:
+ *   1. 如果用户设置了自定义背景图片，显示该图片
+ *   2. 否则显示当前主题对应的渐变背景
+ * 
+ * 性能优化:
+ *   - 静态缓存 Drawable 对象，避免每次 onResume 重复加载
+ *   - 使用文件时间戳判断缓存是否过期
+ *   - 同步加载优先，失败后异步备用
+ * 
+ * 使用方式:
+ *   所有 Activity 都应继承此类而非 AppCompatActivity:
+ *   public class MainActivity extends BaseActivity { ... }
+ * 
+ * @see ThemeManager 主题管理
+ * @see BackgroundManager 背景管理
+ * ============================================================================
+ */
 package com.finance.loanmanager.ui;
 
 import android.graphics.Bitmap;
@@ -30,17 +63,56 @@ import com.finance.loanmanager.util.ThemeManager;
 import java.io.File;
 
 /**
- * Activity基类，负责处理自定义背景
+ * Activity 基类
+ * 
+ * 所有 Activity 都应继承此类，以获得统一的主题和背景处理能力。
+ * 该类封装了主题应用、背景图片加载、状态栏透明化等通用功能。
+ * 
+ * 生命周期处理:
+ *   - onCreate: 应用主题、初始化背景管理器、设置透明状态栏
+ *   - onResume: 更新状态栏图标颜色、应用背景
+ * 
+ * 继承示例:
+ *   public class MainActivity extends BaseActivity {
+ *       protected void onCreate(Bundle savedInstanceState) {
+ *           super.onCreate(savedInstanceState);
+ *           setContentView(R.layout.activity_main);
+ *           // 其他初始化...
+ *       }
+ *   }
  */
 public abstract class BaseActivity extends AppCompatActivity {
     
+    // ==================== 成员变量 ====================
+    
+    /** 背景管理器实例 */
     private BackgroundManager backgroundManager;
-    // 静态缓存背景 Drawable，避免每次 onResume 重复加载
+    
+    /** 缓存的背景 Drawable（静态共享，避免重复加载） */
     private static Drawable cachedBackgroundDrawable;
+    
+    /** 缓存背景时背景文件的时间戳（用于判断缓存是否过期） */
     private static long cachedBackgroundTimestamp;
+    
+    /** 缓存的主题索引（用于判断主题是否变化） */
     private static int cachedThemeIndex = -1;
+    
+    /** 缓存的主题渐变背景 */
     private static GradientDrawable cachedThemeGradient;
     
+    // ==================== 生命周期方法 ====================
+    
+    /**
+     * Activity 创建时调用
+     * 
+     * 执行顺序:
+     *   1. 应用主题（必须在 super.onCreate() 之前）
+     *   2. 初始化背景管理器
+     *   3. 调用父类 onCreate
+     *   4. 设置透明状态栏
+     * 
+     * @param savedInstanceState 保存的实例状态
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 必须在 super.onCreate() 之前应用主题，确保颜色在布局渲染前生效
