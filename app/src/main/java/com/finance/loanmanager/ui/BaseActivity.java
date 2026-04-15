@@ -103,11 +103,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         View rootView = findViewById(android.R.id.content);
         if (rootView == null) return;
         
-        if (backgroundManager.hasCustomBackground()) {
-            setBackgroundImage(rootView);
-        } else {
-            setThemeBackground(rootView);
-        }
+        // 【关键修复】确保视图已经布局完成再设置背景
+        rootView.post(() -> {
+            if (backgroundManager.hasCustomBackground()) {
+                setBackgroundImage(rootView);
+            } else {
+                setThemeBackground(rootView);
+            }
+        });
     }
     
     /**
@@ -156,11 +159,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
     
     /**
-     * 设置背景图片（带缓存优化）
+     * 设置背景图片（带缓存优化和错误重试）
      */
     private void setBackgroundImage(View view) {
         File bgFile = backgroundManager.getBackgroundFile();
-        if (!bgFile.exists()) return;
+        if (!bgFile.exists()) {
+            // 文件不存在时使用主题背景
+            setThemeBackground(view);
+            return;
+        }
         
         long fileTimestamp = bgFile.lastModified();
         
@@ -171,7 +178,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         
         // 【修复】在异步加载完成前，先设置主题渐变背景作为占位，避免界面空白
-        // 这样可以确保在图片加载期间，界面已经有背景，自定义背景下的透明卡片样式也能正确显示
         int themeIndex = ThemeManager.getSavedTheme(this);
         int[] gradientColors = getThemeGradientColors(themeIndex);
         GradientDrawable placeholderGradient = new GradientDrawable(
@@ -180,7 +186,35 @@ public abstract class BaseActivity extends AppCompatActivity {
         );
         view.setBackground(placeholderGradient);
         
-        // 使用 Glide 加载，带磁盘缓存 + 文件签名用于缓存失效
+        // 【关键修复】使用同步方式加载背景图片，避免异步加载失败问题
+        // 如果同步加载失败，再尝试异步加载
+        try {
+            android.graphics.BitmapFactory.Options options = new android.graphics.BitmapFactory.Options();
+            options.inSampleSize = 1;
+            android.graphics.Bitmap bitmap = android.graphics.BitmapFactory.decodeFile(bgFile.getAbsolutePath(), options);
+            
+            if (bitmap != null) {
+                // 同步加载成功，设置背景
+                android.graphics.drawable.BitmapDrawable drawable = new android.graphics.drawable.BitmapDrawable(getResources(), bitmap);
+                view.setBackground(drawable);
+                // 缓存背景 drawable
+                cachedBackgroundDrawable = drawable;
+                cachedBackgroundTimestamp = fileTimestamp;
+                return;
+            }
+        } catch (Exception e) {
+            // 同步加载失败，继续尝试异步加载
+            e.printStackTrace();
+        }
+        
+        // 【备用方案】异步加载（当同步加载失败时）
+        loadBackgroundAsync(view, bgFile, fileTimestamp);
+    }
+    
+    /**
+     * 异步加载背景图片（备用方案）
+     */
+    private void loadBackgroundAsync(View view, File bgFile, long fileTimestamp) {
         Glide.with(this)
             .load(bgFile)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
@@ -190,6 +224,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                 @Override
                 public boolean onLoadFailed(GlideException e, Object model, 
                         Target<Drawable> target, boolean isFirstResource) {
+                    // 【关键修复】加载失败时使用主题背景
+                    setThemeBackground(view);
                     return false;
                 }
                 

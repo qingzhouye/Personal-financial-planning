@@ -214,7 +214,12 @@ public class MainActivity extends BaseActivity {
         applyTransparentCardStyle();
         // 刷新按钮和统计卡片背景
         refreshThemeDependentViews();
-        refreshData();
+        
+        // 【关键修复】强制刷新数据，确保UI正确显示
+        // 使用延迟确保Activity完全恢复后再加载数据
+        findViewById(android.R.id.content).post(() -> {
+            refreshData();
+        });
     }
     
     /**
@@ -296,7 +301,7 @@ public class MainActivity extends BaseActivity {
             }
             
             // 刷新统计网格中的卡片样式（当从背景设置页面返回时需要重新创建统计卡片）
-            if (!loansWithStatus.isEmpty()) {
+            if (loansWithStatus != null && !loansWithStatus.isEmpty()) {
                 refreshStatsGrid();
             }
         }
@@ -531,7 +536,7 @@ public class MainActivity extends BaseActivity {
     }
     
     private void updateUI() {
-        if (loansWithStatus.isEmpty()) {
+        if (loansWithStatus == null || loansWithStatus.isEmpty()) {
             cardCurrentMonth.setVisibility(View.GONE);
             cardStats.setVisibility(View.GONE);
             cardLoanManage.setVisibility(View.GONE);
@@ -547,6 +552,14 @@ public class MainActivity extends BaseActivity {
         // 【关键修复】数据加载完成后，重新应用透明卡片样式
         // 这解决了自定义背景下，首次启动APP时统计卡片不显示的问题
         applyTransparentCardStyle();
+        
+        // 【关键修复】确保gridStats和详情布局可见
+        if (gridStats != null) {
+            gridStats.setVisibility(View.VISIBLE);
+        }
+        if (layoutCurrentMonthDetails != null) {
+            layoutCurrentMonthDetails.setVisibility(View.VISIBLE);
+        }
         
         // 计算统计数据
         int totalCount = loansWithStatus.size();
@@ -601,18 +614,32 @@ public class MainActivity extends BaseActivity {
             layoutDetailsRight.removeAllViews();
         }
         
+        // 【关键修复】确保布局容器可见
+        if (layoutCurrentMonthDetails != null) {
+            layoutCurrentMonthDetails.setVisibility(View.VISIBLE);
+        }
+        
         // 如果没有活跃贷款，显示提示
-        if (activeLoanDetails.isEmpty()) {
+        if (activeLoanDetails == null || activeLoanDetails.isEmpty()) {
             if (layoutDetailsLeft != null) {
                 TextView emptyText = new TextView(this);
                 emptyText.setText("本月无待还款项");
                 emptyText.setTextSize(12);
-                emptyText.setTextColor(getResources().getColor(R.color.semi_transparent_white));
+                // 【关键修复】根据背景确定文字颜色
+                boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
+                int textColor = hasCustomBg ? 
+                        getResources().getColor(R.color.text_white) : 
+                        getResources().getColor(R.color.semi_transparent_white);
+                emptyText.setTextColor(textColor);
                 layoutDetailsLeft.addView(emptyText);
             }
             // 隐藏分隔线
             if (dividerDetails != null) {
                 dividerDetails.setVisibility(View.GONE);
+            }
+            // 【关键修复】强制刷新布局
+            if (layoutCurrentMonthDetails != null) {
+                layoutCurrentMonthDetails.requestLayout();
             }
             return;
         }
@@ -647,6 +674,11 @@ public class MainActivity extends BaseActivity {
                 layoutDetailsRight.addView(textView);
             }
         }
+        
+        // 【关键修复】强制刷新布局
+        if (layoutCurrentMonthDetails != null) {
+            layoutCurrentMonthDetails.requestLayout();
+        }
     }
     
     /**
@@ -664,26 +696,42 @@ public class MainActivity extends BaseActivity {
     
     private void updateStatsGrid(int totalCount, double totalPrincipal, 
                                   double totalRemaining, double totalPaid, int paidOffCount) {
+        if (gridStats == null) return;
+        
         gridStats.removeAllViews();
+        
+        // 【关键修复】确保gridStats有正确的布局参数
+        gridStats.setColumnCount(2);
+        gridStats.setRowCount(2);
         
         // 贷款总数卡片 - 可点击打开贷款管理菜单
         View totalLoansCard = addStatCard(gridStats, String.valueOf(totalCount), getString(R.string.total_loans));
-        totalLoansCard.setOnClickListener(v -> showLoanManagementMenu());
-        totalLoansCard.setClickable(true);
-        // 使用 TypedValue 正确获取属性对应的 drawable
-        android.util.TypedValue outValue = new android.util.TypedValue();
-        getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-        totalLoansCard.setForeground(getDrawable(outValue.resourceId));
+        if (totalLoansCard != null) {
+            totalLoansCard.setOnClickListener(v -> showLoanManagementMenu());
+            totalLoansCard.setClickable(true);
+            // 使用 TypedValue 正确获取属性对应的 drawable
+            android.util.TypedValue outValue = new android.util.TypedValue();
+            getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+            totalLoansCard.setForeground(getDrawable(outValue.resourceId));
+        }
         
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPrincipal), getString(R.string.total_amount));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalRemaining), getString(R.string.remaining_principal));
         addStatCard(gridStats, NumberFormatUtil.formatCurrency(totalPaid), getString(R.string.total_paid));
+        
+        // 【关键修复】强制刷新布局
+        gridStats.requestLayout();
     }
     
     /**
      * 刷新统计网格（用于主题或背景切换后重新创建统计卡片）
      */
     private void refreshStatsGrid() {
+        // 【关键修复】添加空值检查
+        if (loansWithStatus == null || loansWithStatus.isEmpty()) {
+            return;
+        }
+        
         // 计算统计数据
         int totalCount = loansWithStatus.size();
         double totalPrincipal = 0;
@@ -705,11 +753,20 @@ public class MainActivity extends BaseActivity {
     }
     
     private View addStatCard(GridLayout grid, String value, String label) {
+        if (grid == null) return null;
+        
         View cardView = LayoutInflater.from(this).inflate(R.layout.item_stat_card, grid, false);
+        if (cardView == null) return null;
+        
         TextView tvValue = cardView.findViewById(R.id.tvStatValue);
         TextView tvLabel = cardView.findViewById(R.id.tvStatLabel);
-        tvValue.setText(value);
-        tvLabel.setText(label);
+        
+        if (tvValue != null) {
+            tvValue.setText(value);
+        }
+        if (tvLabel != null) {
+            tvLabel.setText(label);
+        }
         
         // 动态设置卡片背景
         if (cardView instanceof androidx.cardview.widget.CardView) {
@@ -731,9 +788,13 @@ public class MainActivity extends BaseActivity {
                 card.setBackground(borderDrawable);
                 
                 // 设置文字为白色加粗
-                tvValue.setTextColor(getResources().getColor(R.color.text_white));
-                tvValue.setTypeface(null, Typeface.BOLD);
-                tvLabel.setTextColor(getResources().getColor(R.color.text_white));
+                if (tvValue != null) {
+                    tvValue.setTextColor(getResources().getColor(R.color.text_white));
+                    tvValue.setTypeface(null, Typeface.BOLD);
+                }
+                if (tvLabel != null) {
+                    tvLabel.setTextColor(getResources().getColor(R.color.text_white));
+                }
             } else {
                 // 普通模式：主题色渐变背景
                 int themeIndex = ThemeManager.getSavedTheme(this);
@@ -747,9 +808,13 @@ public class MainActivity extends BaseActivity {
                 card.setBackground(gradient);
                 
                 // 恢复默认文字样式
-                tvValue.setTextColor(getResources().getColor(R.color.text_white));
-                tvValue.setTypeface(null, Typeface.BOLD);
-                tvLabel.setTextColor(getResources().getColor(R.color.semi_transparent_white));
+                if (tvValue != null) {
+                    tvValue.setTextColor(getResources().getColor(R.color.text_white));
+                    tvValue.setTypeface(null, Typeface.BOLD);
+                }
+                if (tvLabel != null) {
+                    tvLabel.setTextColor(getResources().getColor(R.color.semi_transparent_white));
+                }
             }
         }
         
