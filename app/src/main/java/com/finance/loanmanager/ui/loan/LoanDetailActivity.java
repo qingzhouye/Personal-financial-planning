@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -129,6 +130,9 @@ public class LoanDetailActivity extends BaseActivity {
     }
     
     private void setupListeners() {
+        // 点击标题编辑贷款名称
+        tvTitle.setOnClickListener(v -> showEditNameDialog());
+        
         btnViewSchedule.setOnClickListener(v -> {
             Intent intent = new Intent(this, PaymentScheduleActivity.class);
             intent.putExtra("loan_id", loanId);
@@ -152,6 +156,60 @@ public class LoanDetailActivity extends BaseActivity {
                     })
                     .setNegativeButton(R.string.cancel, null)
                     .show();
+        });
+    }
+    
+    /**
+     * 显示编辑贷款名称对话框
+     */
+    private void showEditNameDialog() {
+        if (loan == null) return;
+        
+        EditText editText = new EditText(this);
+        editText.setText(loan.getName());
+        editText.setSelection(loan.getName().length());
+        editText.setSingleLine(true);
+        
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        lp.setMarginStart((int) (16 * getResources().getDisplayMetrics().density));
+        lp.setMarginEnd((int) (16 * getResources().getDisplayMetrics().density));
+        editText.setLayoutParams(lp);
+        
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
+        container.setPadding(0, (int) (16 * getResources().getDisplayMetrics().density), 0, 0);
+        container.addView(editText);
+        
+        new AlertDialog.Builder(this)
+                .setTitle("编辑贷款名称")
+                .setView(container)
+                .setPositiveButton(R.string.confirm, (dialog, which) -> {
+                    String newName = editText.getText().toString().trim();
+                    if (!newName.isEmpty()) {
+                        updateLoanName(newName);
+                    } else {
+                        Toast.makeText(this, "名称不能为空", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+    
+    /**
+     * 更新贷款名称
+     */
+    private void updateLoanName(String newName) {
+        if (loan == null) return;
+        
+        loan.setName(newName);
+        executorService.execute(() -> {
+            repository.updateLoan(loan);
+            runOnUiThread(() -> {
+                tvTitle.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName());
+                Toast.makeText(this, "名称已更新", Toast.LENGTH_SHORT).show();
+            });
         });
     }
     

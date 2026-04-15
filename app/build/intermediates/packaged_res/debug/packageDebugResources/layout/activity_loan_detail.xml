@@ -56,109 +56,116 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="@dimen/spacing_md" />
 
+            <!-- 两栏布局：名称和金额在同一行 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_vertical|start">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="贷款本金"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="贷款本金"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/tvPrincipal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tvPrincipal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="年利率"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/tvRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/spacing_md">
+                android:gravity="center_vertical|start"
+                android:layout_marginTop="@dimen/spacing_sm">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="年利率"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="贷款期限"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/tvMonths"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tvRate"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="开始日期"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|start"
+                android:layout_marginTop="@dimen/spacing_sm">
 
-                    <TextView
-                        android:id="@+id/tvStartDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="贷款期限"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/tvMonths"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|start"
+                android:layout_marginTop="@dimen/spacing_sm">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开始日期"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/tvStartDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
             </LinearLayout>
 
             <View
@@ -180,106 +187,112 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center_vertical|start">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="已还金额"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="已还金额"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/tvTotalPaid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tvTotalPaid"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="剩余本金"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/tvRemaining"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/spacing_md">
+                android:gravity="center_vertical|start"
+                android:layout_marginTop="@dimen/spacing_sm">
 
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:text="剩余本金"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="当前月供"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
-
-                    <TextView
-                        android:id="@+id/tvMonthlyPayment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/tvRemaining"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="还款进度"
-                        android:textSize="@dimen/text_xs"
-                        android:textColor="@color/text_secondary" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|start"
+                android:layout_marginTop="@dimen/spacing_sm">
 
-                    <TextView
-                        android:id="@+id/tvProgress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_lg"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_primary"
-                        android:layout_marginTop="@dimen/spacing_xs" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="当前月供"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/tvMonthlyPayment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|start"
+                android:layout_marginTop="@dimen/spacing_sm">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="还款进度"
+                    android:textSize="@dimen/text_sm"
+                    android:textColor="@color/text_secondary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/tvProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="@dimen/text_sm"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    android:singleLine="true"
+                    android:ellipsize="end" />
             </LinearLayout>
         </LinearLayout>
 
