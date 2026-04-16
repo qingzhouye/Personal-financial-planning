@@ -47,8 +47,9 @@
         android:background="@color/primary"
         android:layout_marginBottom="4dp">
 
+        <!-- 日期表头 -->
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="日期"
             android:textSize="14sp"
@@ -56,8 +57,9 @@
             android:textColor="@color/text_white"
             android:gravity="center" />
 
+        <!-- 总金额表头 -->
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:text="总金额"
             android:textSize="14sp"
@@ -65,6 +67,7 @@
             android:textColor="@color/text_white"
             android:gravity="center" />
 
+        <!-- 明细表头 -->
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"

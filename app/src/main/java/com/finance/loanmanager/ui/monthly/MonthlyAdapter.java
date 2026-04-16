@@ -7,11 +7,12 @@
  * 主要职责:
  *   1. 将月度还款数据绑定到列表项视图
  *   2. 显示月份、还款总额、各贷款详情
+ *   3. 三列布局：日期、总金额、明细
  * 
  * 显示内容:
- *   - 月份: yyyy-MM 格式
- *   - 还款总额: 格式化货币显示
- *   - 贷款详情: 每笔贷款的还款金额列表
+ *   - 日期: yyyy-MM 格式，固定宽度居中对齐
+ *   - 总金额: 格式化货币显示，固定宽度居中对齐
+ *   - 明细: 贷款名称和金额在一行显示，左对齐
  * 
  * @see MonthlyTotalActivity 月度还款汇总页面
  * ============================================================================
@@ -21,6 +22,7 @@ package com.finance.loanmanager.ui.monthly;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -70,17 +72,61 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MonthlyTotalActivity.MonthlyItem item = items.get(position);
+        
+        // 设置日期和总金额
         holder.tvMonth.setText(item.month);
         holder.tvTotal.setText(NumberFormatUtil.formatCurrency(item.total));
         
-        StringBuilder loansText = new StringBuilder();
-        for (String loan : item.loans) {
-            if (loansText.length() > 0) {
-                loansText.append("\n");
-            }
-            loansText.append(loan);
+        // 清空明细列
+        holder.llDetails.removeAllViews();
+        
+        // 合并所有贷款明细（普通贷款/信用卡 + 助学贷款）
+        List<MonthlyTotalActivity.LoanDetailItem> allLoans = item.normalLoans;
+        if (item.studentLoans != null) {
+            allLoans.addAll(item.studentLoans);
         }
-        holder.tvLoans.setText(loansText.toString());
+        
+        // 填充明细列
+        if (allLoans != null && !allLoans.isEmpty()) {
+            for (MonthlyTotalActivity.LoanDetailItem loan : allLoans) {
+                addLoanDetailView(holder.llDetails, loan);
+            }
+        } else {
+            // 明细为空时显示提示
+            addEmptyView(holder.llDetails, "无");
+        }
+    }
+    
+    /**
+     * 添加贷款详情视图到指定容器
+     * @param container 目标容器
+     * @param loan 贷款详情
+     */
+    private void addLoanDetailView(LinearLayout container, MonthlyTotalActivity.LoanDetailItem loan) {
+        View view = LayoutInflater.from(container.getContext())
+                .inflate(R.layout.item_loan_detail, container, false);
+        
+        TextView tvName = view.findViewById(R.id.tvLoanName);
+        TextView tvAmount = view.findViewById(R.id.tvLoanAmount);
+        
+        tvName.setText(loan.loanName + ":");
+        tvAmount.setText(NumberFormatUtil.formatCurrency(loan.amount));
+        
+        container.addView(view);
+    }
+    
+    /**
+     * 添加空状态提示视图
+     * @param container 目标容器
+     * @param text 提示文本
+     */
+    private void addEmptyView(LinearLayout container, String text) {
+        TextView tv = new TextView(container.getContext());
+        tv.setText(text);
+        tv.setTextSize(12);
+        tv.setTextColor(container.getContext().getResources().getColor(R.color.text_hint));
+        tv.setPadding(0, 4, 0, 4);
+        container.addView(tv);
     }
 
     @Override
@@ -91,13 +137,13 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMonth;
         TextView tvTotal;
-        TextView tvLoans;
+        LinearLayout llDetails;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvMonth = itemView.findViewById(R.id.tvMonth);
             tvTotal = itemView.findViewById(R.id.tvTotal);
-            tvLoans = itemView.findViewById(R.id.tvLoans);
+            llDetails = itemView.findViewById(R.id.llDetails);
         }
     }
 }

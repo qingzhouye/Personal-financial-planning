@@ -6,30 +6,34 @@
     android:padding="12dp"
     android:background="@color/card_background">
 
+    <!-- 日期列 - 固定宽度，居中对齐 -->
     <TextView
         android:id="@+id/tvMonth"
-        android:layout_width="100dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:textSize="13sp"
         android:textColor="@color/text_primary"
         android:gravity="center" />
 
+    <!-- 总金额列 - 固定宽度，居中对齐 -->
     <TextView
         android:id="@+id/tvTotal"
-        android:layout_width="100dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="13sp"
         android:textStyle="bold"
         android:textColor="@color/primary"
         android:gravity="center" />
 
-    <TextView
-        android:id="@+id/tvLoans"
+    <!-- 明细列 - 自适应宽度，左对齐 -->
+    <LinearLayout
+        android:id="@+id/llDetails"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="12sp"
-        android:textColor="@color/text_secondary"
-        android:gravity="center" />
+        android:orientation="vertical"
+        android:gravity="start|center_vertical">
+
+        <!-- 动态添加贷款明细项 -->
+    </LinearLayout>
 </LinearLayout>

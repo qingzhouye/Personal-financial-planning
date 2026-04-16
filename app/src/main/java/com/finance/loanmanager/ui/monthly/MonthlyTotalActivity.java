@@ -52,6 +52,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * 月度贷款详情项
+ * 包含贷款名称和应还金额
+ */
+public static class LoanDetailItem {
+    public final String loanName;
+    public final double amount;
+    
+    public LoanDetailItem(String loanName, double amount) {
+        this.loanName = loanName;
+        this.amount = amount;
+    }
+}
+
+/**
  * 月度还款汇总界面 Activity
  * 
  * 该界面展示所有活跃贷款按月份汇总的还款计划，
@@ -163,7 +177,18 @@ public class MonthlyTotalActivity extends BaseActivity {
                     }
                     
                     data.total += item.payment;
-                    data.loans.add(lws.loan.getName() + ": " + NumberFormatUtil.formatCurrency(item.payment));
+                    
+                    // 根据贷款类型分类
+                    LoanDetailItem loanDetail = new LoanDetailItem(
+                        lws.loan.getName(), 
+                        item.payment
+                    );
+                    
+                    if (lws.loan.isStudentLoan()) {
+                        data.studentLoans.add(loanDetail);
+                    } else {
+                        data.normalLoans.add(loanDetail);
+                    }
                 }
             }
             
@@ -173,7 +198,8 @@ public class MonthlyTotalActivity extends BaseActivity {
             final List<MonthlyItem> newMonthlyItems = new ArrayList<>();
             for (String month : sortedMonths) {
                 MonthlyData data = monthlyData.get(month);
-                newMonthlyItems.add(new MonthlyItem(month, data.total, data.loans));
+                newMonthlyItems.add(new MonthlyItem(month, data.total, 
+                    data.normalLoans, data.studentLoans));
             }
             
             final String firstMonth = sortedMonths.isEmpty() ? null : sortedMonths.get(0);
@@ -194,18 +220,27 @@ public class MonthlyTotalActivity extends BaseActivity {
     
     private static class MonthlyData {
         double total = 0;
-        List<String> loans = new ArrayList<>();
+        List<LoanDetailItem> normalLoans = new ArrayList<>();  // 普通贷款和信用卡
+        List<LoanDetailItem> studentLoans = new ArrayList<>(); // 国家助学贷款
     }
     
+    /**
+     * 月度数据项
+     * 包含月份、总额、普通贷款/信用卡列表、助学贷款列表
+     */
     public static class MonthlyItem {
         public final String month;
         public final double total;
-        public final List<String> loans;
+        public final List<LoanDetailItem> normalLoans;  // 普通贷款和信用卡
+        public final List<LoanDetailItem> studentLoans; // 国家助学贷款
         
-        public MonthlyItem(String month, double total, List<String> loans) {
+        public MonthlyItem(String month, double total, 
+                          List<LoanDetailItem> normalLoans, 
+                          List<LoanDetailItem> studentLoans) {
             this.month = month;
             this.total = total;
-            this.loans = loans;
+            this.normalLoans = normalLoans;
+            this.studentLoans = studentLoans;
         }
     }
 }
