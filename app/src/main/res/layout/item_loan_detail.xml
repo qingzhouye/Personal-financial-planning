@@ -3,18 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingVertical="1dp">
+    android:paddingVertical="4dp">
 
-    <!-- 贷款名称和金额合并显示 -->
+    <!-- 贷款名称 -->
     <TextView
-        android:id="@+id/tvLoanDetail"
-        android:layout_width="match_parent"
+        android:id="@+id/tvLoanName"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textSize="10sp"
+        android:layout_weight="1"
+        android:textSize="12sp"
         android:textColor="@color/text_primary"
-        android:gravity="start|center_vertical"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:ellipsize="none" />
+        android:ellipsize="end"
+        android:maxLines="1" />
+
+    <!-- 应还金额 -->
+    <TextView
+        android:id="@+id/tvLoanAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:textSize="12sp"
+        android:textColor="@color/danger"
+        android:textStyle="bold" />
 
 </LinearLayout>
