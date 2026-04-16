@@ -25,15 +25,27 @@
         android:textColor="@color/primary"
         android:gravity="center" />
 
-    <!-- 明细列 - 自适应宽度，左对齐 -->
+    <!-- 普通贷款/信用卡列 - 左对齐 -->
     <LinearLayout
-        android:id="@+id/llDetails"
+        android:id="@+id/llNormalLoans"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="start|center_vertical">
 
-        <!-- 动态添加贷款明细项 -->
+        <!-- 动态添加普通贷款明细项 -->
+    </LinearLayout>
+
+    <!-- 国家助学贷款列 - 左对齐 -->
+    <LinearLayout
+        android:id="@+id/llStudentLoans"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="start|center_vertical">
+
+        <!-- 动态添加助学贷款明细项 -->
     </LinearLayout>
 </LinearLayout>

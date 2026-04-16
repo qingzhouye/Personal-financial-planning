@@ -77,23 +77,28 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
         holder.tvMonth.setText(item.month);
         holder.tvTotal.setText(NumberFormatUtil.formatCurrency(item.total));
         
-        // 清空明细列
-        holder.llDetails.removeAllViews();
+        // 清空左右两栏
+        holder.llNormalLoans.removeAllViews();
+        holder.llStudentLoans.removeAllViews();
         
-        // 合并所有贷款明细（普通贷款/信用卡 + 助学贷款）
-        List<MonthlyTotalActivity.LoanDetailItem> allLoans = item.normalLoans;
-        if (item.studentLoans != null) {
-            allLoans.addAll(item.studentLoans);
-        }
-        
-        // 填充明细列
-        if (allLoans != null && !allLoans.isEmpty()) {
-            for (MonthlyTotalActivity.LoanDetailItem loan : allLoans) {
-                addLoanDetailView(holder.llDetails, loan);
+        // 填充普通贷款/信用卡列（左边）
+        if (item.normalLoans != null && !item.normalLoans.isEmpty()) {
+            for (MonthlyTotalActivity.LoanDetailItem loan : item.normalLoans) {
+                addLoanDetailView(holder.llNormalLoans, loan);
             }
         } else {
-            // 明细为空时显示提示
-            addEmptyView(holder.llDetails, "无");
+            // 普通贷款为空时显示提示
+            addEmptyView(holder.llNormalLoans, "-");
+        }
+        
+        // 填充国家助学贷款列（右边）
+        if (item.studentLoans != null && !item.studentLoans.isEmpty()) {
+            for (MonthlyTotalActivity.LoanDetailItem loan : item.studentLoans) {
+                addLoanDetailView(holder.llStudentLoans, loan);
+            }
+        } else {
+            // 助学贷款为空时显示提示
+            addEmptyView(holder.llStudentLoans, "-");
         }
     }
     
@@ -106,11 +111,23 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
         View view = LayoutInflater.from(container.getContext())
                 .inflate(R.layout.item_loan_detail, container, false);
         
-        TextView tvName = view.findViewById(R.id.tvLoanName);
-        TextView tvAmount = view.findViewById(R.id.tvLoanAmount);
+        TextView tvLoanDetail = view.findViewById(R.id.tvLoanDetail);
         
-        tvName.setText(loan.loanName + ":");
-        tvAmount.setText(NumberFormatUtil.formatCurrency(loan.amount));
+        // 合并显示贷款名称和金额，格式："贷款名称：￥金额"
+        String detailText = loan.loanName + "：" + NumberFormatUtil.formatCurrency(loan.amount);
+        tvLoanDetail.setText(detailText);
+        
+        // 根据文本长度动态调整字体大小
+        int textLength = detailText.length();
+        float textSize;
+        if (textLength > 25) {
+            textSize = 8f; // 长文本使用小字体
+        } else if (textLength > 18) {
+            textSize = 9f; // 中等长度文本
+        } else {
+            textSize = 10f; // 短文本使用标准字体
+        }
+        tvLoanDetail.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, textSize);
         
         container.addView(view);
     }
@@ -137,13 +154,15 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMonth;
         TextView tvTotal;
-        LinearLayout llDetails;
+        LinearLayout llNormalLoans;
+        LinearLayout llStudentLoans;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvMonth = itemView.findViewById(R.id.tvMonth);
             tvTotal = itemView.findViewById(R.id.tvTotal);
-            llDetails = itemView.findViewById(R.id.llDetails);
+            llNormalLoans = itemView.findViewById(R.id.llNormalLoans);
+            llStudentLoans = itemView.findViewById(R.id.llStudentLoans);
         }
     }
 }
