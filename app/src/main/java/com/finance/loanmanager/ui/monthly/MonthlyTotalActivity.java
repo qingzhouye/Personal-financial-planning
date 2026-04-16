@@ -1,3 +1,28 @@
+/**
+ * ============================================================================
+ * 文件名: MonthlyTotalActivity.java
+ * 模块:   UI层 - 月度还款汇总
+ * 功能:   显示每月还款总额和各贷款详情的页面
+ * 
+ * 主要职责:
+ *   1. 计算并展示每月的还款总额
+ *   2. 按月份汇总所有活跃贷款的还款
+ *   3. 显示每笔贷款在各月的还款金额
+ * 
+ * 界面元素:
+ *   - 当前月份: 最近一个需要还款的月份
+ *   - 当前月总额: 该月的总还款金额
+ *   - 月度列表: 按时间顺序显示每月还款详情
+ * 
+ * 计算逻辑:
+ *   1. 获取所有活跃贷款的还款计划
+ *   2. 按月份汇总还款金额
+ *   3. 按时间排序显示
+ * 
+ * @see MonthlyAdapter 月度列表适配器
+ * @see LoanCalculator 还款计划计算
+ * ============================================================================
+ */
 package com.finance.loanmanager.ui.monthly;
 
 import android.os.Bundle;
@@ -26,38 +51,50 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-<<<<<<< HEAD
-/**
- * 月度贷款详情项
- * 包含贷款名称和应还金额
- */
-public static class LoanDetailItem {
-    public final String loanName;
-    public final double amount;
-    
-    public LoanDetailItem(String loanName, double amount) {
-        this.loanName = loanName;
-        this.amount = amount;
-    }
-}
-
 /**
  * 月度还款汇总界面 Activity
  * 
  * 该界面展示所有活跃贷款按月份汇总的还款计划，
  * 帮助用户了解未来各月的还款压力。
  */
-=======
->>>>>>> parent of 06b5fc9 (把所有代码都进行了注释)
 public class MonthlyTotalActivity extends BaseActivity {
 
+    // ==================== 成员变量 ====================
+    
+    /** 数据仓库引用 */
     private LoanRepository repository;
+    
+    /** 后台线程执行器 */
     private ExecutorService executorService;
+    
+    /** 列表视图 */
     private RecyclerView recyclerView;
+    
+    /** 当前月份文本 */
     private TextView tvCurrentMonth;
+    
+    /** 当前月总额文本 */
     private TextView tvCurrentTotal;
+    
+    /** 列表适配器 */
     private MonthlyAdapter adapter;
+    
+    /** 月度数据列表 */
     private List<MonthlyItem> monthlyItems = new ArrayList<>();
+
+    /**
+     * 月度贷款详情项
+     * 包含贷款名称和应还金额
+     */
+    public static class LoanDetailItem {
+        public final String loanName;
+        public final double amount;
+        
+        public LoanDetailItem(String loanName, double amount) {
+            this.loanName = loanName;
+            this.amount = amount;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

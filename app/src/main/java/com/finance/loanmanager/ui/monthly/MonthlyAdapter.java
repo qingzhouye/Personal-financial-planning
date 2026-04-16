@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * ============================================================================
  * 文件名: MonthlyAdapter.java
@@ -8,19 +7,16 @@
  * 主要职责:
  *   1. 将月度还款数据绑定到列表项视图
  *   2. 显示月份、还款总额、各贷款详情
- *   3. 三列布局：日期、总金额、明细（明细内部分左右两栏）
+ *   3. 三列布局：日期、总金额、明细
  * 
  * 显示内容:
  *   - 日期: yyyy-MM 格式，固定宽度居中对齐
  *   - 总金额: 格式化货币显示，固定宽度居中对齐
- *   - 明细左栏: 普通贷款和信用卡（名称和金额在一行）
- *   - 明细右栏: 国家助学贷款（名称和金额在一行）
+ *   - 明细: 贷款名称和金额在一行显示，左对齐
  * 
  * @see MonthlyTotalActivity 月度还款汇总页面
  * ============================================================================
  */
-=======
->>>>>>> parent of 06b5fc9 (把所有代码都进行了注释)
 package com.finance.loanmanager.ui.monthly;
 
 import android.view.LayoutInflater;
@@ -37,14 +33,29 @@ import com.finance.loanmanager.util.NumberFormatUtil;
 
 import java.util.List;
 
+/**
+ * 月度还款适配器
+ * 
+ * 用于 RecyclerView 的数据适配器，将月度还款数据显示为列表项。
+ * 每个列表项显示一个月的还款汇总信息。
+ */
 public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHolder> {
 
+    /** 月度数据列表 */
     private List<MonthlyTotalActivity.MonthlyItem> items;
 
+    /**
+     * 构造适配器
+     * @param items 月度数据列表
+     */
     public MonthlyAdapter(List<MonthlyTotalActivity.MonthlyItem> items) {
         this.items = items;
     }
 
+    /**
+     * 更新数据并刷新列表
+     * @param items 新的月度数据列表
+     */
     public void updateData(List<MonthlyTotalActivity.MonthlyItem> items) {
         this.items = items;
         notifyDataSetChanged();
@@ -66,28 +77,23 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
         holder.tvMonth.setText(item.month);
         holder.tvTotal.setText(NumberFormatUtil.formatCurrency(item.total));
         
-        // 清空左右栏
-        holder.leftColumn.removeAllViews();
-        holder.rightColumn.removeAllViews();
+        // 清空明细列
+        holder.llDetails.removeAllViews();
         
-        // 填充左栏：普通贷款和信用卡
-        if (item.normalLoans != null && !item.normalLoans.isEmpty()) {
-            for (MonthlyTotalActivity.LoanDetailItem loan : item.normalLoans) {
-                addLoanDetailView(holder.leftColumn, loan);
-            }
-        } else {
-            // 左栏为空时显示提示
-            addEmptyView(holder.leftColumn, "无");
+        // 合并所有贷款明细（普通贷款/信用卡 + 助学贷款）
+        List<MonthlyTotalActivity.LoanDetailItem> allLoans = item.normalLoans;
+        if (item.studentLoans != null) {
+            allLoans.addAll(item.studentLoans);
         }
         
-        // 填充右栏：国家助学贷款
-        if (item.studentLoans != null && !item.studentLoans.isEmpty()) {
-            for (MonthlyTotalActivity.LoanDetailItem loan : item.studentLoans) {
-                addLoanDetailView(holder.rightColumn, loan);
+        // 填充明细列
+        if (allLoans != null && !allLoans.isEmpty()) {
+            for (MonthlyTotalActivity.LoanDetailItem loan : allLoans) {
+                addLoanDetailView(holder.llDetails, loan);
             }
         } else {
-            // 右栏为空时显示提示
-            addEmptyView(holder.rightColumn, "无");
+            // 明细为空时显示提示
+            addEmptyView(holder.llDetails, "无");
         }
     }
     
@@ -131,15 +137,13 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMonth;
         TextView tvTotal;
-        LinearLayout leftColumn;
-        LinearLayout rightColumn;
+        LinearLayout llDetails;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvMonth = itemView.findViewById(R.id.tvMonth);
             tvTotal = itemView.findViewById(R.id.tvTotal);
-            leftColumn = itemView.findViewById(R.id.leftColumn);
-            rightColumn = itemView.findViewById(R.id.rightColumn);
+            llDetails = itemView.findViewById(R.id.llDetails);
         }
     }
 }
