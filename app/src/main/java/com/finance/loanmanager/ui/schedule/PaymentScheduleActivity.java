@@ -1,26 +1,3 @@
-/**
- * ============================================================================
- * 文件名: PaymentScheduleActivity.java
- * 模块:   UI层 - 还款计划
- * 功能:   显示单个贷款的完整还款计划表
- * 
- * 主要职责:
- *   1. 展示贷款的还款计划列表
- *   2. 显示每期的还款金额、本金、利息、剩余本金
- *   3. 显示贷款汇总信息（已还、剩余、总期数）
- * 
- * 列表内容:
- *   - 期数: 第几期还款
- *   - 还款日期: 该期的还款日期
- *   - 还款金额: 当期总还款额
- *   - 本金: 当期偿还的本金
- *   - 利息: 当期偿还的利息
- *   - 剩余本金: 还款后的剩余本金
- * 
- * @see ScheduleAdapter 还款计划适配器
- * @see LoanCalculator.PaymentScheduleItem 还款计划项
- * ============================================================================
- */
 package com.finance.loanmanager.ui.schedule;
 
 import android.os.Bundle;
@@ -45,44 +22,17 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * 还款计划界面 Activity
- * 
- * 该界面展示单个贷款的完整还款计划表，帮助用户了解
- * 每期的还款明细和整体还款进度。
- */
 public class PaymentScheduleActivity extends BaseActivity {
 
-    // ==================== 成员变量 ====================
-    
-    /** 当前贷款ID */
     private int loanId;
-    
-    /** 数据仓库引用 */
     private LoanRepository repository;
-    
-    /** 后台线程执行器 */
     private ExecutorService executorService;
-    
-    /** 列表视图 */
     private RecyclerView recyclerView;
-    
-    /** 贷款信息文本 */
     private TextView tvLoanInfo;
-    
-    /** 剩余本金文本 */
     private TextView tvRemaining;
-    
-    /** 已还金额文本 */
     private TextView tvPaid;
-    
-    /** 期数文本 */
     private TextView tvPeriods;
-    
-    /** 列表适配器 */
     private ScheduleAdapter adapter;
-    
-    /** 还款计划数据 */
     private List<LoanCalculator.PaymentScheduleItem> schedule = new ArrayList<>();
 
     @Override

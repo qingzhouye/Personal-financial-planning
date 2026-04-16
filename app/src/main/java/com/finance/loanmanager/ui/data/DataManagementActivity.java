@@ -1,32 +1,3 @@
-/**
- * ============================================================================
- * 文件名: DataManagementActivity.java
- * 模块:   UI层 - 数据管理
- * 功能:   数据导入导出管理界面，处理用户手动备份和恢复操作
- * 
- * 主要职责:
- *   1. 导出贷款数据为 Excel 文件 (XLSX)
- *   2. 从 Excel 文件导入贷款数据
- *   3. 使用系统文件选择器让用户选择保存/读取位置
- * 
- * 导出格式:
- *   - 使用 Apache POI 库生成 XLSX 文件
- *   - 包含两个工作表：贷款信息、还款记录
- *   - 用户可选择保存位置
- * 
- * 导入逻辑:
- *   - 解析 XLSX 文件中的贷款和还款数据
- *   - 清空现有数据后导入新数据
- *   - 导入前需要用户确认
- * 
- * 技术要点:
- *   - 使用 Activity Result API 处理文件选择
- *   - 在后台线程执行导入导出操作
- *   - 使用 Apache POI XSSFWorkbook 处理 Excel
- * 
- * @see BackupManager 自动备份管理
- * ============================================================================
- */
 package com.finance.loanmanager.ui.data;
 
 import android.app.Activity;
@@ -61,36 +32,17 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * 数据导入导出管理 Activity
- * 
- * 该 Activity 无界面，根据 Intent 的 action 决定执行导出还是导入操作。
- * 使用系统文件选择器让用户选择文件保存/读取位置。
- * 
- * Action 类型:
- *   - "EXPORT": 启动文件保存选择器，导出数据
- *   - "IMPORT": 启动文件打开选择器，导入数据
- */
 public class DataManagementActivity extends BaseActivity {
     
-    // ==================== 成员变量 ====================
-    
-    /** 数据仓库引用 */
     private LoanRepository repository;
-    
-    /** 后台线程执行器 */
     private ExecutorService executorService;
     
-    /** 导出文件选择启动器 */
+    // 使用新的 Activity Result API
     private ActivityResultLauncher<Intent> exportLauncher;
-    
-    /** 导入文件选择启动器 */
     private ActivityResultLauncher<Intent> importLauncher;
     
-    /** 贷款信息工作表名称 */
+    // XLSX 工作表名称
     private static final String SHEET_LOANS = "贷款信息";
-    
-    /** 还款记录工作表名称 */
     private static final String SHEET_PAYMENTS = "还款记录";
 
     @Override

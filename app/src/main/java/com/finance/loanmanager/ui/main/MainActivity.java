@@ -1,35 +1,3 @@
-/**
- * ============================================================================
- * 文件名: MainActivity.java
- * 模块:   UI层 - 主界面
- * 功能:   应用主界面，展示贷款概览和快捷入口
- * 
- * 主要职责:
- *   1. 展示本月应还总额及各贷款详情
- *   2. 显示贷款统计概览（总数、总额、剩余、已还）
- *   3. 提供快捷入口（添加贷款、查看月度总还款）
- *   4. 管理主菜单和数据管理功能
- * 
- * 界面结构:
- *   - 本月应还卡片: 显示当月总还款、活跃贷款数、日均还款
- *   - 贷款概览卡片: 以网格形式展示各项统计数据
- *   - 添加贷款按钮: 跳转至添加贷款页面
- *   - 版本信息按钮: 打开主菜单
- * 
- * 功能菜单:
- *   - 一级菜单: 版本说明、数据管理、个性化设置、添加贷款
- *   - 二级菜单(数据管理): 导出数据、导入数据、清空数据
- *   - 贷款管理: 查看所有贷款列表，点击跳转详情
- * 
- * 数据刷新机制:
- *   - 使用 LiveData 监听贷款数据变化
- *   - onResume 时刷新数据确保最新状态
- *   - 主题变化时自动 recreate Activity
- * 
- * @see BaseActivity 基础Activity
- * @see LoanRepository 数据仓库
- * ============================================================================
- */
 package com.finance.loanmanager.ui.main;
 
 import android.content.Intent;
@@ -83,106 +51,35 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.widget.ScrollView;
 
-/**
- * 主界面 Activity
- * 
- * 作为应用的入口界面，展示贷款数据的概览信息，并提供各功能模块的入口。
- * 继承自 BaseActivity，自动获得主题和背景处理能力。
- * 
- * 数据展示:
- *   - 本月应还: 当月所有活跃贷款的月供总和
- *   - 贷款总数: 所有贷款记录数量
- *   - 贷款总额: 所有贷款的本金总和
- *   - 剩余本金: 所有贷款的剩余本金总和
- *   - 已还总额: 所有贷款的已还金额总和
- * 
- * 线程处理:
- *   - 使用 ExecutorService 在后台执行数据库查询
- *   - UI 更新通过 runOnUiThread 在主线程执行
- */
 public class MainActivity extends BaseActivity {
 
-    // ==================== 成员变量 ====================
-    
-    /** 数据仓库引用 */
     private LoanRepository repository;
-    
-    /** 后台线程执行器 */
     private ExecutorService executorService;
     
-    /** 本月应还卡片 */
     private CardView cardCurrentMonth;
-    
-    /** 统计概览卡片 */
     private CardView cardStats;
-    
-    /** 贷款管理卡片 */
     private CardView cardLoanManage;
-    
-    /** 添加贷款卡片（无数据时显示） */
     private CardView cardAddLoan;
-    
-    /** 当前日期文本 */
     private TextView tvCurrentDate;
-    
-    /** 本月应还总额文本 */
     private TextView tvCurrentMonthTotal;
-    
-    /** 活跃贷款数量文本 */
     private TextView tvActiveLoanCount;
-    
-    /** 日均还款文本 */
     private TextView tvDailyPayment;
-    
-    /** 剩余天数文本 */
     private TextView tvRemainingDays;
-    
-    /** 本月应还详情布局 */
     private LinearLayout layoutCurrentMonthDetails;
-    
-    /** 详情左栏布局 */
     private LinearLayout layoutDetailsLeft;
-    
-    /** 详情右栏布局 */
     private LinearLayout layoutDetailsRight;
-    
-    /** 分隔线 */
     private View dividerDetails;
-    
-    /** 统计网格 */
     private GridLayout gridStats;
-    
-    /** 添加贷款按钮 */
     private Button btnAddLoan;
-    
-    /** 查看月度总还款按钮 */
     private Button btnViewMonthlyTotal;
-    
-    /** 版本信息按钮 */
     private ImageView btnVersionInfo;
-    
-    /** 日均还款区域布局 */
     private LinearLayout layoutDailyPayment;
     
-    /** 带状态的贷款列表 */
     private List<LoanRepository.LoanWithStatus> loansWithStatus = new ArrayList<>();
-    
-    /** 备份管理器 */
     private BackupManager backupManager;
-    
-    /** 背景管理器 */
     private BackgroundManager backgroundManager;
-    
-    /** SharedPreferences 配置文件名 */
     private static final String PREFS_NAME = "LoanManagerPrefs";
-    
-    /** 备份检查标记的配置键 */
     private static final String KEY_BACKUP_CHECKED = "backup_checked";
-    
-    /** 上次已知的主题索引（用于检测主题变化） */
-    private int lastKnownTheme = -1;
-
-    // ==================== 生命周期方法 ====================
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -528,6 +425,8 @@ public class MainActivity extends BaseActivity {
             btnAddLoan.setBackgroundTintList(android.content.res.ColorStateList.valueOf(primaryColor));
         }
     }
+    
+    private int lastKnownTheme = -1;
     
     /**
      * 设置本月应还卡片背景为当前主题色的渐变

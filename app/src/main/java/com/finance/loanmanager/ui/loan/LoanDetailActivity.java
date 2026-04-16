@@ -1,31 +1,3 @@
-/**
- * ============================================================================
- * 文件名: LoanDetailActivity.java
- * 模块:   UI层 - 贷款详情
- * 功能:   展示单个贷款的详细信息和操作功能
- * 
- * 主要职责:
- *   1. 显示贷款基本信息（本金、利率、期限等）
- *   2. 显示还款进度（已还金额、剩余本金）
- *   3. 支持手动还款操作
- *   4. 提供还款计划查看入口
- *   5. 支持编辑贷款名称和删除贷款
- * 
- * 界面元素:
- *   - 贷款标题（点击可编辑名称）
- *   - 基本信息卡片：本金、利率、期限、开始日期
- *   - 还款进度卡片：已还金额、剩余本金、月供、进度百分比
- *   - 操作按钮：查看还款计划、还款、删除贷款
- * 
- * 数据刷新:
- *   - 在 onResume 时重新加载数据，确保信息最新
- *   - 还款成功后自动刷新界面
- * 
- * @see Loan 贷款实体
- * @see LoanStatus 贷款状态
- * @see PaymentScheduleActivity 还款计划页面
- * ============================================================================
- */
 package com.finance.loanmanager.ui.loan;
 
 import android.content.Intent;
@@ -57,89 +29,31 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * 贷款详情界面 Activity
- * 
- * 该界面展示单个贷款的完整信息，并提供还款和删除功能。
- * 通过 Intent 传递的 loan_id 参数来确定要显示的贷款。
- * 
- * 主要功能:
- *   - 点击标题可编辑贷款名称
- *   - 支持手动记录还款
- *   - 可查看完整还款计划表
- *   - 可删除该贷款记录
- */
 public class LoanDetailActivity extends BaseActivity {
 
-    // ==================== 成员变量 ====================
-    
-    /** 当前贷款ID */
     private int loanId;
-    
-    /** 数据仓库引用 */
     private LoanRepository repository;
-    
-    /** 后台线程执行器 */
     private ExecutorService executorService;
-    
-    /** 当前贷款数据 */
     private Loan loan;
-    
-    /** 当前贷款状态 */
     private LoanStatus status;
     
-    /** 贷款标题文本 */
     private TextView tvTitle;
-    
-    /** 副标题文本（还款方式、状态） */
     private TextView tvSubtitle;
-    
-    /** 本金文本 */
     private TextView tvPrincipal;
-    
-    /** 利率文本 */
     private TextView tvRate;
-    
-    /** 期限文本 */
     private TextView tvMonths;
-    
-    /** 开始日期文本 */
     private TextView tvStartDate;
-    
-    /** 已还金额文本 */
     private TextView tvTotalPaid;
-    
-    /** 剩余本金文本 */
     private TextView tvRemaining;
-    
-    /** 月供文本 */
     private TextView tvMonthlyPayment;
-    
-    /** 进度文本 */
     private TextView tvProgress;
-    
-    /** 已还百分比文本 */
     private TextView tvProgressPercent;
-    
-    /** 剩余百分比文本 */
     private TextView tvRemainingPercent;
-    
-    /** 查看还款计划按钮 */
     private Button btnViewSchedule;
-    
-    /** 还款按钮 */
     private Button btnMakePayment;
-    
-    /** 删除按钮 */
     private Button btnDelete;
-    
-    /** 还款输入布局 */
     private LinearLayout layoutPayment;
-    
-    /** 还款金额输入框 */
     private TextInputEditText etPaymentAmount;
-    
-    /** 确认还款按钮 */
     private Button btnConfirmPayment;
 
     @Override

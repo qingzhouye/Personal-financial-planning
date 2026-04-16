@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * ============================================================================
  * 文件名: MonthlyAdapter.java
@@ -18,6 +19,8 @@
  * @see MonthlyTotalActivity 月度还款汇总页面
  * ============================================================================
  */
+=======
+>>>>>>> parent of 06b5fc9 (把所有代码都进行了注释)
 package com.finance.loanmanager.ui.monthly;
 
 import android.view.LayoutInflater;
@@ -34,29 +37,14 @@ import com.finance.loanmanager.util.NumberFormatUtil;
 
 import java.util.List;
 
-/**
- * 月度还款适配器
- * 
- * 用于 RecyclerView 的数据适配器，将月度还款数据显示为列表项。
- * 每个列表项显示一个月的还款汇总信息。
- */
 public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHolder> {
 
-    /** 月度数据列表 */
     private List<MonthlyTotalActivity.MonthlyItem> items;
 
-    /**
-     * 构造适配器
-     * @param items 月度数据列表
-     */
     public MonthlyAdapter(List<MonthlyTotalActivity.MonthlyItem> items) {
         this.items = items;
     }
 
-    /**
-     * 更新数据并刷新列表
-     * @param items 新的月度数据列表
-     */
     public void updateData(List<MonthlyTotalActivity.MonthlyItem> items) {
         this.items = items;
         notifyDataSetChanged();

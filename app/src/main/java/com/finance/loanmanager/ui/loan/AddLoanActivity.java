@@ -1,30 +1,3 @@
-/**
- * ============================================================================
- * 文件名: AddLoanActivity.java
- * 模块:   UI层 - 贷款添加
- * 功能:   添加新贷款的界面，支持多种贷款类型
- * 
- * 主要职责:
- *   1. 提供贷款信息输入表单
- *   2. 支持三种贷款类型：普通贷款、信用卡、国家助学贷款
- *   3. 根据贷款类型动态切换输入字段
- *   4. 验证输入数据并保存到数据库
- * 
- * 贷款类型说明:
- *   - 普通贷款: 需要本金、利率、期限、开始日期
- *   - 信用卡: 需要额度、期数、还款日、利率
- *   - 国家助学贷款: 需要年利率、年还款额、初始本金余额
- * 
- * 还款方式支持:
- *   - 等额本息: 每月还款额固定（默认）
- *   - 等额本金: 每月本金固定，利息递减
- *   - 先息后本: 前期只还利息，末期还本金
- *   - 利随本清: 到期一次性还本付息
- * 
- * @see Loan 贷款实体
- * @see LoanRepository 数据仓库
- * ============================================================================
- */
 package com.finance.loanmanager.ui.loan;
 
 import android.app.DatePickerDialog;
@@ -53,109 +26,38 @@ import java.util.Calendar;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * 添加贷款界面 Activity
- * 
- * 该界面提供表单让用户输入新贷款的信息。根据贷款类型的不同，
- * 界面会动态显示不同的输入字段。
- * 
- * 表单验证:
- *   - 名称不能为空
- *   - 本金/额度必须大于0
- *   - 利率不能为负数
- *   - 期限必须大于0
- */
 public class AddLoanActivity extends BaseActivity {
 
-    // ==================== 成员变量 ====================
-    
-    /** 数据仓库引用 */
     private LoanRepository repository;
-    
-    /** 后台线程执行器 */
     private ExecutorService executorService;
     
-    /** 贷款类型选择输入框 */
     private TextInputEditText spinnerLoanType;
-    
-    /** 贷款名称输入框 */
     private TextInputEditText etLoanName;
-    
-    /** 还款方式选择输入框 */
     private TextInputEditText spinnerRepaymentMethod;
-    
-    /** 基本信息布局 */
     private LinearLayout layoutBasicInfo;
-    
-    /** 普通贷款字段布局 */
     private LinearLayout layoutNormalFields;
-    
-    /** 信用卡字段布局 */
     private LinearLayout layoutCreditCardFields;
-    
-    /** 国家助学贷款字段布局 */
     private LinearLayout layoutStudentLoanFields;
-    
-    /** 本金输入框 */
     private TextInputEditText etPrincipal;
-    
-    /** 年利率输入框 */
     private TextInputEditText etAnnualRate;
-    
-    /** 期限输入框 */
     private TextInputEditText etMonths;
-    
-    /** 开始日期输入框 */
     private TextInputEditText etStartDate;
-    
-    /** 信用卡额度输入框 */
     private TextInputEditText etCreditLimit;
-    
-    /** 信用卡期数输入框 */
     private TextInputEditText etCreditCardMonths;
-    
-    /** 信用卡开始日期输入框 */
     private TextInputEditText etCreditCardDate;
-    
-    /** 还款日输入框 */
     private TextInputEditText etDueDate;
-    
-    /** 信用卡利率输入框 */
     private TextInputEditText etCreditCardRate;
-    
-    /** 国家助学贷款利率输入框 */
     private TextInputEditText etStudentLoanRate;
-    
-    /** 年还款额输入框 */
     private TextInputEditText etYearlyPayment;
-    
-    /** 初始本金余额输入框 */
     private TextInputEditText etFirstYearBalance;
-    
-    /** 国家助学贷款开始日期输入框 */
     private TextInputEditText etStudentLoanDate;
-    
-    /** 提交按钮 */
     private Button btnSubmit;
     
-    // ==================== 贷款类型和还款方式常量 ====================
-    
-    /** 当前选择的贷款类型 */
     private String selectedLoanType = "normal";
-    
-    /** 当前选择的还款方式 */
     private String selectedRepaymentMethod = "equal_interest";
-    
-    /** 贷款类型代码数组 */
     private final String[] loanTypes = {"normal", "credit_card", "student_loan"};
-    
-    /** 贷款类型名称数组 */
     private final String[] loanTypeNames = {"普通贷款", "信用卡", "国家助学贷款"};
-    
-    /** 还款方式代码数组 */
     private final String[] repaymentMethods = {"equal_interest", "equal_principal", "interest_first", "lump_sum"};
-    
-    /** 还款方式名称数组 */
     private final String[] repaymentMethodNames = {"等额本息", "等额本金", "先息后本", "利随本清"};
 
     @Override

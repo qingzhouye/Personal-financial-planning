@@ -1,33 +1,3 @@
-/**
- * ============================================================================
- * 文件名: BackupManager.java
- * 模块:   工具类层 (util)
- * 功能:   数据备份与恢复管理器，负责贷款数据的导出和导入
- * 
- * 主要职责:
- *   1. 将贷款数据导出为 Excel 文件 (XLSX格式)
- *   2. 从 Excel 文件恢复贷款数据
- *   3. 自动备份功能（应用启动时静默执行）
- *   4. 手动备份功能（带时间戳的备份文件）
- * 
- * 备份文件格式:
- *   - 使用 Apache POI 库生成 XLSX 文件
- *   - 包含两个工作表：贷款信息、还款记录
- *   - 文件存储在公共 Downloads 目录下
- * 
- * 使用场景:
- *   - 应用启动时自动备份当前数据
- *   - 用户手动创建备份文件
- *   - 用户恢复之前备份的数据
- *   - 数据迁移和跨设备同步
- * 
- * 依赖库:
- *   - Apache POI (XSSFWorkbook) 用于 Excel 文件操作
- * 
- * @see LoanRepository 数据仓库
- * @see BackupInfo 备份文件信息
- * ============================================================================
- */
 package com.finance.loanmanager.util;
 
 import android.app.Application;
@@ -61,67 +31,21 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 数据备份与恢复管理器
- * 
- * 该类负责管理贷款数据的备份和恢复功能。使用 Excel (XLSX) 格式存储数据，
- * 便于用户查看和在其他设备上恢复数据。
- * 
- * 线程安全:
- *   - 所有备份和恢复操作都在后台线程执行
- *   - 使用单线程执行器确保操作顺序
- *   - 通过回调接口通知操作结果
- * 
- * 文件存储位置:
- *   - 自动备份: /Downloads/LoanManager/backup_auto.xlsx
- *   - 手动备份: /Downloads/LoanManager/loan_backup_yyyyMMdd_HHmmss.xlsx
- * 
- * 使用示例:
- *   BackupManager manager = new BackupManager(context);
- *   manager.performAutoBackup(new BackupManager.BackupCallback() {
- *       public void onSuccess(String message) { }
- *       public void onError(String error) { }
- *   });
+ * 自动备份管理器
+ * 负责数据的自动备份和恢复
  */
 public class BackupManager {
     
-    // ==================== 常量定义 ====================
-    
-    /** 备份目录名称 */
     private static final String BACKUP_DIR = "LoanManager";
-    
-    /** 自动备份文件名 */
     private static final String AUTO_BACKUP_FILE = "backup_auto.xlsx";
-    
-    /** 手动备份文件名前缀 */
     private static final String BACKUP_PREFIX = "loan_backup_";
-    
-    /** 贷款信息工作表名称 */
     private static final String SHEET_LOANS = "贷款信息";
-    
-    /** 还款记录工作表名称 */
     private static final String SHEET_PAYMENTS = "还款记录";
     
-    /** 最小有效备份文件大小（字节） */
-    private static final long MIN_VALID_BACKUP_SIZE = 100;
-    
-    // ==================== 成员变量 ====================
-    
-    /** 应用上下文 */
     private final Context context;
-    
-    /** 数据仓库引用 */
     private final LoanRepository repository;
-    
-    /** 后台线程执行器 */
     private final ExecutorService executorService;
     
-    // ==================== 构造方法 ====================
-    
-    /**
-     * 构造备份管理器
-     * 
-     * @param context 上下文对象
-     */
     public BackupManager(Context context) {
         this.context = context.getApplicationContext();
         this.repository = new LoanRepository((Application) this.context);
@@ -140,9 +64,11 @@ public class BackupManager {
         return new File(backupDir, AUTO_BACKUP_FILE);
     }
     
+    // 最小有效备份文件大小（字节）- 包含标题行的XLSX至少几千字节
+    private static final long MIN_VALID_BACKUP_SIZE = 100;
+    
     /**
      * 检查是否存在有效的自动备份文件
-     * 验证文件存在且大小合理，并检查文件头是否为有效的XLSX格式
      */
     public boolean hasAutoBackup() {
         File backupFile = getAutoBackupFile();

@@ -1,30 +1,3 @@
-/**
- * ============================================================================
- * 文件名: LoanCalculator.java
- * 模块:   业务服务层 (service)
- * 功能:   贷款计算工具类，提供各种贷款计算功能
- * 
- * 主要职责:
- *   1. 计算月供金额（支持多种还款方式）
- *   2. 计算贷款剩余状态
- *   3. 生成还款计划表
- *   4. 处理特殊贷款类型（信用卡、国家助学贷款）
- * 
- * 还款方式支持:
- *   - 等额本息 (equal_interest): 每月还款额固定
- *   - 等额本金 (equal_principal): 每月本金固定，利息递减
- *   - 先息后本 (interest_first): 前期只还利息，末期还本金
- *   - 利随本清 (lump_sum): 到期一次性还本付息
- * 
- * 性能优化:
- *   - 使用计算缓存避免重复计算相同参数的结果
- * 
- * 使用场景:
- *   - 新建贷款时计算原始月供
- *   - 显示贷款详情时计算当前状态
- *   - 查看还款计划时生成计划表
- * ============================================================================
- */
 package com.finance.loanmanager.service;
 
 import com.finance.loanmanager.data.entity.Loan;
@@ -37,40 +10,15 @@ import java.util.List;
 
 /**
  * 贷款计算工具类
- * 
- * 该类是一个纯静态工具类，提供各种贷款相关的计算功能。
- * 所有方法都是静态的，无需创建实例即可调用。
- * 
- * 计算公式参考：
- *   - 等额本息月供 = 本金 × [月利率 × (1+月利率)^期数] / [(1+月利率)^期数 - 1]
- *   - 等额本金首月 = (本金/期数) + 本金×月利率
- *   - 先息后本月供 = 本金 × 月利率（末月还本金）
- *   - 利随本清总额 = 本金 + 本金 × 月利率 × 期数
- * 
- * @see LoanStatus 贷款状态结果类
- * @see PaymentScheduleItem 还款计划项
+ * 提供各种贷款计算功能
  */
 public class LoanCalculator {
     
-    // ==================== 缓存机制 ====================
-    
-    /**
-     * 计算结果缓存
-     * 键：格式化的参数字符串
-     * 值：计算得到的月供金额
-     */
+    // 缓存计算结果，避免重复计算
     private static final java.util.Map<String, Double> calculationCache = new java.util.HashMap<>();
     
     /**
      * 生成缓存键
-     * 
-     * 将计算参数组合成唯一字符串作为缓存键。
-     * 
-     * @param principal 本金
-     * @param annualRate 年利率
-     * @param months 期数
-     * @param method 还款方式
-     * @return 缓存键字符串
      */
     private static String getCacheKey(double principal, double annualRate, int months, String method) {
         return String.format("%.2f_%.2f_%d_%s", principal, annualRate, months, method);
