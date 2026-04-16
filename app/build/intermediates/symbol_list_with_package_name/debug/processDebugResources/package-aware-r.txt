@@ -3604,6 +3604,7 @@ id layout_aspect_ratio
 id layout_rotate_wheel
 id layout_scale_wheel
 id left
+id leftColumn
 id leftToRight
 id legacy
 id line1
@@ -3743,6 +3744,7 @@ id recyclerView
 id report_drawn
 id reverseSawtooth
 id right
+id rightColumn
 id rightToLeft
 id right_icon
 id right_side
@@ -3888,13 +3890,13 @@ id tvDueDate
 id tvEmpty
 id tvIcon
 id tvInterest
+id tvLoanAmount
 id tvLoanIcon
 id tvLoanInfo
 id tvLoanName
 id tvLoanOverviewTitle
 id tvLoanStatus
 id tvLoanType
-id tvLoans
 id tvMonth
 id tvMonthlyPayment
 id tvMonths
@@ -4100,6 +4102,7 @@ layout dialog_main_menu
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_loan
+layout item_loan_detail
 layout item_monthly
 layout item_schedule
 layout item_stat_card

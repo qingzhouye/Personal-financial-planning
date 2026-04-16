@@ -165,6 +165,7 @@ id layoutDueDate
 id layoutNormalFields
 id layoutPayment
 id layoutStudentLoanFields
+id leftColumn
 id menuHeader
 id menuItemAddLoan
 id menuItemData
@@ -173,6 +174,7 @@ id menuItemVersion
 id progressPaid
 id progressRemaining
 id recyclerView
+id rightColumn
 id spinnerLoanType
 id spinnerRepaymentMethod
 id themeItemBlue
@@ -193,13 +195,13 @@ id tvDueDate
 id tvEmpty
 id tvIcon
 id tvInterest
+id tvLoanAmount
 id tvLoanIcon
 id tvLoanInfo
 id tvLoanName
 id tvLoanOverviewTitle
 id tvLoanStatus
 id tvLoanType
-id tvLoans
 id tvMonth
 id tvMonthlyPayment
 id tvMonths
@@ -240,6 +242,7 @@ layout dialog_data_menu
 layout dialog_loan_card_item
 layout dialog_main_menu
 layout item_loan
+layout item_loan_detail
 layout item_monthly
 layout item_schedule
 layout item_stat_card

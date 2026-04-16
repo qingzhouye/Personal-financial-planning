@@ -7,12 +7,13 @@
  * 主要职责:
  *   1. 将月度还款数据绑定到列表项视图
  *   2. 显示月份、还款总额、各贷款详情
- *   3. 三列布局：日期、总金额、明细
+ *   3. 三列布局：日期、总金额、明细（明细内部分左右两栏）
  * 
  * 显示内容:
  *   - 日期: yyyy-MM 格式，固定宽度居中对齐
  *   - 总金额: 格式化货币显示，固定宽度居中对齐
- *   - 明细: 贷款名称和金额在一行显示，左对齐
+ *   - 明细左栏: 普通贷款和信用卡（名称和金额在一行）
+ *   - 明细右栏: 国家助学贷款（名称和金额在一行）
  * 
  * @see MonthlyTotalActivity 月度还款汇总页面
  * ============================================================================
@@ -77,23 +78,28 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
         holder.tvMonth.setText(item.month);
         holder.tvTotal.setText(NumberFormatUtil.formatCurrency(item.total));
         
-        // 清空明细列
-        holder.llDetails.removeAllViews();
+        // 清空左右栏
+        holder.leftColumn.removeAllViews();
+        holder.rightColumn.removeAllViews();
         
-        // 合并所有贷款明细（普通贷款/信用卡 + 助学贷款）
-        List<MonthlyTotalActivity.LoanDetailItem> allLoans = item.normalLoans;
-        if (item.studentLoans != null) {
-            allLoans.addAll(item.studentLoans);
-        }
-        
-        // 填充明细列
-        if (allLoans != null && !allLoans.isEmpty()) {
-            for (MonthlyTotalActivity.LoanDetailItem loan : allLoans) {
-                addLoanDetailView(holder.llDetails, loan);
+        // 填充左栏：普通贷款和信用卡
+        if (item.normalLoans != null && !item.normalLoans.isEmpty()) {
+            for (MonthlyTotalActivity.LoanDetailItem loan : item.normalLoans) {
+                addLoanDetailView(holder.leftColumn, loan);
             }
         } else {
-            // 明细为空时显示提示
-            addEmptyView(holder.llDetails, "无");
+            // 左栏为空时显示提示
+            addEmptyView(holder.leftColumn, "无");
+        }
+        
+        // 填充右栏：国家助学贷款
+        if (item.studentLoans != null && !item.studentLoans.isEmpty()) {
+            for (MonthlyTotalActivity.LoanDetailItem loan : item.studentLoans) {
+                addLoanDetailView(holder.rightColumn, loan);
+            }
+        } else {
+            // 右栏为空时显示提示
+            addEmptyView(holder.rightColumn, "无");
         }
     }
     
@@ -137,13 +143,15 @@ public class MonthlyAdapter extends RecyclerView.Adapter<MonthlyAdapter.ViewHold
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvMonth;
         TextView tvTotal;
-        LinearLayout llDetails;
+        LinearLayout leftColumn;
+        LinearLayout rightColumn;
 
         ViewHolder(View itemView) {
             super(itemView);
             tvMonth = itemView.findViewById(R.id.tvMonth);
             tvTotal = itemView.findViewById(R.id.tvTotal);
-            llDetails = itemView.findViewById(R.id.llDetails);
+            leftColumn = itemView.findViewById(R.id.leftColumn);
+            rightColumn = itemView.findViewById(R.id.rightColumn);
         }
     }
 }
