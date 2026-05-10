@@ -12,16 +12,56 @@
         android:padding="@dimen/spacing_lg"
         android:paddingTop="@dimen/safe_area_top">
 
-        <!-- 标题 -->
-        <TextView
+        <!-- 标题栏 -->
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_title"
-            android:textSize="@dimen/text_headline"
-            android:textStyle="bold"
-            android:textColor="@color/primary_dark"
-            android:gravity="center"
-            android:layout_marginBottom="@dimen/spacing_lg" />
+            android:layout_marginBottom="@dimen/spacing_lg">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_title"
+                android:textSize="@dimen/text_headline"
+                android:textStyle="bold"
+                android:textColor="@color/primary_dark"
+                android:gravity="center"
+                android:paddingTop="4dp" />
+
+            <!-- 竖向排列的图标 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/btnSavings"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_savings_coin"
+                    android:contentDescription="@string/savings"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="4dp" />
+
+                <ImageView
+                    android:id="@+id/btnVersionInfo"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_menu_gear"
+                    android:contentDescription="@string/version_info"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <!-- 本月应还金额卡片 -->
         <androidx.cardview.widget.CardView

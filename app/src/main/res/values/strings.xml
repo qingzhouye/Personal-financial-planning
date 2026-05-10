@@ -3,6 +3,7 @@
     <string name="app_name">FreeMe</string>
     
     <!-- Main Activity -->
+    <string name="back">返回</string>
     <string name="app_title">Personal financial management</string>
     <string name="current_month_payment">本月应还金额</string>
     <string name="daily_payment">每日应还金额（按30天计）</string>

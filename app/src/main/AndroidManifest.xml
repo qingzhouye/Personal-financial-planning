@@ -24,7 +24,10 @@
         android:theme="@style/Theme.LoanManager"
         android:name=".LoanManagerApplication"
         android:enableOnBackInvokedCallback="true"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+        android:resizeableActivity="true"
+        android:screenOrientation="unspecified"
+        android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout">
         
         <!-- FileProvider for UCrop -->
         <provider
@@ -41,7 +44,12 @@
             android:name=".ui.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.LoanManager.NoActionBar"
-            android:configChanges="orientation|screenSize|smallestScreenSize">
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|uiMode|layoutDirection"
+            android:windowLayoutInDisplayCutoutMode="shortEdges"
+            android:screenOrientation="unspecified"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="false"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -52,75 +60,87 @@
             android:name=".ui.loan.AddLoanActivity"
             android:label="@string/add_loan"
             android:parentActivityName=".ui.main.MainActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.loan.LoanListActivity"
             android:label="@string/loan_list"
             android:parentActivityName=".ui.main.MainActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.loan.LoanDetailActivity"
             android:label="@string/loan_detail"
             android:parentActivityName=".ui.loan.LoanListActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.schedule.PaymentScheduleActivity"
             android:label="@string/payment_schedule"
             android:parentActivityName=".ui.loan.LoanDetailActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.monthly.MonthlyTotalActivity"
             android:label="@string/monthly_total"
             android:parentActivityName=".ui.main.MainActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.data.DataManagementActivity"
             android:label="@string/data_management"
             android:parentActivityName=".ui.main.MainActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.settings.BackgroundSettingsActivity"
             android:label="@string/personalization_settings"
             android:parentActivityName=".ui.main.MainActivity"
-            android:configChanges="orientation|screenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <!-- Savings Module -->
         <activity
             android:name=".ui.savings.SavingsMainActivity"
             android:label="@string/savings"
             android:parentActivityName=".ui.main.MainActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.savings.AddEditSavingsActivity"
             android:label="@string/savings_add_record"
             android:parentActivityName=".ui.savings.SavingsMainActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.savings.SavingsHistoryActivity"
             android:label="@string/savings_history"
             android:parentActivityName=".ui.savings.SavingsMainActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <activity
             android:name=".ui.savings.SavingsChartActivity"
             android:label="@string/savings_chart"
             android:parentActivityName=".ui.savings.SavingsMainActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize" />
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         
         <!-- UCrop Activity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/UCropTheme"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
             
     </application>
 

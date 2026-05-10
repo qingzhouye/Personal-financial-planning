@@ -54,8 +54,10 @@ dependencies {
     // Room database
     def room_version = "2.6.1"
     
-    // Android 16兼容性修复
+    // Android 16+兼容性优化
     implementation 'androidx.core:core:1.15.0'
+    implementation 'androidx.activity:activity:1.10.0'
+    implementation 'androidx.fragment:fragment:1.8.5'
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     
@@ -64,6 +66,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     
     // Gson for JSON parsing
     implementation 'com.google.code.gson:gson:2.10.1'
