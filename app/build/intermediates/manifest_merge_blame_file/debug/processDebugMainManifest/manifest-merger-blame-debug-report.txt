@@ -49,7 +49,7 @@
 30-->[androidx.core:core:1.15.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\0511230471927a37d1a973ce90e248b2\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
 31
 32    <application
-32-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-100:19
+32-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-125:19
 33        android:name="com.finance.loanmanager.LoanManagerApplication"
 33-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:25:9-47
 34        android:allowBackup="true"
@@ -183,92 +183,134 @@
 102            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
 102-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:90:13-63
 103
-104        <!-- UCrop Activity -->
+104        <!-- Savings Module -->
 105        <activity
-105-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:94:9-98:55
-106            android:name="com.yalantis.ucrop.UCropActivity"
-106-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:95:13-60
-107            android:screenOrientation="portrait"
-107-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:96:13-49
-108            android:theme="@style/UCropTheme"
-108-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:97:13-46
-109            android:windowSoftInputMode="adjustPan" />
-109-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:98:13-52
-110
-111        <provider
-111-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-112            android:name="androidx.startup.InitializationProvider"
-112-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-113            android:authorities="com.finance.loanmanager.androidx-startup"
-113-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-114            android:exported="false" >
-114-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-115            <meta-data
-115-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-116                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-116-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-117                android:value="androidx.startup" />
-117-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-118            <meta-data
-118-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
-119                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-119-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
-120                android:value="androidx.startup" />
-120-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
-121            <meta-data
-121-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-122                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-122-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
-123                android:value="androidx.startup" />
-123-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-124        </provider>
+105-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:94:9-98:81
+106            android:name="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+106-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:95:13-59
+107            android:configChanges="orientation|screenSize|smallestScreenSize"
+107-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:98:13-78
+108            android:label="@string/savings"
+108-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:96:13-44
+109            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+109-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:97:13-63
+110        <activity
+110-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:100:9-104:81
+111            android:name="com.finance.loanmanager.ui.savings.AddEditSavingsActivity"
+111-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:101:13-62
+112            android:configChanges="orientation|screenSize|smallestScreenSize"
+112-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:104:13-78
+113            android:label="@string/savings_add_record"
+113-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:102:13-55
+114            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+114-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:103:13-73
+115        <activity
+115-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:106:9-110:81
+116            android:name="com.finance.loanmanager.ui.savings.SavingsHistoryActivity"
+116-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:107:13-62
+117            android:configChanges="orientation|screenSize|smallestScreenSize"
+117-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:110:13-78
+118            android:label="@string/savings_history"
+118-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:108:13-52
+119            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+119-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:109:13-73
+120        <activity
+120-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:112:9-116:81
+121            android:name="com.finance.loanmanager.ui.savings.SavingsChartActivity"
+121-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:113:13-60
+122            android:configChanges="orientation|screenSize|smallestScreenSize"
+122-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:116:13-78
+123            android:label="@string/savings_chart"
+123-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:114:13-50
+124            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+124-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:115:13-73
 125
-126        <service
-126-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
-127            android:name="androidx.room.MultiInstanceInvalidationService"
-127-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
-128            android:directBootAware="true"
-128-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
-129            android:exported="false" />
-129-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
-130
-131        <receiver
-131-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-132            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-132-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-133            android:directBootAware="false"
-133-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-134            android:enabled="true"
-134-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-135            android:exported="true"
-135-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-136            android:permission="android.permission.DUMP" >
-136-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-137            <intent-filter>
-137-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-138                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-138-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-138-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-139            </intent-filter>
-140            <intent-filter>
-140-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-141                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-141-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-141-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-142            </intent-filter>
-143            <intent-filter>
-143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-144                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
-145            </intent-filter>
-146            <intent-filter>
-146-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-147                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-147-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-147-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
-148            </intent-filter>
-149        </receiver>
-150    </application>
-151
-152</manifest>
+126        <!-- UCrop Activity -->
+127        <activity
+127-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:119:9-123:55
+128            android:name="com.yalantis.ucrop.UCropActivity"
+128-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:120:13-60
+129            android:screenOrientation="portrait"
+129-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:121:13-49
+130            android:theme="@style/UCropTheme"
+130-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:122:13-46
+131            android:windowSoftInputMode="adjustPan" />
+131-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:123:13-52
+132
+133        <provider
+133-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+134            android:name="androidx.startup.InitializationProvider"
+134-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+135            android:authorities="com.finance.loanmanager.androidx-startup"
+135-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+136            android:exported="false" >
+136-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+137            <meta-data
+137-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+138                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+138-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+139                android:value="androidx.startup" />
+139-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+140            <meta-data
+140-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
+141                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+141-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
+142                android:value="androidx.startup" />
+142-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
+143            <meta-data
+143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+144                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+145                android:value="androidx.startup" />
+145-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+146        </provider>
+147
+148        <service
+148-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+149            android:name="androidx.room.MultiInstanceInvalidationService"
+149-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+150            android:directBootAware="true"
+150-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+151            android:exported="false" />
+151-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+152
+153        <receiver
+153-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+154            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+154-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+155            android:directBootAware="false"
+155-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+156            android:enabled="true"
+156-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+157            android:exported="true"
+157-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+158            android:permission="android.permission.DUMP" >
+158-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+159            <intent-filter>
+159-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+160                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+160-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+160-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+161            </intent-filter>
+162            <intent-filter>
+162-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+163                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+163-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+163-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+164            </intent-filter>
+165            <intent-filter>
+165-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+166                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+166-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+166-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+167            </intent-filter>
+168            <intent-filter>
+168-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+169                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+169-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+169-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+170            </intent-filter>
+171        </receiver>
+172    </application>
+173
+174</manifest>

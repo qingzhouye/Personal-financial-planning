@@ -90,6 +90,31 @@
             android:parentActivityName=".ui.main.MainActivity"
             android:configChanges="orientation|screenSize" />
         
+        <!-- Savings Module -->
+        <activity
+            android:name=".ui.savings.SavingsMainActivity"
+            android:label="@string/savings"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize" />
+        
+        <activity
+            android:name=".ui.savings.AddEditSavingsActivity"
+            android:label="@string/savings_add_record"
+            android:parentActivityName=".ui.savings.SavingsMainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize" />
+        
+        <activity
+            android:name=".ui.savings.SavingsHistoryActivity"
+            android:label="@string/savings_history"
+            android:parentActivityName=".ui.savings.SavingsMainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize" />
+        
+        <activity
+            android:name=".ui.savings.SavingsChartActivity"
+            android:label="@string/savings_chart"
+            android:parentActivityName=".ui.savings.SavingsMainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize" />
+        
         <!-- UCrop Activity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

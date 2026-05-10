@@ -25,42 +25,15 @@
         android:textColor="@color/primary"
         android:gravity="center" />
 
-    <!-- 明细列 - 自适应宽度，内部两栏布局 -->
+    <!-- 明细列 - 自适应宽度，左对齐 -->
     <LinearLayout
+        android:id="@+id/llDetails"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:gravity="start|center_vertical">
 
-        <!-- 左栏：普通贷款和信用卡 -->
-        <LinearLayout
-            android:id="@+id/leftColumn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingEnd="4dp">
-
-            <!-- 动态添加普通贷款/信用卡项 -->
-        </LinearLayout>
-
-        <!-- 分隔线 -->
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/divider"
-            android:layout_marginHorizontal="4dp" />
-
-        <!-- 右栏：国家助学贷款 -->
-        <LinearLayout
-            android:id="@+id/rightColumn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingStart="4dp">
-
-            <!-- 动态添加助学贷款项 -->
-        </LinearLayout>
+        <!-- 动态添加贷款明细项 -->
     </LinearLayout>
 </LinearLayout>

@@ -101,6 +101,28 @@
             android:label="@string/personalization_settings"
             android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
 
+        <!-- Savings Module -->
+        <activity
+            android:name="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:label="@string/savings"
+            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+        <activity
+            android:name="com.finance.loanmanager.ui.savings.AddEditSavingsActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:label="@string/savings_add_record"
+            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+        <activity
+            android:name="com.finance.loanmanager.ui.savings.SavingsHistoryActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:label="@string/savings_history"
+            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+        <activity
+            android:name="com.finance.loanmanager.ui.savings.SavingsChartActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:label="@string/savings_chart"
+            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+
         <!-- UCrop Activity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"

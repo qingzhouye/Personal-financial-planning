@@ -28,6 +28,19 @@
                 android:gravity="center" />
 
             <ImageView
+                android:id="@+id/btnSavings"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_toStartOf="@id/btnVersionInfo"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_savings_coin"
+                android:contentDescription="@string/savings"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <ImageView
                 android:id="@+id/btnVersionInfo"
                 android:layout_width="24dp"
                 android:layout_height="24dp"

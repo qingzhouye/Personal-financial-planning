@@ -171,4 +171,29 @@
     <string name="theme_purple">紫色</string>
     <string name="theme_green">深绿</string>
     <string name="theme_rose">玫瑰</string>
+
+    <!-- Savings Module -->
+    <string name="savings">我的储蓄</string>
+    <string name="savings_total_balance">当前总余额</string>
+    <string name="savings_add_record">记一笔</string>
+    <string name="savings_edit_record">编辑记录</string>
+    <string name="savings_history">储蓄记录</string>
+    <string name="savings_chart">储蓄趋势</string>
+    <string name="savings_deposit">存入</string>
+    <string name="savings_withdraw">支出</string>
+    <string name="savings_amount_hint">请输入金额</string>
+    <string name="savings_date">日期</string>
+    <string name="savings_note_hint">备注（如：工资、购物）</string>
+    <string name="savings_no_records">暂无储蓄记录</string>
+    <string name="savings_no_records_hint">点击上方按钮开始记账</string>
+    <string name="savings_recent">最近记录</string>
+    <string name="savings_view_all">查看全部 ></string>
+    <string name="savings_view_chart">查看趋势图表</string>
+    <string name="savings_delete_confirm">确定要删除这条记录吗？</string>
+    <string name="savings_delete_success">记录已删除</string>
+    <string name="savings_save_success">保存成功</string>
+    <string name="savings_total_deposit">总存入</string>
+    <string name="savings_total_withdraw">总支出</string>
+    <string name="savings_no_chart_data">暂无数据，请先记录储蓄</string>
+    <string name="savings_save">保存</string>
 </resources>

@@ -67,42 +67,16 @@
             android:textColor="@color/text_white"
             android:gravity="center" />
 
-        <!-- 明细列两栏表头 -->
-        <LinearLayout
+        <!-- 明细表头 -->
+        <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <!-- 左栏表头：普通贷款/信用卡 -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="普通贷款/信用卡"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_white"
-                android:gravity="center" />
-
-            <!-- 分隔线占位 -->
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/semi_transparent_white"
-                android:layout_marginHorizontal="4dp" />
-
-            <!-- 右栏表头：国家助学贷款 -->
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="国家助学贷款"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_white"
-                android:gravity="center" />
-        </LinearLayout>
+            android:text="明细"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_white"
+            android:gravity="center" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

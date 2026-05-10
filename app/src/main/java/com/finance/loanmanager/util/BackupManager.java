@@ -9,8 +9,10 @@ import android.widget.Toast;
 import androidx.core.content.FileProvider;
 
 import com.finance.loanmanager.data.AppDatabase;
+import com.finance.loanmanager.data.dao.SavingsDao;
 import com.finance.loanmanager.data.entity.Loan;
 import com.finance.loanmanager.data.entity.Payment;
+import com.finance.loanmanager.data.entity.Savings;
 import com.finance.loanmanager.repository.LoanRepository;
 
 import org.apache.poi.ss.usermodel.*;
@@ -41,14 +43,17 @@ public class BackupManager {
     private static final String BACKUP_PREFIX = "loan_backup_";
     private static final String SHEET_LOANS = "贷款信息";
     private static final String SHEET_PAYMENTS = "还款记录";
+    private static final String SHEET_SAVINGS = "储蓄记录";
     
     private final Context context;
     private final LoanRepository repository;
+    private final SavingsDao savingsDao;
     private final ExecutorService executorService;
     
     public BackupManager(Context context) {
         this.context = context.getApplicationContext();
         this.repository = new LoanRepository((Application) this.context);
+        this.savingsDao = AppDatabase.getInstance(this.context).savingsDao();
         this.executorService = Executors.newSingleThreadExecutor();
     }
     
@@ -121,9 +126,11 @@ public class BackupManager {
             try {
                 List<Loan> loans = repository.getAllLoansSync();
                 List<Payment> payments = repository.getAllPaymentsSync();
+                List<Savings> savingsList = savingsDao.getAllSavings();
                 
                 if (loans == null) loans = new ArrayList<>();
                 if (payments == null) payments = new ArrayList<>();
+                if (savingsList == null) savingsList = new ArrayList<>();
                 
                 // 创建备份文件
                 File backupFile = getAutoBackupFile();
@@ -138,6 +145,10 @@ public class BackupManager {
                     // 创建还款记录工作表
                     Sheet paymentSheet = workbook.createSheet(SHEET_PAYMENTS);
                     createPaymentSheet(paymentSheet, payments);
+                    
+                    // 创建储蓄记录工作表
+                    Sheet savingsSheet = workbook.createSheet(SHEET_SAVINGS);
+                    createSavingsSheet(savingsSheet, savingsList);
                     
                     workbook.write(fos);
                 }
@@ -177,9 +188,13 @@ public class BackupManager {
                     // 解析还款记录
                     List<Payment> payments = parsePaymentSheet(workbook.getSheet(SHEET_PAYMENTS));
                     
+                    // 解析储蓄记录
+                    List<Savings> savingsList = parseSavingsSheet(workbook.getSheet(SHEET_SAVINGS));
+                    
                     // 清空现有数据
                     repository.deleteAllPayments();
                     repository.deleteAllLoans();
+                    savingsDao.deleteAllSavings();
                     
                     // 导入新数据
                     for (Loan loan : loans) {
@@ -190,6 +205,14 @@ public class BackupManager {
                     for (Payment payment : payments) {
                         payment.setId(0);
                         repository.insertPayment(payment);
+                    }
+                    
+                    // 导入储蓄记录
+                    if (!savingsList.isEmpty()) {
+                        for (Savings savings : savingsList) {
+                            savings.setId(0);
+                        }
+                        savingsDao.insertAllSavings(savingsList);
                     }
                     
                     if (callback != null) {
@@ -213,9 +236,11 @@ public class BackupManager {
             try {
                 List<Loan> loans = repository.getAllLoansSync();
                 List<Payment> payments = repository.getAllPaymentsSync();
+                List<Savings> savingsList = savingsDao.getAllSavings();
                 
                 if (loans == null) loans = new ArrayList<>();
                 if (payments == null) payments = new ArrayList<>();
+                if (savingsList == null) savingsList = new ArrayList<>();
                 
                 // 创建带时间戳的文件名
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
@@ -236,6 +261,9 @@ public class BackupManager {
                     
                     Sheet paymentSheet = workbook.createSheet(SHEET_PAYMENTS);
                     createPaymentSheet(paymentSheet, payments);
+                    
+                    Sheet savingsSheet = workbook.createSheet(SHEET_SAVINGS);
+                    createSavingsSheet(savingsSheet, savingsList);
                     
                     workbook.write(fos);
                 }
@@ -345,6 +373,38 @@ public class BackupManager {
         int[] columnWidths = {2500, 4000, 4000, 4000, 6000};
         for (int i = 0; i < headers.length && i < columnWidths.length; i++) {
             sheet.setColumnWidth(i, columnWidths[i]);
+        }
+    }
+    
+    private void createSavingsSheet(Sheet sheet, List<Savings> savingsList) {
+        CellStyle headerStyle = sheet.getWorkbook().createCellStyle();
+        Font headerFont = sheet.getWorkbook().createFont();
+        headerFont.setBold(true);
+        headerStyle.setFont(headerFont);
+        headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        
+        Row headerRow = sheet.createRow(0);
+        String[] headers = {"ID", "金额", "日期", "备注", "创建时间"};
+        for (int i = 0; i < headers.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(headers[i]);
+            cell.setCellStyle(headerStyle);
+        }
+        
+        int rowNum = 1;
+        for (Savings savings : savingsList) {
+            Row row = sheet.createRow(rowNum++);
+            row.createCell(0).setCellValue(savings.getId());
+            row.createCell(1).setCellValue(savings.getAmount());
+            row.createCell(2).setCellValue(savings.getDate() != null ? savings.getDate() : "");
+            row.createCell(3).setCellValue(savings.getNote() != null ? savings.getNote() : "");
+            row.createCell(4).setCellValue(savings.getCreatedAt());
+        }
+        
+        int[] savingsColumnWidths = {2500, 4000, 4000, 6000, 5000};
+        for (int i = 0; i < headers.length && i < savingsColumnWidths.length; i++) {
+            sheet.setColumnWidth(i, savingsColumnWidths[i]);
         }
     }
     
@@ -458,6 +518,48 @@ public class BackupManager {
         }
         
         return payments;
+    }
+    
+    private List<Savings> parseSavingsSheet(Sheet sheet) {
+        List<Savings> savingsList = new ArrayList<>();
+        if (sheet == null) return savingsList;
+        
+        Iterator<Row> rowIterator = sheet.iterator();
+        if (rowIterator.hasNext()) {
+            rowIterator.next(); // 跳过表头
+        }
+        
+        while (rowIterator.hasNext()) {
+            Row row = rowIterator.next();
+            Savings savings = new Savings();
+            
+            Cell amountCell = row.getCell(1);
+            if (amountCell != null) {
+                savings.setAmount(getCellNumericValue(amountCell));
+            }
+            
+            Cell dateCell = row.getCell(2);
+            if (dateCell != null) {
+                savings.setDate(getCellStringValue(dateCell));
+            }
+            
+            Cell noteCell = row.getCell(3);
+            if (noteCell != null) {
+                savings.setNote(getCellStringValue(noteCell));
+            }
+            
+            Cell createdAtCell = row.getCell(4);
+            if (createdAtCell != null) {
+                savings.setCreatedAt((long) getCellNumericValue(createdAtCell));
+            }
+            
+            // 只要日期非空就认为是有效记录
+            if (savings.getDate() != null && !savings.getDate().trim().isEmpty()) {
+                savingsList.add(savings);
+            }
+        }
+        
+        return savingsList;
     }
     
     private String getCellStringValue(Cell cell) {

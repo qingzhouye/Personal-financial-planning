@@ -15,6 +15,8 @@ import com.finance.loanmanager.data.dao.LoanDao;
 import com.finance.loanmanager.data.dao.LoanDao_Impl;
 import com.finance.loanmanager.data.dao.PaymentDao;
 import com.finance.loanmanager.data.dao.PaymentDao_Impl;
+import com.finance.loanmanager.data.dao.SavingsDao;
+import com.finance.loanmanager.data.dao.SavingsDao_Impl;
 import java.lang.Class;
 import java.lang.Override;
 import java.lang.String;
@@ -35,23 +37,27 @@ public final class AppDatabase_Impl extends AppDatabase {
 
   private volatile PaymentDao _paymentDao;
 
+  private volatile SavingsDao _savingsDao;
+
   @Override
   @NonNull
   protected SupportSQLiteOpenHelper createOpenHelper(@NonNull final DatabaseConfiguration config) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(config, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS `loans` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `loanType` TEXT NOT NULL, `repaymentMethod` TEXT NOT NULL, `principal` REAL NOT NULL, `annualRate` REAL NOT NULL, `months` INTEGER NOT NULL, `startDate` TEXT NOT NULL, `creditLimit` REAL NOT NULL, `dueDate` INTEGER NOT NULL, `yearlyPayment` REAL NOT NULL, `firstYearBalance` REAL NOT NULL, `originalMonthlyPayment` REAL NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS `payments` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loanId` INTEGER NOT NULL, `amount` REAL NOT NULL, `date` TEXT NOT NULL, `note` TEXT, FOREIGN KEY(`loanId`) REFERENCES `loans`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         db.execSQL("CREATE INDEX IF NOT EXISTS `index_payments_loanId` ON `payments` (`loanId`)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS `savings` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `amount` REAL NOT NULL, `date` TEXT NOT NULL, `note` TEXT, `createdAt` INTEGER NOT NULL)");
         db.execSQL("CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f8a1145aeb854ec14b267e4db549e832')");
+        db.execSQL("INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '46a12b1cd0074f15e68400a63ebe1041')");
       }
 
       @Override
       public void dropAllTables(@NonNull final SupportSQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS `loans`");
         db.execSQL("DROP TABLE IF EXISTS `payments`");
+        db.execSQL("DROP TABLE IF EXISTS `savings`");
         final List<? extends RoomDatabase.Callback> _callbacks = mCallbacks;
         if (_callbacks != null) {
           for (RoomDatabase.Callback _callback : _callbacks) {
@@ -136,9 +142,24 @@ public final class AppDatabase_Impl extends AppDatabase {
                   + " Expected:\n" + _infoPayments + "\n"
                   + " Found:\n" + _existingPayments);
         }
+        final HashMap<String, TableInfo.Column> _columnsSavings = new HashMap<String, TableInfo.Column>(5);
+        _columnsSavings.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsSavings.put("amount", new TableInfo.Column("amount", "REAL", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsSavings.put("date", new TableInfo.Column("date", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsSavings.put("note", new TableInfo.Column("note", "TEXT", false, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsSavings.put("createdAt", new TableInfo.Column("createdAt", "INTEGER", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        final HashSet<TableInfo.ForeignKey> _foreignKeysSavings = new HashSet<TableInfo.ForeignKey>(0);
+        final HashSet<TableInfo.Index> _indicesSavings = new HashSet<TableInfo.Index>(0);
+        final TableInfo _infoSavings = new TableInfo("savings", _columnsSavings, _foreignKeysSavings, _indicesSavings);
+        final TableInfo _existingSavings = TableInfo.read(db, "savings");
+        if (!_infoSavings.equals(_existingSavings)) {
+          return new RoomOpenHelper.ValidationResult(false, "savings(com.finance.loanmanager.data.entity.Savings).\n"
+                  + " Expected:\n" + _infoSavings + "\n"
+                  + " Found:\n" + _existingSavings);
+        }
         return new RoomOpenHelper.ValidationResult(true, null);
       }
-    }, "f8a1145aeb854ec14b267e4db549e832", "74e958a249cf4add4184c042607c96f0");
+    }, "46a12b1cd0074f15e68400a63ebe1041", "ec715e3f2c33b905e883a5a7505ce8f5");
     final SupportSQLiteOpenHelper.Configuration _sqliteConfig = SupportSQLiteOpenHelper.Configuration.builder(config.context).name(config.name).callback(_openCallback).build();
     final SupportSQLiteOpenHelper _helper = config.sqliteOpenHelperFactory.create(_sqliteConfig);
     return _helper;
@@ -149,7 +170,7 @@ public final class AppDatabase_Impl extends AppDatabase {
   protected InvalidationTracker createInvalidationTracker() {
     final HashMap<String, String> _shadowTablesMap = new HashMap<String, String>(0);
     final HashMap<String, Set<String>> _viewTables = new HashMap<String, Set<String>>(0);
-    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "loans","payments");
+    return new InvalidationTracker(this, _shadowTablesMap, _viewTables, "loans","payments","savings");
   }
 
   @Override
@@ -167,6 +188,7 @@ public final class AppDatabase_Impl extends AppDatabase {
       }
       _db.execSQL("DELETE FROM `loans`");
       _db.execSQL("DELETE FROM `payments`");
+      _db.execSQL("DELETE FROM `savings`");
       super.setTransactionSuccessful();
     } finally {
       super.endTransaction();
@@ -186,6 +208,7 @@ public final class AppDatabase_Impl extends AppDatabase {
     final HashMap<Class<?>, List<Class<?>>> _typeConvertersMap = new HashMap<Class<?>, List<Class<?>>>();
     _typeConvertersMap.put(LoanDao.class, LoanDao_Impl.getRequiredConverters());
     _typeConvertersMap.put(PaymentDao.class, PaymentDao_Impl.getRequiredConverters());
+    _typeConvertersMap.put(SavingsDao.class, SavingsDao_Impl.getRequiredConverters());
     return _typeConvertersMap;
   }
 
@@ -228,6 +251,20 @@ public final class AppDatabase_Impl extends AppDatabase {
           _paymentDao = new PaymentDao_Impl(this);
         }
         return _paymentDao;
+      }
+    }
+  }
+
+  @Override
+  public SavingsDao savingsDao() {
+    if (_savingsDao != null) {
+      return _savingsDao;
+    } else {
+      synchronized(this) {
+        if(_savingsDao == null) {
+          _savingsDao = new SavingsDao_Impl(this);
+        }
+        return _savingsDao;
       }
     }
   }

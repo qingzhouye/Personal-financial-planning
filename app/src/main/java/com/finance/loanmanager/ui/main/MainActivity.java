@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity {
     private Button btnAddLoan;
     private Button btnViewMonthlyTotal;
     private ImageView btnVersionInfo;
+    private ImageView btnSavings;
     private LinearLayout layoutDailyPayment;
     
     private List<LoanRepository.LoanWithStatus> loansWithStatus = new ArrayList<>();
@@ -493,6 +494,7 @@ public class MainActivity extends BaseActivity {
         btnAddLoan = findViewById(R.id.btnAddLoan);
         btnViewMonthlyTotal = findViewById(R.id.btnViewMonthlyTotal);
         btnVersionInfo = findViewById(R.id.btnVersionInfo);
+        btnSavings = findViewById(R.id.btnSavings);
         layoutDailyPayment = findViewById(R.id.layoutDailyPayment);
     }
     
@@ -508,6 +510,11 @@ public class MainActivity extends BaseActivity {
         });
         
         btnVersionInfo.setOnClickListener(v -> showMainMenu());
+        
+        btnSavings.setOnClickListener(v -> {
+            Intent intent = new Intent(this, com.finance.loanmanager.ui.savings.SavingsMainActivity.class);
+            startActivity(intent);
+        });
     }
     
     private void observeData() {
