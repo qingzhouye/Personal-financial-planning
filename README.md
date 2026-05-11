@@ -1,10 +1,10 @@
-# 📱 FreeMe
+# 📱 FreeMe - 个人贷款管理助手
 
 一款简洁实用的 Android 原生贷款管理应用，帮助您轻松管理多笔贷款、信用卡分期，实时掌握还款计划与财务状况。
 
 ## ✨ 功能特性
 
-### 📊 贷款管理
+### 💰 贷款管理
 - 支持添加和管理多笔贷款
 - 支持**普通贷款**和**信用卡分期**两种类型
 - 四种还款方式：
@@ -18,11 +18,17 @@
 - 显示每期本金、利息、剩余本金
 - 计算还款日期与到期提醒
 
-### 📈 数据统计
+### 📊 数据统计
 - 实时统计贷款总额、剩余本金、已还金额
 - 本月应还金额概览
 - 每日应还金额估算
 - 月度还款汇总
+
+### 🏦 储蓄管理
+- 支持添加定期储蓄目标
+- 储蓄进度可视化图表
+- 储蓄历史记录追踪
+- 目标完成提醒
 
 ### 💾 数据管理
 - **自动备份** - 数据变更后自动备份到本地
@@ -34,6 +40,11 @@
 - 信用卡还款日当天自动弹窗提醒
 - 到期账单详情展示
 
+### 🎨 个性化设置
+- 支持多种主题颜色切换（蓝色、橙色、紫色、绿色、玫瑰色、青色）
+- 自定义背景图片设置
+- 透明卡片样式适配
+
 ## 🛠️ 技术栈
 
 | 类别 | 技术 |
@@ -44,6 +55,8 @@
 | 异步处理 | ExecutorService + LiveData |
 | UI 框架 | Material Design + AndroidX |
 | Excel 处理 | Apache POI |
+| 图表库 | MPAndroidChart |
+| 图片加载 | Glide |
 | 构建工具 | Gradle 8.6.0 |
 
 ## 📦 项目结构
@@ -53,17 +66,34 @@ app/src/main/java/com/finance/loanmanager/
 ├── data/                    # 数据层
 │   ├── AppDatabase.java     # Room 数据库配置
 │   ├── dao/                 # 数据访问对象
+│   │   ├── LoanDao.java
+│   │   ├── PaymentDao.java
+│   │   └── SavingsDao.java
 │   └── entity/              # 实体类
+│       ├── Loan.java
+│       ├── Payment.java
+│       ├── Savings.java
+│       └── LoanStatus.java
 ├── repository/              # 数据仓库
+│   ├── LoanRepository.java
+│   └── SavingsRepository.java
 ├── service/                 # 业务服务
-│   └── LoanCalculator.java  # 贷款计算
+│   └── LoanCalculator.java  # 贷款计算核心逻辑
 ├── ui/                      # UI 层
 │   ├── main/                # 主界面
-│   ├── loan/                # 贷款管理
+│   ├── loan/                # 贷款管理（添加、列表、详情）
+│   ├── savings/             # 储蓄管理
 │   ├── monthly/             # 月度统计
 │   ├── schedule/            # 还款计划
-│   └── data/                # 数据管理
-└── util/                    # 工具类
+│   ├── data/                # 数据管理
+│   └── settings/            # 设置
+├── util/                    # 工具类
+│   ├── BackupManager.java
+│   ├── BackgroundManager.java
+│   ├── DateUtil.java
+│   ├── NumberFormatUtil.java
+│   └── ThemeManager.java
+└── LoanManagerApplication.java
 ```
 
 ## 🚀 快速开始
@@ -71,7 +101,7 @@ app/src/main/java/com/finance/loanmanager/
 ### 环境要求
 - Android Studio Hedgehog 或更高版本
 - JDK 17
-- Android SDK 36 (Android 16)
+- Android SDK 35 (Android 14)
 - Gradle 8.x
 
 ### 构建运行
@@ -99,9 +129,12 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 ## 📋 版本信息
 
-- **当前版本**: v2.3.1
-- **最低支持**: Android 8.0 (API 26)
-- **目标版本**: Android 16 (API 36)
+| 项目 | 详情 |
+|------|------|
+| 当前版本 | v2.3.1 |
+| 最低支持 | Android 8.0 (API 26) |
+| 目标版本 | Android 14 (API 35) |
+| 版本代码 | 3 |
 
 ## 🔄 CI/CD
 
@@ -120,7 +153,9 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 3. **贷款详情** - 还款进度、记录还款、查看计划
 4. **还款计划表** - 详细分期还款计划
 5. **月度汇总** - 每月还款总额统计
-6. **数据管理** - 导入导出、清空数据
+6. **储蓄管理** - 储蓄目标与进度追踪
+7. **数据管理** - 导入导出、清空数据
+8. **设置** - 主题与背景个性化配置
 
 ## 📄 许可证
 

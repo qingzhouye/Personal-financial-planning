@@ -1274,15 +1274,39 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * 显示版本说明对话框
+     * 显示版本说明对话框（使用自定义卡片样式布局）
      */
     private void showVersionInfo() {
-        String versionContent = readVersionNotesFromAssets();
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.version_info_title)
-                .setMessage(versionContent)
-                .setPositiveButton(R.string.i_know, null)
-                .show();
+        View versionView = LayoutInflater.from(this).inflate(R.layout.dialog_version_info, null);
+
+        View versionHeader = versionView.findViewById(R.id.versionHeader);
+        int themeIndex = ThemeManager.getSavedTheme(this);
+        int primaryColor = ThemeManager.getThemePrimaryColor(themeIndex);
+        int darkColor = ThemeManager.getThemeDarkColor(themeIndex);
+        GradientDrawable headerBg = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                new int[]{primaryColor, darkColor});
+        float cornerRadius = dp2px(20);
+        headerBg.setCornerRadii(new float[]{
+                cornerRadius, cornerRadius, cornerRadius, cornerRadius,
+                0, 0, 0, 0
+        });
+        versionHeader.setBackground(headerBg);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(versionView)
+                .create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.getWindow().setLayout(
+                    (int) (getResources().getDisplayMetrics().widthPixels * 0.9),
+                    (int) (getResources().getDisplayMetrics().heightPixels * 0.85)
+            );
+        }
+
+        versionView.findViewById(R.id.btnVersionClose).setOnClickListener(v -> dialog.dismiss());
+
+        dialog.show();
     }
     
     /**

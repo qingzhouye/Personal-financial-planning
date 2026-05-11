@@ -145,6 +145,7 @@
     <string name="version_info">版本说明</string>
     <string name="version_info_title">版本说明</string>
     <string name="version_info_load_failed">无法加载版本说明文件</string>
+    <string name="close">关闭</string>
     
     <!-- Background Settings -->
     <string name="background_settings">背景图片</string>
