@@ -50,6 +50,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.widget.ScrollView;
+import android.view.Gravity;
 
 public class MainActivity extends BaseActivity {
 
@@ -610,7 +611,7 @@ public class MainActivity extends BaseActivity {
     }
     
     /**
-     * 更新两栏布局的贷款详情
+     * 更新两栏布局的贷款详情 - 方案一：水平线性布局
      */
     private void updateLoanDetailsColumns(List<String> activeLoanDetails) {
         // 清空现有内容
@@ -632,7 +633,7 @@ public class MainActivity extends BaseActivity {
                 TextView emptyText = new TextView(this);
                 emptyText.setText("本月无待还款项");
                 emptyText.setTextSize(12);
-                // 【关键修复】根据背景确定文字颜色
+                // 根据背景确定文字颜色
                 boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
                 int textColor = hasCustomBg ? 
                         getResources().getColor(R.color.text_white) : 
@@ -644,7 +645,7 @@ public class MainActivity extends BaseActivity {
             if (dividerDetails != null) {
                 dividerDetails.setVisibility(View.GONE);
             }
-            // 【关键修复】强制刷新布局
+            // 强制刷新布局
             if (layoutCurrentMonthDetails != null) {
                 layoutCurrentMonthDetails.requestLayout();
             }
@@ -662,43 +663,69 @@ public class MainActivity extends BaseActivity {
         
         // 确定文字颜色（自定义背景下用白色，否则用半透明白色）
         boolean hasCustomBg = backgroundManager != null && backgroundManager.hasCustomBackground();
-        int textColor = hasCustomBg ? 
+        int labelColor = hasCustomBg ? 
                 getResources().getColor(R.color.text_white) : 
                 getResources().getColor(R.color.semi_transparent_white);
+        int valueColor = hasCustomBg ? 
+                getResources().getColor(R.color.text_white) : 
+                getResources().getColor(R.color.text_white);
         
         // 填充左栏
         if (layoutDetailsLeft != null) {
             for (int i = 0; i < leftCount && i < totalItems; i++) {
-                TextView textView = createDetailTextView(activeLoanDetails.get(i), textColor);
-                layoutDetailsLeft.addView(textView);
+                View rowView = createDetailRowView(activeLoanDetails.get(i), labelColor, valueColor);
+                layoutDetailsLeft.addView(rowView);
             }
         }
         
         // 填充右栏
         if (layoutDetailsRight != null) {
             for (int i = leftCount; i < totalItems; i++) {
-                TextView textView = createDetailTextView(activeLoanDetails.get(i), textColor);
-                layoutDetailsRight.addView(textView);
+                View rowView = createDetailRowView(activeLoanDetails.get(i), labelColor, valueColor);
+                layoutDetailsRight.addView(rowView);
             }
         }
         
-        // 【关键修复】强制刷新布局
+        // 强制刷新布局
         if (layoutCurrentMonthDetails != null) {
             layoutCurrentMonthDetails.requestLayout();
         }
     }
     
     /**
-     * 创建贷款详情文本视图
+     * 创建贷款详情行视图 - 方案二：ConstraintLayout 响应式布局
      */
-    private TextView createDetailTextView(String text, int textColor) {
-        TextView textView = new TextView(this);
-        textView.setText(text);
-        textView.setTextSize(12); // text_xs 对应 12sp
-        textView.setTextColor(textColor);
-        textView.setPadding(0, dp2px(2), 0, dp2px(2));
-        textView.setGravity(android.view.Gravity.START); // 左对齐
-        return textView;
+    private View createDetailRowView(String detail, int labelColor, int valueColor) {
+        // 解析贷款名称和金额
+        String name = "";
+        String amount = "";
+        int colonIndex = detail.indexOf(":");
+        if (colonIndex > 0) {
+            name = detail.substring(0, colonIndex).trim();
+            amount = detail.substring(colonIndex + 1).trim();
+        } else {
+            name = detail;
+            amount = "";
+        }
+        
+        // 使用 ConstraintLayout 布局文件
+        View rowView = LayoutInflater.from(this).inflate(R.layout.item_loan_detail_row, null);
+        
+        TextView tvLoanName = rowView.findViewById(R.id.tvLoanName);
+        TextView tvLoanAmount = rowView.findViewById(R.id.tvLoanAmount);
+        
+        if (tvLoanName != null) {
+            tvLoanName.setText(name);
+            tvLoanName.setTextColor(labelColor);
+        }
+        
+        if (tvLoanAmount != null) {
+            tvLoanAmount.setText(amount);
+            tvLoanAmount.setTextColor(valueColor);
+            tvLoanAmount.setTypeface(null, Typeface.BOLD);
+        }
+        
+        return rowView;
     }
     
     private void updateStatsGrid(int totalCount, double totalPrincipal, 

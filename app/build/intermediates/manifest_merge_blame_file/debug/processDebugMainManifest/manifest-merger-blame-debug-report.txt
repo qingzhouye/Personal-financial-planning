@@ -49,268 +49,308 @@
 30-->[androidx.core:core:1.15.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\0511230471927a37d1a973ce90e248b2\transformed\core-1.15.0\AndroidManifest.xml:26:22-94
 31
 32    <application
-32-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-125:19
+32-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:18:5-145:19
 33        android:name="com.finance.loanmanager.LoanManagerApplication"
 33-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:25:9-47
 34        android:allowBackup="true"
 34-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:19:9-35
 35        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 35-->[androidx.core:core:1.15.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\0511230471927a37d1a973ce90e248b2\transformed\core-1.15.0\AndroidManifest.xml:28:18-86
-36        android:debuggable="true"
-37        android:enableOnBackInvokedCallback="true"
-37-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:26:9-51
-38        android:extractNativeLibs="false"
-39        android:icon="@mipmap/ic_launcher"
-39-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:20:9-43
-40        android:label="@string/app_name"
-40-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:21:9-41
-41        android:requestLegacyExternalStorage="true"
-41-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:27:9-52
-42        android:roundIcon="@mipmap/ic_launcher_round"
-42-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:22:9-54
-43        android:supportsRtl="true"
-43-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:23:9-35
-44        android:theme="@style/Theme.LoanManager" >
-44-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:24:9-49
-45
-46        <!-- FileProvider for UCrop -->
-47        <provider
-48            android:name="androidx.core.content.FileProvider"
-48-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:31:13-62
-49            android:authorities="com.finance.loanmanager.fileprovider"
-49-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:32:13-64
-50            android:exported="false"
-50-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:33:13-37
-51            android:grantUriPermissions="true" >
-51-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:34:13-47
-52            <meta-data
-52-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:35:13-37:54
-53                android:name="android.support.FILE_PROVIDER_PATHS"
-53-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:36:17-67
-54                android:resource="@xml/file_paths" />
-54-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:37:17-51
-55        </provider>
-56
-57        <activity
-57-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:40:9-49:20
-58            android:name="com.finance.loanmanager.ui.main.MainActivity"
-58-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:41:13-49
-59            android:configChanges="orientation|screenSize|smallestScreenSize"
-59-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:44:13-78
-60            android:exported="true"
-60-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:42:13-36
-61            android:theme="@style/Theme.LoanManager.NoActionBar" >
-61-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:43:13-65
-62            <intent-filter>
-62-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:45:13-48:29
-63                <action android:name="android.intent.action.MAIN" />
-63-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:46:17-69
-63-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:46:25-66
-64
-65                <category android:name="android.intent.category.LAUNCHER" />
-65-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:47:17-77
-65-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:47:27-74
-66            </intent-filter>
-67        </activity>
-68        <activity
-68-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:51:9-55:62
-69            android:name="com.finance.loanmanager.ui.loan.AddLoanActivity"
-69-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:52:13-52
-70            android:configChanges="orientation|screenSize"
-70-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:55:13-59
-71            android:label="@string/add_loan"
-71-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:53:13-45
-72            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
-72-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:54:13-63
-73        <activity
-73-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:57:9-61:62
-74            android:name="com.finance.loanmanager.ui.loan.LoanListActivity"
-74-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:58:13-53
-75            android:configChanges="orientation|screenSize"
-75-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:61:13-59
-76            android:label="@string/loan_list"
-76-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:59:13-46
-77            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
-77-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:60:13-63
-78        <activity
-78-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:63:9-67:62
-79            android:name="com.finance.loanmanager.ui.loan.LoanDetailActivity"
-79-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:64:13-55
-80            android:configChanges="orientation|screenSize"
-80-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:67:13-59
-81            android:label="@string/loan_detail"
-81-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:65:13-48
-82            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanListActivity" />
-82-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:66:13-67
-83        <activity
-83-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:69:9-73:62
-84            android:name="com.finance.loanmanager.ui.schedule.PaymentScheduleActivity"
-84-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:70:13-64
-85            android:configChanges="orientation|screenSize"
-85-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:73:13-59
-86            android:label="@string/payment_schedule"
-86-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:71:13-53
-87            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanDetailActivity" />
-87-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:72:13-69
+36        android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+36-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:30:9-87
+37        android:debuggable="true"
+38        android:enableOnBackInvokedCallback="true"
+38-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:26:9-51
+39        android:extractNativeLibs="false"
+40        android:icon="@mipmap/ic_launcher"
+40-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:20:9-43
+41        android:label="@string/app_name"
+41-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:21:9-41
+42        android:requestLegacyExternalStorage="true"
+42-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:27:9-52
+43        android:resizeableActivity="true"
+43-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:28:9-42
+44        android:roundIcon="@mipmap/ic_launcher_round"
+44-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:22:9-54
+45        android:screenOrientation="unspecified"
+45-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:29:9-48
+46        android:supportsRtl="true"
+46-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:23:9-35
+47        android:theme="@style/Theme.LoanManager" >
+47-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:24:9-49
+48
+49        <!-- FileProvider for UCrop -->
+50        <provider
+51            android:name="androidx.core.content.FileProvider"
+51-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:34:13-62
+52            android:authorities="com.finance.loanmanager.fileprovider"
+52-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:35:13-64
+53            android:exported="false"
+53-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:36:13-37
+54            android:grantUriPermissions="true" >
+54-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:37:13-47
+55            <meta-data
+55-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:38:13-40:54
+56                android:name="android.support.FILE_PROVIDER_PATHS"
+56-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:39:17-67
+57                android:resource="@xml/file_paths" />
+57-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:40:17-51
+58        </provider>
+59
+60        <activity
+60-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:43:9-57:20
+61            android:name="com.finance.loanmanager.ui.main.MainActivity"
+61-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:44:13-49
+62            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|uiMode|layoutDirection"
+62-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:47:13-122
+63            android:exported="true"
+63-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:45:13-36
+64            android:launchMode="singleTop"
+64-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:52:13-43
+65            android:resizeableActivity="true"
+65-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:50:13-46
+66            android:screenOrientation="unspecified"
+66-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:49:13-52
+67            android:supportsPictureInPicture="false"
+67-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:51:13-53
+68            android:theme="@style/Theme.LoanManager.NoActionBar"
+68-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:46:13-65
+69            android:windowLayoutInDisplayCutoutMode="shortEdges" >
+69-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:48:13-65
+70            <intent-filter>
+70-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:53:13-56:29
+71                <action android:name="android.intent.action.MAIN" />
+71-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:54:17-69
+71-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:54:25-66
+72
+73                <category android:name="android.intent.category.LAUNCHER" />
+73-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:55:17-77
+73-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:55:27-74
+74            </intent-filter>
+75        </activity>
+76        <activity
+76-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:59:9-64:68
+77            android:name="com.finance.loanmanager.ui.loan.AddLoanActivity"
+77-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:60:13-52
+78            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+78-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:63:13-91
+79            android:label="@string/add_loan"
+79-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:61:13-45
+80            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+80-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:62:13-63
+81            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+81-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:64:13-65
+82        <activity
+82-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:66:9-71:68
+83            android:name="com.finance.loanmanager.ui.loan.LoanListActivity"
+83-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:67:13-53
+84            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+84-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:70:13-91
+85            android:label="@string/loan_list"
+85-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:68:13-46
+86            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+86-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:69:13-63
+87            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+87-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:71:13-65
 88        <activity
-88-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:75:9-79:62
-89            android:name="com.finance.loanmanager.ui.monthly.MonthlyTotalActivity"
-89-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:76:13-60
-90            android:configChanges="orientation|screenSize"
-90-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:79:13-59
-91            android:label="@string/monthly_total"
-91-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:77:13-50
-92            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
-92-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:78:13-63
-93        <activity
-93-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:81:9-85:62
-94            android:name="com.finance.loanmanager.ui.data.DataManagementActivity"
-94-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:82:13-59
-95            android:configChanges="orientation|screenSize"
-95-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:85:13-59
-96            android:label="@string/data_management"
-96-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:83:13-52
-97            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
-97-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:84:13-63
-98        <activity
-98-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:87:9-91:62
-99            android:name="com.finance.loanmanager.ui.settings.BackgroundSettingsActivity"
-99-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:88:13-67
-100            android:configChanges="orientation|screenSize"
-100-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:91:13-59
-101            android:label="@string/personalization_settings"
-101-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:89:13-61
-102            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
-102-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:90:13-63
-103
-104        <!-- Savings Module -->
-105        <activity
-105-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:94:9-98:81
-106            android:name="com.finance.loanmanager.ui.savings.SavingsMainActivity"
-106-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:95:13-59
-107            android:configChanges="orientation|screenSize|smallestScreenSize"
-107-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:98:13-78
-108            android:label="@string/savings"
-108-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:96:13-44
-109            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
-109-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:97:13-63
-110        <activity
-110-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:100:9-104:81
-111            android:name="com.finance.loanmanager.ui.savings.AddEditSavingsActivity"
-111-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:101:13-62
-112            android:configChanges="orientation|screenSize|smallestScreenSize"
-112-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:104:13-78
-113            android:label="@string/savings_add_record"
-113-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:102:13-55
-114            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
-114-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:103:13-73
-115        <activity
-115-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:106:9-110:81
-116            android:name="com.finance.loanmanager.ui.savings.SavingsHistoryActivity"
-116-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:107:13-62
-117            android:configChanges="orientation|screenSize|smallestScreenSize"
-117-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:110:13-78
-118            android:label="@string/savings_history"
-118-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:108:13-52
-119            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
-119-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:109:13-73
+88-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:73:9-78:68
+89            android:name="com.finance.loanmanager.ui.loan.LoanDetailActivity"
+89-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:74:13-55
+90            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+90-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:77:13-91
+91            android:label="@string/loan_detail"
+91-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:75:13-48
+92            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanListActivity"
+92-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:76:13-67
+93            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+93-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:78:13-65
+94        <activity
+94-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:80:9-85:68
+95            android:name="com.finance.loanmanager.ui.schedule.PaymentScheduleActivity"
+95-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:81:13-64
+96            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+96-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:84:13-91
+97            android:label="@string/payment_schedule"
+97-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:82:13-53
+98            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanDetailActivity"
+98-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:83:13-69
+99            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+99-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:85:13-65
+100        <activity
+100-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:87:9-92:68
+101            android:name="com.finance.loanmanager.ui.monthly.MonthlyTotalActivity"
+101-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:88:13-60
+102            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+102-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:91:13-91
+103            android:label="@string/monthly_total"
+103-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:89:13-50
+104            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+104-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:90:13-63
+105            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+105-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:92:13-65
+106        <activity
+106-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:94:9-99:68
+107            android:name="com.finance.loanmanager.ui.data.DataManagementActivity"
+107-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:95:13-59
+108            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+108-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:98:13-91
+109            android:label="@string/data_management"
+109-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:96:13-52
+110            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+110-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:97:13-63
+111            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+111-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:99:13-65
+112        <activity
+112-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:101:9-106:68
+113            android:name="com.finance.loanmanager.ui.settings.BackgroundSettingsActivity"
+113-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:102:13-67
+114            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+114-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:105:13-91
+115            android:label="@string/personalization_settings"
+115-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:103:13-61
+116            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+116-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:104:13-63
+117            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+117-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:106:13-65
+118
+119        <!-- Savings Module -->
 120        <activity
-120-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:112:9-116:81
-121            android:name="com.finance.loanmanager.ui.savings.SavingsChartActivity"
-121-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:113:13-60
-122            android:configChanges="orientation|screenSize|smallestScreenSize"
-122-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:116:13-78
-123            android:label="@string/savings_chart"
-123-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:114:13-50
-124            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
-124-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:115:13-73
-125
-126        <!-- UCrop Activity -->
-127        <activity
-127-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:119:9-123:55
-128            android:name="com.yalantis.ucrop.UCropActivity"
-128-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:120:13-60
-129            android:screenOrientation="portrait"
-129-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:121:13-49
-130            android:theme="@style/UCropTheme"
-130-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:122:13-46
-131            android:windowSoftInputMode="adjustPan" />
-131-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:123:13-52
-132
-133        <provider
-133-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
-134            android:name="androidx.startup.InitializationProvider"
-134-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
-135            android:authorities="com.finance.loanmanager.androidx-startup"
-135-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
-136            android:exported="false" >
-136-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
-137            <meta-data
-137-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
-138                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-138-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
-139                android:value="androidx.startup" />
-139-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
-140            <meta-data
-140-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
-141                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-141-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
-142                android:value="androidx.startup" />
-142-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
-143            <meta-data
-143-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
-144                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-144-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
-145                android:value="androidx.startup" />
-145-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
-146        </provider>
-147
-148        <service
-148-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
-149            android:name="androidx.room.MultiInstanceInvalidationService"
-149-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
-150            android:directBootAware="true"
-150-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
-151            android:exported="false" />
-151-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+120-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:109:9-114:68
+121            android:name="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+121-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:110:13-59
+122            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+122-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:113:13-91
+123            android:label="@string/savings"
+123-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:111:13-44
+124            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+124-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:112:13-63
+125            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+125-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:114:13-65
+126        <activity
+126-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:116:9-121:68
+127            android:name="com.finance.loanmanager.ui.savings.AddEditSavingsActivity"
+127-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:117:13-62
+128            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+128-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:120:13-91
+129            android:label="@string/savings_add_record"
+129-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:118:13-55
+130            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+130-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:119:13-73
+131            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+131-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:121:13-65
+132        <activity
+132-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:123:9-128:68
+133            android:name="com.finance.loanmanager.ui.savings.SavingsHistoryActivity"
+133-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:124:13-62
+134            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+134-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:127:13-91
+135            android:label="@string/savings_history"
+135-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:125:13-52
+136            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+136-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:126:13-73
+137            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+137-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:128:13-65
+138        <activity
+138-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:130:9-135:68
+139            android:name="com.finance.loanmanager.ui.savings.SavingsChartActivity"
+139-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:131:13-60
+140            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+140-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:134:13-91
+141            android:label="@string/savings_chart"
+141-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:132:13-50
+142            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+142-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:133:13-73
+143            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+143-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:135:13-65
+144
+145        <!-- UCrop Activity -->
+146        <activity
+146-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:138:9-143:68
+147            android:name="com.yalantis.ucrop.UCropActivity"
+147-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:139:13-60
+148            android:screenOrientation="portrait"
+148-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:140:13-49
+149            android:theme="@style/UCropTheme"
+149-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:141:13-46
+150            android:windowLayoutInDisplayCutoutMode="shortEdges"
+150-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:143:13-65
+151            android:windowSoftInputMode="adjustPan" />
+151-->C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:142:13-52
 152
-153        <receiver
-153-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
-154            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-154-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
-155            android:directBootAware="false"
-155-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
-156            android:enabled="true"
-156-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
-157            android:exported="true"
-157-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
-158            android:permission="android.permission.DUMP" >
-158-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
-159            <intent-filter>
-159-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
-160                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-160-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
-160-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
-161            </intent-filter>
-162            <intent-filter>
-162-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
-163                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-163-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
-163-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
-164            </intent-filter>
-165            <intent-filter>
-165-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
-166                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-166-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
-166-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
-167            </intent-filter>
-168            <intent-filter>
-168-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
-169                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-169-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
-169-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
-170            </intent-filter>
-171        </receiver>
-172    </application>
-173
-174</manifest>
+153        <provider
+153-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+154            android:name="androidx.startup.InitializationProvider"
+154-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:25:13-67
+155            android:authorities="com.finance.loanmanager.androidx-startup"
+155-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:26:13-68
+156            android:exported="false" >
+156-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:27:13-37
+157            <meta-data
+157-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+158                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+158-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:30:17-75
+159                android:value="androidx.startup" />
+159-->[androidx.emoji2:emoji2:1.3.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\b9795f721dfb254fea97fc57f1d1e25d\transformed\emoji2-1.3.0\AndroidManifest.xml:31:17-49
+160            <meta-data
+160-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:29:13-31:52
+161                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+161-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:30:17-78
+162                android:value="androidx.startup" />
+162-->[androidx.lifecycle:lifecycle-process:2.8.7] C:\Users\Administrator\.gradle\caches\8.9\transforms\55c810f328753299af9f977b864f7315\transformed\lifecycle-process-2.8.7\AndroidManifest.xml:31:17-49
+163            <meta-data
+163-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+164                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+164-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+165                android:value="androidx.startup" />
+165-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+166        </provider>
+167
+168        <service
+168-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:24:9-28:63
+169            android:name="androidx.room.MultiInstanceInvalidationService"
+169-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:25:13-74
+170            android:directBootAware="true"
+170-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:26:13-43
+171            android:exported="false" />
+171-->[androidx.room:room-runtime:2.6.1] C:\Users\Administrator\.gradle\caches\8.9\transforms\302ce8d0af3ceece2c6cc1a62ae8bf2f\transformed\room-runtime-2.6.1\AndroidManifest.xml:27:13-37
+172
+173        <receiver
+173-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+174            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+174-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+175            android:directBootAware="false"
+175-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+176            android:enabled="true"
+176-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+177            android:exported="true"
+177-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+178            android:permission="android.permission.DUMP" >
+178-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+179            <intent-filter>
+179-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+180                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+180-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+180-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+181            </intent-filter>
+182            <intent-filter>
+182-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+183                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+183-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+183-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+184            </intent-filter>
+185            <intent-filter>
+185-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+186                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+186-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+186-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+187            </intent-filter>
+188            <intent-filter>
+188-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+189                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+189-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+189-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\Administrator\.gradle\caches\8.9\transforms\f13024471ecb547c954805da74961f66\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+190            </intent-filter>
+191        </receiver>
+192    </application>
+193
+194</manifest>

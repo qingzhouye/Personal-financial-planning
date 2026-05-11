@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.7.0" type="conditional_incidents">
+
+    <incident
+        id="ScopedStorage"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="13"
+            column="36"
+            startOffset="578"
+            endLine="13"
+            endColumn="77"
+            endOffset="619"/>
+        <map>
+            <entry
+                name="maxSdkVersion"
+                int="32"/>
+            <entry
+                name="read"
+                boolean="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ScopedStorage"
+        severity="warning"
+        message="">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="15"
+            column="36"
+            startOffset="696"
+            endLine="15"
+            endColumn="76"
+            endOffset="736"/>
+        <map>
+            <entry
+                name="maxSdkVersion"
+                int="32"/>
+            <entry
+                name="read"
+                boolean="true"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="ffffffff00000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="26"
+            column="9"
+            startOffset="1117"
+            endLine="26"
+            endColumn="51"
+            endOffset="1159"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `enableOnBackInvokedCallback` is only used in API level 33 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="ffffffff00000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="48"
+            column="13"
+            startOffset="2165"
+            endLine="48"
+            endColumn="65"
+            endOffset="2217"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="64"
+            column="13"
+            startOffset="2942"
+            endLine="64"
+            endColumn="65"
+            endOffset="2994"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="71"
+            column="13"
+            startOffset="3297"
+            endLine="71"
+            endColumn="65"
+            endOffset="3349"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="78"
+            column="13"
+            startOffset="3660"
+            endLine="78"
+            endColumn="65"
+            endOffset="3712"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="85"
+            column="13"
+            startOffset="4039"
+            endLine="85"
+            endColumn="65"
+            endOffset="4091"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="92"
+            column="13"
+            startOffset="4405"
+            endLine="92"
+            endColumn="65"
+            endOffset="4457"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="99"
+            column="13"
+            startOffset="4772"
+            endLine="99"
+            endColumn="65"
+            endOffset="4824"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="106"
+            column="13"
+            startOffset="5156"
+            endLine="106"
+            endColumn="65"
+            endOffset="5208"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="114"
+            column="13"
+            startOffset="5548"
+            endLine="114"
+            endColumn="65"
+            endOffset="5600"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="121"
+            column="13"
+            startOffset="5931"
+            endLine="121"
+            endColumn="65"
+            endOffset="5983"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="128"
+            column="13"
+            startOffset="6311"
+            endLine="128"
+            endColumn="65"
+            endOffset="6363"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="135"
+            column="13"
+            startOffset="6687"
+            endLine="135"
+            endColumn="65"
+            endOffset="6739"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="fffffffffc000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="143"
+            column="13"
+            startOffset="7029"
+            endLine="143"
+            endColumn="65"
+            endOffset="7081"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `windowLayoutInDisplayCutoutMode` is only used in API level 27 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="fffffffffc000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="ffffffffc0000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="18"
+            column="9"
+            startOffset="643"
+            endLine="18"
+            endColumn="37"
+            endOffset="671"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `clipToOutline` is only used in API level 31 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffc0000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="UnusedAttribute"
+        severity="warning"
+        message="">
+        <fix-data minSdk="fffffffffe000000" requiresApi="ffffffffc0000000"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="18"
+            column="9"
+            startOffset="643"
+            endLine="18"
+            endColumn="37"
+            endOffset="671"/>
+        <map>
+            <entry
+                name="message"
+                string="Attribute `clipToOutline` is only used in API level 31 and higher (current min is %1$s)"/>
+            <api-levels id="minSdk"
+                value="fffffffffe000000"/>
+            <api-levels id="requiresApi"
+                value="ffffffffc0000000"/>
+        </map>
+    </incident>
+
+    <incident
+        id="LockedOrientationActivity"
+        severity="warning"
+        message="Expecting `android:screenOrientation=&quot;unspecified&quot;` or `&quot;fullSensor&quot;` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices">
+        <fix-attribute
+            description="Set screenOrientation=&quot;fullSensor&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="screenOrientation"
+            value="fullSensor"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="140"
+            column="13"
+            startOffset="6879"
+            endLine="140"
+            endColumn="49"
+            endOffset="6915"/>
+        <map>
+            <condition library="false"/>
+        </map>
+    </incident>
+
+    <incident
+        id="RtlSymmetry"
+        severity="warning"
+        message="When you define `paddingStart` you should probably also define `paddingEnd` for right-to-left symmetry">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_loan_detail_row.xml"
+            line="28"
+            column="9"
+            startOffset="1120"
+            endLine="28"
+            endColumn="29"
+            endOffset="1140"/>
+        <map>
+            <entry
+                name="applies"
+                int="2"/>
+        </map>
+    </incident>
+
+</incidents>

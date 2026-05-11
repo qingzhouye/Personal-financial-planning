@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.finance.loanmanager.app-mergeReleaseResources-37:/values-night-v8/values-night-v8.xml",
+            "outputFile": "com.finance.loanmanager.app-mergeReleaseResources-38:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.9\\transforms\\9976626f0aa34d8b66834c84661ecf74\\transformed\\appcompat-1.7.0\\res\\values-night-v8\\values-night-v8.xml",

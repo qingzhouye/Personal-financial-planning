@@ -1,0 +1,1035 @@
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\data\BackupRestoreDialog.java:53: Warning: Use of LayoutInflater.from(context) detected. Consider using getLayoutInflater() instead [UseGetLayoutInflater from androidx.fragment]
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_backup_restore, null);
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseGetLayoutInflater":
+   Using LayoutInflater.from(Context) can return a LayoutInflater             
+       that does not have the correct theme.
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.fragment
+   Feedback: https://issuetracker.google.com/issues/new?component=460964
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:13: Warning: WRITE_EXTERNAL_STORAGE no longer provides write access when targeting Android 11+, even when using requestLegacyExternalStorage [ScopedStorage]
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "ScopedStorage":
+   Scoped storage is enforced on Android 10+ (or Android 11+ if using
+   requestLegacyExternalStorage). In particular, WRITE_EXTERNAL_STORAGE will
+   no longer provide write access to all files; it will provide the equivalent
+   of READ_EXTERNAL_STORAGE instead.
+
+   As of Android 13, if you need to query or interact with MediaStore or media
+   files on the shared storage, you should be using instead one or more new
+   storage permissions:
+   * android.permission.READ_MEDIA_IMAGES
+   * android.permission.READ_MEDIA_VIDEO
+   * android.permission.READ_MEDIA_AUDIO
+
+   and then add maxSdkVersion="33" to the older permission. See the developer
+   guide for how to do this:
+   https://developer.android.com/about/versions/13/behavior-changes-13#granula
+   r-media-permissions
+
+   The MANAGE_EXTERNAL_STORAGE permission can be used to manage all files, but
+   it is rarely necessary and most apps on Google Play are not allowed to use
+   it. Most apps should instead migrate to use scoped storage. To modify or
+   delete files, apps should request write access from the user as described
+   at https://goo.gle/android-mediastore-createwriterequest.
+
+   To learn more, read these resources: Play policy:
+   https://goo.gle/policy-storage-help Allowable use cases:
+   https://goo.gle/policy-storage-usecases
+
+   https://goo.gle/android-storage-usecases
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\AddLoanActivity.java:179: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+            String date = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth);
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\service\LoanCalculator.java:24: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+        return String.format("%.2f_%.2f_%d_%s", principal, annualRate, months, method);
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\service\LoanCalculator.java:450: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+            String paymentDate = String.format("%04d-12-20", startYear + year - 1);
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\service\LoanCalculator.java:483: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+        return String.format("%04d-%02d-%02d",
+               ^
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanDetailActivity.java:244: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+                tvProgressPercent.setText(String.format("%.1f%%", paidPct));
+                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanDetailActivity.java:245: Warning: Implicitly using the default locale is a common source of bugs: Use String.format(Locale, ...) instead [DefaultLocale]
+                tvRemainingPercent.setText(String.format("%.1f%%", remainPct));
+                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "DefaultLocale":
+   Calling String#toLowerCase() or #toUpperCase() without specifying an
+   explicit locale is a common source of bugs. The reason for that is that
+   those methods will use the current locale on the user's device, and even
+   though the code appears to work correctly when you are developing the app,
+   it will fail in some locales. For example, in the Turkish locale, the
+   uppercase replacement for i is not I.
+
+   If you want the methods to just perform ASCII replacement, for example to
+   convert an enum name, call String#toUpperCase(Locale.ROOT) instead. If you
+   really want to use the current locale, call
+   String#toUpperCase(Locale.getDefault()) instead.
+
+   https://developer.android.com/reference/java/util/Locale.html#default_locale
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_main.xml:136: Warning: The id "layoutDailyPayment" in layout "activity_main" is missing from the following layout configurations: layout-land (present in layout) [InconsistentLayout]
+                    android:id="@+id/layoutDailyPayment"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_main.xml:243: Warning: The id "tvLoanOverviewTitle" in layout "activity_main" is missing from the following layout configurations: layout-land (present in layout) [InconsistentLayout]
+                    android:id="@+id/tvLoanOverviewTitle"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_main.xml:274: Warning: The id "cardAddLoan" in layout "activity_main" is missing from the following layout configurations: layout-land (present in layout) [InconsistentLayout]
+            android:id="@+id/cardAddLoan"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "InconsistentLayout":
+   This check ensures that a layout resource which is defined in multiple
+   resource folders, specifies the same set of widgets.
+
+   This finds cases where you have accidentally forgotten to add a widget to
+   all variations of the layout, which could result in a runtime crash for
+   some resource configurations when a findViewById() fails.
+
+   There are cases where this is intentional. For example, you may have a
+   dedicated large tablet layout which adds some extra widgets that are not
+   present in the phone version of the layout. As long as the code accessing
+   the layout resource is careful to handle this properly, it is valid. In
+   that case, you can suppress this lint check for the given extra or missing
+   views, or the whole layout
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\build.gradle:12: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk 35
+        ~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application runs on a version of Android that is more recent than
+   your targetSdkVersion specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdkVersion
+   is less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:26: Warning: Attribute enableOnBackInvokedCallback is only used in API level 33 and higher (current min is 26) [UnusedAttribute]
+        android:enableOnBackInvokedCallback="true"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:48: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:64: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:71: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:78: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:85: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:92: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:99: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:106: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:114: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:121: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:128: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:135: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:143: Warning: Attribute windowLayoutInDisplayCutoutMode is only used in API level 27 and higher (current min is 26) [UnusedAttribute]
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:18: Warning: Attribute clipToOutline is only used in API level 31 and higher (current min is 26) [UnusedAttribute]
+        android:clipToOutline="true">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:18: Warning: Attribute clipToOutline is only used in API level 31 and higher (current min is 26) [UnusedAttribute]
+        android:clipToOutline="true">
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedAttribute":
+   This check finds attributes set in XML files that were introduced in a
+   version newer than the oldest version targeted by your application (with
+   the minSdkVersion attribute).
+
+   This is not an error; the application will simply ignore the attribute.
+   However, if the attribute is important to the appearance or functionality
+   of your application, you should consider finding an alternative way to
+   achieve the same result with only available attributes, and then you can
+   optionally create a copy of the layout in a layout-vNN folder which will be
+   used on API NN or higher where you can take advantage of the newer
+   attribute.
+
+   Note: This check does not only apply to attributes. For example, some tags
+   can be unused too, such as the new <tag> element in layouts introduced in
+   API 21.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\main\MainActivity.java:712: Warning: Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element) [InflateParams]
+        View rowView = LayoutInflater.from(this).inflate(R.layout.item_loan_detail_row, null);
+                                                                                        ~~~~
+
+   Explanation for issues of type "InflateParams":
+   When inflating a layout, avoid passing in null as the parent view, since
+   otherwise any layout parameters on the root of the inflated layout will be
+   ignored.
+
+   https://www.bignerdranch.com/blog/understanding-androids-layoutinflater-inflate/
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:8: Warning: Your app is currently not handling Selected Photos Access introduced in Android 14+ [SelectedPhotoAccess]
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:9: Warning: Your app is currently not handling Selected Photos Access introduced in Android 14+ [SelectedPhotoAccess]
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SelectedPhotoAccess":
+   Selected Photo Access is a new ability for users to share partial access to
+   their photo library when apps request access to their device storage on
+   Android 14+.
+
+   Instead of letting the system manage the selection lifecycle, we recommend
+   you adapt your app to handle partial access to the photo library.
+
+   https://developer.android.com/about/versions/14/changes/partial-photo-video-access
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\build.gradle:77: Warning: A newer version of org.apache.xmlbeans:xmlbeans than 5.1.1 is available: 5.2.0 [GradleDependency]
+    implementation 'org.apache.xmlbeans:xmlbeans:5.1.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:140: Warning: Expecting android:screenOrientation="unspecified" or "fullSensor" for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices [LockedOrientationActivity]
+            android:screenOrientation="portrait"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "LockedOrientationActivity":
+   The <activity> element should not be locked to any orientation so that
+   users can take advantage of the multi-window environments and larger
+   screens available on Android. To fix the issue, consider declaring the
+   corresponding activity element with `screenOrientation="unspecified"`or
+   fullSensor attribute.
+
+   https://developer.android.com/topic/arc/window-management
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:29: Warning: Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed. [DiscouragedApi]
+        android:screenOrientation="unspecified"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:49: Warning: Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed. [DiscouragedApi]
+            android:screenOrientation="unspecified"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\AndroidManifest.xml:140: Warning: Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed. [DiscouragedApi]
+            android:screenOrientation="portrait"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "DiscouragedApi":
+   Discouraged APIs are allowed and are not deprecated, but they may be unfit
+   for common use (e.g. due to slow performance or subtle behavior).
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\main\MainActivity.java:749: Warning: Use AppCompatResources.getDrawable() [UseCompatLoadingForDrawables from androidx.appcompat]
+            totalLoansCard.setForeground(getDrawable(outValue.resourceId));
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UseCompatLoadingForDrawables":
+   Use Compat loading of drawables
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.appcompat
+   Feedback: https://issuetracker.google.com/issues/new?component=460343
+
+C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\org.apache.poi\poi-ooxml\5.2.5\df9f2c52371eeba24db8ea8cafa77285c3cc0742\poi-ooxml-5.2.5.jar: Warning: checkClientTrusted is empty, which could cause insecure network traffic due to trusting arbitrary TLS/SSL certificates presented by peers [TrustAllX509TrustManager]
+C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\org.apache.poi\poi-ooxml\5.2.5\df9f2c52371eeba24db8ea8cafa77285c3cc0742\poi-ooxml-5.2.5.jar: Warning: checkServerTrusted is empty, which could cause insecure network traffic due to trusting arbitrary TLS/SSL certificates presented by peers [TrustAllX509TrustManager]
+
+   Explanation for issues of type "TrustAllX509TrustManager":
+   This check looks for X509TrustManager implementations whose
+   checkServerTrusted or checkClientTrusted methods do nothing (thus trusting
+   any certificate chain) which could result in insecure network traffic
+   caused by trusting arbitrary TLS/SSL certificates presented by peers.
+
+   https://goo.gle/TrustAllX509TrustManager
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanAdapter.java:33: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\monthly\MonthlyAdapter.java:61: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\savings\SavingsAdapter.java:41: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\schedule\ScheduleAdapter.java:27: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+        notifyDataSetChanged();
+        ~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NotifyDataSetChanged":
+   The RecyclerView adapter's onNotifyDataSetChanged method does not specify
+   what about the data set has changed, forcing any observers to assume that
+   all existing items and structure may no longer be valid. `LayoutManager`s
+   will be forced to fully rebind and relayout all visible views.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout-land\activity_main.xml:83: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_main.xml:83: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout-land\activity_main.xml:135: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_main.xml:135: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout-land\activity_main.xml:226: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:25: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+    <LinearLayout
+     ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_savings_chart.xml:84: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+            <LinearLayout
+             ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_loan_card_item.xml:78: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+            <LinearLayout
+             ~~~~~~~~~~~~
+
+   Explanation for issues of type "DisableBaselineAlignment":
+   When a LinearLayout is used to distribute the space proportionally between
+   nested layouts, the baseline alignment property should be turned off to
+   make the layout computation faster.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_monthly.xml:7: Warning: Possible overdraw: Root element paints background @color/card_background with a theme that also paints a background (inferred theme is @style/Theme.LoanManager) [Overdraw]
+    android:background="@color/card_background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_savings.xml:8: Warning: Possible overdraw: Root element paints background ?attr/selectableItemBackground with a theme that also paints a background (inferred theme is @style/Theme.LoanManager) [Overdraw]
+    android:background="?attr/selectableItemBackground">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_schedule.xml:7: Warning: Possible overdraw: Root element paints background @color/card_background with a theme that also paints a background (inferred theme is @style/Theme.LoanManager) [Overdraw]
+    android:background="@color/card_background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:6: Warning: The resource R.color.primary_light appears to be unused [UnusedResources]
+    <color name="primary_light">#4DD0E1</color>
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:11: Warning: The resource R.color.background_mid appears to be unused [UnusedResources]
+    <color name="background_mid">#80DEEA</color>
+           ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:12: Warning: The resource R.color.background_end appears to be unused [UnusedResources]
+    <color name="background_end">#4DD0E1</color>
+           ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:24: Warning: The resource R.color.success_light appears to be unused [UnusedResources]
+    <color name="success_light">#d4fc79</color>
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:26: Warning: The resource R.color.warning_light appears to be unused [UnusedResources]
+    <color name="warning_light">#fff3e0</color>
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:28: Warning: The resource R.color.info appears to be unused [UnusedResources]
+    <color name="info">#4facfe</color>
+           ~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:31: Warning: The resource R.color.loan_card_start appears to be unused [UnusedResources]
+    <color name="loan_card_start">#f5f7fa</color>
+           ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:32: Warning: The resource R.color.loan_card_end appears to be unused [UnusedResources]
+    <color name="loan_card_end">#c3cfe2</color>
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:33: Warning: The resource R.color.loan_paid_off_start appears to be unused [UnusedResources]
+    <color name="loan_paid_off_start">#d4fc79</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:34: Warning: The resource R.color.loan_paid_off_end appears to be unused [UnusedResources]
+    <color name="loan_paid_off_end">#96e6a1</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:35: Warning: The resource R.color.loan_due_today_border appears to be unused [UnusedResources]
+    <color name="loan_due_today_border">#ff9800</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:38: Warning: The resource R.color.input_background appears to be unused [UnusedResources]
+    <color name="input_background">#fafafa</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:39: Warning: The resource R.color.input_border appears to be unused [UnusedResources]
+    <color name="input_border">#e0e0e0</color>
+           ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:40: Warning: The resource R.color.input_border_focused appears to be unused [UnusedResources]
+    <color name="input_border_focused">#00BCD4</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:46: Warning: The resource R.color.transparent appears to be unused [UnusedResources]
+    <color name="transparent">#00000000</color>
+           ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:50: Warning: The resource R.color.card_background_transparent appears to be unused [UnusedResources]
+    <color name="card_background_transparent">#40000000</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\colors.xml:51: Warning: The resource R.color.text_white_bold appears to be unused [UnusedResources]
+    <color name="text_white_bold">#FFFFFF</color>
+           ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:6: Warning: The resource R.dimen.status_bar_height appears to be unused [UnusedResources]
+    <dimen name="status_bar_height">24dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:21: Warning: The resource R.dimen.card_margin appears to be unused [UnusedResources]
+    <dimen name="card_margin">8dp</dimen>
+           ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:33: Warning: The resource R.dimen.text_title appears to be unused [UnusedResources]
+    <dimen name="text_title">24sp</dimen>
+           ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:39: Warning: The resource R.dimen.button_padding_horizontal appears to be unused [UnusedResources]
+    <dimen name="button_padding_horizontal">24dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:43: Warning: The resource R.dimen.input_height appears to be unused [UnusedResources]
+    <dimen name="input_height">48dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:47: Warning: The resource R.dimen.icon_sm appears to be unused [UnusedResources]
+    <dimen name="icon_sm">16dp</dimen>
+           ~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:48: Warning: The resource R.dimen.icon_md appears to be unused [UnusedResources]
+    <dimen name="icon_md">24dp</dimen>
+           ~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:49: Warning: The resource R.dimen.icon_lg appears to be unused [UnusedResources]
+    <dimen name="icon_lg">32dp</dimen>
+           ~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:50: Warning: The resource R.dimen.icon_xl appears to be unused [UnusedResources]
+    <dimen name="icon_xl">40dp</dimen>
+           ~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:53: Warning: The resource R.dimen.list_item_height appears to be unused [UnusedResources]
+    <dimen name="list_item_height">64dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\dimens.xml:57: Warning: The resource R.dimen.progress_height appears to be unused [UnusedResources]
+    <dimen name="progress_height">16dp</dimen>
+           ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\drawable\ic_launcher_foreground.xml:2: Warning: The resource R.drawable.ic_launcher_foreground appears to be unused [UnusedResources]
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+^
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:13: Warning: The resource R.string.click_to_manage appears to be unused [UnusedResources]
+    <string name="click_to_manage">（点击进入贷款管理）</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:28: Warning: The resource R.string.paid_off appears to be unused [UnusedResources]
+    <string name="paid_off">已还清</string>
+            ~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:33: Warning: The resource R.string.normal_loan appears to be unused [UnusedResources]
+    <string name="normal_loan">普通贷款</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:34: Warning: The resource R.string.credit_card appears to be unused [UnusedResources]
+    <string name="credit_card">信用卡</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:35: Warning: The resource R.string.student_loan appears to be unused [UnusedResources]
+    <string name="student_loan">国家助学贷款</string>
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:37: Warning: The resource R.string.loan_name_hint appears to be unused [UnusedResources]
+    <string name="loan_name_hint">例如：房贷、车贷、招行信用卡</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:39: Warning: The resource R.string.equal_interest appears to be unused [UnusedResources]
+    <string name="equal_interest">等额本息</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:40: Warning: The resource R.string.equal_principal appears to be unused [UnusedResources]
+    <string name="equal_principal">等额本金</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:41: Warning: The resource R.string.interest_first appears to be unused [UnusedResources]
+    <string name="interest_first">先息后本</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:42: Warning: The resource R.string.lump_sum appears to be unused [UnusedResources]
+    <string name="lump_sum">利随本清</string>
+            ~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:64: Warning: The resource R.string.remaining appears to be unused [UnusedResources]
+    <string name="remaining">剩余</string>
+            ~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:65: Warning: The resource R.string.monthly_payment appears to be unused [UnusedResources]
+    <string name="monthly_payment">月供</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:69: Warning: The resource R.string.paid appears to be unused [UnusedResources]
+    <string name="paid">已还</string>
+            ~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:70: Warning: The resource R.string.progress appears to be unused [UnusedResources]
+    <string name="progress">还款进度</string>
+            ~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:81: Warning: The resource R.string.month appears to be unused [UnusedResources]
+    <string name="month">期数</string>
+            ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:82: Warning: The resource R.string.payment_date appears to be unused [UnusedResources]
+    <string name="payment_date">还款日期</string>
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:83: Warning: The resource R.string.monthly_payment_amount appears to be unused [UnusedResources]
+    <string name="monthly_payment_amount">月供</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:84: Warning: The resource R.string.principal_amount appears to be unused [UnusedResources]
+    <string name="principal_amount">本金</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:85: Warning: The resource R.string.interest_amount appears to be unused [UnusedResources]
+    <string name="interest_amount">利息</string>
+            ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:86: Warning: The resource R.string.remaining_balance appears to be unused [UnusedResources]
+    <string name="remaining_balance">剩余本金</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:87: Warning: The resource R.string.no_schedule appears to be unused [UnusedResources]
+    <string name="no_schedule">无还款计划</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:94: Warning: The resource R.string.month_col appears to be unused [UnusedResources]
+    <string name="month_col">月份</string>
+            ~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:95: Warning: The resource R.string.total_payment_col appears to be unused [UnusedResources]
+    <string name="total_payment_col">总还款额</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:96: Warning: The resource R.string.included_loans appears to be unused [UnusedResources]
+    <string name="included_loans">包含贷款</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:97: Warning: The resource R.string.grand_total appears to be unused [UnusedResources]
+    <string name="grand_total">合计</string>
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:102: Warning: The resource R.string.reminder_message appears to be unused [UnusedResources]
+    <string name="reminder_message">您有 %d 笔信用卡账单今日到期</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:103: Warning: The resource R.string.reminder_subtitle appears to be unused [UnusedResources]
+    <string name="reminder_subtitle">请及时还款，避免产生逾期费用！</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:118: Warning: The resource R.string.error_loan_not_found appears to be unused [UnusedResources]
+    <string name="error_loan_not_found">贷款不存在</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:120: Warning: The resource R.string.error_add_failed appears to be unused [UnusedResources]
+    <string name="error_add_failed">添加失败</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:121: Warning: The resource R.string.error_delete_failed appears to be unused [UnusedResources]
+    <string name="error_delete_failed">删除失败</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:139: Warning: The resource R.string.auto_backup_success appears to be unused [UnusedResources]
+    <string name="auto_backup_success">数据已自动备份</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:140: Warning: The resource R.string.auto_backup_failed appears to be unused [UnusedResources]
+    <string name="auto_backup_failed">自动备份失败</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:152: Warning: The resource R.string.no_custom_background appears to be unused [UnusedResources]
+    <string name="no_custom_background">当前使用默认背景</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:153: Warning: The resource R.string.custom_background_set appears to be unused [UnusedResources]
+    <string name="custom_background_set">当前使用自定义背景</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:160: Warning: The resource R.string.current_background appears to be unused [UnusedResources]
+    <string name="current_background">当前背景</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:163: Warning: The resource R.string.set_background appears to be unused [UnusedResources]
+    <string name="set_background">设置背景</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\themes.xml:104: Warning: The resource R.style.CardStyle appears to be unused [UnusedResources]
+    <style name="CardStyle">
+           ~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\themes.xml:112: Warning: The resource R.style.StatCardStyle appears to be unused [UnusedResources]
+    <style name="StatCardStyle">
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\themes.xml:161: Warning: The resource R.style.TitleText appears to be unused [UnusedResources]
+    <style name="TitleText">
+           ~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\themes.xml:167: Warning: The resource R.style.CardTitleText appears to be unused [UnusedResources]
+    <style name="CardTitleText">
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\themes.xml:173: Warning: The resource R.style.StatValueText appears to be unused [UnusedResources]
+    <style name="StatValueText">
+           ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\themes.xml:179: Warning: The resource R.style.StatLabelText appears to be unused [UnusedResources]
+    <style name="StatLabelText">
+           ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:12: Warning: This LinearLayout layout or its LinearLayout parent is unnecessary; transfer the background attribute to the other view [UselessParent]
+    <LinearLayout
+     ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:26: Warning: This LinearLayout layout or its FrameLayout parent is unnecessary [UselessParent]
+            <LinearLayout
+             ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:12: Warning: This LinearLayout layout or its LinearLayout parent is unnecessary; transfer the background attribute to the other view [UselessParent]
+    <LinearLayout
+     ~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:26: Warning: This LinearLayout layout or its FrameLayout parent is unnecessary [UselessParent]
+            <LinearLayout
+             ~~~~~~~~~~~~
+
+   Explanation for issues of type "UselessParent":
+   A layout with children that has no siblings, is not a scrollview or a root
+   layout, and does not have a background, can be removed and have its
+   children moved directly into the parent for a flatter and more efficient
+   layout hierarchy.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\values\strings.xml:133: Warning: Replace "..." with ellipsis character (…, &#8230;) ? [TypographyEllipsis]
+    <string name="restoring_backup">正在恢复数据...</string>
+                                    ~~~~~~~~~
+
+   Explanation for issues of type "TypographyEllipsis":
+   You can replace the string "..." with a dedicated ellipsis character,
+   ellipsis character (u2026, &#8230;). This can help make the text more
+   readable.
+
+   https://en.wikipedia.org/wiki/Ellipsis
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:116: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:127: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:139: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:151: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:163: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:175: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_schedule.xml:13: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+        android:textSize="9sp"
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_schedule.xml:22: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+        android:textSize="9sp"
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_schedule.xml:32: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+        android:textSize="9sp"
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_schedule.xml:42: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+        android:textSize="9sp"
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_schedule.xml:52: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+        android:textSize="9sp"
+        ~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_schedule.xml:62: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+        android:textSize="9sp"
+        ~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SmallSp":
+   Avoid using sizes smaller than 11sp.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_background_settings.xml:60: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_background_settings.xml:96: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_background_settings.xml:132: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_background_settings.xml:168: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_background_settings.xml:204: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_background_settings.xml:240: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:84: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:117: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:147: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:180: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:210: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:243: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:84: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:117: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:147: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:180: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:210: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:243: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:276: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:309: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\AddLoanActivity.java:354: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvAnnualRate)).setText(loan.getAnnualRate() + "%");
+                                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\AddLoanActivity.java:355: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        ((android.widget.TextView) dialogView.findViewById(R.id.tvMonths)).setText(loan.getMonths() + "个月");
+                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\AddLoanActivity.java:363: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            tvDueDate.setText("每月" + loan.getDueDate() + "号");
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\AddLoanActivity.java:371: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            tvDueDate.setText("每年12月20日");
+                              ~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanAdapter.java:48: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        holder.tvRemaining.setText("剩余: " + NumberFormatUtil.formatCurrency(item.status.getRemainingPrincipal()));
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanAdapter.java:49: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        holder.tvMonthlyPayment.setText("月供: " + NumberFormatUtil.formatCurrency(item.status.getNewMonthlyPayment()));
+                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanDetailActivity.java:210: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                tvTitle.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName());
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanDetailActivity.java:231: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                tvTitle.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName());
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanDetailActivity.java:232: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                tvSubtitle.setText(loan.getRepaymentMethodName() + (status.isPaidOff() ? " | 已还清" : ""));
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanDetailActivity.java:234: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                tvRate.setText(loan.getAnnualRate() + "%");
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\loan\LoanDetailActivity.java:235: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                tvMonths.setText(loan.getMonths() + "个月");
+                                 ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\main\MainActivity.java:600: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        tvCurrentDate.setText(currentMonth + " " + getString(R.string.current_month_payment));
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\main\MainActivity.java:602: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        tvActiveLoanCount.setText(activeCount + " 笔");
+                                  ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\main\MainActivity.java:604: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        tvRemainingDays.setText(DateUtil.getRemainingDaysInMonth() + " 天");
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\monthly\MonthlyAdapter.java:112: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        tvName.setText(loan.loanName + ":");
+                       ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\schedule\PaymentScheduleActivity.java:111: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                tvLoanInfo.setText((loan.isCreditCard() ? "💳 " : "🏦 ") + loan.getName() 
+                                   ^
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\java\com\finance\loanmanager\ui\schedule\PaymentScheduleActivity.java:116: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                tvPeriods.setText(schedule.size() + "期");
+                                  ~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_edit_savings.xml:147: Warning: Hardcoded string "工资", should use @string resource [HardcodedText]
+                        android:text="工资"
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_edit_savings.xml:153: Warning: Hardcoded string "购物", should use @string resource [HardcodedText]
+                        android:text="购物"
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_edit_savings.xml:159: Warning: Hardcoded string "餐饮", should use @string resource [HardcodedText]
+                        android:text="餐饮"
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_edit_savings.xml:165: Warning: Hardcoded string "投资收益", should use @string resource [HardcodedText]
+                        android:text="投资收益"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_edit_savings.xml:171: Warning: Hardcoded string "转账", should use @string resource [HardcodedText]
+                        android:text="转账"
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_edit_savings.xml:177: Warning: Hardcoded string "其他", should use @string resource [HardcodedText]
+                        android:text="其他"
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_loan.xml:289: Warning: Hardcoded string "12", should use @string resource [HardcodedText]
+                        android:text="12" />
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_add_loan.xml:332: Warning: Hardcoded string "18", should use @string resource [HardcodedText]
+                        android:text="18" />
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:64: Warning: Hardcoded string "基本信息", should use @string resource [HardcodedText]
+                    android:text="基本信息"
+                    ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:80: Warning: Hardcoded string "贷款本金", should use @string resource [HardcodedText]
+                        android:text="贷款本金"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:108: Warning: Hardcoded string "年利率", should use @string resource [HardcodedText]
+                        android:text="年利率"
+                        ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:136: Warning: Hardcoded string "贷款期限", should use @string resource [HardcodedText]
+                        android:text="贷款期限"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:164: Warning: Hardcoded string "开始日期", should use @string resource [HardcodedText]
+                        android:text="开始日期"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:192: Warning: Hardcoded string "还款情况", should use @string resource [HardcodedText]
+                    android:text="还款情况"
+                    ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:207: Warning: Hardcoded string "已还金额", should use @string resource [HardcodedText]
+                        android:text="已还金额"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:235: Warning: Hardcoded string "剩余本金", should use @string resource [HardcodedText]
+                        android:text="剩余本金"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:263: Warning: Hardcoded string "当前月供", should use @string resource [HardcodedText]
+                        android:text="当前月供"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:291: Warning: Hardcoded string "还款进度", should use @string resource [HardcodedText]
+                        android:text="还款进度"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:322: Warning: Hardcoded string "还款进度", should use @string resource [HardcodedText]
+                    android:text="还款进度"
+                    ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:336: Warning: Hardcoded string "已还", should use @string resource [HardcodedText]
+                        android:text="已还"
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_loan_detail.xml:367: Warning: Hardcoded string "剩余", should use @string resource [HardcodedText]
+                        android:text="剩余"
+                        ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_monthly_total.xml:65: Warning: Hardcoded string "日期", should use @string resource [HardcodedText]
+                android:text="日期"
+                ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_monthly_total.xml:75: Warning: Hardcoded string "总金额", should use @string resource [HardcodedText]
+                android:text="总金额"
+                ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_monthly_total.xml:86: Warning: Hardcoded string "明细", should use @string resource [HardcodedText]
+                android:text="明细"
+                ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:115: Warning: Hardcoded string "期数", should use @string resource [HardcodedText]
+            android:text="期数"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:126: Warning: Hardcoded string "日期", should use @string resource [HardcodedText]
+            android:text="日期"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:138: Warning: Hardcoded string "还款额", should use @string resource [HardcodedText]
+            android:text="还款额"
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:150: Warning: Hardcoded string "本金", should use @string resource [HardcodedText]
+            android:text="本金"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:162: Warning: Hardcoded string "利息", should use @string resource [HardcodedText]
+            android:text="利息"
+            ~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_payment_schedule.xml:174: Warning: Hardcoded string "剩余本金", should use @string resource [HardcodedText]
+            android:text="剩余本金"
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_savings_chart.xml:101: Warning: Hardcoded string "¥0.00", should use @string resource [HardcodedText]
+                        android:text="¥0.00"
+                        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_savings_chart.xml:125: Warning: Hardcoded string "¥0.00", should use @string resource [HardcodedText]
+                        android:text="¥0.00"
+                        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_savings_chart.xml:149: Warning: Hardcoded string "¥0.00", should use @string resource [HardcodedText]
+                        android:text="¥0.00"
+                        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\activity_savings_main.xml:82: Warning: Hardcoded string "¥0.00", should use @string resource [HardcodedText]
+                        android:text="¥0.00"
+                        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:19: Warning: Hardcoded string "贷款类型：", should use @string resource [HardcodedText]
+            android:text="贷款类型："
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:44: Warning: Hardcoded string "名称：", should use @string resource [HardcodedText]
+            android:text="名称："
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:69: Warning: Hardcoded string "还款方式：", should use @string resource [HardcodedText]
+            android:text="还款方式："
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:94: Warning: Hardcoded string "本金/额度：", should use @string resource [HardcodedText]
+            android:text="本金/额度："
+            ~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:119: Warning: Hardcoded string "年利率：", should use @string resource [HardcodedText]
+            android:text="年利率："
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:144: Warning: Hardcoded string "期限：", should use @string resource [HardcodedText]
+            android:text="期限："
+            ~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:169: Warning: Hardcoded string "开始日期：", should use @string resource [HardcodedText]
+            android:text="开始日期："
+            ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_confirm_loan.xml:195: Warning: Hardcoded string "还款日：", should use @string resource [HardcodedText]
+            android:text="还款日："
+            ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:36: Warning: Hardcoded string "数据管理", should use @string resource [HardcodedText]
+                    android:text="数据管理"
+                    ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:45: Warning: Hardcoded string "管理您的应用数据", should use @string resource [HardcodedText]
+                    android:text="管理您的应用数据"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:102: Warning: Hardcoded string "导出数据", should use @string resource [HardcodedText]
+                        android:text="导出数据"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:110: Warning: Hardcoded string "将数据导出为文件保存", should use @string resource [HardcodedText]
+                        android:text="将数据导出为文件保存"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:165: Warning: Hardcoded string "导入数据", should use @string resource [HardcodedText]
+                        android:text="导入数据"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:173: Warning: Hardcoded string "从备份文件恢复数据", should use @string resource [HardcodedText]
+                        android:text="从备份文件恢复数据"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:228: Warning: Hardcoded string "清空数据", should use @string resource [HardcodedText]
+                        android:text="清空数据"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:236: Warning: Hardcoded string "删除所有贷款记录（不可恢复）", should use @string resource [HardcodedText]
+                        android:text="删除所有贷款记录（不可恢复）"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_data_menu.xml:266: Warning: Hardcoded string "关  闭", should use @string resource [HardcodedText]
+                android:text="关  闭"
+                ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_loan_card_item.xml:92: Warning: Hardcoded string "当前月供", should use @string resource [HardcodedText]
+                        android:text="当前月供"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_loan_card_item.xml:116: Warning: Hardcoded string "剩余本金", should use @string resource [HardcodedText]
+                        android:text="剩余本金"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:36: Warning: Hardcoded string "功能菜单", should use @string resource [HardcodedText]
+                    android:text="功能菜单"
+                    ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:45: Warning: Hardcoded string "选择要使用的功能", should use @string resource [HardcodedText]
+                    android:text="选择要使用的功能"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:102: Warning: Hardcoded string "版本说明", should use @string resource [HardcodedText]
+                        android:text="版本说明"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:110: Warning: Hardcoded string "查看版本更新记录", should use @string resource [HardcodedText]
+                        android:text="查看版本更新记录"
+                        ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:165: Warning: Hardcoded string "数据管理", should use @string resource [HardcodedText]
+                        android:text="数据管理"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:173: Warning: Hardcoded string "导出、导入和清空数据", should use @string resource [HardcodedText]
+                        android:text="导出、导入和清空数据"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:228: Warning: Hardcoded string "个性化设置", should use @string resource [HardcodedText]
+                        android:text="个性化设置"
+                        ~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:236: Warning: Hardcoded string "主题颜色和背景图片", should use @string resource [HardcodedText]
+                        android:text="主题颜色和背景图片"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:294: Warning: Hardcoded string "添加贷款", should use @string resource [HardcodedText]
+                        android:text="添加贷款"
+                        ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:302: Warning: Hardcoded string "新增一条贷款记录", should use @string resource [HardcodedText]
+                        android:text="新增一条贷款记录"
+                        ~~~~~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\dialog_main_menu.xml:332: Warning: Hardcoded string "关  闭", should use @string resource [HardcodedText]
+                android:text="关  闭"
+                ~~~~~~~~~~~~~~~~~~~
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_loan.xml:52: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
+        android:text="→"
+        ~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+C:\Users\Administrator\Desktop\应用\Personal-financial-planning\app\src\main\res\layout\item_loan_detail_row.xml:28: Warning: When you define paddingStart you should probably also define paddingEnd for right-to-left symmetry [RtlSymmetry]
+        android:paddingStart="8dp"
+        ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RtlSymmetry":
+   If you specify padding or margin on the left side of a layout, you should
+   probably also specify padding on the right side (and vice versa) for
+   right-to-left layout symmetry.
+
+0 errors, 246 warnings

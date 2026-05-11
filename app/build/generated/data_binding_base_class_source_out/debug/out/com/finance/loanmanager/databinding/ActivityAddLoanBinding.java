@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.finance.loanmanager.R;
@@ -19,7 +19,10 @@ import java.lang.String;
 
 public final class ActivityAddLoanBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final ConstraintLayout rootView;
+
+  @NonNull
+  public final ConstraintLayout addLoanRoot;
 
   @NonNull
   public final Button btnSubmit;
@@ -84,7 +87,8 @@ public final class ActivityAddLoanBinding implements ViewBinding {
   @NonNull
   public final TextInputEditText spinnerRepaymentMethod;
 
-  private ActivityAddLoanBinding(@NonNull ScrollView rootView, @NonNull Button btnSubmit,
+  private ActivityAddLoanBinding(@NonNull ConstraintLayout rootView,
+      @NonNull ConstraintLayout addLoanRoot, @NonNull Button btnSubmit,
       @NonNull TextInputEditText etAnnualRate, @NonNull TextInputEditText etCreditCardDate,
       @NonNull TextInputEditText etCreditCardMonths, @NonNull TextInputEditText etCreditCardRate,
       @NonNull TextInputEditText etCreditLimit, @NonNull TextInputEditText etDueDate,
@@ -97,6 +101,7 @@ public final class ActivityAddLoanBinding implements ViewBinding {
       @NonNull TextInputEditText spinnerLoanType,
       @NonNull TextInputEditText spinnerRepaymentMethod) {
     this.rootView = rootView;
+    this.addLoanRoot = addLoanRoot;
     this.btnSubmit = btnSubmit;
     this.etAnnualRate = etAnnualRate;
     this.etCreditCardDate = etCreditCardDate;
@@ -122,7 +127,7 @@ public final class ActivityAddLoanBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -147,6 +152,8 @@ public final class ActivityAddLoanBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      ConstraintLayout addLoanRoot = (ConstraintLayout) rootView;
+
       id = R.id.btnSubmit;
       Button btnSubmit = ViewBindings.findChildViewById(rootView, id);
       if (btnSubmit == null) {
@@ -273,11 +280,12 @@ public final class ActivityAddLoanBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityAddLoanBinding((ScrollView) rootView, btnSubmit, etAnnualRate,
-          etCreditCardDate, etCreditCardMonths, etCreditCardRate, etCreditLimit, etDueDate,
-          etFirstYearBalance, etLoanName, etMonths, etPrincipal, etStartDate, etStudentLoanDate,
-          etStudentLoanRate, etYearlyPayment, layoutBasicInfo, layoutCreditCardFields,
-          layoutNormalFields, layoutStudentLoanFields, spinnerLoanType, spinnerRepaymentMethod);
+      return new ActivityAddLoanBinding((ConstraintLayout) rootView, addLoanRoot, btnSubmit,
+          etAnnualRate, etCreditCardDate, etCreditCardMonths, etCreditCardRate, etCreditLimit,
+          etDueDate, etFirstYearBalance, etLoanName, etMonths, etPrincipal, etStartDate,
+          etStudentLoanDate, etStudentLoanRate, etYearlyPayment, layoutBasicInfo,
+          layoutCreditCardFields, layoutNormalFields, layoutStudentLoanFields, spinnerLoanType,
+          spinnerRepaymentMethod);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

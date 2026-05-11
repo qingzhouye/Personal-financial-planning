@@ -48,6 +48,7 @@ dimen input_height
 dimen list_item_height
 dimen list_item_padding
 dimen progress_height
+dimen safe_area_bottom
 dimen safe_area_top
 dimen spacing_lg
 dimen spacing_md
@@ -87,6 +88,7 @@ drawable ic_menu_add
 drawable ic_menu_clear
 drawable ic_menu_data
 drawable ic_menu_export
+drawable ic_menu_gear
 drawable ic_menu_import
 drawable ic_menu_info
 drawable ic_menu_palette
@@ -97,6 +99,8 @@ drawable theme_color_circle_green
 drawable theme_color_circle_orange
 drawable theme_color_circle_purple
 drawable theme_color_circle_rose
+id addEditSavingsRoot
+id addLoanRoot
 id btnAddLoan
 id btnAddSavings
 id btnBack
@@ -181,16 +185,22 @@ id layoutPayment
 id layoutStudentLoanFields
 id lineChart
 id llDetails
+id loanDetailRoot
+id loanListRoot
 id menuHeader
 id menuItemAddLoan
 id menuItemData
 id menuItemSettings
 id menuItemVersion
+id monthlyTotalRoot
 id progressPaid
 id progressRemaining
 id recyclerView
 id rvRecentSavings
 id rvSavingsHistory
+id savingsChartRoot
+id savingsHistoryRoot
+id savingsRootLayout
 id spinnerLoanType
 id spinnerRepaymentMethod
 id themeItemBlue
@@ -269,6 +279,7 @@ layout dialog_loan_card_item
 layout dialog_main_menu
 layout item_loan
 layout item_loan_detail
+layout item_loan_detail_row
 layout item_monthly
 layout item_savings
 layout item_schedule
@@ -284,6 +295,7 @@ string app_name
 string app_title
 string auto_backup_failed
 string auto_backup_success
+string back
 string background_reset_success
 string background_set_failed
 string background_set_success

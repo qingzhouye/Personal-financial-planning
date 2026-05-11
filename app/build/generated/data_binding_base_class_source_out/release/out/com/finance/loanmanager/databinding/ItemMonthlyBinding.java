@@ -20,7 +20,7 @@ public final class ItemMonthlyBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final TextView tvLoans;
+  public final LinearLayout llDetails;
 
   @NonNull
   public final TextView tvMonth;
@@ -28,10 +28,10 @@ public final class ItemMonthlyBinding implements ViewBinding {
   @NonNull
   public final TextView tvTotal;
 
-  private ItemMonthlyBinding(@NonNull LinearLayout rootView, @NonNull TextView tvLoans,
+  private ItemMonthlyBinding(@NonNull LinearLayout rootView, @NonNull LinearLayout llDetails,
       @NonNull TextView tvMonth, @NonNull TextView tvTotal) {
     this.rootView = rootView;
-    this.tvLoans = tvLoans;
+    this.llDetails = llDetails;
     this.tvMonth = tvMonth;
     this.tvTotal = tvTotal;
   }
@@ -63,9 +63,9 @@ public final class ItemMonthlyBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.tvLoans;
-      TextView tvLoans = ViewBindings.findChildViewById(rootView, id);
-      if (tvLoans == null) {
+      id = R.id.llDetails;
+      LinearLayout llDetails = ViewBindings.findChildViewById(rootView, id);
+      if (llDetails == null) {
         break missingId;
       }
 
@@ -81,7 +81,7 @@ public final class ItemMonthlyBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemMonthlyBinding((LinearLayout) rootView, tvLoans, tvMonth, tvTotal);
+      return new ItemMonthlyBinding((LinearLayout) rootView, llDetails, tvMonth, tvTotal);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

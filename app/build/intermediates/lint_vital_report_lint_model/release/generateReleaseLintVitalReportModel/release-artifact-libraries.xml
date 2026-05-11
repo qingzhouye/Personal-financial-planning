@@ -117,45 +117,6 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="com.github.bumptech.glide:glide:4.16.0@aar"
-      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\7787b386bc99b16b58aafca411cadcc3\transformed\glide-4.16.0\jars\classes.jar"
-      resolved="com.github.bumptech.glide:glide:4.16.0"
-      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\7787b386bc99b16b58aafca411cadcc3\transformed\glide-4.16.0"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="androidx.fragment:fragment:1.5.4@aar"
-      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\bed57f4526e6e67f282fe5fc3f4d78b6\transformed\fragment-1.5.4\jars\classes.jar"
-      resolved="androidx.fragment:fragment:1.5.4"
-      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\bed57f4526e6e67f282fe5fc3f4d78b6\transformed\fragment-1.5.4"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="androidx.activity:activity:1.8.0@aar"
-      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\97f4fb3320ae69b5adc466ba4e568a25\transformed\activity-1.8.0\jars\classes.jar"
-      resolved="androidx.activity:activity:1.8.0"
-      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\97f4fb3320ae69b5adc466ba4e568a25\transformed\activity-1.8.0"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
       name="androidx.drawerlayout:drawerlayout:1.1.1@aar"
       jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\ec896c12f29d4b4cb95c66fff29f4b4f\transformed\drawerlayout-1.1.1\jars\classes.jar"
       resolved="androidx.drawerlayout:drawerlayout:1.1.1"
@@ -208,6 +169,19 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="com.github.bumptech.glide:glide:4.16.0@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\7787b386bc99b16b58aafca411cadcc3\transformed\glide-4.16.0\jars\classes.jar"
+      resolved="com.github.bumptech.glide:glide:4.16.0"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\7787b386bc99b16b58aafca411cadcc3\transformed\glide-4.16.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.vectordrawable:vectordrawable-animated:1.1.0@aar"
       jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\fded920770d8df690f122930e64f85e1\transformed\vectordrawable-animated-1.1.0\jars\classes.jar"
       resolved="androidx.vectordrawable:vectordrawable-animated:1.1.0"
@@ -225,6 +199,19 @@
       jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\04c1340d12c4d30ce22244d937c0885e\transformed\vectordrawable-1.1.0\jars\classes.jar"
       resolved="androidx.vectordrawable:vectordrawable:1.1.0"
       folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\04c1340d12c4d30ce22244d937c0885e\transformed\vectordrawable-1.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.fragment:fragment:1.8.5@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\eb8e3863710786461a47cff7290ffffa\transformed\fragment-1.8.5\jars\classes.jar"
+      resolved="androidx.fragment:fragment:1.8.5"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\eb8e3863710786461a47cff7290ffffa\transformed\fragment-1.8.5"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -260,40 +247,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="androidx.lifecycle:lifecycle-common-jvm:2.8.7@jar"
-      jars="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-common-jvm\2.8.7\7174a594afb73a9ad9ac9074ce78b94af3cc52a7\lifecycle-common-jvm-2.8.7.jar"
-      resolved="androidx.lifecycle:lifecycle-common-jvm:2.8.7"/>
-  <library
-      name="androidx.lifecycle:lifecycle-runtime-android:2.8.7@aar"
-      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\61ed614ea6ecbe03c1f8d82b6039f5da\transformed\lifecycle-runtime-release\jars\classes.jar"
-      resolved="androidx.lifecycle:lifecycle-runtime-android:2.8.7"
-      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\61ed614ea6ecbe03c1f8d82b6039f5da\transformed\lifecycle-runtime-release"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7@aar"
-      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\45a1c47e31b91c3ec42a048978e51d66\transformed\lifecycle-livedata-core-ktx-2.8.7\jars\classes.jar"
-      resolved="androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7"
-      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\45a1c47e31b91c3ec42a048978e51d66\transformed\lifecycle-livedata-core-ktx-2.8.7"
-      manifest="AndroidManifest.xml"
-      resFolder="res"
-      assetsFolder="assets"
-      lintJar="lint.jar"
-      publicResources="public.txt"
-      symbolFile="R.txt"
-      externalAnnotations="annotations.zip"
-      proguardRules="proguard.txt"/>
-  <library
-      name="androidx.lifecycle:lifecycle-livedata-core:2.8.7@aar"
-      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\70641910e046b4e8ff8c927641e6dc79\transformed\lifecycle-livedata-core-2.8.7\jars\classes.jar"
-      resolved="androidx.lifecycle:lifecycle-livedata-core:2.8.7"
-      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\70641910e046b4e8ff8c927641e6dc79\transformed\lifecycle-livedata-core-2.8.7"
+      name="androidx.activity:activity:1.10.0@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\8ba037aa5a13e587999e74156270fe75\transformed\activity-1.10.0\jars\classes.jar"
+      resolved="androidx.activity:activity:1.10.0"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\8ba037aa5a13e587999e74156270fe75\transformed\activity-1.10.0"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -329,6 +286,49 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.lifecycle:lifecycle-common-jvm:2.8.7@jar"
+      jars="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-common-jvm\2.8.7\7174a594afb73a9ad9ac9074ce78b94af3cc52a7\lifecycle-common-jvm-2.8.7.jar"
+      resolved="androidx.lifecycle:lifecycle-common-jvm:2.8.7"/>
+  <library
+      name="androidx.lifecycle:lifecycle-runtime-android:2.8.7@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\61ed614ea6ecbe03c1f8d82b6039f5da\transformed\lifecycle-runtime-release\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-runtime-android:2.8.7"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\61ed614ea6ecbe03c1f8d82b6039f5da\transformed\lifecycle-runtime-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\a7964a74176353de20f41d642094ce41\transformed\lifecycle-runtime-ktx-release\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-runtime-ktx-android:2.8.7"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\a7964a74176353de20f41d642094ce41\transformed\lifecycle-runtime-ktx-release"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
+      name="androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\45a1c47e31b91c3ec42a048978e51d66\transformed\lifecycle-livedata-core-ktx-2.8.7\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-livedata-core-ktx:2.8.7"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\45a1c47e31b91c3ec42a048978e51d66\transformed\lifecycle-livedata-core-ktx-2.8.7"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
+  <library
       name="androidx.lifecycle:lifecycle-viewmodel:2.8.7@aar"
       jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\11cfc4e20ed6046df6a1f92308dd21e5\transformed\lifecycle-viewmodel-2.8.7\jars\classes.jar"
       resolved="androidx.lifecycle:lifecycle-viewmodel:2.8.7"
@@ -355,10 +355,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="androidx.lifecycle:lifecycle-livedata:2.8.7@aar"
-      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\e39440a3e68a2aaac1653fd53e8e9471\transformed\lifecycle-livedata-2.8.7\jars\classes.jar"
-      resolved="androidx.lifecycle:lifecycle-livedata:2.8.7"
-      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\e39440a3e68a2aaac1653fd53e8e9471\transformed\lifecycle-livedata-2.8.7"
+      name="androidx.lifecycle:lifecycle-livedata-core:2.8.7@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\70641910e046b4e8ff8c927641e6dc79\transformed\lifecycle-livedata-core-2.8.7\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-livedata-core:2.8.7"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\70641910e046b4e8ff8c927641e6dc79\transformed\lifecycle-livedata-core-2.8.7"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"
@@ -371,6 +371,19 @@
       name="androidx.lifecycle:lifecycle-common-java8:2.8.7@jar"
       jars="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-common-java8\2.8.7\2ad14aed781c4a73ed4dbb421966d408a0a06686\lifecycle-common-java8-2.8.7.jar"
       resolved="androidx.lifecycle:lifecycle-common-java8:2.8.7"/>
+  <library
+      name="androidx.lifecycle:lifecycle-livedata:2.8.7@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\e39440a3e68a2aaac1653fd53e8e9471\transformed\lifecycle-livedata-2.8.7\jars\classes.jar"
+      resolved="androidx.lifecycle:lifecycle-livedata:2.8.7"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\e39440a3e68a2aaac1653fd53e8e9471\transformed\lifecycle-livedata-2.8.7"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
   <library
       name="androidx.lifecycle:lifecycle-viewmodel-savedstate:2.8.7@aar"
       jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\88ed522a2a832eaacb18f99bb11a9d18\transformed\lifecycle-viewmodel-savedstate-2.8.7\jars\classes.jar"
@@ -455,6 +468,19 @@
       name="commons-io:commons-io:2.15.1@jar"
       jars="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.15.1\f11560da189ab563a5c8e351941415430e9304ea\commons-io-2.15.1.jar"
       resolved="commons-io:commons-io:2.15.1"/>
+  <library
+      name="com.github.PhilJay:MPAndroidChart:v3.1.0@aar"
+      jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\62ffe6c1a8eb37a04f33f7078fa5dfe7\transformed\MPAndroidChart-v3.1.0\jars\classes.jar"
+      resolved="com.github.PhilJay:MPAndroidChart:v3.1.0"
+      folder="C:\Users\Administrator\.gradle\caches\8.9\transforms\62ffe6c1a8eb37a04f33f7078fa5dfe7\transformed\MPAndroidChart-v3.1.0"
+      manifest="AndroidManifest.xml"
+      resFolder="res"
+      assetsFolder="assets"
+      lintJar="lint.jar"
+      publicResources="public.txt"
+      symbolFile="R.txt"
+      externalAnnotations="annotations.zip"
+      proguardRules="proguard.txt"/>
   <library
       name="androidx.cursoradapter:cursoradapter:1.0.0@aar"
       jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\c3e6045cf4c301a12fd1481f534b05ab\transformed\cursoradapter-1.0.0\jars\classes.jar"
@@ -547,6 +573,10 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
+      name="androidx.collection:collection-jvm:1.4.2@jar"
+      jars="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\androidx.collection\collection-jvm\1.4.2\bc60b5568a66d765a9fe8e266fd0c6c727e0b50b\collection-jvm-1.4.2.jar"
+      resolved="androidx.collection:collection-jvm:1.4.2"/>
+  <library
       name="androidx.arch.core:core-common:2.2.0@jar"
       jars="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\androidx.arch.core\core-common\2.2.0\5e1b8b81dfd5f52c56a8d53b18ca759c19a301f3\core-common-2.2.0.jar"
       resolved="androidx.arch.core:core-common:2.2.0"/>
@@ -563,10 +593,6 @@
       symbolFile="R.txt"
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
-  <library
-      name="androidx.collection:collection-jvm:1.4.2@jar"
-      jars="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\androidx.collection\collection-jvm\1.4.2\bc60b5568a66d765a9fe8e266fd0c6c727e0b50b\collection-jvm-1.4.2.jar"
-      resolved="androidx.collection:collection-jvm:1.4.2"/>
   <library
       name="androidx.documentfile:documentfile:1.0.0@aar"
       jars="C:\Users\Administrator\.gradle\caches\8.9\transforms\adac5385cb9e305e8ec3080cb0158146\transformed\documentfile-1.0.0\jars\classes.jar"

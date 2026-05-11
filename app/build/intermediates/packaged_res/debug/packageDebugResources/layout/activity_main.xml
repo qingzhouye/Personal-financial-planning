@@ -25,32 +25,42 @@
                 android:textSize="@dimen/text_headline"
                 android:textStyle="bold"
                 android:textColor="@color/primary_dark"
-                android:gravity="center" />
+                android:gravity="center"
+                android:paddingTop="4dp" />
 
-            <ImageView
-                android:id="@+id/btnSavings"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_toStartOf="@id/btnVersionInfo"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="12dp"
-                android:src="@drawable/ic_savings_coin"
-                android:contentDescription="@string/savings"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true" />
-
-            <ImageView
-                android:id="@+id/btnVersionInfo"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+            <!-- 竖向排列的图标 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:src="@android:drawable/ic_menu_info_details"
-                android:contentDescription="@string/version_info"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/btnSavings"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_savings_coin"
+                    android:contentDescription="@string/savings"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="4dp" />
+
+                <ImageView
+                    android:id="@+id/btnVersionInfo"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_menu_gear"
+                    android:contentDescription="@string/version_info"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="4dp" />
+            </LinearLayout>
         </RelativeLayout>
 
         <!-- 本月应还金额卡片 -->

@@ -75,36 +75,10 @@ public final class ActivityMainBinding implements ViewBinding {
   @Nullable
   public final Button btnImport;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
+  @NonNull
   public final ImageView btnSavings;
 
-  /**
-   * This binding is not available in all configurations.
-   * <p>
-   * Present:
-   * <ul>
-   *   <li>layout/</li>
-   * </ul>
-   *
-   * Absent:
-   * <ul>
-   *   <li>layout-land/</li>
-   * </ul>
-   */
-  @Nullable
+  @NonNull
   public final ImageView btnVersionInfo;
 
   @NonNull
@@ -202,7 +176,7 @@ public final class ActivityMainBinding implements ViewBinding {
 
   private ActivityMainBinding(@NonNull ScrollView rootView, @NonNull Button btnAddLoan,
       @Nullable Button btnClear, @Nullable Button btnExport, @Nullable Button btnImport,
-      @Nullable ImageView btnSavings, @Nullable ImageView btnVersionInfo,
+      @NonNull ImageView btnSavings, @NonNull ImageView btnVersionInfo,
       @NonNull Button btnViewLoans, @NonNull Button btnViewMonthlyTotal,
       @Nullable CardView cardAddLoan, @NonNull CardView cardCurrentMonth,
       @NonNull CardView cardLoanManage, @NonNull CardView cardStats, @NonNull View dividerDetails,
@@ -283,9 +257,15 @@ public final class ActivityMainBinding implements ViewBinding {
 
       id = R.id.btnSavings;
       ImageView btnSavings = ViewBindings.findChildViewById(rootView, id);
+      if (btnSavings == null) {
+        break missingId;
+      }
 
       id = R.id.btnVersionInfo;
       ImageView btnVersionInfo = ViewBindings.findChildViewById(rootView, id);
+      if (btnVersionInfo == null) {
+        break missingId;
+      }
 
       id = R.id.btnViewLoans;
       Button btnViewLoans = ViewBindings.findChildViewById(rootView, id);

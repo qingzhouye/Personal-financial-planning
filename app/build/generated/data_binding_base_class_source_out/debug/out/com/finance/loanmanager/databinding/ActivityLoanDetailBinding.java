@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.finance.loanmanager.R;
@@ -21,7 +21,7 @@ import java.lang.String;
 
 public final class ActivityLoanDetailBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final Button btnConfirmPayment;
@@ -40,6 +40,9 @@ public final class ActivityLoanDetailBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout layoutPayment;
+
+  @NonNull
+  public final ConstraintLayout loanDetailRoot;
 
   @NonNull
   public final ProgressBar progressPaid;
@@ -83,9 +86,10 @@ public final class ActivityLoanDetailBinding implements ViewBinding {
   @NonNull
   public final TextView tvTotalPaid;
 
-  private ActivityLoanDetailBinding(@NonNull ScrollView rootView, @NonNull Button btnConfirmPayment,
-      @NonNull Button btnDelete, @NonNull Button btnMakePayment, @NonNull Button btnViewSchedule,
-      @NonNull TextInputEditText etPaymentAmount, @NonNull LinearLayout layoutPayment,
+  private ActivityLoanDetailBinding(@NonNull ConstraintLayout rootView,
+      @NonNull Button btnConfirmPayment, @NonNull Button btnDelete, @NonNull Button btnMakePayment,
+      @NonNull Button btnViewSchedule, @NonNull TextInputEditText etPaymentAmount,
+      @NonNull LinearLayout layoutPayment, @NonNull ConstraintLayout loanDetailRoot,
       @NonNull ProgressBar progressPaid, @NonNull ProgressBar progressRemaining,
       @NonNull TextView tvMonthlyPayment, @NonNull TextView tvMonths, @NonNull TextView tvPrincipal,
       @NonNull TextView tvProgress, @NonNull TextView tvProgressPercent, @NonNull TextView tvRate,
@@ -99,6 +103,7 @@ public final class ActivityLoanDetailBinding implements ViewBinding {
     this.btnViewSchedule = btnViewSchedule;
     this.etPaymentAmount = etPaymentAmount;
     this.layoutPayment = layoutPayment;
+    this.loanDetailRoot = loanDetailRoot;
     this.progressPaid = progressPaid;
     this.progressRemaining = progressRemaining;
     this.tvMonthlyPayment = tvMonthlyPayment;
@@ -117,7 +122,7 @@ public final class ActivityLoanDetailBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -177,6 +182,8 @@ public final class ActivityLoanDetailBinding implements ViewBinding {
       if (layoutPayment == null) {
         break missingId;
       }
+
+      ConstraintLayout loanDetailRoot = (ConstraintLayout) rootView;
 
       id = R.id.progressPaid;
       ProgressBar progressPaid = ViewBindings.findChildViewById(rootView, id);
@@ -262,10 +269,11 @@ public final class ActivityLoanDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityLoanDetailBinding((ScrollView) rootView, btnConfirmPayment, btnDelete,
-          btnMakePayment, btnViewSchedule, etPaymentAmount, layoutPayment, progressPaid,
-          progressRemaining, tvMonthlyPayment, tvMonths, tvPrincipal, tvProgress, tvProgressPercent,
-          tvRate, tvRemaining, tvRemainingPercent, tvStartDate, tvSubtitle, tvTitle, tvTotalPaid);
+      return new ActivityLoanDetailBinding((ConstraintLayout) rootView, btnConfirmPayment,
+          btnDelete, btnMakePayment, btnViewSchedule, etPaymentAmount, layoutPayment,
+          loanDetailRoot, progressPaid, progressRemaining, tvMonthlyPayment, tvMonths, tvPrincipal,
+          tvProgress, tvProgressPercent, tvRate, tvRemaining, tvRemainingPercent, tvStartDate,
+          tvSubtitle, tvTitle, tvTotalPaid);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

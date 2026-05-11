@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-37:/values-tr/values-tr.xml",
+            "outputFile": "com.finance.loanmanager.app-mergeDebugResources-38:/values-tr/values-tr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\8.9\\transforms\\0511230471927a37d1a973ce90e248b2\\transformed\\core-1.15.0\\res\\values-tr\\values-tr.xml",

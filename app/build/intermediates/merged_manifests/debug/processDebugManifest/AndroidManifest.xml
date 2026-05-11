@@ -33,13 +33,16 @@
         android:name="com.finance.loanmanager.LoanManagerApplication"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
         android:debuggable="true"
         android:enableOnBackInvokedCallback="true"
         android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
+        android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="unspecified"
         android:supportsRtl="true"
         android:theme="@style/Theme.LoanManager" >
 
@@ -56,9 +59,14 @@
 
         <activity
             android:name="com.finance.loanmanager.ui.main.MainActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|uiMode|layoutDirection"
             android:exported="true"
-            android:theme="@style/Theme.LoanManager.NoActionBar" >
+            android:launchMode="singleTop"
+            android:resizeableActivity="true"
+            android:screenOrientation="unspecified"
+            android:supportsPictureInPicture="false"
+            android:theme="@style/Theme.LoanManager.NoActionBar"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,67 +75,79 @@
         </activity>
         <activity
             android:name="com.finance.loanmanager.ui.loan.AddLoanActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/add_loan"
-            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.loan.LoanListActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/loan_list"
-            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.loan.LoanDetailActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/loan_detail"
-            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanListActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanListActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.schedule.PaymentScheduleActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/payment_schedule"
-            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanDetailActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.loan.LoanDetailActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.monthly.MonthlyTotalActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/monthly_total"
-            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.data.DataManagementActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/data_management"
-            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.settings.BackgroundSettingsActivity"
-            android:configChanges="orientation|screenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/personalization_settings"
-            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
 
         <!-- Savings Module -->
         <activity
             android:name="com.finance.loanmanager.ui.savings.SavingsMainActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/savings"
-            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.main.MainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.savings.AddEditSavingsActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/savings_add_record"
-            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.savings.SavingsHistoryActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/savings_history"
-            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
         <activity
             android:name="com.finance.loanmanager.ui.savings.SavingsChartActivity"
-            android:configChanges="orientation|screenSize|smallestScreenSize"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/savings_chart"
-            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity" />
+            android:parentActivityName="com.finance.loanmanager.ui.savings.SavingsMainActivity"
+            android:windowLayoutInDisplayCutoutMode="shortEdges" />
 
         <!-- UCrop Activity -->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/UCropTheme"
+            android:windowLayoutInDisplayCutoutMode="shortEdges"
             android:windowSoftInputMode="adjustPan" />
 
         <provider

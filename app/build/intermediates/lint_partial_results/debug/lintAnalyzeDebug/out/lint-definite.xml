@@ -1,0 +1,2505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 8.7.0" type="incidents">
+
+    <incident
+        id="UseGetLayoutInflater"
+        severity="warning"
+        message="Use of LayoutInflater.from(context) detected. Consider using getLayoutInflater() instead">
+        <fix-replace
+            description="Replace with getLayoutInflater()"
+            robot="true"
+            independent="true"
+            oldString="LayoutInflater.from(context)"
+            replacement="getLayoutInflater()"
+            priority="0"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/data/BackupRestoreDialog.java"
+            line="53"
+            column="21"
+            startOffset="1577"
+            endLine="53"
+            endColumn="49"
+            endOffset="1605"/>
+    </incident>
+
+    <incident
+        id="DefaultLocale"
+        severity="warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/AddLoanActivity.java"
+            line="179"
+            column="27"
+            startOffset="7348"
+            endLine="179"
+            endColumn="87"
+            endOffset="7408"/>
+    </incident>
+
+    <incident
+        id="DefaultLocale"
+        severity="warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/service/LoanCalculator.java"
+            line="24"
+            column="16"
+            startOffset="621"
+            endLine="24"
+            endColumn="87"
+            endOffset="692"/>
+    </incident>
+
+    <incident
+        id="DefaultLocale"
+        severity="warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/service/LoanCalculator.java"
+            line="450"
+            column="34"
+            startOffset="16942"
+            endLine="450"
+            endColumn="83"
+            endOffset="16991"/>
+    </incident>
+
+    <incident
+        id="DefaultLocale"
+        severity="warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/service/LoanCalculator.java"
+            line="483"
+            column="16"
+            startOffset="18120"
+            endLine="486"
+            endColumn="55"
+            endOffset="18305"/>
+    </incident>
+
+    <incident
+        id="DefaultLocale"
+        severity="warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanDetailActivity.java"
+            line="244"
+            column="43"
+            startOffset="9536"
+            endLine="244"
+            endColumn="75"
+            endOffset="9568"/>
+    </incident>
+
+    <incident
+        id="DefaultLocale"
+        severity="warning"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanDetailActivity.java"
+            line="245"
+            column="44"
+            startOffset="9614"
+            endLine="245"
+            endColumn="78"
+            endOffset="9648"/>
+    </incident>
+
+    <incident
+        id="InconsistentLayout"
+        severity="warning"
+        message="The id &quot;layoutDailyPayment&quot; in layout &quot;activity_main&quot; is missing from the following layout configurations: layout-land (present in layout)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="136"
+            column="21"
+            startOffset="6051"
+            endLine="136"
+            endColumn="57"
+            endOffset="6087"
+            message="Occurrence in layout"/>
+    </incident>
+
+    <incident
+        id="InconsistentLayout"
+        severity="warning"
+        message="The id &quot;tvLoanOverviewTitle&quot; in layout &quot;activity_main&quot; is missing from the following layout configurations: layout-land (present in layout)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="243"
+            column="21"
+            startOffset="11100"
+            endLine="243"
+            endColumn="58"
+            endOffset="11137"
+            message="Occurrence in layout"/>
+    </incident>
+
+    <incident
+        id="InconsistentLayout"
+        severity="warning"
+        message="The id &quot;cardAddLoan&quot; in layout &quot;activity_main&quot; is missing from the following layout configurations: layout-land (present in layout)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="274"
+            column="13"
+            startOffset="12486"
+            endLine="274"
+            endColumn="42"
+            endOffset="12515"
+            message="Occurrence in layout"/>
+    </incident>
+
+    <incident
+        id="OldTargetApi"
+        severity="warning"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details.">
+        <fix-replace
+            description="Update targetSdkVersion to 36"
+            oldString="35"
+            replacement="36"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="12"
+            column="9"
+            startOffset="220"
+            endLine="12"
+            endColumn="21"
+            endOffset="232"/>
+    </incident>
+
+    <incident
+        id="InflateParams"
+        severity="warning"
+        message="Avoid passing `null` as the view root (needed to resolve layout parameters on the inflated layout&apos;s root element)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/main/MainActivity.java"
+            line="712"
+            column="89"
+            startOffset="28240"
+            endLine="712"
+            endColumn="93"
+            endOffset="28244"/>
+    </incident>
+
+    <incident
+        id="GradleDependency"
+        severity="warning"
+        message="A newer version of org.apache.xmlbeans:xmlbeans than 5.1.1 is available: 5.2.0">
+        <fix-replace
+            description="Change to 5.2.0"
+            family="Update versions"
+            oldString="5.1.1"
+            replacement="5.2.0"
+            priority="0"/>
+        <location
+            file="${:app*projectDir}/build.gradle"
+            line="77"
+            column="20"
+            startOffset="2583"
+            endLine="77"
+            endColumn="56"
+            endOffset="2619"/>
+    </incident>
+
+    <incident
+        id="DiscouragedApi"
+        severity="warning"
+        message="Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="29"
+            column="9"
+            startOffset="1265"
+            endLine="29"
+            endColumn="48"
+            endOffset="1304"/>
+    </incident>
+
+    <incident
+        id="DiscouragedApi"
+        severity="warning"
+        message="Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="49"
+            column="13"
+            startOffset="2231"
+            endLine="49"
+            endColumn="52"
+            endOffset="2270"/>
+    </incident>
+
+    <incident
+        id="DiscouragedApi"
+        severity="warning"
+        message="Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*manifest*0}"
+            line="140"
+            column="13"
+            startOffset="6879"
+            endLine="140"
+            endColumn="49"
+            endOffset="6915"/>
+    </incident>
+
+    <incident
+        id="UseCompatLoadingForDrawables"
+        severity="warning"
+        message="Use `AppCompatResources.getDrawable()`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/main/MainActivity.java"
+            line="749"
+            column="42"
+            startOffset="29742"
+            endLine="749"
+            endColumn="74"
+            endOffset="29774"/>
+    </incident>
+
+    <incident
+        id="TrustAllX509TrustManager"
+        severity="warning"
+        message="`checkClientTrusted` is empty, which could cause insecure network traffic due to trusting arbitrary TLS/SSL certificates presented by peers">
+        <location
+            file="$GRADLE_USER_HOME/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/5.2.5/df9f2c52371eeba24db8ea8cafa77285c3cc0742/poi-ooxml-5.2.5.jar"/>
+    </incident>
+
+    <incident
+        id="TrustAllX509TrustManager"
+        severity="warning"
+        message="`checkServerTrusted` is empty, which could cause insecure network traffic due to trusting arbitrary TLS/SSL certificates presented by peers">
+        <location
+            file="$GRADLE_USER_HOME/caches/modules-2/files-2.1/org.apache.poi/poi-ooxml/5.2.5/df9f2c52371eeba24db8ea8cafa77285c3cc0742/poi-ooxml-5.2.5.jar"/>
+    </incident>
+
+    <incident
+        id="NotifyDataSetChanged"
+        severity="warning"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanAdapter.java"
+            line="33"
+            column="9"
+            startOffset="992"
+            endLine="33"
+            endColumn="31"
+            endOffset="1014"/>
+    </incident>
+
+    <incident
+        id="NotifyDataSetChanged"
+        severity="warning"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/monthly/MonthlyAdapter.java"
+            line="61"
+            column="9"
+            startOffset="1475"
+            endLine="61"
+            endColumn="31"
+            endOffset="1497"/>
+    </incident>
+
+    <incident
+        id="NotifyDataSetChanged"
+        severity="warning"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/savings/SavingsAdapter.java"
+            line="41"
+            column="9"
+            startOffset="1345"
+            endLine="41"
+            endColumn="31"
+            endOffset="1367"/>
+    </incident>
+
+    <incident
+        id="NotifyDataSetChanged"
+        severity="warning"
+        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/schedule/ScheduleAdapter.java"
+            line="27"
+            column="9"
+            startOffset="823"
+            endLine="27"
+            endColumn="31"
+            endOffset="845"/>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="This folder configuration (`v26`) is unnecessary; `minSdkVersion` is 26. Merge all the resources in this folder into `mipmap-anydpi`.">
+        <fix-data file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26" folderName="mipmap-anydpi" requiresApi="26"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/mipmap-anydpi-v26"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/activity_main.xml"
+            line="83"
+            column="18"
+            startOffset="3502"
+            endLine="83"
+            endColumn="30"
+            endOffset="3514"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="83"
+            column="18"
+            startOffset="3503"
+            endLine="83"
+            endColumn="30"
+            endOffset="3515"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/activity_main.xml"
+            line="135"
+            column="18"
+            startOffset="6016"
+            endLine="135"
+            endColumn="30"
+            endOffset="6028"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_main.xml"
+            line="135"
+            column="18"
+            startOffset="6017"
+            endLine="135"
+            endColumn="30"
+            endOffset="6029"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout-land/activity_main.xml"
+            line="226"
+            column="10"
+            startOffset="10362"
+            endLine="226"
+            endColumn="22"
+            endOffset="10374"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="25"
+            column="6"
+            startOffset="927"
+            endLine="25"
+            endColumn="18"
+            endOffset="939"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_savings_chart.xml"
+            line="84"
+            column="14"
+            startOffset="3319"
+            endLine="84"
+            endColumn="26"
+            endOffset="3331"/>
+    </incident>
+
+    <incident
+        id="DisableBaselineAlignment"
+        severity="warning"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance">
+        <fix-attribute
+            description="Set baselineAligned=&quot;false&quot;"
+            robot="true"
+            independent="true"
+            namespace="http://schemas.android.com/apk/res/android"
+            attribute="baselineAligned"
+            value="false"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_loan_card_item.xml"
+            line="78"
+            column="14"
+            startOffset="3291"
+            endLine="78"
+            endColumn="26"
+            endOffset="3303"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/card_background` with a theme that also paints a background (inferred theme is `@style/Theme.LoanManager`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_monthly.xml"
+            line="7"
+            column="5"
+            startOffset="267"
+            endLine="7"
+            endColumn="48"
+            endOffset="310"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `?attr/selectableItemBackground` with a theme that also paints a background (inferred theme is `@style/Theme.LoanManager`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_savings.xml"
+            line="8"
+            column="5"
+            startOffset="319"
+            endLine="8"
+            endColumn="56"
+            endOffset="370"/>
+    </incident>
+
+    <incident
+        id="Overdraw"
+        severity="warning"
+        message="Possible overdraw: Root element paints background `@color/card_background` with a theme that also paints a background (inferred theme is `@style/Theme.LoanManager`)">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_schedule.xml"
+            line="7"
+            column="5"
+            startOffset="266"
+            endLine="7"
+            endColumn="48"
+            endOffset="309"/>
+    </incident>
+
+    <incident
+        id="UselessParent"
+        severity="warning"
+        message="This `LinearLayout` layout or its `LinearLayout` parent is unnecessary; transfer the `background` attribute to the other view">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="12"
+            column="6"
+            startOffset="397"
+            endLine="12"
+            endColumn="18"
+            endOffset="409"/>
+    </incident>
+
+    <incident
+        id="UselessParent"
+        severity="warning"
+        message="This `LinearLayout` layout or its `FrameLayout` parent is unnecessary">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="26"
+            column="14"
+            startOffset="893"
+            endLine="26"
+            endColumn="26"
+            endOffset="905"/>
+    </incident>
+
+    <incident
+        id="UselessParent"
+        severity="warning"
+        message="This `LinearLayout` layout or its `LinearLayout` parent is unnecessary; transfer the `background` attribute to the other view">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="12"
+            column="6"
+            startOffset="397"
+            endLine="12"
+            endColumn="18"
+            endOffset="409"/>
+    </incident>
+
+    <incident
+        id="UselessParent"
+        severity="warning"
+        message="This `LinearLayout` layout or its `FrameLayout` parent is unnecessary">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="26"
+            column="14"
+            startOffset="889"
+            endLine="26"
+            endColumn="26"
+            endOffset="901"/>
+    </incident>
+
+    <incident
+        id="TypographyEllipsis"
+        severity="warning"
+        message="Replace &quot;...&quot; with ellipsis character (…, &amp;#8230;) ?">
+        <fix-replace
+            description="Replace with …"
+            oldString="..."
+            replacement="…"
+            priority="0"/>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="133"
+            column="37"
+            startOffset="5910"
+            endLine="133"
+            endColumn="46"
+            endOffset="5919"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="116"
+            column="13"
+            startOffset="4306"
+            endLine="116"
+            endColumn="36"
+            endOffset="4329"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="127"
+            column="13"
+            startOffset="4687"
+            endLine="127"
+            endColumn="36"
+            endOffset="4710"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="139"
+            column="13"
+            startOffset="5107"
+            endLine="139"
+            endColumn="36"
+            endOffset="5130"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="151"
+            column="13"
+            startOffset="5526"
+            endLine="151"
+            endColumn="36"
+            endOffset="5549"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="163"
+            column="13"
+            startOffset="5945"
+            endLine="163"
+            endColumn="36"
+            endOffset="5968"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="175"
+            column="13"
+            startOffset="6366"
+            endLine="175"
+            endColumn="36"
+            endOffset="6389"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `9sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_schedule.xml"
+            line="13"
+            column="9"
+            startOffset="455"
+            endLine="13"
+            endColumn="31"
+            endOffset="477"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `9sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_schedule.xml"
+            line="22"
+            column="9"
+            startOffset="737"
+            endLine="22"
+            endColumn="31"
+            endOffset="759"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `9sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_schedule.xml"
+            line="32"
+            column="9"
+            startOffset="1056"
+            endLine="32"
+            endColumn="31"
+            endOffset="1078"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `9sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_schedule.xml"
+            line="42"
+            column="9"
+            startOffset="1372"
+            endLine="42"
+            endColumn="31"
+            endOffset="1394"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `9sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_schedule.xml"
+            line="52"
+            column="9"
+            startOffset="1694"
+            endLine="52"
+            endColumn="31"
+            endOffset="1716"/>
+    </incident>
+
+    <incident
+        id="SmallSp"
+        severity="warning"
+        message="Avoid using sizes smaller than `11sp`: `9sp`">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_schedule.xml"
+            line="62"
+            column="9"
+            startOffset="2017"
+            endLine="62"
+            endColumn="31"
+            endOffset="2039"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_background_settings.xml"
+            line="60"
+            column="22"
+            startOffset="2480"
+            endLine="60"
+            endColumn="31"
+            endOffset="2489"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_background_settings.xml"
+            line="96"
+            column="22"
+            startOffset="4180"
+            endLine="96"
+            endColumn="31"
+            endOffset="4189"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_background_settings.xml"
+            line="132"
+            column="22"
+            startOffset="5886"
+            endLine="132"
+            endColumn="31"
+            endOffset="5895"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_background_settings.xml"
+            line="168"
+            column="22"
+            startOffset="7596"
+            endLine="168"
+            endColumn="31"
+            endOffset="7605"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_background_settings.xml"
+            line="204"
+            column="22"
+            startOffset="9303"
+            endLine="204"
+            endColumn="31"
+            endOffset="9312"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_background_settings.xml"
+            line="240"
+            column="22"
+            startOffset="11004"
+            endLine="240"
+            endColumn="31"
+            endOffset="11013"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="84"
+            column="18"
+            startOffset="3082"
+            endLine="84"
+            endColumn="27"
+            endOffset="3091"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="117"
+            column="18"
+            startOffset="4488"
+            endLine="117"
+            endColumn="27"
+            endOffset="4497"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="147"
+            column="18"
+            startOffset="5645"
+            endLine="147"
+            endColumn="27"
+            endOffset="5654"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="180"
+            column="18"
+            startOffset="7051"
+            endLine="180"
+            endColumn="27"
+            endOffset="7060"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="210"
+            column="18"
+            startOffset="8213"
+            endLine="210"
+            endColumn="27"
+            endOffset="8222"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="243"
+            column="18"
+            startOffset="9621"
+            endLine="243"
+            endColumn="27"
+            endOffset="9630"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="84"
+            column="18"
+            startOffset="3075"
+            endLine="84"
+            endColumn="27"
+            endOffset="3084"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="117"
+            column="18"
+            startOffset="4477"
+            endLine="117"
+            endColumn="27"
+            endOffset="4486"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="147"
+            column="18"
+            startOffset="5628"
+            endLine="147"
+            endColumn="27"
+            endOffset="5637"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="180"
+            column="18"
+            startOffset="7034"
+            endLine="180"
+            endColumn="27"
+            endOffset="7043"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="210"
+            column="18"
+            startOffset="8190"
+            endLine="210"
+            endColumn="27"
+            endOffset="8199"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="243"
+            column="18"
+            startOffset="9599"
+            endLine="243"
+            endColumn="27"
+            endOffset="9608"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="276"
+            column="18"
+            startOffset="10907"
+            endLine="276"
+            endColumn="27"
+            endOffset="10916"/>
+    </incident>
+
+    <incident
+        id="ContentDescription"
+        severity="warning"
+        message="Missing `contentDescription` attribute on image">
+        <fix-alternatives>
+            <fix-attribute
+                description="Set contentDescription"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="contentDescription"
+                value="TODO"
+                point="4"
+                mark="0"/>
+            <fix-attribute
+                description="Set importantForAccessibility=&quot;no&quot;"
+                namespace="http://schemas.android.com/apk/res/android"
+                attribute="importantForAccessibility"
+                value="no"/>
+        </fix-alternatives>
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="309"
+            column="18"
+            startOffset="12309"
+            endLine="309"
+            endColumn="27"
+            endOffset="12318"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/AddLoanActivity.java"
+            line="354"
+            column="88"
+            startOffset="15174"
+            endLine="354"
+            endColumn="114"
+            endOffset="15200"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/AddLoanActivity.java"
+            line="355"
+            column="84"
+            startOffset="15286"
+            endLine="355"
+            endColumn="107"
+            endOffset="15309"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/AddLoanActivity.java"
+            line="363"
+            column="31"
+            startOffset="15748"
+            endLine="363"
+            endColumn="61"
+            endOffset="15778"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/AddLoanActivity.java"
+            line="371"
+            column="31"
+            startOffset="16124"
+            endLine="371"
+            endColumn="41"
+            endOffset="16134"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanAdapter.java"
+            line="48"
+            column="36"
+            startOffset="1544"
+            endLine="48"
+            endColumn="113"
+            endOffset="1621"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanAdapter.java"
+            line="49"
+            column="41"
+            startOffset="1664"
+            endLine="49"
+            endColumn="117"
+            endOffset="1740"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanDetailActivity.java"
+            line="210"
+            column="33"
+            startOffset="7728"
+            endLine="210"
+            endColumn="87"
+            endOffset="7782"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanDetailActivity.java"
+            line="231"
+            column="33"
+            startOffset="8455"
+            endLine="231"
+            endColumn="87"
+            endOffset="8509"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanDetailActivity.java"
+            line="232"
+            column="36"
+            startOffset="8547"
+            endLine="232"
+            endColumn="104"
+            endOffset="8615"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanDetailActivity.java"
+            line="234"
+            column="32"
+            startOffset="8740"
+            endLine="234"
+            endColumn="58"
+            endOffset="8766"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/loan/LoanDetailActivity.java"
+            line="235"
+            column="34"
+            startOffset="8802"
+            endLine="235"
+            endColumn="57"
+            endOffset="8825"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/main/MainActivity.java"
+            line="600"
+            column="31"
+            startOffset="23911"
+            endLine="600"
+            endColumn="93"
+            endOffset="23973"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/main/MainActivity.java"
+            line="602"
+            column="35"
+            startOffset="24099"
+            endLine="602"
+            endColumn="53"
+            endOffset="24117"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/main/MainActivity.java"
+            line="604"
+            column="33"
+            startOffset="24241"
+            endLine="604"
+            endColumn="74"
+            endOffset="24282"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/monthly/MonthlyAdapter.java"
+            line="112"
+            column="24"
+            startOffset="3224"
+            endLine="112"
+            endColumn="43"
+            endOffset="3243"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/schedule/PaymentScheduleActivity.java"
+            line="111"
+            column="36"
+            startOffset="3944"
+            endLine="112"
+            endColumn="68"
+            endOffset="4067"/>
+    </incident>
+
+    <incident
+        id="SetTextI18n"
+        severity="warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders.">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*javaDir*0}/com/finance/loanmanager/ui/schedule/PaymentScheduleActivity.java"
+            line="116"
+            column="35"
+            startOffset="4278"
+            endLine="116"
+            endColumn="56"
+            endOffset="4299"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;工资&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_edit_savings.xml"
+            line="147"
+            column="25"
+            startOffset="6775"
+            endLine="147"
+            endColumn="42"
+            endOffset="6792"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;购物&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_edit_savings.xml"
+            line="153"
+            column="25"
+            startOffset="7078"
+            endLine="153"
+            endColumn="42"
+            endOffset="7095"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;餐饮&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_edit_savings.xml"
+            line="159"
+            column="25"
+            startOffset="7381"
+            endLine="159"
+            endColumn="42"
+            endOffset="7398"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;投资收益&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_edit_savings.xml"
+            line="165"
+            column="25"
+            startOffset="7684"
+            endLine="165"
+            endColumn="44"
+            endOffset="7703"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;转账&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_edit_savings.xml"
+            line="171"
+            column="25"
+            startOffset="7989"
+            endLine="171"
+            endColumn="42"
+            endOffset="8006"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;其他&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_edit_savings.xml"
+            line="177"
+            column="25"
+            startOffset="8292"
+            endLine="177"
+            endColumn="42"
+            endOffset="8309"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;12&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_loan.xml"
+            line="289"
+            column="25"
+            startOffset="14223"
+            endLine="289"
+            endColumn="42"
+            endOffset="14240"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;18&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_add_loan.xml"
+            line="332"
+            column="25"
+            startOffset="16473"
+            endLine="332"
+            endColumn="42"
+            endOffset="16490"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;基本信息&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="64"
+            column="21"
+            startOffset="2699"
+            endLine="64"
+            endColumn="40"
+            endOffset="2718"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;贷款本金&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="80"
+            column="25"
+            startOffset="3425"
+            endLine="80"
+            endColumn="44"
+            endOffset="3444"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;年利率&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="108"
+            column="25"
+            startOffset="4736"
+            endLine="108"
+            endColumn="43"
+            endOffset="4754"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;贷款期限&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="136"
+            column="25"
+            startOffset="6041"
+            endLine="136"
+            endColumn="44"
+            endOffset="6060"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;开始日期&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="164"
+            column="25"
+            startOffset="7349"
+            endLine="164"
+            endColumn="44"
+            endOffset="7368"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;还款情况&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="192"
+            column="21"
+            startOffset="8608"
+            endLine="192"
+            endColumn="40"
+            endOffset="8627"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;已还金额&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="207"
+            column="25"
+            startOffset="9294"
+            endLine="207"
+            endColumn="44"
+            endOffset="9313"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;剩余本金&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="235"
+            column="25"
+            startOffset="10605"
+            endLine="235"
+            endColumn="44"
+            endOffset="10624"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;当前月供&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="263"
+            column="25"
+            startOffset="11911"
+            endLine="263"
+            endColumn="44"
+            endOffset="11930"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;还款进度&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="291"
+            column="25"
+            startOffset="13222"
+            endLine="291"
+            endColumn="44"
+            endOffset="13241"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;还款进度&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="322"
+            column="21"
+            startOffset="14608"
+            endLine="322"
+            endColumn="40"
+            endOffset="14627"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;已还&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="336"
+            column="25"
+            startOffset="15235"
+            endLine="336"
+            endColumn="42"
+            endOffset="15252"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;剩余&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_loan_detail.xml"
+            line="367"
+            column="25"
+            startOffset="16655"
+            endLine="367"
+            endColumn="42"
+            endOffset="16672"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;日期&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_monthly_total.xml"
+            line="65"
+            column="17"
+            startOffset="2632"
+            endLine="65"
+            endColumn="34"
+            endOffset="2649"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;总金额&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_monthly_total.xml"
+            line="75"
+            column="17"
+            startOffset="2992"
+            endLine="75"
+            endColumn="35"
+            endOffset="3010"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;明细&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_monthly_total.xml"
+            line="86"
+            column="17"
+            startOffset="3393"
+            endLine="86"
+            endColumn="34"
+            endOffset="3410"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;期数&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="115"
+            column="13"
+            startOffset="4275"
+            endLine="115"
+            endColumn="30"
+            endOffset="4292"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;日期&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="126"
+            column="13"
+            startOffset="4656"
+            endLine="126"
+            endColumn="30"
+            endOffset="4673"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;还款额&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="138"
+            column="13"
+            startOffset="5075"
+            endLine="138"
+            endColumn="31"
+            endOffset="5093"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;本金&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="150"
+            column="13"
+            startOffset="5495"
+            endLine="150"
+            endColumn="30"
+            endOffset="5512"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;利息&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="162"
+            column="13"
+            startOffset="5914"
+            endLine="162"
+            endColumn="30"
+            endOffset="5931"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;剩余本金&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_payment_schedule.xml"
+            line="174"
+            column="13"
+            startOffset="6333"
+            endLine="174"
+            endColumn="32"
+            endOffset="6352"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;¥0.00&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_savings_chart.xml"
+            line="101"
+            column="25"
+            startOffset="4050"
+            endLine="101"
+            endColumn="45"
+            endOffset="4070"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;¥0.00&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_savings_chart.xml"
+            line="125"
+            column="25"
+            startOffset="5126"
+            endLine="125"
+            endColumn="45"
+            endOffset="5146"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;¥0.00&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_savings_chart.xml"
+            line="149"
+            column="25"
+            startOffset="6203"
+            endLine="149"
+            endColumn="45"
+            endOffset="6223"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;¥0.00&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/activity_savings_main.xml"
+            line="82"
+            column="25"
+            startOffset="3701"
+            endLine="82"
+            endColumn="45"
+            endOffset="3721"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;贷款类型：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="19"
+            column="13"
+            startOffset="641"
+            endLine="19"
+            endColumn="33"
+            endOffset="661"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;名称：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="44"
+            column="13"
+            startOffset="1476"
+            endLine="44"
+            endColumn="31"
+            endOffset="1494"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;还款方式：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="69"
+            column="13"
+            startOffset="2311"
+            endLine="69"
+            endColumn="33"
+            endOffset="2331"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;本金/额度：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="94"
+            column="13"
+            startOffset="3156"
+            endLine="94"
+            endColumn="34"
+            endOffset="3177"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;年利率：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="119"
+            column="13"
+            startOffset="3994"
+            endLine="119"
+            endColumn="32"
+            endOffset="4013"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;期限：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="144"
+            column="13"
+            startOffset="4830"
+            endLine="144"
+            endColumn="31"
+            endOffset="4848"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;开始日期：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="169"
+            column="13"
+            startOffset="5663"
+            endLine="169"
+            endColumn="33"
+            endOffset="5683"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;还款日：&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_confirm_loan.xml"
+            line="195"
+            column="13"
+            startOffset="6541"
+            endLine="195"
+            endColumn="32"
+            endOffset="6560"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;数据管理&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="36"
+            column="21"
+            startOffset="1318"
+            endLine="36"
+            endColumn="40"
+            endOffset="1337"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;管理您的应用数据&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="45"
+            column="21"
+            startOffset="1695"
+            endLine="45"
+            endColumn="44"
+            endOffset="1718"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;导出数据&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="102"
+            column="25"
+            startOffset="3892"
+            endLine="102"
+            endColumn="44"
+            endOffset="3911"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;将数据导出为文件保存&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="110"
+            column="25"
+            startOffset="4247"
+            endLine="110"
+            endColumn="50"
+            endOffset="4272"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;导入数据&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="165"
+            column="25"
+            startOffset="6456"
+            endLine="165"
+            endColumn="44"
+            endOffset="6475"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;从备份文件恢复数据&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="173"
+            column="25"
+            startOffset="6811"
+            endLine="173"
+            endColumn="49"
+            endOffset="6835"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;清空数据&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="228"
+            column="25"
+            startOffset="9021"
+            endLine="228"
+            endColumn="44"
+            endOffset="9040"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;删除所有贷款记录（不可恢复）&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="236"
+            column="25"
+            startOffset="9376"
+            endLine="236"
+            endColumn="54"
+            endOffset="9405"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;关  闭&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_data_menu.xml"
+            line="266"
+            column="17"
+            startOffset="10473"
+            endLine="266"
+            endColumn="36"
+            endOffset="10492"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;当前月供&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_loan_card_item.xml"
+            line="92"
+            column="25"
+            startOffset="3882"
+            endLine="92"
+            endColumn="44"
+            endOffset="3901"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;剩余本金&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_loan_card_item.xml"
+            line="116"
+            column="25"
+            startOffset="4962"
+            endLine="116"
+            endColumn="44"
+            endOffset="4981"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;功能菜单&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="36"
+            column="21"
+            startOffset="1314"
+            endLine="36"
+            endColumn="40"
+            endOffset="1333"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;选择要使用的功能&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="45"
+            column="21"
+            startOffset="1691"
+            endLine="45"
+            endColumn="44"
+            endOffset="1714"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;版本说明&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="102"
+            column="25"
+            startOffset="3883"
+            endLine="102"
+            endColumn="44"
+            endOffset="3902"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;查看版本更新记录&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="110"
+            column="25"
+            startOffset="4238"
+            endLine="110"
+            endColumn="48"
+            endOffset="4261"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;数据管理&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="165"
+            column="25"
+            startOffset="6438"
+            endLine="165"
+            endColumn="44"
+            endOffset="6457"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;导出、导入和清空数据&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="173"
+            column="25"
+            startOffset="6793"
+            endLine="173"
+            endColumn="50"
+            endOffset="6818"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;个性化设置&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="228"
+            column="25"
+            startOffset="9003"
+            endLine="228"
+            endColumn="45"
+            endOffset="9023"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;主题颜色和背景图片&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="236"
+            column="25"
+            startOffset="9359"
+            endLine="236"
+            endColumn="49"
+            endOffset="9383"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;添加贷款&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="294"
+            column="25"
+            startOffset="11715"
+            endLine="294"
+            endColumn="44"
+            endOffset="11734"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;新增一条贷款记录&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="302"
+            column="25"
+            startOffset="12070"
+            endLine="302"
+            endColumn="48"
+            endOffset="12093"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;关  闭&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/dialog_main_menu.xml"
+            line="332"
+            column="17"
+            startOffset="13157"
+            endLine="332"
+            endColumn="36"
+            endOffset="13176"/>
+    </incident>
+
+    <incident
+        id="HardcodedText"
+        severity="warning"
+        message="Hardcoded string &quot;→&quot;, should use `@string` resource">
+        <location
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/layout/item_loan.xml"
+            line="52"
+            column="9"
+            startOffset="1946"
+            endLine="52"
+            endColumn="25"
+            endOffset="1962"/>
+    </incident>
+
+</incidents>

@@ -3000,6 +3000,7 @@ dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
 dimen progress_height
+dimen safe_area_bottom
 dimen safe_area_top
 dimen spacing_lg
 dimen spacing_md
@@ -3176,6 +3177,7 @@ drawable ic_menu_add
 drawable ic_menu_clear
 drawable ic_menu_data
 drawable ic_menu_export
+drawable ic_menu_gear
 drawable ic_menu_import
 drawable ic_menu_info
 drawable ic_menu_palette
@@ -3358,6 +3360,8 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addEditSavingsRoot
+id addLoanRoot
 id alertTitle
 id aligned
 id all
@@ -3627,6 +3631,8 @@ id linear
 id listMode
 id list_item
 id llDetails
+id loanDetailRoot
+id loanListRoot
 id m3_side_sheet
 id marquee
 id masked
@@ -3669,6 +3675,7 @@ id month_navigation_fragment_toggle
 id month_navigation_next
 id month_navigation_previous
 id month_title
+id monthlyTotalRoot
 id motion_base
 id mtrl_anchor_parent
 id mtrl_calendar_day_selector_frame
@@ -3769,6 +3776,9 @@ id rvRecentSavings
 id rvSavingsHistory
 id save_non_transition_alpha
 id save_overlay_view
+id savingsChartRoot
+id savingsHistoryRoot
+id savingsRootLayout
 id sawtooth
 id scale
 id scale_scroll_wheel
@@ -4129,6 +4139,7 @@ layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_loan
 layout item_loan_detail
+layout item_loan_detail_row
 layout item_monthly
 layout item_savings
 layout item_schedule
@@ -4243,6 +4254,7 @@ string app_title
 string appbar_scrolling_view_behavior
 string auto_backup_failed
 string auto_backup_success
+string back
 string background_reset_success
 string background_set_failed
 string background_set_success
