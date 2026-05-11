@@ -1457,6 +1457,7 @@ color dim_foreground_disabled_material_light
 color dim_foreground_material_dark
 color dim_foreground_material_light
 color divider
+color divider_color
 color error_color_material_dark
 color error_color_material_light
 color foreground_material_dark
@@ -2147,6 +2148,7 @@ color secondary_text_disabled_material_dark
 color secondary_text_disabled_material_light
 color semi_transparent_white
 color success
+color success_green
 color success_light
 color switch_thumb_disabled_material_dark
 color switch_thumb_disabled_material_light
@@ -2154,6 +2156,7 @@ color switch_thumb_material_dark
 color switch_thumb_material_light
 color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
+color text_gray
 color text_hint
 color text_primary
 color text_secondary
@@ -3408,6 +3411,7 @@ id btnSave
 id btnSavings
 id btnSelectImage
 id btnSubmit
+id btnVersionClose
 id btnVersionInfo
 id btnViewChart
 id btnViewLoans
@@ -3964,6 +3968,7 @@ id uniform
 id unlabeled
 id up
 id useLogo
+id versionHeader
 id vertical
 id vertical_only
 id view_offset_helper
@@ -4135,6 +4140,7 @@ layout dialog_confirm_loan
 layout dialog_data_menu
 layout dialog_loan_card_item
 layout dialog_main_menu
+layout dialog_version_info
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_loan
@@ -4290,6 +4296,7 @@ string clear_data
 string clear_success
 string clear_text_end_icon_content_description
 string click_to_manage
+string close
 string confirm
 string confirm_add
 string confirm_payment

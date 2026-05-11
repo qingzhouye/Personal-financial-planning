@@ -9,6 +9,7 @@ color card_background_alt
 color card_background_transparent
 color danger
 color divider
+color divider_color
 color info
 color input_background
 color input_border
@@ -23,7 +24,9 @@ color primary_dark
 color primary_light
 color semi_transparent_white
 color success
+color success_green
 color success_light
+color text_gray
 color text_hint
 color text_primary
 color text_secondary
@@ -118,6 +121,7 @@ id btnSave
 id btnSavings
 id btnSelectImage
 id btnSubmit
+id btnVersionClose
 id btnVersionInfo
 id btnViewChart
 id btnViewLoans
@@ -261,6 +265,7 @@ id tv_backup_date
 id tv_backup_info
 id tv_backup_size
 id tv_current_data
+id versionHeader
 layout activity_add_edit_savings
 layout activity_add_loan
 layout activity_background_settings
@@ -277,6 +282,7 @@ layout dialog_confirm_loan
 layout dialog_data_menu
 layout dialog_loan_card_item
 layout dialog_main_menu
+layout dialog_version_info
 layout item_loan
 layout item_loan_detail
 layout item_loan_detail_row
@@ -314,6 +320,7 @@ string clear_confirm_again
 string clear_data
 string clear_success
 string click_to_manage
+string close
 string confirm
 string confirm_add
 string confirm_payment

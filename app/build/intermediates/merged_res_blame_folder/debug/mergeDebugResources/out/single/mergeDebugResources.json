@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\layout_activity_add_loan.xml.flat",
-        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\layout\\activity_add_loan.xml"
-    },
-    {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\drawable_ic_menu_info.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\drawable\\ic_menu_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\layout_activity_add_loan.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\layout\\activity_add_loan.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\layout_activity_savings_history.xml.flat",
@@ -16,12 +16,12 @@
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\layout\\dialog_data_menu.xml"
     },
     {
-        "merged": "com.finance.loanmanager.app-debug-40:/layout_item_loan_detail_row.xml.flat",
-        "source": "com.finance.loanmanager.app-main-42:/layout/item_loan_detail_row.xml"
-    },
-    {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\layout_activity_savings_chart.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\layout\\activity_savings_chart.xml"
+    },
+    {
+        "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\layout_item_loan_detail_row.xml.flat",
+        "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\layout\\item_loan_detail_row.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\drawable_bg_menu_icon_blue.xml.flat",
@@ -38,6 +38,10 @@
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\mipmap-xhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-40:/layout_dialog_version_info.xml.flat",
+        "source": "com.finance.loanmanager.app-main-42:/layout/dialog_version_info.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\drawable_gradient_background_rose.xml.flat",
@@ -62,6 +66,10 @@
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\layout_dialog_main_menu.xml.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\layout\\dialog_main_menu.xml"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-40:/drawable_ic_menu_gear.xml.flat",
+        "source": "com.finance.loanmanager.app-main-42:/drawable/ic_menu_gear.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\drawable_bg_menu_icon_purple.xml.flat",
@@ -254,6 +262,14 @@
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\mipmap-xxhdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-main-42:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-40:/drawable_ic_savings_coin.xml.flat",
+        "source": "com.finance.loanmanager.app-main-42:/drawable/ic_savings_coin.xml"
+    },
+    {
+        "merged": "com.finance.loanmanager.app-debug-40:/layout_activity_main.xml.flat",
+        "source": "com.finance.loanmanager.app-main-42:/layout/activity_main.xml"
     },
     {
         "merged": "C:\\Users\\Administrator\\.gradle\\daemon\\8.9\\com.finance.loanmanager.app-debug-40:\\drawable_ic_menu_export.xml.flat",
