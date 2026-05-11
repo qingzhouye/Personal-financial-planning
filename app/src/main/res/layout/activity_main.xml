@@ -40,8 +40,8 @@
 
                 <ImageView
                     android:id="@+id/btnSavings"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:src="@drawable/ic_savings_coin"
                     android:contentDescription="@string/savings"
                     android:background="?attr/selectableItemBackgroundBorderless"
@@ -51,8 +51,8 @@
 
                 <ImageView
                     android:id="@+id/btnVersionInfo"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:src="@drawable/ic_menu_gear"
                     android:contentDescription="@string/version_info"
